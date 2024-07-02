@@ -19,9 +19,9 @@ app.get('/', (req, res) => {
 });
 
 // Redirect any unknown paths to the index.html of the admin (SPA support)
-app.get('/admin/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'sanity-studio', 'dist', 'index.html'));
-});
+// app.get('/admin/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'sanity-studio', 'dist', 'index.html'));
+// });
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
