@@ -1,32 +1,5 @@
 {
-  "builds": [
-    {
-      "src": "sanity-studio/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "sanity-studio/dist"
-      }
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
   "rewrites": [
-    {
-      "source": "/admin(/.*)?",
-      "destination": "/sanity-studio/dist/index.html"
-    },
-    {
-      "source": "/static/(.*)",
-      "destination": "/static/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/$1"
-    }
+    { "source": "/admin/(.*)", "destination": "/admin" }
   ]
 }
