@@ -10,10 +10,6 @@ let generalData = {
     home: "Temp",
   },
 };
-
-console.log(teamData);
-console.log(approachBlock);
-
 // Function to initialize the data
  async function initializeData() {
   try {
@@ -28,7 +24,6 @@ console.log(approachBlock);
       ...introBlock,
       footer: footerData,
     };
-    console.log(textData);
 
     // Update content only after data initialization is complete
     updateContent(textData);
@@ -88,8 +83,6 @@ function TextElements(textData) {
     }
   });
 }
-
-
 
 function handleApproach(approachData) {
   const mainContainer = document.querySelector(".approach-container");
@@ -152,8 +145,6 @@ function handleApproach(approachData) {
     mainContainer.appendChild(approachWrapper);
   });
 }
-
-
 
 
 function TeamMembers(memberData) {
@@ -256,12 +247,40 @@ function handleFooter(textData) {
   }
 }
 
+function setLottieAttributes(textData) {
+  const lottieContainer = document.getElementById("lottie");
+  console.log(textData);
+  console.log(lottieContainer);
+  
+  if (lottieContainer) {
+    const lottieSrc = getNestedValue(textData, "approach.lottieSrc");
+    console.log(lottieSrc);
+    const lottieSpeed = getNestedValue(textData, "approach.lottieSpeed");
+    console.log(lottieSpeed);
+    
+    if (lottieSrc && lottieSpeed) {
+      const lottieHtml = `
+        <dotlottie-player 
+          id="lottieAnimation" 
+          key="approach.lottieSrc"
+          src="${lottieSrc}" 
+          background="transparent" 
+          speed="${lottieSpeed}" 
+          style="width: 100%; height: 100%;">
+        </dotlottie-player>
+      `;
+      lottieContainer.innerHTML = lottieHtml;
+    }
+  }
+}
+
 
 function updateContent(textData) {
   TextElements(textData);
   // TeamMembers(textData);
   handleApproach(approachBlock)
   handleFooter(textData);
+  setLottieAttributes(textData);
 }
 
 
@@ -270,17 +289,3 @@ window.addEventListener('load', initializeTeamData);
 
 window.onload = initializeData;
 window.onload = initializeTeamData;
-
-  // Ensure Lottie player is loaded before setting src
-  const lottiePlayer = document.querySelector("dotlottie-player");
-  if (lottiePlayer) {
-    const lottieSrc = getNestedValue(textData, "approach.lottieSrc");
-    const lottieSpeed = getNestedValue(textData, "approach.lottieSpeed");
-  
-    if (lottieSrc) {
-      lottiePlayer.setAttribute("src", lottieSrc);
-    }
-    if (lottieSpeed) {
-      lottiePlayer.setAttribute("speed", lottieSpeed);
-    }
-  }
