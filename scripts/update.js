@@ -89,13 +89,10 @@ function handleApproach(approachData) {
   if (!approachData || !mainContainer) return;
 
   // Helper function to wrap specified strings with a span having a class name
-  function wrapStringWithClass(str, substrings, className, additionalClass = "") {
-    substrings.forEach(substring => {
-      const regex = new RegExp(`(${substring})`, 'g');
-      const combinedClass = `${className} ${additionalClass}`.trim();
-      str = str.replace(regex, `<span class="${combinedClass}">$1</span>`);
-    });
-    return str;
+  function wrapStringWithClass(str, substr, className, additionalClass = "") {
+    const regex = new RegExp(`(${substr})`, 'g');
+    const combinedClass = `${className} ${additionalClass}`.trim();
+    return str.replace(regex, `<span class="${combinedClass}">$1</span>`);
   }
 
   Object.keys(approachData).forEach((approachKey, index) => {
@@ -103,10 +100,10 @@ function handleApproach(approachData) {
 
     // Modify body content to include styling for underline and bold
     let modifiedBody = approachBlock.body;
-    if (Array.isArray(approachBlock.underline) && approachBlock.underline.length > 0) {
+    if (approachBlock.underline) {
       modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underline, 'underline', approachBlock.class);
     }
-    if (Array.isArray(approachBlock.bold) && approachBlock.bold.length > 0) {
+    if (approachBlock.bold) {
       modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.bold, 'bold');
     }
 
