@@ -88,19 +88,10 @@ function handleApproach(approachData) {
   const mainContainer = document.querySelector(".approach-container");
   if (!approachData || !mainContainer) return;
 
-  // Helper function to escape special characters for use in a regex pattern
-  function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
   // Helper function to wrap specified strings with a span having a class name
   function wrapStringWithClass(str, substrings, className, additionalClass = "") {
-    if (!Array.isArray(substrings)) {
-      substrings = [substrings];
-    }
     substrings.forEach(substring => {
-      const escapedSubstring = escapeRegExp(substring);
-      const regex = new RegExp(`(${escapedSubstring})`, 'g');
+      const regex = new RegExp(`(${substring})`, 'g');
       const combinedClass = `${className} ${additionalClass}`.trim();
       str = str.replace(regex, `<span class="${combinedClass}">$1</span>`);
     });
@@ -112,10 +103,10 @@ function handleApproach(approachData) {
 
     // Modify body content to include styling for underline and bold
     let modifiedBody = approachBlock.body;
-    if (approachBlock.underline) {
+    if (Array.isArray(approachBlock.underline) && approachBlock.underline.length > 0) {
       modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underline, 'underline', approachBlock.class);
     }
-    if (approachBlock.bold) {
+    if (Array.isArray(approachBlock.bold) && approachBlock.bold.length > 0) {
       modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.bold, 'bold');
     }
 
@@ -157,8 +148,6 @@ function handleApproach(approachData) {
     mainContainer.appendChild(approachWrapper);
   });
 }
-
-
 
 
 function TeamMembers(memberData) {
