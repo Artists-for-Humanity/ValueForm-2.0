@@ -10,8 +10,8 @@ app.use('/static', express.static(path.join(__dirname, 'sanity-studio', 'dist', 
 // Serve the built Sanity Studio from the /admin path
 app.use('/admin', express.static(path.join(__dirname, 'sanity-studio', 'dist')));
 
-// Serve other static files from the dist directory
-app.use(express.static(path.join(__dirname, 'dist')));
+// Serve other static files from the root directory
+app.use(express.static(path.join(__dirname, '.')));
 
 // Serve the main index.html for the root path
 app.get('/', (req, res) => {
@@ -19,9 +19,9 @@ app.get('/', (req, res) => {
 });
 
 // Redirect any unknown paths to the index.html of the admin (SPA support)
-// app.get('/admin/*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'sanity-studio', 'dist', 'index.html'));
-// });
+app.get('/admin/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'sanity-studio', 'dist', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

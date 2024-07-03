@@ -62,16 +62,8 @@ function animateOnLoad() {
 
         element.style.animationDelay = `${viewportIndex * 600}ms`;
         element.classList.add("animated");
-        // console.log("reachMe00");
-        // console.log("###################################");
-        // console.log(element);
-        // console.log(element.classList);
-        // console.log("###################################");
-        // console.log(`Element ${viewportIndex + 1} is in the viewport:`);
-        // console.log(element); 
-
+      
         viewportIndex++;  
-    // console.log(viewportIndex);
 
       } else {
         element.style.visibility = "visible";
@@ -166,10 +158,8 @@ function isMacOS() {
 function applyWhiteTextShadow() {
   if (isMacOS()) {
       var elements = document.querySelectorAll('.text-jumbo');
-      // console.log("Elements selected:", elements); 
       elements.forEach(function(element) {
           element.classList.add('white-text-shadow');
-          // console.log("Added white-text-shadow to:", element); 
       });
   }
 }
