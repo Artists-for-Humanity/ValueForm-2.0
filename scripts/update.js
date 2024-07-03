@@ -95,6 +95,14 @@ function handleApproach(approachData) {
     return str.replace(regex, `<span class="${combinedClass}">$1</span>`);
   }
 
+  // Helper function to wrap multiple substrings with a class
+  function wrapMultipleStringsWithClass(str, substrings, className) {
+    substrings.forEach(substring => {
+      str = wrapStringWithClass(str, substring, className);
+    });
+    return str;
+  }
+
   Object.keys(approachData).forEach((approachKey, index) => {
     const approachBlock = approachData[approachKey];
 
@@ -103,7 +111,9 @@ function handleApproach(approachData) {
     if (approachBlock.underline) {
       modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underline, 'underline', approachBlock.class);
     }
-    if (approachBlock.bold) {
+    if (approachBlock.bold && Array.isArray(approachBlock.bold)) {
+      modifiedBody = wrapMultipleStringsWithClass(modifiedBody, approachBlock.bold, 'bold');
+    } else if (approachBlock.bold) {
       modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.bold, 'bold');
     }
 
@@ -145,6 +155,7 @@ function handleApproach(approachData) {
     mainContainer.appendChild(approachWrapper);
   });
 }
+
 
 
 function TeamMembers(memberData) {
