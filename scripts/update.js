@@ -266,6 +266,7 @@ function setLottieAttributes(textData) {
           src="${lottieSrc}" 
           background="transparent" 
           speed="${lottieSpeed}" 
+          autoplay
           style="width: 100%; height: 100%;">
         </dotlottie-player>
       `;
@@ -280,7 +281,11 @@ function updateContent(textData) {
   // TeamMembers(textData);
   handleApproach(approachBlock)
   handleFooter(textData);
-  setLottieAttributes(textData);
+  const delay = 500;
+
+  setTimeout(() => {
+    setLottieAttributes(textData);
+  }, delay);
 }
 
 
