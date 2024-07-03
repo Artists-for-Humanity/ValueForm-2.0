@@ -9,10 +9,10 @@ export const approachBlock = {
       class: {
         name: 'scope',
         image: '../images/scope-alt.svg',
-        width: 662,
-        height: 662,
-        top: -321,
-        left: -139,
+        width: '662px',
+        height: '662px',
+        top: '-321px',
+        left: '-139px',
         background: 'rgba(2, 2, 2, 0.8)'
       },
       capabilities: [

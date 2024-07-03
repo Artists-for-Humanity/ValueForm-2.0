@@ -111,23 +111,23 @@ function handleApproach(approachData) {
     const approachBlock = approachData[approachKey];
 
     // Create CSS class dynamically
-    const style = document.createElement('style');
-    style.type = 'text/css';
-    const cssClass = `
-        p span.${approachBlock.class.name}:before {
-            content: url(${approachBlock.class.image});
-            text-align: center;
-            display: none;
-            width: ${approachBlock.class.width};
-            height: ${approachBlock.class.height};
-            top: ${approachBlock.class.top};
-            left: ${approachBlock.class.left};
-            background: ${approachBlock.class.background};
-        }
-    `;
-    style.appendChild(document.createTextNode(cssClass));
-    document.head.appendChild(style);
-    console.log(style);
+    // const style = document.createElement('style');
+    // style.type = 'text/css';
+    // const cssClass = `
+    //     p span.${approachBlock.class.name}:before {
+    //         content: url(${approachBlock.class.image});
+    //         text-align: center;
+    //         display: none;
+    //         width: ${approachBlock.class.width};
+    //         height: ${approachBlock.class.height};
+    //         top: ${approachBlock.class.top};
+    //         left: ${approachBlock.class.left};
+    //         background: ${approachBlock.class.background};
+    //     }
+    // `;
+    // style.appendChild(document.createTextNode(cssClass));
+    // document.head.appendChild(style);
+    // console.log(style);
 
 
 
