@@ -110,6 +110,8 @@ function handleApproach(approachData) {
   Object.keys(approachData).forEach((approachKey, index) => {
     const approachBlock = approachData[approachKey];
 
+
+
     // Create CSS class dynamically
     // const style = document.createElement('style');
     // style.type = 'text/css';
@@ -125,6 +127,7 @@ function handleApproach(approachData) {
     //         background: ${approachBlock.class.background};
     //     }
     // `;
+    // console.log(cssClass);
     // style.appendChild(document.createTextNode(cssClass));
     // document.head.appendChild(style);
     // console.log(style);
@@ -134,7 +137,7 @@ function handleApproach(approachData) {
     // Modify body content to include styling for underline and bold
     let modifiedBody = approachBlock.body;
     if (approachBlock.underline) {
-      modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underline, 'underline', approachBlock.class);
+      modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underline, 'underline', approachBlock.class.name);
     }
     if (approachBlock.bold && Array.isArray(approachBlock.bold)) {
       modifiedBody = wrapMultipleStringsWithClass(modifiedBody, approachBlock.bold, 'bold');
