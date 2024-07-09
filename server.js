@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, '.')));
 
 // Serve the main index.html for the root path
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Redirect any unknown paths to the index.html of the admin (SPA support)
@@ -26,6 +26,3 @@ app.get('/admin/*', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
-
-
-console.log('reachme00');
