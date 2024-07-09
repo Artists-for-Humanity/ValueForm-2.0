@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 app.use('/static', express.static(path.join(__dirname, 'sanity-studio', 'dist', 'static')));
 
 // Serve the built Sanity Studio from the /admin path
-app.use('/admin', express.static(path.join(__dirname, 'sanity-studio', 'dist')));
+app.use('/admin', express.static(path.join(__dirname, 'sanity-studio')));
 
 // Serve other static files from the root directory
 app.use(express.static(path.join(__dirname, '.')));
