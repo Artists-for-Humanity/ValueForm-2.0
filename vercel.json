@@ -18,7 +18,7 @@
   "rewrites": [
     {
       "source": "/admin/(.*)",
-      "destination": "/sanity-studio/dist/index.html"
+      "destination": "/sanity-studio/dist/$1"
     },
     {
       "source": "/static/(.*)",
