@@ -10,17 +10,25 @@ app.use('/static', express.static(path.join(__dirname, 'sanity-studio', 'dist', 
 // Serve the built Sanity Studio from the /admin path
 app.use('/admin', express.static(path.join(__dirname, 'sanity-studio', 'dist')));
 
+// Serve additional static files from sanity-studio
+app.use('/sanity-studio', express.static(path.join(__dirname, 'sanity-studio')));
+
 // Serve other static files from the root directory
-app.use(express.static(path.join(__dirname, '.')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Serve the main index.html for the root path
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-// Redirect any unknown paths to the index.html of the admin (SPA support)
+// Redirect any unknown paths under /admin to the index.html of the Sanity CMS
 app.get('/admin/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'sanity-studio', 'dist', 'index.html'));
+});
+
+// Handle other paths by serving the main site's index.html (for SPA support)
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(port, () => {
