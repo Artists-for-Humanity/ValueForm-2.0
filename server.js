@@ -11,11 +11,14 @@ app.use('/static', express.static(path.join(__dirname, 'sanity-studio', 'dist', 
 app.use('/admin', express.static(path.join(__dirname, 'sanity-studio', 'dist')));
 
 // Serve other static files from the root directory
-app.use(express.static(path.join(__dirname, '.')));
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Serve additional static files from sanity-studio
+app.use(express.static(path.join(__dirname, 'sanity-studio')));
 
 // Serve the main index.html for the root path
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 // Redirect any unknown paths to the index.html of the admin (SPA support)
