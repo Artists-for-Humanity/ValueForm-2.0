@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Serve the main index.html for the root path
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Redirect any unknown paths under /admin to the index.html of the Sanity CMS
@@ -28,7 +28,7 @@ app.get('/admin/*', (req, res) => {
 
 // Handle other paths by serving the main site's index.html (for SPA support)
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(port, () => {

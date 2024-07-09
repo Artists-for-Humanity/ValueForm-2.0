@@ -1,4 +1,4 @@
-import { fetchTagline } from "../../sanity-studio/fetchTagline.js";
+import { fetchTagline } from "../sanity-studio/fetchTagline.js";
 import { fetchTeamData } from "../sanity-studio/sanity-utils.js";
 import { teamData } from "./data/team.js";
 import { introBlock } from "./data/approachIntroBlock.js";
