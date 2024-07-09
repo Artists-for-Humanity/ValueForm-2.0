@@ -9,10 +9,10 @@ export const approachBlock = {
       class: {
         name: 'scope',
         image: '../images/scope-alt.svg',
-        width: '662px',
-        height: '662px',
-        top: '-321px',
-        left: '-139px',
+        width: '727px',
+        height: '332px',
+        top: '-161px',
+        left: '-455px',
         background: 'rgba(2, 2, 2, 0.8)'
       },
       capabilities: [
@@ -70,6 +70,14 @@ export const approachBlock = {
       body: `Focus. Each of our teams dedicates its efforts to a single project at a time, ensuring unwavering concentration. The same team works together from the beginning. This means that designers, engineers, and strategists are contributors at every stage of the work, fostering a holistic and cohesive approach.`,
       underline: ``,
       bold: [],
+      class: {
+        name: '',
+        image: '',
+        width: '',
+        height: '',
+        top: '',
+        left: ''
+    },
       capabilities: [
         "1 Team, From Beginning to End",
         "1 Project at a Time, Complete Focus",

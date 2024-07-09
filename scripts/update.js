@@ -90,14 +90,12 @@ function handleApproach(approachData) {
 
   
 
-  // Helper function to wrap specified strings with a span having a class name
   function wrapStringWithClass(str, substr, className, additionalClass = "") {
     const regex = new RegExp(`(${substr})`, 'g');
     const combinedClass = `${className} ${additionalClass}`.trim();
     return str.replace(regex, `<span class="${combinedClass}">$1</span>`);
   }
 
-  // Helper function to wrap multiple substrings with a class
   function wrapMultipleStringsWithClass(str, substrings, className) {
     substrings.forEach(substring => {
       str = wrapStringWithClass(str, substring, className);
@@ -113,24 +111,24 @@ function handleApproach(approachData) {
 
 
     // Create CSS class dynamically
-    // const style = document.createElement('style');
-    // style.type = 'text/css';
-    // const cssClass = `
-    //     p span.${approachBlock.class.name}:before {
-    //         content: url(${approachBlock.class.image});
-    //         text-align: center;
-    //         display: none;
-    //         width: ${approachBlock.class.width};
-    //         height: ${approachBlock.class.height};
-    //         top: ${approachBlock.class.top};
-    //         left: ${approachBlock.class.left};
-    //         background: ${approachBlock.class.background};
-    //     }
-    // `;
-    // console.log(cssClass);
-    // style.appendChild(document.createTextNode(cssClass));
-    // document.head.appendChild(style);
-    // console.log(style);
+    const style = document.createElement('style');
+    style.type = 'text/css'; 
+    const cssClass = `
+        p span.${approachBlock.class.name}:before {
+            content: url(${approachBlock.class.image});
+            text-align: center;
+            display: none;
+            width: ${approachBlock.class.width};
+            height: ${approachBlock.class.height};
+            top: ${approachBlock.class.top};
+            left: ${approachBlock.class.left};
+            background: ${approachBlock.class.background};
+        }
+    `;
+    console.log(cssClass);
+    style.appendChild(document.createTextNode(cssClass));
+    document.head.appendChild(style);
+    console.log(style);
 
 
 

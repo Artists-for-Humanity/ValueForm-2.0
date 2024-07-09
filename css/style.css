@@ -922,7 +922,7 @@ main.internal .intro + .container.no-border {
     animation-timing-function: ease-out;
     animation-duration: 250ms;
   }
-  p span.divergent:before {
+  /* p span.divergent:before {
     border-radius: 100%;
     content: url(../images/your-problem-alt.svg);
     width: 662px;
@@ -950,13 +950,13 @@ main.internal .intro + .container.no-border {
     top: -161px;
     left: -455px;
     background: rgba(2, 2, 2, 0.8);
-  }
+  } */
 
   p span:hover {
     text-decoration: none;
   }
   p span:hover:before {
-    display: block;
+    display: block !important;
   }
 } /* END OF HOVER IMAGES */
 
