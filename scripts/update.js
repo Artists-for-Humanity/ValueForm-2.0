@@ -1,5 +1,6 @@
 import { fetchTagline } from "../../sanity-studio/fetchTagline.js";
 import { fetchTeamData } from "../sanity-studio/sanity-utils.js";
+import { fetchIntroBlockData } from "../sanity-studio/fetchApproach.js";
 import { teamData } from "./data/team.js";
 import { introBlock } from "./data/approachIntroBlock.js";
 import { approachBlock } from "./data/approachBlock.js";
@@ -14,6 +15,7 @@ let generalData = {
  async function initializeData() {
   try {
     const tagline = await fetchTagline();
+    // const introBlockData = await fetchIntroBlockData();
     generalData.tagline.home = tagline;
 
     // Create the textData object after the tagline has been fetched
@@ -22,6 +24,7 @@ let generalData = {
       team: teamData,
       ...approachBlock,
       ...introBlock,
+      // ...introBlockData,
       footer: footerData,
     };
 
@@ -29,14 +32,13 @@ let generalData = {
     updateContent(textData);
     animateOnLoad();
   } catch (err) {
-    // console.error("Error fetching tagline:", err);
+    console.error("Error fetching tagline:", err);
   }
 }
 
 async function initializeTeamData() {
   try {
     const teamMember = await fetchTeamData();
-    // console.log(teamMember)
     const memberData = {
       team: teamMember,
     };
@@ -45,6 +47,19 @@ async function initializeTeamData() {
   }
   catch (err) {
     console.error("Error fetching teamMember:", err);
+  }
+}
+
+async function initializeApproachBlockData() {
+  try {
+    const approachBlocks = await fetchIntroBlockData();
+    const approachBlockData = {
+      blocks: approachBlocks,
+    };
+    handleApproach(approachBlockData);
+    animateOnLoad();
+  } catch (err) {
+    console.error("Error fetching approach blocks:", err);
   }
 }
 
@@ -88,8 +103,6 @@ function handleApproach(approachData) {
   const mainContainer = document.querySelector(".approach-container");
   if (!approachData || !mainContainer) return;
 
-  
-
   function wrapStringWithClass(str, substr, className, additionalClass = "") {
     const regex = new RegExp(`(${substr})`, 'g');
     const combinedClass = `${className} ${additionalClass}`.trim();
@@ -103,35 +116,31 @@ function handleApproach(approachData) {
     return str;
   }
 
-  
-
   Object.keys(approachData).forEach((approachKey, index) => {
     const approachBlock = approachData[approachKey];
-
-
-
+    console.log(approachBlock);
+    // const classBlock = approachBlock.map(approachBlock => approachBlock.class);
     // Create CSS class dynamically
-    const style = document.createElement('style');
-    style.type = 'text/css'; 
-    const cssClass = `
-        p span.${approachBlock.class.name}:before {
-            content: url(${approachBlock.class.image});
-            text-align: center;
-            display: none;
-            width: ${approachBlock.class.width};
-            height: ${approachBlock.class.height};
-            top: ${approachBlock.class.top};
-            left: ${approachBlock.class.left};
-            background: ${approachBlock.class.background};
-        }
-    `;
-    console.log(cssClass);
-    style.appendChild(document.createTextNode(cssClass));
-    document.head.appendChild(style);
-    console.log(style);
+    approachBlock.forEach(block => {
+      const style = document.createElement('style');
+      style.type = 'text/css'; 
 
-
-
+      const cssClass = `
+          p span.${block.class.name}:before {
+              content: url(${block.class.image});
+              text-align: center;
+              display: none;
+              width: ${block.class.width};
+              height: ${block.class.height};
+              top: ${block.class.top};
+              left: ${block.class.left};
+              background: ${block.class.background};
+          }
+      `;
+      style.appendChild(document.createTextNode(cssClass));
+      document.head.appendChild(style);
+      // console.log(cssClass);
+  });
     // Modify body content to include styling for underline and bold
     let modifiedBody = approachBlock.body;
     if (approachBlock.underline) {
@@ -181,8 +190,6 @@ function handleApproach(approachData) {
     mainContainer.appendChild(approachWrapper);
   });
 }
-
-
 
 function TeamMembers(memberData) {
   const mainContainer = document.querySelector(".main-container");
@@ -286,14 +293,9 @@ function handleFooter(textData) {
 
 function setLottieAttributes(textData) {
   const lottieContainer = document.getElementById("lottie");
-  console.log(textData);
-  console.log(lottieContainer);
-  
   if (lottieContainer) {
     const lottieSrc = getNestedValue(textData, "approach.lottieSrc");
-    console.log(lottieSrc);
     const lottieSpeed = getNestedValue(textData, "approach.lottieSpeed");
-    console.log(lottieSpeed);
     
     if (lottieSrc && lottieSpeed) {
       const lottieHtml = `
@@ -312,11 +314,11 @@ function setLottieAttributes(textData) {
   }
 }
 
-
 function updateContent(textData) {
   TextElements(textData);
   // TeamMembers(textData);
-  handleApproach(approachBlock)
+  // handleApproach(approachBlock);
+  
   handleFooter(textData);
   const delay = 500;
 
@@ -328,6 +330,8 @@ function updateContent(textData) {
 
 window.addEventListener('load', initializeData);
 window.addEventListener('load', initializeTeamData);
+window.addEventListener('load', initializeApproachBlockData)
 
 window.onload = initializeData;
 window.onload = initializeTeamData;
+window.onload = initializeApproachBlockData;
