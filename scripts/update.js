@@ -139,10 +139,11 @@ function handleApproach(approachData) {
       `;
       style.appendChild(document.createTextNode(cssClass));
       document.head.appendChild(style);
-      // console.log(cssClass);
-  });
+    });
+
     // Modify body content to include styling for underline and bold
     let modifiedBody = approachBlock.body;
+    console.log(approachBlock.body)
     if (approachBlock.underline) {
       modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underline, 'underline', approachBlock.class.name);
     }
@@ -163,30 +164,25 @@ function handleApproach(approachData) {
       <h4 class="desktop-col-7 tablet-col-6">Capabilities:</h4>
       <ul class="desktop-col-10 tablet-col-6 text-m"></ul>
     `;
+    
+    // const capabilitiesList = approachWrapper.querySelector("ul");
+    // const capabilitiesLength = approachBlock.capabilities.length;
 
-    // get the <ul> element to append <li> elements to it
-    const capabilitiesList = approachWrapper.querySelector("ul");
-    const capabilitiesLength = approachBlock.capabilities.length;
+    // approachBlock.capabilities.forEach((capability, capIndex) => {
+    //   const listItem = document.createElement("li");
+    //   listItem.textContent = capability;
 
-    // dynamically create <li> elements based on the capabilities array
-    approachBlock.capabilities.forEach((capability, capIndex) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = capability;
-
-      // Add class no-border based on the length of the capabilities array
-      if (capabilitiesLength % 2 === 0) {
-        // even: add no-border to the last two items
-        if (capIndex >= capabilitiesLength - 2) {
-          listItem.classList.add("no-border");
-        }
-      } else {
-        // odd: add no-border to the last item
-        if (capIndex === capabilitiesLength - 1) {
-          listItem.classList.add("no-border");
-        }
-      }
-      capabilitiesList.appendChild(listItem);
-    });
+    //   if (capabilitiesLength % 2 === 0) {
+    //     if (capIndex >= capabilitiesLength - 2) {
+    //       listItem.classList.add("no-border");
+    //     }
+    //   } else {
+    //     if (capIndex === capabilitiesLength - 1) {
+    //       listItem.classList.add("no-border");
+    //     }
+    //   }
+    //   capabilitiesList.appendChild(listItem);
+    // });
     mainContainer.appendChild(approachWrapper);
   });
 }
