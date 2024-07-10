@@ -29,8 +29,12 @@
       "destination": "/sanity-studio/dist/static/$1"
     },
     {
+      "source": "/sanity-studio/static/(.*)",
+      "destination": "/sanity-studio/dist/static/$1"
+    },
+    {
       "source": "/sanity-studio/(.*)",
-      "destination": "/sanity-studio/$1"
+      "destination": "/sanity-studio/dist/$1"
     },
     {
       "source": "/(.*)",
