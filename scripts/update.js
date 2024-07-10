@@ -139,6 +139,7 @@ function handleApproach(approachData) {
       `;
       style.appendChild(document.createTextNode(cssClass));
       document.head.appendChild(style);
+      // console.log(cssClass);
     });
 
     // Modify body content to include styling for underline and bold
@@ -156,6 +157,8 @@ function handleApproach(approachData) {
     const approachWrapper = document.createElement("div");
     approachWrapper.className = "container fadeInUp";
 
+    // console.log(approachBlock);
+
     approachWrapper.innerHTML = `
       <h2 class="desktop-col-10 tablet-col-6 text-l">${approachBlock.title}</h2>
       <p class="text-m desktop-col-7 tablet-col-6">
@@ -164,7 +167,7 @@ function handleApproach(approachData) {
       <h4 class="desktop-col-7 tablet-col-6">Capabilities:</h4>
       <ul class="desktop-col-10 tablet-col-6 text-m"></ul>
     `;
-    
+
     // const capabilitiesList = approachWrapper.querySelector("ul");
     // const capabilitiesLength = approachBlock.capabilities.length;
 
