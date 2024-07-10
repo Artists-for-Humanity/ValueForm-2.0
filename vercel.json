@@ -17,20 +17,24 @@
   ],
   "rewrites": [
     {
+      "source": "/admin",
+      "destination": "/sanity-studio/dist/index.html"
+    },
+    {
       "source": "/admin/(.*)",
-      "destination": "/sanity-studio/$1"
+      "destination": "/sanity-studio/dist/index.html"
+    },
+    {
+      "source": "/static/(.*)",
+      "destination": "/sanity-studio/dist/static/$1"
     },
     {
       "source": "/sanity-studio/(.*)",
       "destination": "/sanity-studio/$1"
     },
     {
-      "source": "/static/(.*)",
-      "destination": "/static/$1"
-    },
-    {
       "source": "/(.*)",
-      "destination": "/$1"
+      "destination": "/dist/index.html"
     }
   ]
 }
