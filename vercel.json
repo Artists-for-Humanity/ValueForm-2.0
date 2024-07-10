@@ -21,10 +21,6 @@
       "destination": "/sanity-studio/$1"
     },
     {
-      "source": "/sanity-studio/(.*)",
-      "destination": "/sanity-studio/$1"
-    },
-    {
       "source": "/static/(.*)",
       "destination": "/static/$1"
     },
