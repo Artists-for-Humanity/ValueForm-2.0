@@ -22,7 +22,15 @@
     },
     {
       "source": "/static/(.*)",
-      "destination": "/static/$1"
+      "destination": "/sanity-studio/dist/static/$1"
+    },
+    {
+      "source": "/sanity-studio/(.*)",
+      "destination": "/sanity-studio/$1"
+    },
+    {
+      "source": "/",
+      "destination": "/dist/home.html"
     },
     {
       "source": "/(.*)",
