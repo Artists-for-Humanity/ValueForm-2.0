@@ -30,11 +30,11 @@
     },
     {
       "source": "/",
-      "destination": "/dist/index.html"
+      "destination": "/dist/home.html"
     },
     {
       "source": "/(.*)",
-      "destination": "/dist/index.html"
+      "destination": "/dist/home.html"
     }
   ]
 }
