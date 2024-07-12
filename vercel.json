@@ -18,11 +18,11 @@
   "rewrites": [
     {
       "source": "/admin/(.*)",
-      "destination": "/dist/sanity-studio/$1"
+      "destination": "/sanity-studio/dist/$1"
     },
     {
       "source": "/static/(.*)",
-      "destination": "/dist/sanity-studio/static/$1"
+      "destination": "/static/$1"
     },
     {
       "source": "/sanity-studio/(.*)",
@@ -30,11 +30,11 @@
     },
     {
       "source": "/",
-      "destination": "/dist/index.html"
+      "destination": "/dist/home.html"
     },
     {
       "source": "/(.*)",
-      "destination": "/dist/index.html"
+      "destination": "/dist/home.html"
     }
   ]
 }
