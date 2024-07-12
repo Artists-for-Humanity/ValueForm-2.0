@@ -17,16 +17,24 @@
   ],
   "rewrites": [
     {
+      "source": "/admin/static/(.*)",
+      "destination": "/sanity-studio/dist/static/$1"
+    },
+    {
       "source": "/admin/(.*)",
-      "destination": "/dist/sanity-studio/index.html"
+      "destination": "/sanity-studio/dist/$1"
     },
     {
       "source": "/static/(.*)",
-      "destination": "/static/$1"
+      "destination": "/sanity-studio/dist/static/$1"
     },
     {
       "source": "/sanity-studio/(.*)",
       "destination": "/sanity-studio/$1"
+    },
+    {
+      "source": "/admin",
+      "destination": "/sanity-studio/dist/index.html"
     },
     {
       "source": "/",
