@@ -50,6 +50,8 @@ async function initializeTeamData() {
   }
 }
 
+// console.log(fetchIntroBlockData());
+
 async function initializeApproachBlockData() {
   try {
     const approachBlocks = await fetchIntroBlockData();
@@ -101,7 +103,10 @@ function TextElements(textData) {
 
 function handleApproach(approachData) {
   const mainContainer = document.querySelector(".approach-container");
-  if (!approachData || !mainContainer) return;
+  if (!approachData.blocks || !mainContainer) return;
+
+  console.log(approachData);
+  console.log(approachData.blocks);
 
   function wrapStringWithClass(str, substr, className, additionalClass = "") {
     const regex = new RegExp(`(${substr})`, 'g');
@@ -116,57 +121,56 @@ function handleApproach(approachData) {
     return str;
   }
 
-  Object.keys(approachData).forEach((approachKey, index) => {
-    const approachBlock = approachData[approachKey];
-    console.log(approachBlock);
-    // const classBlock = approachBlock.map(approachBlock => approachBlock.class);
-    // Create CSS class dynamically
-    approachBlock.forEach(block => {
+  if (Array.isArray(approachData.blocks)) {
+    approachData.blocks.forEach((approachBlock, index) => {
+      console.log(index);
+
+      // Create CSS class dynamically for each block
       const style = document.createElement('style');
-      style.type = 'text/css'; 
+      style.type = 'text/css';
 
       const cssClass = `
-          p span.${block.class.name}:before {
-              content: url(${block.class.image});
+          p span.${approachBlock.class.name}:before {
+              content: url(${approachBlock.class.image});
               text-align: center;
               display: none;
-              width: ${block.class.width};
-              height: ${block.class.height};
-              top: ${block.class.top};
-              left: ${block.class.left};
-              background: ${block.class.background};
+              width: ${approachBlock.class.width};
+              height: ${approachBlock.class.height};
+              top: ${approachBlock.class.top};
+              left: ${approachBlock.class.left};
+              background: ${approachBlock.class.background};
           }
       `;
       style.appendChild(document.createTextNode(cssClass));
       document.head.appendChild(style);
-      // console.log(cssClass);
-    });
 
-    // Modify body content to include styling for underline and bold
-    let modifiedBody = approachBlock.body;
-    console.log(approachBlock.body)
-    if (approachBlock.underline) {
-      modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underline, 'underline', approachBlock.class.name);
-    }
-    if (approachBlock.bold && Array.isArray(approachBlock.bold)) {
-      modifiedBody = wrapMultipleStringsWithClass(modifiedBody, approachBlock.bold, 'bold');
-    } else if (approachBlock.bold) {
-      modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.bold, 'bold');
-    }
+      // Modify body content to include styling for underline and bold
+      let modifiedBody = approachBlock.body;
+      if (approachBlock.underline) {
+        modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underline, 'underline', approachBlock.class.name);
+      }
+      if (approachBlock.bold && Array.isArray(approachBlock.bold)) {
+        modifiedBody = wrapMultipleStringsWithClass(modifiedBody, approachBlock.bold, 'bold');
+      } else if (approachBlock.bold) {
+        modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.bold, 'bold');
+      }
 
-    const approachWrapper = document.createElement("div");
-    approachWrapper.className = "container fadeInUp";
+      const approachWrapper = document.createElement("div");
+      approachWrapper.className = "container fadeInUp";
 
-    // console.log(approachBlock);
+      approachWrapper.innerHTML = `
+        <h2 class="desktop-col-10 tablet-col-6 text-l">${approachBlock.title}</h2>
+        <p class="text-m desktop-col-7 tablet-col-6">
+         ${modifiedBody}
+        </p>
+        <h4 class="desktop-col-7 tablet-col-6">Capabilities:</h4>
+        <ul class="desktop-col-10 tablet-col-6 text-m">
+          ${approachBlock.capabilities.map(capability => `<li>${capability}</li>`).join('')}
+        </ul>
+      `;
 
-    approachWrapper.innerHTML = `
-      <h2 class="desktop-col-10 tablet-col-6 text-l">${approachBlock.title}</h2>
-      <p class="text-m desktop-col-7 tablet-col-6">
-       ${modifiedBody}
-      </p>
-      <h4 class="desktop-col-7 tablet-col-6">Capabilities:</h4>
-      <ul class="desktop-col-10 tablet-col-6 text-m"></ul>
-    `;
+       // console.log(modifiedBody);
+
 
     // const capabilitiesList = approachWrapper.querySelector("ul");
     // const capabilitiesLength = approachBlock.capabilities.length;
@@ -186,15 +190,25 @@ function handleApproach(approachData) {
     //   }
     //   capabilitiesList.appendChild(listItem);
     // });
-    mainContainer.appendChild(approachWrapper);
-  });
+
+      mainContainer.appendChild(approachWrapper);
+    });
+  } else {
+    console.error("approachData.blocks is not an array:", approachData.blocks);
+  }
 }
+
 
 function TeamMembers(memberData) {
   const mainContainer = document.querySelector(".main-container");
   if (!memberData.team || !mainContainer) return;
+  console.log(memberData)
+  console.log(memberData.team)
+
 
   Object.keys(memberData.team).forEach((memberKey, index) => {
+    console.log(index);
+
     const member = memberData.team[memberKey];
     const memberWrapper = document.createElement("div");
     memberWrapper.className = "container no-border fadeInUp";
@@ -327,10 +341,9 @@ function updateContent(textData) {
 }
 
 
-window.addEventListener('load', initializeData);
-window.addEventListener('load', initializeTeamData);
-window.addEventListener('load', initializeApproachBlockData)
 
-window.onload = initializeData;
-window.onload = initializeTeamData;
-window.onload = initializeApproachBlockData;
+window.addEventListener('load', () => {
+  initializeData();
+  initializeTeamData();
+  initializeApproachBlockData();
+});

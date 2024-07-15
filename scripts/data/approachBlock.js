@@ -1,6 +1,6 @@
 export const approachBlock = {
     block01: {
-      title: "We put skin in the game",
+      title: "We put skin in the game!!!",
       body: `Our work starts with a dedicated research and strategy phase. We scope this phase independently from our other work to reach a consensus on what problem needs to be solved and how we might solve it. This allows us to align and scope our future design work appropriately.
   
       During our research and strategy phase, we set clear and measurable outcomes. We create conviction in these outcomes and our work by directly tying our compensation to them. If we help you meet your goals, we get paid. If we don't, we lose too.`,
