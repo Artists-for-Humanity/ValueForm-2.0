@@ -62,7 +62,6 @@ function animateOnLoad() {
 
         element.style.animationDelay = `${viewportIndex * 600}ms`;
         element.classList.add("animated");
-      
         viewportIndex++;  
 
       } else {

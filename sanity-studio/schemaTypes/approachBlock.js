@@ -1,4 +1,3 @@
-
 import { defineField, defineType } from "sanity";
 
 export default defineType({
@@ -23,15 +22,62 @@ export default defineType({
       description: "This should be a segment from the body text",
     }),
     defineField({
-      name: "popUpImage",
-      title: "Pop Up Image",
-      type: "string",
-    }),
-    defineField({
       name: "boldText",
       title: "Bold Text",
-      type: "string",
-      description: "This should be part of the body text",
+      type: "array",
+      of: [
+        defineField({
+          type: "string",
+        }),
+      ],
+      description: "These should be parts of the body text",
+    }),
+    defineField({
+      name: "class",
+      title: "Class",
+      type: "object",
+      fields: [
+        defineField({
+          name: "name",
+          title: "Name",
+          type: "string",
+        }),
+        defineField({
+          name: "image",
+          title: "Image",
+          type: "image",
+        }),
+        defineField({
+          name: "width",
+          title: "Width",
+          type: "string",
+        }),
+        defineField({
+          name: "height",
+          title: "Height",
+          type: "string",
+        }),
+        defineField({
+          name: "top",
+          title: "Top",
+          type: "string",
+        }),
+        defineField({
+          name: "left",
+          title: "Left",
+          type: "string",
+        }),
+        defineField({
+          name: "background",
+          title: "Background",
+          type: "string",
+        }),
+        defineField({
+          name: "borderRadius",
+          title: "Border Radius",
+          type: "string",
+        }),
+      ],
     }),
     defineField({
       name: "capabilities",
@@ -47,7 +93,7 @@ export default defineType({
   preview: {
     select: {
       title: "title",
-      media: "popUpImage",
+      media: "class.image",
     },
   },
 });
