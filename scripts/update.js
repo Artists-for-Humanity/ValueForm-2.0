@@ -1,4 +1,4 @@
-import { fetchTagline } from "../../sanity-studio/fetchTagline.js";
+import { fetchTagline } from "../sanity-studio/fetchTagline.js";
 import { fetchTeamData } from "../sanity-studio/sanity-utils.js";
 import { fetchIntroBlockData } from "../sanity-studio/fetchApproach.js";
 import { teamData } from "./data/team.js";
@@ -11,6 +11,7 @@ let generalData = {
     home: "Temp",
   },
 };
+
 // Function to initialize the data
  async function initializeData() {
   try {
