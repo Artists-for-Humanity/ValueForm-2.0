@@ -152,12 +152,12 @@ function handleApproach(approachData) {
 
       // Modify body content to include styling for underline and bold
       let modifiedBody = approachBlock.body;
-      if (approachBlock.underline) {
-        modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underline, 'underline', approachBlock.class.name);
+      if (approachBlock.underlineText) {
+        modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underlineText, 'underline', approachBlock.class.name);
       }
-      if (approachBlock.bold && Array.isArray(approachBlock.bold)) {
-        modifiedBody = wrapMultipleStringsWithClass(modifiedBody, approachBlock.bold, 'bold');
-      } else if (approachBlock.bold) {
+      if (approachBlock.boldText && Array.isArray(approachBlock.boldText)) {
+        modifiedBody = wrapMultipleStringsWithClass(modifiedBody, approachBlock.boldText, 'bold');
+      } else if (approachBlock.boldText) {
         modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.bold, 'bold');
       }
 
