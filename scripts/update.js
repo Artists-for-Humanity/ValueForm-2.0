@@ -120,7 +120,7 @@ function TeamMembers(memberData) {
         <img src="${member.imgSrc}" alt="${member.name}" />
       </div>
       <p class="text-m">${member.bio}</p>
-      <h4>${member.clients.title}</h4>
+      <h4>Select Clients:</h4>
       <table class="text-m">
         <tr>
           <th>${member.clients.category01.name}</th>

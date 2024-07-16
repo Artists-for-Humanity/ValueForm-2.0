@@ -18,7 +18,6 @@ const query = `*[_type == "teamMember"] {
   "imgSrc": imgSrc.asset->url,
   "bio": bio,
   "clients": clients{
-    "title": title,
     "categories": categories[] {
       "name": name,
       "list": list
@@ -48,7 +47,6 @@ export async function fetchTeamData() {
         imgSrc: member.imgSrc || "", // Provide a default value if imgSrc is null
         bio: member.bio || "", // Provide a default value if bio is null
         clients: {
-          title: member.clients?.title || "Select Clients:",
           category01: member.clients?.categories?.[0]
             ? {
                 name: member.clients.categories[0].name || "",

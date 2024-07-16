@@ -34,11 +34,11 @@ export default defineType({
       title: "Client List",
       type: "object",
       fields: [
-        defineField({
-          name: "title",
-          title: "Title",
-          type: "string",
-        }),
+        // defineField({
+        //   name: "title",
+        //   title: "Title",
+        //   type: "string",
+        // }),
         defineField({
           name: "categories",
           title: "Categories",
