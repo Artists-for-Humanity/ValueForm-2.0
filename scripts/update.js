@@ -38,6 +38,7 @@ let generalData = {
 }
 
 async function initializeTeamData() {
+  console.log("reachme00");
   try {
     const teamMember = await fetchTeamData();
     const memberData = {
@@ -51,7 +52,7 @@ async function initializeTeamData() {
   }
 }
 
-// console.log(fetchIntroBlockData());
+console.log(fetchIntroBlockData());
 
 async function initializeApproachBlockData() {
   try {
@@ -108,6 +109,7 @@ function handleApproach(approachData) {
 
   console.log(approachData);
   console.log(approachData.blocks);
+  console.log(approachData);
 
   function wrapStringWithClass(str, substr, className, additionalClass = "") {
     const regex = new RegExp(`(${substr})`, 'g');
