@@ -107,9 +107,9 @@ function handleApproach(approachData) {
   const mainContainer = document.querySelector(".approach-container");
   if (!approachData.blocks || !mainContainer) return;
 
-  console.log(approachData);
-  console.log(approachData.blocks);
-  console.log(approachData);
+  // console.log(approachData);
+  // console.log(approachData.blocks);
+  // console.log(approachData);
 
   function wrapStringWithClass(str, substr, className, additionalClass = "") {
     const regex = new RegExp(`(${substr})`, 'g');
@@ -129,7 +129,7 @@ function handleApproach(approachData) {
     approachData.blocks.sort((a, b) => a.number - b.number);
 
     approachData.blocks.forEach((approachBlock, index) => {
-      console.log(index);
+      // console.log(index);
 
       // Create CSS class dynamically for each block
       const style = document.createElement('style');
@@ -208,9 +208,6 @@ function handleApproach(approachData) {
 function TeamMembers(memberData) {
   const mainContainer = document.querySelector(".main-container");
   if (!memberData.team || !mainContainer) return;
-  // console.log(memberData)
-  // console.log(memberData.team)
-
 
   Object.keys(memberData.team).forEach((memberKey, index) => {
     const member = memberData.team[memberKey];
