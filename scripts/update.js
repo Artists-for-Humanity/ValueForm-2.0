@@ -122,8 +122,13 @@ function handleApproach(approachData) {
   }
 
   if (Array.isArray(approachData.blocks)) {
+
+    approachData.blocks.sort((a, b) => a.number - b.number);
+
     approachData.blocks.forEach((approachBlock, index) => {
-      console.log(index);
+    
+      // console.log(approachBlock.class)
+      // console.log(approachBlock.class.name)
 
       // Create CSS class dynamically for each block
       const style = document.createElement('style');
@@ -143,6 +148,7 @@ function handleApproach(approachData) {
       `;
       style.appendChild(document.createTextNode(cssClass));
       document.head.appendChild(style);
+      console.log(style)
 
       // Modify body content to include styling for underline and bold
       let modifiedBody = approachBlock.body;
