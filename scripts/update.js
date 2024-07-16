@@ -38,7 +38,7 @@ let generalData = {
 }
 
 async function initializeTeamData() {
-  console.log("reachme00");
+  // console.log("reachme00");
   try {
     const teamMember = await fetchTeamData();
     const memberData = {
@@ -52,7 +52,7 @@ async function initializeTeamData() {
   }
 }
 
-console.log(fetchIntroBlockData());
+// console.log(fetchIntroBlockData());
 
 async function initializeApproachBlockData() {
   try {
@@ -125,6 +125,9 @@ function handleApproach(approachData) {
   }
 
   if (Array.isArray(approachData.blocks)) {
+
+    approachData.blocks.sort((a, b) => a.number - b.number);
+
     approachData.blocks.forEach((approachBlock, index) => {
       console.log(index);
 
@@ -205,13 +208,11 @@ function handleApproach(approachData) {
 function TeamMembers(memberData) {
   const mainContainer = document.querySelector(".main-container");
   if (!memberData.team || !mainContainer) return;
-  console.log(memberData)
-  console.log(memberData.team)
+  // console.log(memberData)
+  // console.log(memberData.team)
 
 
   Object.keys(memberData.team).forEach((memberKey, index) => {
-    console.log(index);
-
     const member = memberData.team[memberKey];
     const memberWrapper = document.createElement("div");
     memberWrapper.className = "container no-border fadeInUp";
@@ -229,7 +230,7 @@ function TeamMembers(memberData) {
         <img src="${member.imgSrc}" alt="${member.name}" />
       </div>
       <p class="text-m">${member.bio}</p>
-      <h4>${member.clients.title}</h4>
+      <h4>Select Clients:</h4>
       <table class="text-m">
         <tr>
           <th>${member.clients.category01.name}</th>

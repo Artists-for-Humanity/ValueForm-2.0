@@ -35,11 +35,6 @@ export default defineType({
       type: "object",
       fields: [
         defineField({
-          name: "title",
-          title: "Title",
-          type: "string",
-        }),
-        defineField({
           name: "categories",
           title: "Categories",
           type: "array",

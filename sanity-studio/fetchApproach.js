@@ -40,6 +40,7 @@ export async function fetchIntroBlockData() {
   
       // Transform the fetched data into the required format
       const introBlockData = introBlocks.map((block, index) => ({
+        number: block.number,
         id: `block${String(index + 1).padStart(2, "0")}`,
         number: block.number,
         title: block.title,
