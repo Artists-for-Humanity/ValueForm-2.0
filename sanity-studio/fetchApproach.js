@@ -42,7 +42,7 @@ export async function fetchIntroBlockData() {
       const introBlockData = introBlocks.map((block, index) => ({
         number: block.number,
         id: `block${String(index + 1).padStart(2, "0")}`,
-        number: block.number,
+        // number: block.number,
         title: block.title,
         body: block.body,
         underlineText: block.underlineText || "", 
