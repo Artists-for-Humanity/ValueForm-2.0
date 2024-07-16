@@ -10,6 +10,7 @@ const client = createClient({
 
 // Query to fetch tagline
 const query = `*[_type == "complexIntroBlock"]{
+ number,
   title,
   body,
   underlineText,
@@ -40,6 +41,7 @@ export async function fetchIntroBlockData() {
       // Transform the fetched data into the required format
       const introBlockData = introBlocks.map((block, index) => ({
         id: `block${String(index + 1).padStart(2, "0")}`,
+        number: block.number,
         title: block.title,
         body: block.body,
         underlineText: block.underlineText || "", 
