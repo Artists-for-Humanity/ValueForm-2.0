@@ -85,6 +85,10 @@ export default defineType({
                   name: "link",
                   title: "Link",
                   type: "url",
+                  validation: Rule => Rule.uri({
+                    allowRelative: true, // Allow relative URLs
+                    scheme: ['http', 'https', 'mailto'] // Allowed schemes
+                  })
                 }),
                 defineField({
                   name: "display",
