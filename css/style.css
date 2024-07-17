@@ -785,52 +785,52 @@ main.internal .container::after {
   -webkit-text-stroke: 4px var(--darkgrey);
   z-index: -2;
 }
-main.internal .container + .container::before,
-main.internal .container + .container::after {
+main.internal .container:first-of-type::before,
+main.internal .container:first-of-type::after {
   content: "01.";
 }
-main.internal .container + .container + .container::before,
-main.internal .container + .container + .container::after {
+main.internal .container:first-of-type + .container::before,
+main.internal .container:first-of-type + .container::after {
   content: "02.";
 }
 
-main.internal .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container::after {
+main.internal .container:first-of-type + .container + .container::before,
+main.internal .container:first-of-type + .container + .container::after {
   content: "03.";
 }
 
-main.internal .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container::after {
+main.internal .container:first-of-type + .container + .container + .container::before,
+main.internal .container:first-of-type + .container + .container + .container::after {
   content: "04.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container::after {
+main.internal .container:first-of-type + .container + .container + .container + .container::before,
+main.internal .container:first-of-type + .container + .container + .container + .container::after {
   content: "05.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container + .container::after {
+main.internal .container:first-of-type + .container + .container + .container + .container + .container::before,
+main.internal .container:first-of-type + .container + .container + .container + .container + .container::after {
   content: "06.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container::before,
+main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container::after {
   content: "07.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container::after {
   content: "08.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container::after {
   content: "09.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
   content: "10.";
 }
 
