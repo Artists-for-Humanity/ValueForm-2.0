@@ -213,7 +213,7 @@ function TeamMembers(memberData) {
     const member = memberData.team[memberKey];
     const memberWrapper = document.createElement("div");
     memberWrapper.className = "container no-border fadeInUp";
-    if (index > 0) {
+    if (index >= 0) {
       memberWrapper.classList.add("no-before-after", "member-top");
     }
 
