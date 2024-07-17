@@ -23,6 +23,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      description: "Upload a headshot of the team member. Use high-resolution images for better quality and ensure the image has a transparent background.",
     }),
     defineField({
       name: "bio",
