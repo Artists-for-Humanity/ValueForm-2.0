@@ -328,6 +328,7 @@ function setLottieAttributes(textData) {
   }
 }
 
+
 function updateContent(textData) {
   TextElements(textData);
   // TeamMembers(textData);

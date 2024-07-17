@@ -344,7 +344,8 @@ th {
 
 @media (min-width: 700px) {
   tr {
-    display: table-row;
+    /* display: table-row; */
+    display:flex;
   }
   td {
     padding: 11px 0;
@@ -353,6 +354,9 @@ th {
   tr:first-child th:first-child {
     display: table-cell;
     padding: 11px 16px 11px 0;
+    width: auto;
+    display:inline-block
+
   }
 } /* TABLE TABLET / DESKTOP PADDING */
 
@@ -848,9 +852,15 @@ main.internal .intro + .container.no-border {
 main.internal .container {
   padding: 23px 0 19px 0;
 }
+
+main.internal .container:first-child,
+main.internal .intro + .container.no-border {
+  padding-top: 55px;
+}
+
 main.internal .container:last-child,
 main.internal .intro + .container.no-border {
-  padding-bottom: 54px;
+  padding-bottom: 55px;
 }
 
 @media (min-width: 700px) {
@@ -884,7 +894,7 @@ main.internal .intro + .container.no-border {
 
 @media (min-width: 1080px) {
   main.internal .container {
-    padding: 35px 0 33px 0;
+    padding: 43px 0 25px 0;
   }
   main.internal p {
     padding-bottom: 27px;
@@ -966,6 +976,8 @@ main.internal .intro + .container.no-border {
   background-image: url(../images/headshot-bg.svg);
   background-size: cover;
   padding-top: 8px;
+  /* height:472px; */
+  /* width: 480px; */
 }
 .headshot img {
   width: 64%;
@@ -1254,4 +1266,8 @@ nav.fadeInUp {
 
 .underline {
   text-decoration: underline;
+}
+
+table {
+  width:100%;
 }

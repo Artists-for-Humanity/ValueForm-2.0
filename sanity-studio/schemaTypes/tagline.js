@@ -9,6 +9,7 @@ export default defineType({
       name: "text",
       title: "Tagline Text",
       type: "string",
+      description: "Enter the text for the tagline",
     }),
   ],
   preview: {

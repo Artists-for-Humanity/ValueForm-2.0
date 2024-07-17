@@ -1,4 +1,3 @@
-// schemas/teamMember.js
 import { defineField, defineType } from "sanity";
 
 export default defineType({
@@ -10,11 +9,13 @@ export default defineType({
       name: "name",
       title: "Name",
       type: "string",
+      description: "Enter the name of the team member",
     }),
     defineField({
       name: "title",
       title: "Job Title",
       type: "string",
+      description: "Enter the job title of the team member",
     }),
     defineField({
       name: "imgSrc",
@@ -29,16 +30,19 @@ export default defineType({
       name: "bio",
       title: "Biography",
       type: "text",
+      description: "Enter a brief biography of the team member",
     }),
     defineField({
       name: "clients",
       title: "Client List",
       type: "object",
+      description: "List the clients associated with the team member",
       fields: [
         defineField({
           name: "categories",
           title: "Categories",
           type: "array",
+          description: "Enter the client categories",
           of: [
             defineField({
               type: "object",
@@ -47,11 +51,13 @@ export default defineType({
                   name: "name",
                   title: "Category Name",
                   type: "string",
+                  description: "Enter the name of the client category",
                 }),
                 defineField({
                   name: "list",
                   title: "Client List",
                   type: "string",
+                  description: "Enter the clients in this category",
                 }),
               ],
             }),
@@ -63,11 +69,13 @@ export default defineType({
       name: "contact",
       title: "Contact",
       type: "object",
+      description: "Contact information for the team member",
       fields: [
         defineField({
           name: "methods",
           title: "Contact Methods",
           type: "array",
+          description: "Enter the contact methods",
           of: [
             defineField({
               type: "object",
@@ -76,20 +84,24 @@ export default defineType({
                   name: "name",
                   title: "Method Name",
                   type: "string",
+                  description: "Enter the name of the contact method",
                 }),
                 defineField({
                   name: "link",
                   title: "Link",
                   type: "url",
-                  validation: Rule => Rule.uri({
-                    allowRelative: true, // Allow relative URLs
-                    scheme: ['http', 'https', 'mailto'] // Allowed schemes
-                  })
+                  description: "Enter the link for the contact method",
+                  validation: (Rule) =>
+                    Rule.uri({
+                      allowRelative: true, // Allow relative URLs
+                      scheme: ["http", "https", "mailto"], // Allowed schemes
+                    }),
                 }),
                 defineField({
                   name: "display",
                   title: "Display Text",
                   type: "string",
+                  description: "Enter the display text for the contact method",
                 }),
               ],
             }),
