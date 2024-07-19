@@ -15,10 +15,11 @@
       }
     ],
     "routes": [
-      { "src": "/api/(.*)", "dest": "/api/index.js" },
+      { "src": "/api/(.*)", "dest": "/api/server.js" },
       { "src": "/admin/static/(.*)", "dest": "/sanity-studio/dist/static/$1" },
       { "src": "/admin/(.*)", "dest": "/sanity-studio/dist/index.html" },
-      { "src": "/", "dest": "/index.html" }
+      { "src": "/", "dest": "/index.html" },
+      { "src": "/(.*)", "dest": "/index.html" }
     ]
   }
-   
+  
