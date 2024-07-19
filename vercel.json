@@ -9,7 +9,7 @@
         "src": "sanity-studio/package.json",
         "use": "@vercel/static-build",
         "config": {
-          "distDir": "dist"
+          "distDir": "dist/sanity-studio"
         }
       },
       {
@@ -22,8 +22,8 @@
     ],
     "routes": [
       { "src": "/api/(.*)", "dest": "/api/server.js" },
-      { "src": "/admin/static/(.*)", "dest": "/sanity-studio/dist/static/$1" },
-      { "src": "/admin/(.*)", "dest": "/sanity-studio/dist/index.html" },
+      { "src": "/admin/static/(.*)", "dest": "/dist/sanity-studio/static/$1" },
+      { "src": "/admin/(.*)", "dest": "/dist/sanity-studio/index.html" },
       { "src": "/static/(.*)", "dest": "/static/$1" },
       { "src": "/sanity-studio/(.*)", "dest": "/sanity-studio/$1" },
       { "src": "/", "dest": "/dist/index.html" },
