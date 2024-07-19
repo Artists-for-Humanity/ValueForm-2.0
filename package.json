@@ -4,8 +4,9 @@
   "description": "Artist For Humanity Client Work- ValueForm Christopher Pross",
   "main": "script.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "npm run build --prefix sanity-studio",
+    "start": "node api/server.js",
+    "build": "npm run build:sanity && node adjust-path.js",
+    "build:sanity": "npm run build --prefix sanity-studio",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
