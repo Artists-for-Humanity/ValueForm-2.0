@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "start": "node api/server.js",
-    "build": "npm run build:sanity && node adjust-paths.js && npm run copy:assets",
+    "build": "npm run build:sanity && node adjust-path.js && npm run copy:assets",
     "build:sanity": "cd sanity-studio && npm install && npx sanity build --output-path=dist",
     "copy:assets": "mkdir -p dist && cp -r pages dist/pages && cp -r index.html dist/home.html && cp -r css dist/css && cp -r images dist/images && cp -r scripts dist/scripts && mkdir -p dist/sanity-studio && cp -r sanity-studio/dist/static* dist/ && cp -r sanity-studio/dist/favicon.ico dist/ && cp -r sanity-studio/dist/index.html dist/index.html && cp sanity-studio/fetchTagline.js dist/sanity-studio/ && cp sanity-studio/sanity-utils.js dist/sanity-studio/ && cp sanity-studio/fetchApproach.js dist/sanity-studio/",
     "vercel-build": "npm run build"
