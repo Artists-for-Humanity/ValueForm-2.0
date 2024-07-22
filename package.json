@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node api/server.js",
     "build": "rm -rf dist && npm run build:sanity && node adjust-path.js && npm run copy:assets",
-    "build:sanity": "cd sanity-studio && npm install && npx sanity build --output-path=../dist/sanity-studio",
+    "build:sanity": "cd sanity-studio && npm install && npx sanity build --output-path=dist",
     "copy:assets": "mkdir -p dist && cp -r pages dist/pages && cp -r index.html dist/index.html && cp -r css dist/css && cp -r images dist/images && cp -r scripts dist/scripts && mkdir -p dist/sanity-studio && cp -r sanity-studio/dist/static dist/sanity-studio/static && cp sanity-studio/fetchTagline.js dist/sanity-studio/ && cp sanity-studio/sanity-utils.js dist/sanity-studio/ && cp sanity-studio/fetchApproach.js dist/sanity-studio/"
   },
   "keywords": [],
