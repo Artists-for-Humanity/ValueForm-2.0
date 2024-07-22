@@ -1,33 +1,32 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "api/server.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "sanity-studio/package.json",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "dist/sanity-studio"
-        }
-      },
-      {
-        "src": "package.json",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "dist"
-        }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "sanity-studio/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "../../dist/sanity-studio"
       }
-    ],
-    "routes": [
-      { "src": "/api/(.*)", "dest": "/api/server.js" },
-      { "src": "/admin/static/(.*)", "dest": "/dist/sanity-studio/static/$1" },
-      { "src": "/admin/(.*)", "dest": "/dist/sanity-studio/index.html" },
-      { "src": "/static/(.*)", "dest": "/static/$1" },
-      { "src": "/sanity-studio/(.*)", "dest": "/sanity-studio/$1" },
-      { "src": "/", "dest": "/dist/index.html" },
-      { "src": "/(.*)", "dest": "/dist/index.html" }
-    ]
-  }
-  
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/server.js" },
+    { "src": "/admin/static/(.*)", "dest": "/dist/sanity-studio/static/$1" },
+    { "src": "/admin/(.*)", "dest": "/dist/sanity-studio/index.html" },
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/sanity-studio/(.*)", "dest": "/sanity-studio/$1" },
+    { "src": "/", "dest": "/dist/index.html" },
+    { "src": "/(.*)", "dest": "/dist/index.html" }
+  ]
+}
