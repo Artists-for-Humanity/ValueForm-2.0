@@ -24,25 +24,25 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      description: "Upload a headshot of the team member. Use high-resolution images for better quality and ensure the image has a transparent background.",
+      description: "Upload a high-resolution headshot of the team member in PNG format with a transparent background.",
     }),
     defineField({
       name: "bio",
       title: "Biography",
       type: "text",
-      description: "Enter a brief biography of the team member",
+      description: "Ensure the bio does not exceed 100 characters.",
     }),
     defineField({
       name: "clients",
       title: "Client List",
       type: "object",
-      description: "List the clients associated with the team member",
+      description: "List the clients associated with the team member.",
       fields: [
         defineField({
           name: "categories",
           title: "Categories",
           type: "array",
-          description: "Enter the client categories",
+          description: "Use a colon (:), at the end of category names.",
           of: [
             defineField({
               type: "object",
@@ -51,13 +51,13 @@ export default defineType({
                   name: "name",
                   title: "Category Name",
                   type: "string",
-                  description: "Enter the name of the client category",
+                  description: "Enter the name of the client category.",
                 }),
                 defineField({
                   name: "list",
                   title: "Client List",
                   type: "string",
-                  description: "Enter the clients in this category",
+                  description: "Ensure that clients are added in a comma seperated list using title case.",
                 }),
               ],
             }),
@@ -69,13 +69,13 @@ export default defineType({
       name: "contact",
       title: "Contact",
       type: "object",
-      description: "Contact information for the team member",
+      description: "Provide the team member's contact information, listing the email as the first contact method.",
       fields: [
         defineField({
           name: "methods",
           title: "Contact Methods",
           type: "array",
-          description: "Enter the contact methods",
+          description: "Ensure the mailto links are used for email. (ex. mailto:c.pross@valueform.io) ",
           of: [
             defineField({
               type: "object",
