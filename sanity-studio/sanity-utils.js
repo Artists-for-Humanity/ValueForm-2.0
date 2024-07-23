@@ -1,6 +1,4 @@
-// import { createClient } from '@sanity/client';
-import {createClient} from 'https://esm.sh/@sanity/client'
-
+import { createClient } from 'https://esm.sh/@sanity/client'
 
 // console.log('Sanity Client is installed');
 
@@ -42,48 +40,33 @@ export async function fetchTeamData() {
 
     teamMembers.forEach((member, index) => {
       const memberId = `member${String(index + 1).padStart(2, "0")}`;
+      
+      // Handle clients categories dynamically
+      const clients = { title: member.clients?.title || "Select Clients:" };
+      member.clients?.categories?.forEach((category, catIndex) => {
+        clients[`category${String(catIndex + 1).padStart(2, "0")}`] = {
+          name: category.name || "",
+          list: category.list || "",
+        };
+      });
+
+      // Handle contact methods dynamically
+      const contact = {};
+      member.contact?.methods?.forEach((method, methodIndex) => {
+        contact[`method${String(methodIndex + 1).padStart(2, "0")}`] = {
+          name: method.name || "",
+          link: method.link || "",
+          display: method.display || "",
+        };
+      });
+
       teamData[memberId] = {
         name: member.name,
         title: member.title,
         imgSrc: member.imgSrc || "", // Provide a default value if imgSrc is null
         bio: member.bio || "", // Provide a default value if bio is null
-        clients: {
-          title: member.clients?.title || "Select Clients:",
-          category01: member.clients?.categories?.[0]
-            ? {
-                name: member.clients.categories[0].name || "",
-                list: member.clients.categories[0].list || "",
-              }
-            : { name: "", list: "" },
-          category02: member.clients?.categories?.[1]
-            ? {
-                name: member.clients.categories[1].name || "",
-                list: member.clients.categories[1].list || "",
-              }
-            : { name: "", list: "" },
-          category03: member.clients?.categories?.[2]
-            ? {
-                name: member.clients.categories[2].name || "",
-                list: member.clients.categories[2].list || "",
-              }
-            : { name: "", list: "" },
-        },
-        contact: {
-          method01: member.contact?.methods?.[0]
-            ? {
-                name: member.contact.methods[0].name || "",
-                link: member.contact.methods[0].link || "",
-                display: member.contact.methods[0].display || "",
-              }
-            : { name: "", link: "", display: "" },
-          method02: member.contact?.methods?.[1]
-            ? {
-                name: member.contact.methods[1].name || "",
-                link: member.contact.methods[1].link || "",
-                display: member.contact.methods[1].display || "",
-              }
-            : { name: "", link: "", display: "" },
-        },
+        clients,
+        contact,
       };
     });
 

@@ -178,6 +178,7 @@ function handleApproach(approachData) {
 function TeamMembers(memberData) {
   const mainContainer = document.querySelector(".main-container");
   console.log(mainContainer);
+  console.log(memberData);
   if (!memberData.team || !mainContainer) return;
 
   mainContainer.innerHTML = ''; // Clear the main container content
@@ -195,7 +196,20 @@ function TeamMembers(memberData) {
     const memberContainer = document.createElement("div");
     memberContainer.className = "desktop-col-7-left tablet-col-4";
 
-    //generate client link dyanimcally
+    // Generate client links dynamically
+    let clientHtml = '<h4>Select Clients:</h4><table class="text-m">';
+    Object.keys(member.clients).forEach((categoryKey) => {
+      const category = member.clients[categoryKey];
+      if (category.name && category.list) {
+      clientHtml += `
+        <tr>
+          <th>${category.name}</th>
+          <td>${category.list}</td>
+        </tr>
+      `;
+    }});
+    clientHtml += '</table>';
+
     memberContainer.innerHTML = `
       <h2 class="text-l">${member.name}</h2>
       <h4>${member.title}</h4>
@@ -203,41 +217,29 @@ function TeamMembers(memberData) {
         <img src="${member.imgSrc}" alt="${member.name}" />
       </div>
       <p class="text-m">${member.bio}</p>
-      <h4>Select Clients:</h4>
-      <table class="text-m">
-        <tr>
-          <th>${member.clients.category01.name}</th>
-          <td>${member.clients.category01.list}</td>
-        </tr>
-        <tr>
-          <th>${member.clients.category02.name}</th>
-          <td>${member.clients.category02.list}</td>
-        </tr>
-        <tr>
-          <th>${member.clients.category03.name}</th>
-          <td>${member.clients.category03.list}</td>
-        </tr>
-      </table>
+      ${clientHtml}
     `;
-    //geneate contact dynamically
+
+    // Generate contact dynamically
     const contactContainer = document.createElement("div");
     contactContainer.className = "desktop-col-5 tablet-col-4";
-    contactContainer.innerHTML = `
-      <div class="headshot">
-        <img src="${member.imgSrc}" alt="${member.name}" />
-      </div>
-      <ul>
-        <li><strong>${member.contact.method01.name}</strong> <a href="${member.contact.method01.link}" target="_blank">${member.contact.method01.display}</a></li>
-        <li><strong>${member.contact.method02.name}</strong> <a href="${member.contact.method02.link}" target="_blank">${member.contact.method02.display}</a></li>
-      </ul>
-    `;
+
+    let contactHtml = '<div class="headshot"><img src="' + member.imgSrc + '" alt="' + member.name + '" /></div><ul>';
+    Object.keys(member.contact).forEach((methodKey) => {
+      const method = member.contact[methodKey];
+      contactHtml += `
+        <li><strong>${method.name}</strong> <a href="${method.link}" target="_blank">${method.display}</a></li>
+      `;
+    });
+    contactHtml += '</ul>';
+
+    contactContainer.innerHTML = contactHtml;
 
     memberWrapper.appendChild(memberContainer);
     memberWrapper.appendChild(contactContainer);
     mainContainer.appendChild(memberWrapper);
   });
 }
-
 
 function handleFooter(textData) {
   const footerContainer = document.querySelector("footer");
