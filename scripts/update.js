@@ -38,7 +38,6 @@ let generalData = {
 }
 
 async function initializeTeamData() {
-  // console.log("reachme00");
   try {
     const teamMember = await fetchTeamData();
     const memberData = {
@@ -51,8 +50,6 @@ async function initializeTeamData() {
     console.error("Error fetching teamMember:", err);
   }
 }
-
-// console.log(fetchIntroBlockData());
 
 async function initializeApproachBlockData() {
   try {
@@ -106,10 +103,6 @@ function TextElements(textData) {
 function handleApproach(approachData) {
   const mainContainer = document.querySelector(".approach-container");
   if (!approachData.blocks || !mainContainer) return;
-
-  // console.log(approachData);
-  // console.log(approachData.blocks);
-  // console.log(approachData);
 
   function wrapStringWithClass(str, substr, className, additionalClass = "") {
     const regex = new RegExp(`(${substr})`, 'g');
@@ -175,28 +168,6 @@ function handleApproach(approachData) {
         </ul>
       `;
 
-       // console.log(modifiedBody);
-
-
-    // const capabilitiesList = approachWrapper.querySelector("ul");
-    // const capabilitiesLength = approachBlock.capabilities.length;
-
-    // approachBlock.capabilities.forEach((capability, capIndex) => {
-    //   const listItem = document.createElement("li");
-    //   listItem.textContent = capability;
-
-    //   if (capabilitiesLength % 2 === 0) {
-    //     if (capIndex >= capabilitiesLength - 2) {
-    //       listItem.classList.add("no-border");
-    //     }
-    //   } else {
-    //     if (capIndex === capabilitiesLength - 1) {
-    //       listItem.classList.add("no-border");
-    //     }
-    //   }
-    //   capabilitiesList.appendChild(listItem);
-    // });
-
       mainContainer.appendChild(approachWrapper);
     });
   } else {
@@ -205,16 +176,22 @@ function handleApproach(approachData) {
 }
 
 
+
+
 function TeamMembers(memberData) {
   const mainContainer = document.querySelector(".main-container");
   if (!memberData.team || !mainContainer) return;
 
+  mainContainer.innerHTML = ''; // Clear the main container content
+
   Object.keys(memberData.team).forEach((memberKey, index) => {
     const member = memberData.team[memberKey];
     const memberWrapper = document.createElement("div");
-    memberWrapper.className = "container no-border fadeInUp";
-    if (index >= 0) {
-      memberWrapper.classList.add("no-before-after", "member-top");
+    memberWrapper.className = "container no-border fadeInUp no-before-after animated";
+    memberWrapper.style.animationDelay = `${600 + index * 100}ms`;
+
+    if (index !== 0) {
+      memberWrapper.classList.add("member-top");
     }
 
     const memberContainer = document.createElement("div");
@@ -259,9 +236,10 @@ function TeamMembers(memberData) {
     memberWrapper.appendChild(memberContainer);
     memberWrapper.appendChild(contactContainer);
     mainContainer.appendChild(memberWrapper);
-
   });
 }
+
+
 
 function handleFooter(textData) {
   const footerContainer = document.querySelector("footer");
