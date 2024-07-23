@@ -176,12 +176,12 @@ function handleApproach(approachData) {
 }
 
 function TeamMembers(memberData) {
-  const mainContainer = document.querySelector(".main-container");
+  const mainContainer = document.querySelector(".appendToMe");
   console.log(mainContainer);
   console.log(memberData);
   if (!memberData.team || !mainContainer) return;
 
-  mainContainer.innerHTML = ''; // Clear the main container content
+  // No need to clear the main container content
 
   Object.keys(memberData.team).forEach((memberKey, index) => {
     const member = memberData.team[memberKey];
@@ -201,13 +201,14 @@ function TeamMembers(memberData) {
     Object.keys(member.clients).forEach((categoryKey) => {
       const category = member.clients[categoryKey];
       if (category.name && category.list) {
-      clientHtml += `
-        <tr>
-          <th>${category.name}</th>
-          <td>${category.list}</td>
-        </tr>
-      `;
-    }});
+        clientHtml += `
+          <tr>
+            <th>${category.name}</th>
+            <td>${category.list}</td>
+          </tr>
+        `;
+      }
+    });
     clientHtml += '</table>';
 
     memberContainer.innerHTML = `
@@ -240,6 +241,7 @@ function TeamMembers(memberData) {
     mainContainer.appendChild(memberWrapper);
   });
 }
+
 
 function handleFooter(textData) {
   const footerContainer = document.querySelector("footer");
