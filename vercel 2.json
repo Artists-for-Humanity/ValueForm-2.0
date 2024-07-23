@@ -1,0 +1,9 @@
+{
+    "builds": [
+      { "src": "sanity-studio/package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
+    ],
+    "rewrites": [
+      { "source": "/admin/(.*)", "destination": "/sanity-studio/dist/index.html" }
+    ]
+  }
+  

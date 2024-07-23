@@ -175,9 +175,6 @@ function handleApproach(approachData) {
   }
 }
 
-
-
-
 function TeamMembers(memberData) {
   const mainContainer = document.querySelector(".main-container");
   if (!memberData.team || !mainContainer) return;
@@ -238,7 +235,6 @@ function TeamMembers(memberData) {
     mainContainer.appendChild(memberWrapper);
   });
 }
-
 
 
 function handleFooter(textData) {
