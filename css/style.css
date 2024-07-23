@@ -345,8 +345,8 @@ th {
 
 @media (min-width: 700px) {
   tr {
-    /* display: table-row; */
-    display:flex;
+    display: table-row;
+    /* display:flex; */
   }
   td {
     padding: 11px 0;
@@ -355,8 +355,8 @@ th {
   tr:first-child th:first-child {
     display: table-cell;
     padding: 11px 16px 11px 0;
-    width: 115.57px;
-    display:inline-block;
+    width: 1px;
+    /* display:inline-block; */
 
   }
 } /* TABLE TABLET / DESKTOP PADDING */

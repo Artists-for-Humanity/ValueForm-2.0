@@ -177,6 +177,7 @@ function handleApproach(approachData) {
 
 function TeamMembers(memberData) {
   const mainContainer = document.querySelector(".main-container");
+  console.log(mainContainer);
   if (!memberData.team || !mainContainer) return;
 
   mainContainer.innerHTML = ''; // Clear the main container content
@@ -187,13 +188,14 @@ function TeamMembers(memberData) {
     memberWrapper.className = "container no-border fadeInUp no-before-after animated";
     memberWrapper.style.animationDelay = `${600 + index * 100}ms`;
 
-    if (index !== 0) {
+    if (index != 0) {
       memberWrapper.classList.add("member-top");
     }
 
     const memberContainer = document.createElement("div");
     memberContainer.className = "desktop-col-7-left tablet-col-4";
 
+    //generate client link dyanimcally
     memberContainer.innerHTML = `
       <h2 class="text-l">${member.name}</h2>
       <h4>${member.title}</h4>
@@ -217,7 +219,7 @@ function TeamMembers(memberData) {
         </tr>
       </table>
     `;
-
+    //geneate contact dynamically
     const contactContainer = document.createElement("div");
     contactContainer.className = "desktop-col-5 tablet-col-4";
     contactContainer.innerHTML = `
