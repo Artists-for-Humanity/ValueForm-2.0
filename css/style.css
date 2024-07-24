@@ -866,7 +866,7 @@ main.internal .intro + .container.no-border {
 
 @media (min-width: 700px) {
   main.internal .intro + .container.no-border {
-    padding-block: 44px;
+    padding-block: 33px;
   }
   main.internal .intro + .container {
     padding: 24px 0 24px 0;
@@ -895,7 +895,7 @@ main.internal .intro + .container.no-border {
 
 @media (min-width: 1080px) {
   main.internal .container {
-    padding: 43px 0 25px 0;
+    padding:39px 0 33px 0;
   }
   main.internal p {
     padding-bottom: 27px;

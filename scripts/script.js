@@ -42,7 +42,7 @@ function handleNavigation(fadeInUpElements) {
 
       setTimeout(
         () => (window.location.href = targetUrl),
-        delayCounter * 600 + 500
+        delayCounter * 600 + 800
       );
     }
     });
