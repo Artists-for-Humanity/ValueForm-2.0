@@ -36,7 +36,7 @@ export default defineType({
       name: "bio",
       title: "Biography",
       type: "text",
-      description: "Ensure the bio does not exceed 100 characters.",
+      description: "Ensure the bio does not exceed 100 words.",
     }),
     defineField({
       name: "clients",
@@ -48,7 +48,7 @@ export default defineType({
           name: "categories",
           title: "Categories",
           type: "array",
-          description: "Use a colon (:), at the end of category names.",
+          description: "Organize historical clients by business sector.",
           of: [
             defineField({
               type: "object",
@@ -57,7 +57,7 @@ export default defineType({
                   name: "name",
                   title: "Category Name",
                   type: "string",
-                  description: "Enter the name of the client category.",
+                  description: "Use a colon (:), at the end of category names.",
                 }),
                 defineField({
                   name: "list",
@@ -81,7 +81,7 @@ export default defineType({
           name: "methods",
           title: "Contact Methods",
           type: "array",
-          description: "Ensure the mailto links are used for email. (ex. mailto:c.pross@valueform.io) ",
+          description: "Ensure the mailto links are used for email. (ex. mailto:firstname.lastname@valueform.io) ",
           of: [
             defineField({
               type: "object",
@@ -90,13 +90,13 @@ export default defineType({
                   name: "name",
                   title: "Method Name",
                   type: "string",
-                  description: "Enter the name of the contact method",
+                  description: "List ways in which clients contact you.",
                 }),
                 defineField({
                   name: "link",
                   title: "Link",
                   type: "url",
-                  description: "Enter the link for the contact method",
+                  description: "Enter the link for the contact method, Ensure the mailto links are used for email. (ex. mailto:firstname.lastname@valueform.io).",
                   validation: (Rule) =>
                     Rule.uri({
                       allowRelative: true, // Allow relative URLs
