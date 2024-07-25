@@ -861,12 +861,12 @@ main.internal .intro + .container.no-border {
 
 main.internal .container:last-child,
 main.internal .intro + .container.no-border {
-  padding-bottom: 55px;
+  padding-bottom: 36px;
 }
 
 @media (min-width: 700px) {
   main.internal .intro + .container.no-border {
-    padding-block: 33px;
+    padding-block: 32px;
   }
   main.internal .intro + .container {
     padding: 24px 0 24px 0;
@@ -895,7 +895,7 @@ main.internal .intro + .container.no-border {
 
 @media (min-width: 1080px) {
   main.internal .container {
-    padding:39px 0 33px 0;
+    padding:39px 0 32px 0;
   }
   main.internal p {
     padding-bottom: 27px;
@@ -904,7 +904,7 @@ main.internal .intro + .container.no-border {
     padding-top: 55px;
   }
   main.internal .intro + .container {
-    padding: 55px 0 33px 0;
+    padding: 55px 0 32px 0;
   }
   main.internal .container::before,
   .container::after {
