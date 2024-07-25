@@ -1,4 +1,83 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -337,7 +416,6 @@ tr:last-child {
 }
 tr:first-child th:first-child {
   padding: 0;
-
 }
 th {
   padding-top: 11px;
@@ -357,7 +435,6 @@ th {
     padding: 11px 16px 11px 0;
     width: 1px;
     /* display:inline-block; */
-
   }
 } /* TABLE TABLET / DESKTOP PADDING */
 
@@ -804,38 +881,136 @@ main.internal .container:first-of-type + .container + .container::after {
   content: "03.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container::after {
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container::after {
   content: "04.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container::after {
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "05.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container + .container::after {
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "06.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container::after {
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "07.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "08.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "09.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container:first-of-type
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "10.";
 }
 
@@ -895,7 +1070,7 @@ main.internal .intro + .container.no-border {
 
 @media (min-width: 1080px) {
   main.internal .container {
-    padding:39px 0 32px 0;
+    padding: 39px 0 32px 0;
   }
   main.internal p {
     padding-bottom: 27px;
@@ -1043,7 +1218,7 @@ main.internal > .no-border h4 {
   }
   .desktop-col-5 .headshot {
     display: block;
-    height:371px;
+    height: 371px;
   }
   .desktop-col-5 ul {
     padding-top: 0px;
@@ -1260,7 +1435,8 @@ nav.fadeInUp {
 }
 
 .white-text-shadow {
-  text-shadow: 1px 0 0 var(--darkgrey),
+  text-shadow:
+    1px 0 0 var(--darkgrey),
     -1px 0 0 var(--darkgrey) 0 1px 0 var(--darkgrey),
     0 -1px 0 var(--darkgrey) 1px 1px 0 var(--darkgrey),
     -1px -1px 0 var(--darkgrey) -1px 1px 0 var(--darkgrey) 1px -1px 0
@@ -1278,5 +1454,45 @@ nav.fadeInUp {
 }
 
 table {
-  width:100%;
+  width: 100%;
+}
+
+.sidebar {
+  color: var(--darkgrey);
+  line-height: 17px;
+}
+
+.article-title {
+  font-size: 34px;
+  line-height: 34px;
+  font-weight: bold;
+  color: var(--darkgrey);
+}
+
+.article .date {
+  color: var(--nearwhite);
+}
+
+.article .img-contain {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.article .img-contain .img {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  max-width: 80px;
+}
+
+.article p:first-child {
+  margin-top: 39px;
+}
+
+.article p {
+  color: var(--nearwhite);
+  margin-top: 39px;
 }
