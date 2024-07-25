@@ -1485,7 +1485,9 @@ table {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  max-width: 80px;
+  max-width: 130px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .article p:first-child {
