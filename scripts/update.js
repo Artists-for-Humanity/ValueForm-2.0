@@ -12,7 +12,6 @@ let generalData = {
   },
 };
 
-// Function to initialize the data
  async function initializeData() {
   try {
     const tagline = await fetchTagline();
@@ -242,7 +241,6 @@ function TeamMembers(memberData) {
   });
 }
 
-
 function handleFooter(textData) {
   const footerContainer = document.querySelector("footer");
   if (footerContainer) {
@@ -308,7 +306,6 @@ function setLottieAttributes(textData) {
   }
 }
 
-
 function updateContent(textData) {
   TextElements(textData);
   // TeamMembers(textData);
@@ -321,8 +318,6 @@ function updateContent(textData) {
     setLottieAttributes(textData);
   }, delay);
 }
-
-
 
 window.addEventListener('load', () => {
   initializeData();

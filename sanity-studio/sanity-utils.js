@@ -11,6 +11,7 @@ const client = createClient({
 
 // Query to fetch team members
 const query = `*[_type == "teamMember"] {
+ "number": number,
   "title": title,
   "name": name,
   "imgSrc": imgSrc.asset->url,
@@ -34,6 +35,9 @@ const query = `*[_type == "teamMember"] {
 export async function fetchTeamData() {
   try {
     const teamMembers = await client.fetch(query);
+
+     // Sort team members by their number value
+     teamMembers.sort((a, b) => a.number - b.number);
 
     // Transform the fetched data into the required format
     const teamData = {};

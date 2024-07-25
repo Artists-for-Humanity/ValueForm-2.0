@@ -6,6 +6,12 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
+      name: "number",
+      title: "Number",
+      type: "number",
+      description: "Enter a numeric value for ordering or identification purposes",
+    }),
+    defineField({
       name: "name",
       title: "Name",
       type: "string",
