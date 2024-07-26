@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, "../")));
 
 // Serve Sanity Studio static files from /admin
-app.use('/admin', express.static(path.join(__dirname, "../sanity-studio", "dist")));
+app.use('/admin', express.static(path.join(__dirname, "../dist", "sanity-studio", "dist")));
 
 // Serve static files within the Sanity Studio's dist directory with /static prefix
 app.use('/static', express.static(path.join(__dirname, "../sanity-studio", "dist", "static")));
@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 
 // Redirect any unknown paths under /admin to the index.html of the Sanity CMS
 app.get('/admin/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../sanity-studio', 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, '../dist', 'sanity-studio', 'dist', 'index.html'));
 });
 
 // Handle other paths by serving the main site's index.html (for SPA support)
