@@ -19,14 +19,5 @@
         "distDir": "dist"
       }
     }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/server.js" },
-    { "src": "/admin/static/(.*)", "dest": "/dist/sanity-studio/static/$1" },
-    { "src": "/admin/(.*)", "dest": "/dist/sanity-studio/index.html" },
-    { "src": "/static/(.*)", "dest": "/static/$1" },
-    { "src": "/sanity-studio/(.*)", "dest": "/sanity-studio/$1" },
-    { "src": "/", "dest": "/dist/sanity-studio/index.html" },
-    { "src": "/(.*)", "dest": "/dist/sanity-studio/index.html" }
   ]
 }
