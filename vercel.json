@@ -23,10 +23,10 @@
   "redirects": [
     { "source": "/api/(.*)", "destination": "/api/server.js", "permanent": false},
     { "source": "/admin/static/(.*)", "destination": "/dist/sanity-studio/dist/static/$1", "permanent": false },
-    { "source": "/admin/(.*)", "destination": "/dist/index.html", "permanent": false },
+    { "source": "/admin/(.*)", "destination": "/dist/sanity-studio/dist/index.html", "permanent": false },
     { "source": "/static/(.*)", "destination": "/static/$1", "permanent": false },
     { "source": "/sanity-studio/(.*)", "destination": "/sanity-studio/$1", "permanent": false },
-    { "source": "/", "destination": "/dist/sanity-studio/dist/index.html", "permanent": false },
-    { "source": "/(.*)", "destination": "/dist/sanity-studio/dist/index.html", "permanent": false }
+    { "source": "/", "destination": "/dist/index.html", "permanent": false },
+    { "source": "/(.*)", "destination": "/dist/index.html", "permanent": false }
   ]
 }
