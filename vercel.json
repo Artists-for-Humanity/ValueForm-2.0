@@ -20,13 +20,13 @@
       }
     }
   ],
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/server.js" },
-    { "source": "/admin/static/(.*)", "destination": "/dist/sanity-studio/dist/static/$1" },
-    { "source": "/admin/(.*)", "destination": "/dist/index.html" },
-    { "source": "/static/(.*)", "destination": "/static/$1" },
-    { "source": "/sanity-studio/(.*)", "destination": "/sanity-studio/$1" },
-    { "source": "/", "destination": "/dist/sanity-studio/dist/index.html" },
-    { "source": "/(.*)", "destination": "/dist/sanity-studio/dist/index.html" }
+  "redirects": [
+    { "source": "/api/(.*)", "destination": "/api/server.js", "permanent": false},
+    { "source": "/admin/static/(.*)", "destination": "/dist/sanity-studio/dist/static/$1", "permanent": false },
+    { "source": "/admin/(.*)", "destination": "/dist/index.html", "permanent": false },
+    { "source": "/static/(.*)", "destination": "/static/$1", "permanent": false },
+    { "source": "/sanity-studio/(.*)", "destination": "/sanity-studio/$1", "permanent": false },
+    { "source": "/", "destination": "/dist/sanity-studio/dist/index.html", "permanent": false },
+    { "source": "/(.*)", "destination": "/dist/sanity-studio/dist/index.html", "permanent": false }
   ]
 }
