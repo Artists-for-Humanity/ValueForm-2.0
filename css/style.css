@@ -1022,12 +1022,12 @@ main.internal > .no-border h4 {
   }
   .headshot img {
     width: 76.9%;
-    position: absolute;
+    /* position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 100%;
-    height: auto; /* Adjust this as needed */
+    max-width: 100%; */
+    /* height: auto; Adjust this as needed */
   }
   main.internal .intro + .container .desktop-col-7-left p {
     padding-bottom: 23px;
@@ -1043,7 +1043,7 @@ main.internal > .no-border h4 {
   }
   .desktop-col-5 .headshot {
     display: block;
-    height:371px;
+    /* height:371px; */
   }
   .desktop-col-5 ul {
     padding-top: 0px;
@@ -1062,7 +1062,7 @@ main.internal > .no-border h4 {
   }
   .container > .desktop-col-7-left P {
     padding-right: 15%;
-    height: 219px;
+    /* height: 219px; */
   }
   .container > .desktop-col-7-left p + h4 {
     padding-bottom: 7px !important;
