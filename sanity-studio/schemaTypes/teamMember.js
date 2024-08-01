@@ -30,7 +30,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      description: "Upload a high-resolution headshot of the team member in PNG format with a transparent background.",
+      description: "Upload a high-resolution headshot of the team member in PNG format with a transparent background. Make sure that the image height is 740 px",
     }),
     defineField({
       name: "bio",
