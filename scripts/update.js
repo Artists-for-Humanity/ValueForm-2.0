@@ -176,11 +176,20 @@ function handleApproach(approachData) {
 
 function TeamMembers(memberData) {
   const mainContainer = document.querySelector(".appendToMe");
-  console.log(mainContainer);
-  console.log(memberData);
   if (!memberData.team || !mainContainer) return;
 
-  // No need to clear the main container content
+  // Utility functions for wrapping strings
+  function wrapStringWithLink(str, substr, href, target) {
+    const regex = new RegExp(`(${substr})`, 'g');
+    return str.replace(regex, `<a href="${href}" target="${target}">$1</a>`);
+  }
+
+  function wrapMultipleStringsWithLinks(str, substrings, href, target) {
+    substrings.forEach(substring => {
+      str = wrapStringWithLink(str, substring, href, target);
+    });
+    return str;
+  }
 
   Object.keys(memberData.team).forEach((memberKey, index) => {
     const member = memberData.team[memberKey];
@@ -194,6 +203,18 @@ function TeamMembers(memberData) {
 
     const memberContainer = document.createElement("div");
     memberContainer.className = "desktop-col-7-left tablet-col-4";
+
+    // Apply link styling to specific parts of the bio
+    let modifiedBio = member.bio;
+    if (member.underlineText) {
+      const linkHref = member.linkHref || "../images/launch-letter.pdf";  // Default link if not specified
+      const linkTarget = member.linkTarget || "_blank";  // Default target if not specified
+      if (Array.isArray(member.underlineText)) {
+        modifiedBio = wrapMultipleStringsWithLinks(modifiedBio, member.underlineText, linkHref, linkTarget);
+      } else {
+        modifiedBio = wrapStringWithLink(modifiedBio, member.underlineText, linkHref, linkTarget);
+      }
+    }
 
     // Generate client links dynamically
     let clientHtml = '<h4>Select Clients:</h4><table class="text-m">';
@@ -216,7 +237,7 @@ function TeamMembers(memberData) {
       <div class="headshot">
         <img src="${member.imgSrc}" alt="${member.name}" />
       </div>
-      <p class="text-m">${member.bio}</p>
+      <p class="text-m">${modifiedBio}</p>
       ${clientHtml}
     `;
 
@@ -240,6 +261,7 @@ function TeamMembers(memberData) {
     mainContainer.appendChild(memberWrapper);
   });
 }
+
 
 function handleFooter(textData) {
   const footerContainer = document.querySelector("footer");

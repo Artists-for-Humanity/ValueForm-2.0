@@ -39,6 +39,12 @@ export default defineType({
       description: "Ensure the bio does not exceed 100 words.",
     }),
     defineField({
+      name: "underlineText",
+      title: "Underline Text",
+      type: "string",
+      description: "This should be a segment from the body text that needs to be underlined",
+    }),
+    defineField({
       name: "clients",
       title: "Client List",
       type: "object",
