@@ -866,7 +866,7 @@ main.internal .intro + .container.no-border {
 
 @media (min-width: 700px) {
   main.internal .intro + .container.no-border {
-    padding-block: 32px;
+    padding-block: 33px;
   }
   main.internal .intro + .container {
     padding: 24px 0 24px 0;
@@ -881,7 +881,7 @@ main.internal .intro + .container.no-border {
     padding: 27px 0 24px 0;
   }
   main.internal h2.text-l {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
   }
   main.internal .container::before,
   .container::after {
@@ -895,16 +895,16 @@ main.internal .intro + .container.no-border {
 
 @media (min-width: 1080px) {
   main.internal .container {
-    padding:39px 0 32px 0;
+    padding:39px 0 33px 0;
   }
   main.internal p {
-    padding-bottom: 27px;
+    padding-bottom: 31px;
   }
   main.internal .intro + .container.no-border {
     padding-top: 55px;
   }
   main.internal .intro + .container {
-    padding: 55px 0 32px 0;
+    padding: 55px 0 33px 0;
   }
   main.internal .container::before,
   .container::after {
