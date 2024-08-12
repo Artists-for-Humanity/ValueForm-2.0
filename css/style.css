@@ -861,7 +861,7 @@ main.internal .intro + .container.no-border {
 
 main.internal .container:last-child,
 main.internal .intro + .container.no-border {
-  padding-bottom: 36px;
+  padding-bottom: 49px;
 }
 
 @media (min-width: 700px) {

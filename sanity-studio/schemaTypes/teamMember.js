@@ -133,7 +133,15 @@ export default defineType({
   preview: {
     select: {
       title: "name",
+      number: "number",
       media: "imgSrc",
+    },
+    prepare(selection) {
+      const { title, number, media } = selection;
+      return {
+        title: `${number ? number + ': ' : ''}${title}`,
+        media,
+      };
     },
   },
 });
