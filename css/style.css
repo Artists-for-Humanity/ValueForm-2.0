@@ -1526,6 +1526,7 @@ table {
   padding: 30px 0px 30px 0px;
   display: grid;
   grid-template-columns: inherit;
+  text-decoration: none;
 }
 
 .article-title.preview:last-child {
