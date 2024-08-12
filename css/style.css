@@ -856,7 +856,7 @@ main.internal .container {
 
 main.internal .container:first-child,
 main.internal .intro + .container.no-border {
-  padding-top: 55px;
+  padding-top: 25px;
 }
 
 main.internal .container:last-child,
@@ -891,6 +891,7 @@ main.internal .intro + .container.no-border {
     top: 25px;
     letter-spacing: 1px;
   }
+  
 } /* MAIN STYLES FOR TABLET */
 
 @media (min-width: 1080px) {
