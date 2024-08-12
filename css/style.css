@@ -1556,3 +1556,15 @@ table {
   font-size: 34px;
   line-height: 34px;
 }
+
+/* body
+  > section
+  > main
+  > div.container.fadeInUp.animated
+  > div.fadeInUp.desktop-col-8.article.text.animated {
+  grid-column: 5 / span 7;
+}
+
+body > section > main > div.container.fadeInUp.animated > div:nth-child(5) > p {
+  grid-column: 5 / span 7;
+} */
