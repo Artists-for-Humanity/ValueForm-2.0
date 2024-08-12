@@ -1493,6 +1493,7 @@ table {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-top: 39px;
 }
 
 .article .img-contain .img {
@@ -1545,4 +1546,13 @@ table {
   max-width: auto;
   padding: 0;
   margin-top: 10px;
+}
+
+.blockQuote {
+  padding: 34px 0px 34px 0px;
+  border-top: 1px solid var(--darkgrey);
+  border-bottom: 1px solid var(--darkgrey);
+  margin: 34px 0px 34px 0px;
+  font-size: 34px;
+  line-height: 34px;
 }
