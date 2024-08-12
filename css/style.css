@@ -1532,3 +1532,17 @@ table {
 .article-title.preview:last-child {
   padding-bottom: 0;
 }
+.article-img {
+  height: 437.28px;
+  width: auto;
+  margin-top: 34px;
+  margin-bottom: 34px;
+}
+
+.article.img {
+  height: 100px;
+  width: auto;
+  max-width: auto;
+  padding: 0;
+  margin-top: 10px;
+}
