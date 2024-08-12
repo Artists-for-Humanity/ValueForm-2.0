@@ -697,7 +697,6 @@ nav a {
   width: 50%;
   border: 1px solid var(--nearwhite);
   background: rgba(2, 2, 2, 0.9);
-  border-radius: 6px 0 0 6px;
   text-align: center;
   display: inline-block;
   text-decoration: none;
@@ -716,15 +715,19 @@ nav a:active {
 nav a:active + a {
   border-left: 2px solid var(--white);
 }
-nav a + a {
-  border-radius: 0 6px 6px 0px;
+
+nav a:first-child {
+  border-radius: 6px 0 0 6px; /* Top-right and bottom-right border-radius */
+}
+nav a:last-child {
+  border-radius: 0 6px 6px 0; /* Top-right and bottom-right border-radius */
 }
 nav a:first-child {
   /*left: 2px;*/
   border-right: 0px;
 }
 nav a:last-child {
-  /*right: 2px;*/
+  right: 2px;
 }
 nav a.disabled {
   color: var(--darkgrey);
@@ -763,7 +766,7 @@ nav a.disabled:first-child + a:active {
     width: calc(100% - 78px);
   }
   nav div {
-    width: 279px;
+    width: 417px;
   }
   /*nav a { width: 140px;}*/
 } /* NAV STYLES FOR DESKTOP */
