@@ -854,14 +854,15 @@ main.internal .container {
   padding: 23px 0 19px 0;
 }
 
-main.internal .container:first-child,
-main.internal .intro + .container.no-border {
-  padding-top: 25px;
-}
-
 main.internal .container:last-child,
 main.internal .intro + .container.no-border {
-  padding-bottom: 49px;
+  padding-bottom: 54px;
+}
+
+main.internal .container:first-child,
+main.internal .intro + .container.no-border {
+  padding-top: 23px;
+  padding-bottom: 19px;
 }
 
 @media (min-width: 700px) {
