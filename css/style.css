@@ -520,6 +520,7 @@ MOBILE GRID -- NOT USED */
   .desktop-col-8 {
     grid-column: 5 / span 8;
   }
+
   .desktop-col-10 {
     grid-column: 3 / span 10;
   }
@@ -1511,7 +1512,7 @@ table {
 
 .article p {
   color: var(--nearwhite);
-  margin-top: 36px;
+  margin-top: 32px;
 }
 
 .link {
@@ -1520,18 +1521,11 @@ table {
   margin-bottom: 30px;
 }
 
-.desktop-col-8.article.text {
-  grid-column: 5 / span 7;
-}
-
 .article-title.preview {
   border-top: 1px solid var(--darkgrey) !important;
   padding: 30px 0px 30px 0px;
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: 25px;
-  /* max-width: 1187px;
-  margin: 0 auto; */
+  grid-template-columns: inherit;
 }
 
 .article-title.preview:last-child {
