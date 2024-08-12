@@ -13,10 +13,17 @@ function handleNavigation(fadeInUpElements) {
   const logoLinks = document.querySelectorAll("header a img");
   const footerLinks = document.querySelectorAll("footer a img");
   const headerLinks = document.querySelectorAll("header a");
-  const articleLinks = document.querySelectorAll("article title a");
+  const articleElements = document.querySelectorAll(".article-title.preview");
 
-  [...navLinks, ...logoLinks, ...footerLinks, ...headerLinks].forEach((img) => {
-    const anchor = img.closest("a");
+  [
+    ...navLinks,
+    ...logoLinks,
+    ...footerLinks,
+    ...headerLinks,
+    ...articleElements,
+  ].forEach((element) => {
+    const isAnchor = element.tagName.toLowerCase() === "a";
+    const anchor = isAnchor ? element : element.closest("a") || element;
 
     if (anchor.classList.contains("disabled")) return;
 
@@ -30,7 +37,7 @@ function handleNavigation(fadeInUpElements) {
         return;
       } else {
         e.preventDefault();
-        const targetUrl = anchor.href;
+        const targetUrl = anchor.getAttribute("href");
         let delayCounter = 0;
 
         fadeInUpElements
