@@ -1526,13 +1526,12 @@ x-img {
   margin-top: 23px;
 
   margin-top: 32px;
-
 }
 
 .link {
   color: var(--nearwhite);
   margin-top: 27px;
-  margin-bottom: 24px;
+  margin-bottom: 35px;
 }
 
 .article-title.preview {
@@ -1542,7 +1541,6 @@ x-img {
 
   grid-template-columns: inherit;
   text-decoration: none;
-
 }
 
 .article-title.preview:last-child {
@@ -1550,8 +1548,8 @@ x-img {
 }
 
 .popup-text {
-  padding: 6px 0 0px 0px;
-
+  padding: 4px 0 0px 0px;
+}
 .article-img {
   height: 437.28px;
   width: auto;
@@ -1574,5 +1572,4 @@ x-img {
   margin: 34px 0px 34px 0px;
   font-size: 34px;
   line-height: 34px;
-
 }
