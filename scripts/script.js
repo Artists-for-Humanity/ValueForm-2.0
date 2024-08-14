@@ -14,6 +14,7 @@ function handleNavigation(fadeInUpElements) {
   const footerLinks = document.querySelectorAll("footer a img");
   const headerLinks = document.querySelectorAll("header a");
   const articleElements = document.querySelectorAll(".article-title.preview");
+  const linkBack = document.querySelectorAll(".link-back");
 
   [
     ...navLinks,
@@ -21,6 +22,7 @@ function handleNavigation(fadeInUpElements) {
     ...footerLinks,
     ...headerLinks,
     ...articleElements,
+    ...linkBack,
   ].forEach((element) => {
     const isAnchor = element.tagName.toLowerCase() === "a";
     const anchor = isAnchor ? element : element.closest("a") || element;
