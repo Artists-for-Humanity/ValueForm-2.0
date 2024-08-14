@@ -517,9 +517,13 @@ MOBILE GRID -- NOT USED */
   .desktop-col-7-left {
     grid-column: 1 / span 7;
   }
+  .article.desktop-col-7 {
+    grid-column: 5 / span 7;
+  }
   .desktop-col-8 {
     grid-column: 5 / span 8;
   }
+
   .desktop-col-10 {
     grid-column: 3 / span 10;
   }
@@ -1434,7 +1438,7 @@ nav.fadeInUp {
 }
 
 .member-top {
-  border-top: 1px solid var(--darkgrey) !important; /* You can customize the border style, width, and color */
+  border-top: 1px solid var(--darkgrey) !important;
 }
 .no-underline {
   text-decoration: none;
@@ -1493,6 +1497,7 @@ table {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-top: 39px;
 }
 
 .article .img-contain .img {
@@ -1517,7 +1522,11 @@ x-img {
 
 .article p {
   color: var(--nearwhite);
+
   margin-top: 23px;
+
+  margin-top: 32px;
+
 }
 
 .link {
@@ -1526,16 +1535,14 @@ x-img {
   margin-bottom: 24px;
 }
 
-.desktop-col-8.article.text {
-  grid-column: 5 / span 7;
-}
-
 .article-title.preview {
   border-top: 1px solid var(--darkgrey) !important;
   padding: 34px 0px 34px 0px;
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: 25px;
+
+  grid-template-columns: inherit;
+  text-decoration: none;
+
 }
 
 .article-title.preview:last-child {
@@ -1544,4 +1551,28 @@ x-img {
 
 .popup-text {
   padding: 6px 0 0px 0px;
+
+.article-img {
+  height: 437.28px;
+  width: auto;
+  margin-top: 34px;
+  margin-bottom: 34px;
+}
+
+.article.img {
+  height: 100px;
+  width: auto;
+  max-width: auto;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.blockQuote {
+  padding: 34px 0px 34px 0px;
+  border-top: 1px solid var(--darkgrey);
+  border-bottom: 1px solid var(--darkgrey);
+  margin: 34px 0px 34px 0px;
+  font-size: 34px;
+  line-height: 34px;
+
 }
