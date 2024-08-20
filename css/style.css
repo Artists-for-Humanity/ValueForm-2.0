@@ -1472,6 +1472,14 @@ table {
   line-height: 17px;
 }
 
+.sidebar a {
+  color: var(--darkgrey);
+  text-decoration: underline;
+}
+.sidebar a:hover {
+  text-decoration: none;
+}
+
 .article-title {
   color: var(--darkgrey);
   font-family: Helvetica;
@@ -1480,6 +1488,10 @@ table {
   font-weight: bold;
   line-height: 34px; /* 100% */
   letter-spacing: -1.02px;
+}
+
+a.article-title:hover {
+  color: var(--nearwhite);
 }
 
 .article .date {
@@ -1532,6 +1544,7 @@ x-img {
   color: var(--nearwhite);
   margin-top: 27px;
   margin-bottom: 35px;
+  font-weight: 700;
 }
 
 .article-title.preview {
