@@ -879,7 +879,7 @@ main.internal .intro + .container.no-border {
     padding-bottom: 0;
   }
   main.internal .container {
-    padding: 25px 0 24px 0;
+    padding: 25px 0 14px 0;
   }
   main.internal h2.text-l {
     padding-bottom: 10px;
