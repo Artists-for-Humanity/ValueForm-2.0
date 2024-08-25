@@ -866,9 +866,24 @@ main.internal .intro + .container.no-border {
 }
 
 @media (min-width: 700px) {
-  main.internal .intro + .container.no-border {
+  /* main.internal .intro + .container.no-border {
     padding-block: 33px;
-  }
+  } */
+
+  /* Apply 33px padding only when there are multiple blocks */
+  main.internal .intro + .container.no-border:not(:last-child) {
+    padding-block: 33px;
+}
+
+/* Ensure that when there is only one block, it retains the 53px bottom padding */
+main.internal .intro + .container:only-child {
+    padding-block: 53px; /* This will override the 33px padding */
+}
+
+/* Handle the general case where the last child should have 53px bottom padding */
+main.internal .intro + .container:last-child {
+    padding-block: 53px;
+}
   main.internal .intro + .container {
     padding: 24px 0 24px 0;
   }
