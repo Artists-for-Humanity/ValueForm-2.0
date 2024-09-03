@@ -874,6 +874,7 @@ main.internal .container + .container::before, main.internal .container + .conta
 main.internal .container+.container+.container::before, main.internal .container+.container+.container::after{
   content: "02";
 }
+
 main.internal .container + .container + .container + .container::before,
 main.internal .container + .container + .container + .container::after {
   content: "03.";
@@ -913,7 +914,6 @@ main.internal .container + .container + .container + .container + .container + .
 main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
   content: "10.";
 }
-
 
 
 
@@ -990,10 +990,10 @@ main.internal .intro + .container.no-border {
 
 @media (min-width: 1080px) {
   main.internal .container {
-    padding: 39px 0 33px 0;
+    padding: 35px 0 33px 0;
   }
   main.internal p {
-    padding-bottom: 31px;
+    padding-bottom: 27px;
   }
   main.internal .intro + .container.no-border {
     padding-top: 55px;
@@ -1006,6 +1006,9 @@ main.internal .intro + .container.no-border {
     font-size: 76px;
     line-height: 76px;
     top: 29px;
+  }
+  main.internal h2.text-l {
+    padding-bottom: 15px;
   }
 } /* MAIN STYLES FOR DESKTOP */
 
