@@ -1,4 +1,83 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -337,7 +416,6 @@ tr:last-child {
 }
 tr:first-child th:first-child {
   padding: 0;
-
 }
 th {
   padding-top: 11px;
@@ -357,7 +435,6 @@ th {
     padding: 11px 16px 11px 0;
     width: 1px;
     /* display:inline-block; */
-
   }
 } /* TABLE TABLET / DESKTOP PADDING */
 
@@ -790,54 +867,56 @@ main.internal .container::after {
   -webkit-text-stroke: 4px var(--darkgrey);
   z-index: -2;
 }
-main.internal .container:first-of-type::before,
-main.internal .container:first-of-type::after {
+
+main.internal .container + .container::before, main.internal .container + .container::after {
   content: "01.";
 }
-main.internal .container:first-of-type + .container::before,
-main.internal .container:first-of-type + .container::after {
-  content: "02.";
+main.internal .container+.container+.container::before, main.internal .container+.container+.container::after{
+  content: "02";
 }
-
-main.internal .container:first-of-type + .container + .container::before,
-main.internal .container:first-of-type + .container + .container::after {
+main.internal .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container::after {
   content: "03.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container::after {
+main.internal .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container::after {
   content: "04.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container::after {
+main.internal .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container::after {
   content: "05.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container + .container::after {
+main.internal .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container + .container::after {
   content: "06.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container::after {
+main.internal .container + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container + .container + .container::after {
   content: "07.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
   content: "08.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
   content: "09.";
 }
 
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container:first-of-type + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
   content: "10.";
 }
+
+
+
+
 
 .no-before-after::before,
 .no-before-after::after {
@@ -873,17 +952,17 @@ main.internal .intro + .container.no-border {
   /* Apply 33px padding only when there are multiple blocks */
   main.internal .intro + .container.no-border:not(:last-child) {
     padding-block: 33px;
-}
+  }
 
-/* Ensure that when there is only one block, it retains the 53px bottom padding */
-main.internal .intro + .container:only-child {
+  /* Ensure that when there is only one block, it retains the 53px bottom padding */
+  main.internal .intro + .container:only-child {
     padding-block: 53px; /* This will override the 33px padding */
-}
+  }
 
-/* Handle the general case where the last child should have 53px bottom padding */
-main.internal .intro + .container:last-child {
+  /* Handle the general case where the last child should have 53px bottom padding */
+  main.internal .intro + .container:last-child {
     padding-block: 53px;
-}
+  }
   main.internal .intro + .container {
     padding: 24px 0 24px 0;
   }
@@ -907,12 +986,11 @@ main.internal .intro + .container:last-child {
     top: 25px;
     letter-spacing: 1px;
   }
-  
 } /* MAIN STYLES FOR TABLET */
 
 @media (min-width: 1080px) {
   main.internal .container {
-    padding:39px 0 33px 0;
+    padding: 39px 0 33px 0;
   }
   main.internal p {
     padding-bottom: 31px;
@@ -1277,7 +1355,8 @@ nav.fadeInUp {
 }
 
 .white-text-shadow {
-  text-shadow: 1px 0 0 var(--darkgrey),
+  text-shadow:
+    1px 0 0 var(--darkgrey),
     -1px 0 0 var(--darkgrey) 0 1px 0 var(--darkgrey),
     0 -1px 0 var(--darkgrey) 1px 1px 0 var(--darkgrey),
     -1px -1px 0 var(--darkgrey) -1px 1px 0 var(--darkgrey) 1px -1px 0
@@ -1295,5 +1374,5 @@ nav.fadeInUp {
 }
 
 table {
-  width:100%;
+  width: 100%;
 }
