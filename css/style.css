@@ -854,36 +854,42 @@ main.internal .container {
   padding: 23px 0 19px 0;
 }
 
+/* Handle the general case where the last child should have 53px bottom padding */
 main.internal .container:last-child,
 main.internal .intro + .container.no-border {
   padding-bottom: 53px;
 }
 
-main.internal .container:first-child,
+/* Ensure that when there is only one block, it retains the 53px bottom padding */
+main.internal .container:only-child,
 main.internal .intro + .container.no-border {
+  padding-bottom: 53px;
+}
+
+/* Apply only when there are multiple blocks */
+main.internal .container:first-child,
+main.internal .intro + .container.no-border:not(:last-child) {
   padding-top: 23px;
   padding-bottom: 19px;
 }
 
 @media (min-width: 700px) {
-  /* main.internal .intro + .container.no-border {
-    padding-block: 33px;
-  } */
 
-  /* Apply 33px padding only when there are multiple blocks */
+  /* Apply 30px padding only when there are multiple blocks */
   main.internal .intro + .container.no-border:not(:last-child) {
-    padding-block: 33px;
-}
+    padding-top: 30px;
+    padding-bottom: 8px
+  }
 
-/* Ensure that when there is only one block, it retains the 53px bottom padding */
-main.internal .intro + .container:only-child {
-    padding-block: 53px; /* This will override the 33px padding */
-}
+  /* Ensure that when there is only one block, it retains the 43px bottom padding */
+  main.internal .container:only-child, main.internal .intro + .container.no-border {
+    padding-bottom: 43px; /* This will override the 30px padding */
+  }
 
-/* Handle the general case where the last child should have 53px bottom padding */
-main.internal .intro + .container:last-child {
-    padding-block: 53px;
-}
+  /* Handle the general case where the last child should have 53px bottom padding */
+  main.internal .container:last-child, main.internal .intro + .container.no-border {
+    padding-bottom: 43px;
+  }
   main.internal .intro + .container {
     padding: 24px 0 24px 0;
   }
@@ -894,7 +900,7 @@ main.internal .intro + .container:last-child {
     padding-bottom: 0;
   }
   main.internal .container {
-    padding: 25px 0 14px 0;
+    padding: 25px 0 8px 0;
   }
   main.internal h2.text-l {
     padding-bottom: 10px;
@@ -911,17 +917,37 @@ main.internal .intro + .container:last-child {
 } /* MAIN STYLES FOR TABLET */
 
 @media (min-width: 1080px) {
-  main.internal .container {
+  /* main.internal .container {
     padding:39px 0 33px 0;
-  }
+  } */
   main.internal p {
     padding-bottom: 31px;
   }
+
+  /* Apply padding only when there are multiple blocks */
+  main.internal .intro + .container.no-border:not(:last-child) {
+    padding-top: 55px;
+    padding-bottom: 22px
+  }
+
+   /* Ensure that when there is only one block, it retains the 38px bottom padding */
+   main.internal .container:only-child, main.internal .intro + .container.no-border {
+    padding-bottom: 38px;
+  }
+
+  /* Handle the general case where the last child should have 53px bottom padding */
+  main.internal .container:last-child, main.internal .intro + .container.no-border {
+    /* padding: 39px 0 38px 0; */
+    padding-top: 39px;
+    padding-bottom: 38px;
+  }
+
   main.internal .intro + .container.no-border {
     padding-top: 55px;
   }
-  main.internal .intro + .container {
-    padding: 55px 0 33px 0;
+
+  main.internal .container {
+    padding: 39px 0 22px 0;
   }
   main.internal .container::before,
   .container::after {
