@@ -935,7 +935,7 @@ main.internal .container {
 
 main.internal .container:last-child,
 main.internal .intro + .container.no-border {
-  padding-bottom: 53px;
+  padding-bottom: 54px;
 }
 
 main.internal .container:first-child,
