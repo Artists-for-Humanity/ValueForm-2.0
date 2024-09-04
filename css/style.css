@@ -996,9 +996,32 @@ main.internal .intro + .container.no-border {
   main.internal p {
     padding-bottom: 27px;
   }
-  main.internal .intro + .container.no-border {
+  /* .Apply padding only when there are multiple blocks */
+  main.internal.lead .intro + .container.no-border:not(:last-child) {
+    padding-top: 55px;
+    padding-bottom: 22px;
+  }
+
+  /* Ensure that when there is only one block, it retains the 38px bottom padding */
+  main.internal.lead .container:only-child, main.internal .intro + .container.no-border {
+   padding-bottom: 38px 
+  }
+
+  /* Handle the general case where the last child should have 38px bottom padding */
+  main.internal.lead .container:last-child, main.internal .intro + .container.no-border {
+    padding-top: 39px;
+    padding-bottom: 38px;
+  }
+
+  main.internal.lead .container{
+    padding-top: 39px;
+    padding-bottom: 22px; 
+  }
+
+    main.internal .intro + .container.no-border {
     padding-top: 55px;
   }
+
   main.internal .intro + .container {
     padding: 55px 0 33px 0;
   }
