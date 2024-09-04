@@ -932,22 +932,26 @@ main.internal .intro + .container.no-border {
 main.internal .container {
   padding: 23px 0 19px 0;
 }
-
-main.internal .container:last-child,
-main.internal .intro + .container.no-border {
-  padding-bottom: 54px;
+  /* Handle the general case where the last child should have 53px bottom padding */
+  main.internal.lead .container:only-child,
+  main.internal.lead .intro + .container.no-border {
+    padding-bottom: 53px;
+  }
+  
+  /* Ensure that when there is only one block, it retains the 53px bottom padding */
+main.internal.lead .container:last-child,
+main.internal.lead .intro + .container.no-border {
+  padding-bottom: 53px;
 }
 
-main.internal .container:first-child,
-main.internal .intro + .container.no-border {
+  /* Apply padding only when there are multiple blocks */
+main.internal.lead .container:first-child,
+main.internal.lead .intro + .container.no-border:not(:last-child) {
   padding-top: 23px;
   padding-bottom: 19px;
 }
 
 @media (min-width: 700px) {
-  /* main.internal .intro + .container.no-border {
-    padding-block: 33px;
-  } */
 
   /* Apply 33px padding only when there are multiple blocks */
   main.internal.lead .intro + .container.no-border:not(:last-child) {
