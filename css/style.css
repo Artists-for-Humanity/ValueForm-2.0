@@ -923,7 +923,7 @@ main.internal .container + .container + .container + .container + .container + .
   content: none !important;
 }
 
-main.internal .intro + .container {
+/* main.internal .intro + .container {
   padding: 19px 0 24px 0;
 }
 main.internal .intro + .container.no-border {
@@ -931,7 +931,7 @@ main.internal .intro + .container.no-border {
 }
 main.internal .container {
   padding: 23px 0 19px 0;
-}
+} */
   /* Handle the general case where the last child should have 53px bottom padding */
   main.internal.lead .container:last-child,
   main.internal.lead .intro + .container.no-border {
@@ -966,7 +966,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
 
   /* Handle the general case where the last child should have 43px bottom padding */
   main.internal.lead .container:last-child, main.internal .intro + .container.no-border {
-    padding-bottom: 43px;
+    padding-bottom: 43px !important;
   }
   main.internal .intro + .container {
     padding: 24px 0 24px 0;
