@@ -950,18 +950,19 @@ main.internal .intro + .container.no-border {
   } */
 
   /* Apply 33px padding only when there are multiple blocks */
-  main.internal .intro + .container.no-border:not(:last-child) {
-    padding-block: 33px;
+  main.internal.lead .intro + .container.no-border:not(:last-child) {
+    padding-top: 30px;
+    padding-bottom: 8px;
   }
 
   /* Ensure that when there is only one block, it retains the 53px bottom padding */
-  main.internal .intro + .container:only-child {
-    padding-block: 53px; /* This will override the 33px padding */
+  main.internal.lead .container:only-child, main.internal .intro + .container.no-border {
+    padding-bottom: 43px;
   }
 
-  /* Handle the general case where the last child should have 53px bottom padding */
-  main.internal .intro + .container:last-child {
-    padding-block: 53px;
+  /* Handle the general case where the last child should have 43px bottom padding */
+  main.internal.lead .container:last-child, main.internal .intro + .container.no-border {
+    padding-bottom: 43px;
   }
   main.internal .intro + .container {
     padding: 24px 0 24px 0;
@@ -973,7 +974,7 @@ main.internal .intro + .container.no-border {
     padding-bottom: 0;
   }
   main.internal .container {
-    padding: 25px 0 24px 0;
+    padding: 25px 0 8px 0;
   }
   main.internal h2.text-l {
     padding-bottom: 15px;
