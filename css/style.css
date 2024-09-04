@@ -933,13 +933,13 @@ main.internal .container {
   padding: 23px 0 19px 0;
 }
   /* Handle the general case where the last child should have 53px bottom padding */
-  main.internal.lead .container:only-child,
+  main.internal.lead .container:last-child,
   main.internal.lead .intro + .container.no-border {
     padding-bottom: 53px;
   }
   
   /* Ensure that when there is only one block, it retains the 53px bottom padding */
-main.internal.lead .container:last-child,
+main.internal.lead .container:only-child,
 main.internal.lead .intro + .container.no-border {
   padding-bottom: 53px;
 }
@@ -995,9 +995,9 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
 } /* MAIN STYLES FOR TABLET */
 
 @media (min-width: 1080px) {
-  main.internal .container {
+  /* main.internal .container {
     padding: 33px 0 33px 0;
-  }
+  } */
   main.internal p {
     padding-bottom: 27px;
   }
@@ -1015,7 +1015,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   /* Handle the general case where the last child should have 38px bottom padding */
   main.internal.lead .container:last-child, main.internal .intro + .container.no-border {
     padding-top: 39px;
-    padding-bottom: 38px;
+    padding-bottom: 38px !important;
   }
 
   main.internal.lead .container{
@@ -1023,7 +1023,10 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     padding-bottom: 22px; 
   }
 
-    main.internal .intro + .container.no-border {
+  main.internal.lead .intro + .container.no-border {
+    padding-top: 55px;
+
+  }main.internal .intro + .container.no-border {
     padding-top: 55px;
   }
 
