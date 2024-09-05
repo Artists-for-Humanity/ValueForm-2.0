@@ -850,6 +850,9 @@ main.internal .container {
 main.internal .container:last-child {
   border: 0;
 }
+main.internal.lead .container:last-child {
+  padding-top: 23px;
+}
 main.internal .container.no-border {
   border-bottom: 0;
 }
@@ -928,10 +931,13 @@ main.internal .container + .container + .container + .container + .container + .
 }
 main.internal .intro + .container.no-border {
   padding: 23px 0 24px 0;
-}
-main.internal .container {
-  padding: 23px 0 19px 0;
 } */
+
+main.internal.lead .container {
+  padding-top: 23px;
+  padding-bottom: 19px;
+}
+
   /* Handle the general case where the last child should have 53px bottom padding */
   main.internal.lead .container:last-child,
   main.internal.lead .intro + .container.no-border {
@@ -953,15 +959,19 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
 
 @media (min-width: 700px) {
 
+  main.internal.lead .container:last-child {
+    padding-top: 25px;
+  }
+
   /* Apply 33px padding only when there are multiple blocks */
   main.internal.lead .intro + .container.no-border:not(:last-child) {
     padding-top: 30px;
-    padding-bottom: 8px;
+    padding-bottom: 8px !important;
   }
 
   /* Ensure that when there is only one block, it retains the 53px bottom padding */
   main.internal.lead .container:only-child, main.internal .intro + .container.no-border {
-    padding-bottom: 43px;
+    padding-bottom: 43px !important;
   }
 
   /* Handle the general case where the last child should have 43px bottom padding */
@@ -977,7 +987,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   main.internal .intro + .container p {
     padding-bottom: 0;
   }
-  main.internal .container {
+  main.internal.lead .container {
     padding: 25px 0 8px 0;
   }
   main.internal h2.text-l {
@@ -1004,7 +1014,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   /* .Apply padding only when there are multiple blocks */
   main.internal.lead .intro + .container.no-border:not(:last-child) {
     padding-top: 55px;
-    padding-bottom: 22px;
+    padding-bottom: 22px !important;
   }
 
   /* Ensure that when there is only one block, it retains the 38px bottom padding */
