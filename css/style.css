@@ -387,7 +387,8 @@ END OF ACCORDION STYLES -- NOT USED */
 @media (min-width: 1080px) {
   li {
     padding: 11px 0;
-    width: calc(50% - 12.5px);
+    padding-bottom: 11px !important;
+    width: calc(50% - 12.5apx);
   }
 } /* DESKTOP LIST PADDING */
 
@@ -849,6 +850,7 @@ main.internal .container {
 }
 main.internal .container:last-child {
   border: 0;
+  padding-bottom: 54px;
 }
 main.internal.lead .container:last-child {
   padding-top: 23px;
@@ -918,24 +920,25 @@ main.internal .container + .container + .container + .container + .container + .
   content: "10.";
 }
 
-
-
-
 .no-before-after::before,
 .no-before-after::after {
   content: none !important;
 }
 
-/* main.internal .intro + .container {
+main.internal .intro + .container {
   padding: 19px 0 24px 0;
 }
 main.internal .intro + .container.no-border {
   padding: 23px 0 24px 0;
-} */
-
-main.internal.lead .container {
+}
+main.internal .container {
   padding-top: 23px;
   padding-bottom: 19px;
+}
+
+main.internal.lead .container {
+  padding-top: 23px !important;
+  padding-bottom: 19px !important;
 }
 
   /* Handle the general case where the last child should have 53px bottom padding */
@@ -992,8 +995,23 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   }
   main.internal h2.text-l {
     padding-bottom: 15px;
-    padding-top:2px;
+    /* padding-top: 36px; */
   }
+
+  main.internal .container {
+    padding-top: 27px;
+    padding-bottom: 24px;
+  }
+
+  /* main.internal.approach h2.text-l {
+    padding-bottom: 15px;
+    padding-top: 22px;
+  } */
+
+  main.internal.lead h2.text-l {
+    padding-top: 0px;
+  }
+
   main.internal .container::before,
   .container::after {
     display: block;
@@ -1005,9 +1023,11 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
 } /* MAIN STYLES FOR TABLET */
 
 @media (min-width: 1080px) {
-  /* main.internal .container {
-    padding: 33px 0 33px 0;
-  } */
+  main.internal .container {
+    padding-top: 35px;
+    padding-bottom: 22px;
+  }
+
   main.internal p {
     padding-bottom: 27px;
   }
@@ -1051,6 +1071,12 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   }
   main.internal h2.text-l {
     padding-bottom: 15px;
+    padding-top:0px;
+  }
+
+  main.internal .container:last-child {
+    border: 0;
+    padding-bottom: 43px;
   }
 } /* MAIN STYLES FOR DESKTOP */
 
