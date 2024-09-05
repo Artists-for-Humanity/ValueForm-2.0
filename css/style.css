@@ -1146,7 +1146,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   padding-bottom: 8px;
 }
 .desktop-col-7-left h4 + .headshot {
-  margin: 11px 0 20px 0;
+  margin: 20px 0 20px 0;
 }
 .container > .desktop-col-7-left p + h4 {
   font-weight: normal;
