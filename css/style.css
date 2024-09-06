@@ -937,8 +937,8 @@ main.internal .container {
 }
 
 main.internal.lead .container {
-  padding-top: 23px !important;
-  padding-bottom: 19px !important;
+  padding-top: 23px;
+  padding-bottom: 19px;
 }
 
   /* Handle the general case where the last child should have 53px bottom padding */
@@ -985,13 +985,13 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     padding: 24px 0 24px 0;
   }
   main.internal .intro + .container.no-border {
-    padding-top: 30px !important
+    padding-top: 30px !important;
   }
   main.internal .intro + .container p {
     padding-bottom: 0;
   }
   main.internal.lead .container {
-    padding: 25px 0 8px 0;
+    padding: 23px 0 8px 0;
   }
   main.internal h2.text-l {
     padding-bottom: 15px;
