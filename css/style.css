@@ -985,7 +985,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     padding: 24px 0 24px 0;
   }
   main.internal .intro + .container.no-border {
-    padding-top: 30px !important;
+    padding-top: 30px;
   }
   main.internal .intro + .container p {
     padding-bottom: 0;
