@@ -985,7 +985,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     padding: 24px 0 24px 0;
   }
   main.internal .intro + .container.no-border {
-    padding-top: 30px;
+    padding-top: 30px !important
   }
   main.internal .intro + .container p {
     padding-bottom: 0;
@@ -1039,7 +1039,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
 
   /* Ensure that when there is only one block, it retains the 38px bottom padding */
   main.internal.lead .container:only-child, main.internal .intro + .container.no-border {
-   padding-bottom: 38px 
+   padding-bottom: 38px;
   }
 
   /* Handle the general case where the last child should have 38px bottom padding */
