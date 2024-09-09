@@ -15,8 +15,10 @@ function handleNavigation(fadeInUpElements) {
   const headerLinks = document.querySelectorAll("header a");
   const articleElements = document.querySelectorAll(".article-title.preview");
   const linkBack = document.querySelectorAll(".link-back");
+  const clickMe = document.querySelectorAll(".click-me");
 
   [
+    ...clickMe,
     ...navLinks,
     ...logoLinks,
     ...footerLinks,
