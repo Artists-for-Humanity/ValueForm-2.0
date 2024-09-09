@@ -16,6 +16,7 @@ const query = `*[_type == "teamMember"] {
   "name": name,
   "imgSrc": imgSrc.asset->url,
   "bio": bio,
+  underlineText,
   "clients": clients{
     "title": title,
     "categories": categories[] {
@@ -69,6 +70,7 @@ export async function fetchTeamData() {
         title: member.title,
         imgSrc: member.imgSrc || "", // Provide a default value if imgSrc is null
         bio: member.bio || "", // Provide a default value if bio is null
+        underlineText: member.underlineText || "",
         clients,
         contact,
       };

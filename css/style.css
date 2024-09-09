@@ -421,7 +421,8 @@ END OF ACCORDION STYLES -- NOT USED */
 @media (min-width: 1080px) {
   li {
     padding: 11px 0;
-    width: calc(50% - 12.5px);
+    padding-bottom: 11px !important;
+    width: calc(50% - 12.5apx);
   }
 }
 
@@ -1018,6 +1019,10 @@ main.internal .container {
 
 main.internal .container:last-child {
   border: 0;
+  padding-bottom: 54px;
+}
+main.internal.lead .container:last-child {
+  padding-top: 23px;
 }
 
 main.internal .container.no-border {
@@ -1040,53 +1045,51 @@ main.internal .container::after {
   z-index: -2;
 }
 
-main.internal .container:first-of-type::before,
-main.internal .container:first-of-type::after {
+main.internal .container + .container::before, main.internal .container + .container::after {
   content: "01.";
 }
-
-main.internal .container:first-of-type+.container::before,
-main.internal .container:first-of-type+.container::after {
+main.internal .container+.container+.container::before, main.internal .container+.container+.container::after{
   content: "02.";
 }
 
-main.internal .container:first-of-type+.container+.container::before,
-main.internal .container:first-of-type+.container+.container::after {
+main.internal .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container::after {
   content: "03.";
 }
 
-main.internal .container:first-of-type+.container+.container+.container::before,
-main.internal .container:first-of-type+.container+.container+.container::after {
+main.internal .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container::after {
   content: "04.";
 }
 
-main.internal .container:first-of-type+.container+.container+.container+.container::before,
-main.internal .container:first-of-type+.container+.container+.container+.container::after {
+main.internal .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container::after {
   content: "05.";
 }
 
-main.internal .container:first-of-type+.container+.container+.container+.container+.container::before,
-main.internal .container:first-of-type+.container+.container+.container+.container+.container::after {
+main.internal .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container + .container::after {
   content: "06.";
 }
 
-main.internal .container:first-of-type+.container+.container+.container+.container+.container+.container::before,
-main.internal .container:first-of-type+.container+.container+.container+.container+.container+.container::after {
+main.internal .container + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container + .container + .container::after {
   content: "07.";
 }
 
-main.internal .container:first-of-type+.container+.container+.container+.container+.container+.container+.container::before,
-main.internal .container:first-of-type+.container+.container+.container+.container+.container+.container+.container::after {
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
   content: "08.";
 }
 
-main.internal .container:first-of-type+.container+.container+.container+.container+.container+.container+.container+.container::before,
-main.internal .container:first-of-type+.container+.container+.container+.container+.container+.container+.container+.container::after {
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
   content: "09.";
 }
 
-main.internal .container:first-of-type+.container+.container+.container+.container+.container+.container+.container+.container+.container::before,
-main.internal .container:first-of-type+.container+.container+.container+.container+.container+.container+.container+.container+.container::after {
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
+
   content: "10.";
 }
 
@@ -1104,9 +1107,11 @@ main.internal .intro+.container.no-border {
 }
 
 main.internal .container {
-  padding: 23px 0 19px 0;
+  padding-top: 23px;
+  padding-bottom: 19px;
 }
 
+/* news-1.4.2 */
 main.internal .container:first-child,
 main.internal .intro+.container.no-border {
   padding-top: 55px;
@@ -1120,6 +1125,53 @@ main.internal .intro+.container.no-border {
 @media (min-width: 700px) {
   main.internal .intro+.container.no-border {
     padding-block: 32px;
+
+main.internal.lead .container {
+  padding-top: 23px;
+  padding-bottom: 19px;
+}
+    /* news-1.4.2 */
+
+  /* Handle the general case where the last child should have 53px bottom padding */
+  main.internal.lead .container:last-child,
+  main.internal.lead .intro + .container.no-border {
+    padding-bottom: 53px;
+  }
+  
+  /* Ensure that when there is only one block, it retains the 53px bottom padding */
+main.internal.lead .container:only-child,
+main.internal.lead .intro + .container.no-border {
+  padding-bottom: 53px;
+}
+
+  /* Apply padding only when there are multiple blocks */
+main.internal.lead .container:first-child,
+main.internal.lead .intro + .container.no-border:not(:last-child) {
+  padding-top: 23px;
+  padding-bottom: 19px;
+}
+
+@media (min-width: 700px) {
+
+  main.internal.lead .container:last-child {
+    padding-top: 25px;
+  }
+
+  /* Apply 33px padding only when there are multiple blocks */
+  main.internal.lead .intro + .container.no-border:not(:last-child) {
+    padding-top: 30px;
+    padding-bottom: 8px !important;
+  }
+
+  /* Ensure that when there is only one block, it retains the 53px bottom padding */
+  main.internal.lead .container:only-child, main.internal .intro + .container.no-border {
+    padding-bottom: 43px !important;
+  }
+
+  /* Handle the general case where the last child should have 43px bottom padding */
+  main.internal.lead .container:last-child, main.internal .intro + .container.no-border {
+    padding-bottom: 43px !important;
+
   }
 
   main.internal .intro+.container {
@@ -1133,13 +1185,34 @@ main.internal .intro+.container.no-border {
   main.internal .intro+.container p {
     padding-bottom: 0;
   }
+/* news-1.4.2 */
 
-  main.internal .container {
+  /* main.internal .container {
     padding: 27px 0 24px 0;
+  */
+/* news-1.4.2 */
+  main.internal.lead .container {
+    padding: 25px 0 8px 0;
+
   }
 
   main.internal h2.text-l {
     padding-bottom: 15px;
+    /* padding-top: 36px; */
+  }
+
+  main.internal .container {
+    padding-top: 27px;
+    padding-bottom: 24px;
+  }
+
+  /* main.internal.approach h2.text-l {
+    padding-bottom: 15px;
+    padding-top: 22px;
+  } */
+
+  main.internal.lead h2.text-l {
+    padding-top: 0px;
   }
 
   main.internal .container::before,
@@ -1156,19 +1229,57 @@ main.internal .intro+.container.no-border {
 
 @media (min-width: 1080px) {
   main.internal .container {
-    padding: 39px 0 32px 0;
+ /* news-1.4.2 */
+    /* padding: 39px 0 32px 0;*/
+    padding-top: 35px;
+    padding-bottom: 22px;
+
   }
 
   main.internal p {
     padding-bottom: 27px;
   }
+  
+ /* news-1.4.2 */
 
-  main.internal .intro+.container.no-border {
+/*   main.internal .intro+.container.no-border { */
+
+  /* .Apply padding only when there are multiple blocks */
+  main.internal.lead .intro + .container.no-border:not(:last-child) {
+
+    padding-top: 55px;
+    padding-bottom: 22px !important;
+  }
+
+  /* Ensure that when there is only one block, it retains the 38px bottom padding */
+  main.internal.lead .container:only-child, main.internal .intro + .container.no-border {
+   padding-bottom: 38px;
+  }
+
+/*  news-1.4.2 */
+/*   main.internal .intro+.container {
+    padding: 55px 0 32px 0; */
+  /* Handle the general case where the last child should have 38px bottom padding */
+  main.internal.lead .container:last-child, main.internal .intro + .container.no-border {
+    padding-top: 39px;
+    padding-bottom: 38px !important;
+  }
+
+  main.internal.lead .container{
+    padding-top: 39px;
+    padding-bottom: 22px; 
+  }
+
+  main.internal.lead .intro + .container.no-border {
+    padding-top: 55px;
+
+  }main.internal .intro + .container.no-border {
     padding-top: 55px;
   }
 
-  main.internal .intro+.container {
-    padding: 55px 0 32px 0;
+  main.internal .intro + .container {
+    padding: 55px 0 33px 0;
+
   }
 
   main.internal .container::before,
@@ -1177,9 +1288,18 @@ main.internal .intro+.container.no-border {
     line-height: 76px;
     top: 29px;
   }
-}
 
-/* MAIN STYLES FOR DESKTOP */
+  main.internal h2.text-l {
+    padding-bottom: 15px;
+    padding-top:0px;
+  }
+
+  main.internal .container:last-child {
+    border: 0;
+    padding-bottom: 43px;
+  }
+} /* MAIN STYLES FOR DESKTOP */
+
 
 /* END OF APPROACH MAIN CONTENT SECTION */
 
@@ -1284,8 +1404,9 @@ main.internal .intro+.container.no-border {
   padding-bottom: 8px;
 }
 
-.desktop-col-7-left h4+.headshot {
-  margin: 11px 0 19px 0;
+.desktop-col-7-left h4 + .headshot {
+  margin: 20px 0 20px 0;
+
 }
 
 .container>.desktop-col-7-left p+h4 {
@@ -1293,8 +1414,9 @@ main.internal .intro+.container.no-border {
   padding: 13px 0 17px 0 !important;
 }
 
-main.internal>.no-border h4 {
-  padding-bottom: 12px;
+main.internal > .no-border h4 {
+  padding-bottom: 3px;
+
 }
 
 @media (min-width: 700px) {
@@ -1304,13 +1426,17 @@ main.internal>.no-border h4 {
 
   .headshot img {
     width: 76.9%;
-    position: absolute;
+    /* position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     max-width: 100%;
     height: auto;
     /* Adjust this as needed */
+
+    max-width: 100%; */
+    /* height: auto; Adjust this as needed */
+
   }
 
   main.internal .intro+.container .desktop-col-7-left p {
@@ -1321,8 +1447,9 @@ main.internal>.no-border h4 {
     padding-bottom: 10px;
   }
 
-  main.internal>.no-border h4 {
-    padding: 0 0 18px 0;
+  main.internal > .no-border h4 {
+    padding: 0 0 17px 0;
+
   }
 
   .container>.desktop-col-7-left p+h4 {
@@ -1331,7 +1458,11 @@ main.internal>.no-border h4 {
 
   .desktop-col-5 .headshot {
     display: block;
-    height: 371px;
+/* <<<<<<< news-1.4.2 */
+/*     height: 371px; */
+
+    /* height:371px; */
+
   }
 
   .desktop-col-5 ul {
@@ -1354,7 +1485,7 @@ main.internal>.no-border h4 {
 
   .container>.desktop-col-7-left P {
     padding-right: 15%;
-    height: 219px;
+    /* height: 219px; */
   }
 
   .container>.desktop-col-7-left p+h4 {
@@ -1684,6 +1815,7 @@ x-img {
 
 .popup-text {
   padding: 4px 0 0px 0px;
+
 }
 
 .article-img {
