@@ -196,7 +196,7 @@ function TeamMembers(memberData) {
     const memberWrapper = document.createElement("div");
     memberWrapper.className = "container no-border fadeInUp no-before-after animated";
     memberWrapper.style.animationDelay = `${600 + index * 100}ms`;
-
+    
     if (index != 0) {
       memberWrapper.classList.add("member-top");
     }
