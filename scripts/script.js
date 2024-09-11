@@ -75,7 +75,7 @@ function animateOnLoad() {
   setTimeout(() => {
     const player = document.getElementById("lottieAnimation");
     if (player) player.play();
-  }, 2000);
+  }, 1000);
 }
 
 function animateOncePerSession(elementId, animationClass) {
