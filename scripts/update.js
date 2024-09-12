@@ -42,6 +42,11 @@ async function initializeTeamData() {
     const memberData = {
       team: teamMember,
     };
+
+    if (Object.entries(memberData.team).length == 1) {
+      document.querySelector('main.internal').style.minHeight = 'auto';
+    }
+
   TeamMembers(memberData);
   animateOnLoad();
   }
