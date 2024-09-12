@@ -1525,9 +1525,16 @@ main.internal > .no-border h4 {
   padding-bottom: 3px;
 }
 
+aside {
+  display: none;
+}
+
 @media (min-width: 700px) {
   .headshot {
     padding-top: 16px;
+  }
+  aside {
+    display: block;
   }
 
   .headshot img {
@@ -1597,6 +1604,10 @@ main.internal > .no-border h4 {
 
   main.internal .intro + .container .desktop-col-7-left p {
     padding-bottom: 31px;
+  }
+
+  aside {
+    display: block;
   }
 }
 
