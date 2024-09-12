@@ -774,13 +774,14 @@ nav a.disabled:first-child + a:active {
   margin: 0 auto;
 }
 main {
-  /* min-height: 150vh; */
-  /* min-height: 100svh; */
+  min-height: 150vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
 }
 main.internal {
   min-height:100vh;
+  /* min-height: auto; */
 }
 .wrapper main h1.text-jumbo {
   letter-spacing: 1px;
