@@ -1529,6 +1529,17 @@ aside {
   display: none;
 }
 
+.sidebar {
+  color: var(--darkgrey);
+  line-height: 17px;
+  height: 0px;
+}
+
+.sidebar:nth-child(2) {
+  display: block;
+  height: 100%;
+}
+
 @media (min-width: 700px) {
   .headshot {
     padding-top: 16px;
@@ -1582,6 +1593,10 @@ aside {
   .desktop-col-7-left h4 + .headshot {
     display: none;
   }
+  .sidebar:nth-child(2) {
+    display: none;
+    height: 0px;
+  }
 }
 
 @media (min-width: 1080px) {
@@ -1608,6 +1623,10 @@ aside {
 
   aside {
     display: block;
+  }
+  .sidebar:nth-child(2) {
+    display: none;
+    height: 0px;
   }
 }
 
@@ -1831,12 +1850,6 @@ table {
   width: 100%;
 }
 
-.sidebar {
-  color: var(--darkgrey);
-  line-height: 17px;
-  height: 0px;
-}
-
 .sidebar a {
   color: var(--darkgrey);
   text-decoration: underline;
@@ -1882,6 +1895,11 @@ table {
   padding-top: 15px;
 }
 
+.img-contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* .article .img-contain {
   display: grid;
   grid-template: inherit;
