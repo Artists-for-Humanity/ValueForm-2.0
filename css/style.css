@@ -1951,9 +1951,10 @@ x-img {
 
 .article-img {
   height: 437.28px;
-  width: auto;
+  width: 100%;
   margin-top: 34px;
   margin-bottom: 34px;
+  object-fit: cover;
 }
 
 .article.img {
