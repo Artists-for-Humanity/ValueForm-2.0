@@ -8,6 +8,20 @@ function isInViewport(element) {
   );
 }
 
+function handleMainNewsFade() {
+  const element = document.querySelector('.main_news')
+  if (element) {
+    if (isInViewport(element)) {
+      alert('The element is in the viewport.');
+    } else {
+      alert('The element is not in the viewport.');
+    }
+  } else {
+    alert('No element with class found.');
+  }
+  return false;
+}
+
 function handleNavigation(fadeInUpElements) {
   const navLinks = document.querySelectorAll("nav a");
   const logoLinks = document.querySelectorAll("header a img");
