@@ -43,9 +43,9 @@ async function initializeTeamData() {
       team: teamMember,
     };
 
-    if (Object.entries(memberData.team).length == 1) {
-      document.querySelector('main.internal').style.minHeight = 'auto';
-    }
+    // if (Object.entries(memberData.team).length == 1) {
+    //   document.querySelector('main.internal').style.minHeight = 'auto';
+    // }
 
   TeamMembers(memberData);
   animateOnLoad();

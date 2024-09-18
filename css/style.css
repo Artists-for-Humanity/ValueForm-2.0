@@ -780,8 +780,8 @@ main {
   align-items: center;
 }
 main.internal {
-  min-height:100vh;
-  /* min-height: auto; */
+  /* min-height:100vh; */
+  min-height: auto;
 }
 .wrapper main h1.text-jumbo {
   letter-spacing: 1px;
