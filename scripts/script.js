@@ -8,18 +8,33 @@ function isInViewport(element) {
   );
 }
 
+// check on whether or not the news section is already shown on screen
 function handleMainNewsFade() {
-  const element = document.querySelector('.main_news')
+  const element = document.querySelector('.news_page_airlines')
   if (element) {
     if (isInViewport(element)) {
-      alert('The element is in the viewport.');
+      console.log('The element is in the viewport.');
+      localStorage.setItem("add_fade", false)
     } else {
-      alert('The element is not in the viewport.');
+      console.log('The element is not in the viewport.');
+      localStorage.setItem("add_fade", true)
     }
   } else {
-    alert('No element with class found.');
+    console.log('No element with class found.');
   }
   return false;
+}
+
+// fade the links for redirect when clicking read all articles
+function exit_fade_previews() {
+  const elements = document.querySelectorAll('.fade_link');
+  elements.forEach(function (div) {
+    div.classList.replace('fadeInUp', 'fadeOutDown');
+  });
+  document.querySelector('footer').style.visibility = 'hidden';
+  setTimeout(() => {
+    window.location = '../pages/airlines.html'
+  }, 3500);
 }
 
 function handleNavigation(fadeInUpElements) {
