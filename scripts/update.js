@@ -61,7 +61,7 @@ async function initializeApproachBlockData() {
     const approachBlockData = {
       blocks: approachBlocks,
     };
-    handleApproach(approachBlockData);
+    // handleApproach(approachBlockData);
     animateOnLoad();
   } catch (err) {
     console.error("Error fetching approach blocks:", err);
@@ -104,80 +104,80 @@ function TextElements(textData) {
   });
 }
 
-function handleApproach(approachData) {
-  const mainContainer = document.querySelector(".approach-container");
-  if (!approachData.blocks || !mainContainer) return;
+// function handleApproach(approachData) {
+//   const mainContainer = document.querySelector(".approach-container");
+//   if (!approachData.blocks || !mainContainer) return;
 
-  function wrapStringWithClass(str, substr, className, additionalClass = "") {
-    const regex = new RegExp(`(${substr})`, 'g');
-    const combinedClass = `${className} ${additionalClass}`.trim();
-    return str.replace(regex, `<span class="${combinedClass}">$1</span>`);
-  }
+//   function wrapStringWithClass(str, substr, className, additionalClass = "") {
+//     const regex = new RegExp(`(${substr})`, 'g');
+//     const combinedClass = `${className} ${additionalClass}`.trim();
+//     return str.replace(regex, `<span class="${combinedClass}">$1</span>`);
+//   }
 
-  function wrapMultipleStringsWithClass(str, substrings, className) {
-    substrings.forEach(substring => {
-      str = wrapStringWithClass(str, substring, className);
-    });
-    return str;
-  }
+//   function wrapMultipleStringsWithClass(str, substrings, className) {
+//     substrings.forEach(substring => {
+//       str = wrapStringWithClass(str, substring, className);
+//     });
+//     return str;
+//   }
 
-  if (Array.isArray(approachData.blocks)) {
+//   if (Array.isArray(approachData.blocks)) {
 
-    approachData.blocks.sort((a, b) => a.number - b.number);
+//     approachData.blocks.sort((a, b) => a.number - b.number);
 
-    approachData.blocks.forEach((approachBlock, index) => {
-      // console.log(index);
+//     approachData.blocks.forEach((approachBlock, index) => {
+//       // console.log(index);
 
-      // Create CSS class dynamically for each block
-      const style = document.createElement('style');
-      style.type = 'text/css';
+//       // Create CSS class dynamically for each block
+//       const style = document.createElement('style');
+//       style.type = 'text/css';
 
-      const cssClass = `
-          p span.${approachBlock.class.name}:before {
-              content: url(${approachBlock.class.image});
-              text-align: center;
-              display: none;
-              width: ${approachBlock.class.width};
-              height: ${approachBlock.class.height};
-              top: ${approachBlock.class.top};
-              left: ${approachBlock.class.left};
-              background: ${approachBlock.class.background};
-          }
-      `;
-      style.appendChild(document.createTextNode(cssClass));
-      document.head.appendChild(style);
+//       const cssClass = `
+//           p span.${approachBlock.class.name}:before {
+//               content: url(${approachBlock.class.image});
+//               text-align: center;
+//               display: none;
+//               width: ${approachBlock.class.width};
+//               height: ${approachBlock.class.height};
+//               top: ${approachBlock.class.top};
+//               left: ${approachBlock.class.left};
+//               background: ${approachBlock.class.background};
+//           }
+//       `;
+//       style.appendChild(document.createTextNode(cssClass));
+//       document.head.appendChild(style);
 
-      // Modify body content to include styling for underline and bold
-      let modifiedBody = approachBlock.body;
-      if (approachBlock.underlineText) {
-        modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underlineText, 'underline', approachBlock.class.name);
-      }
-      if (approachBlock.boldText && Array.isArray(approachBlock.boldText)) {
-        modifiedBody = wrapMultipleStringsWithClass(modifiedBody, approachBlock.boldText, 'bold');
-      } else if (approachBlock.boldText) {
-        modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.bold, 'bold');
-      }
+//       // Modify body content to include styling for underline and bold
+//       let modifiedBody = approachBlock.body;
+//       if (approachBlock.underlineText) {
+//         modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.underlineText, 'underline', approachBlock.class.name);
+//       }
+//       if (approachBlock.boldText && Array.isArray(approachBlock.boldText)) {
+//         modifiedBody = wrapMultipleStringsWithClass(modifiedBody, approachBlock.boldText, 'bold');
+//       } else if (approachBlock.boldText) {
+//         modifiedBody = wrapStringWithClass(modifiedBody, approachBlock.bold, 'bold');
+//       }
 
-      const approachWrapper = document.createElement("div");
-      approachWrapper.className = "container fadeInUp";
+//       const approachWrapper = document.createElement("div");
+//       approachWrapper.className = "container fadeInUp";
 
-      approachWrapper.innerHTML = `
-        <h2 class="desktop-col-10 tablet-col-6 text-l">${approachBlock.title}</h2>
-        <p class="text-m desktop-col-7 tablet-col-6">
-         ${modifiedBody}
-        </p>
-        <h4 class="desktop-col-7 tablet-col-6">Capabilities:</h4>
-        <ul class="desktop-col-10 tablet-col-6 text-m">
-          ${approachBlock.capabilities.map(capability => `<li>${capability}</li>`).join('')}
-        </ul>
-      `;
+//       approachWrapper.innerHTML = `
+//         <h2 class="desktop-col-10 tablet-col-6 text-l">${approachBlock.title}</h2>
+//         <p class="text-m desktop-col-7 tablet-col-6">
+//          ${modifiedBody}
+//         </p>
+//         <h4 class="desktop-col-7 tablet-col-6">Capabilities:</h4>
+//         <ul class="desktop-col-10 tablet-col-6 text-m">
+//           ${approachBlock.capabilities.map(capability => `<li>${capability}</li>`).join('')}
+//         </ul>
+//       `;
 
-      mainContainer.appendChild(approachWrapper);
-    });
-  } else {
-    console.error("approachData.blocks is not an array:", approachData.blocks);
-  }
-}
+//       mainContainer.appendChild(approachWrapper);
+//     });
+//   } else {
+//     console.error("approachData.blocks is not an array:", approachData.blocks);
+//   }
+// }
 
 // function TeamMembers(memberData) {
 //   const mainContainer = document.querySelector(".appendToMe");
