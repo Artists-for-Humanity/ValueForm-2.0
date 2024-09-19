@@ -73,7 +73,7 @@ careers@valueform.io
     </nav>
 
     <main class="internal">
-      <div class="intro fadeInUp above_read_full">
+      <div id="top_banner_main" class="intro fadeInUp above_read_full">
         <h1 class="text-m"> C. News.</h1>
         <div>
           <h2 class="text-xl">Ear to the Streets.</h2>
@@ -158,17 +158,31 @@ careers@valueform.io
 
 
   document.addEventListener("DOMContentLoaded", function () {
-    // get the classlist of the news section
-    let newsPage = document.getElementById('news_page_main');
+    // elements that need to be checked for fade
+    let elements_for_fade = [
+      { element: document.getElementById('news_page_main'), delay: '600ms' },
+      { element: document.getElementById('top_banner_main'), delay: '1200ms' }
+    ];
 
-    // check localstorage on whether or not to currently fade in the section
+    // add fade out animation when 'a' tags are clicked
+    document.querySelectorAll('a').forEach(function (anchor) {
+      anchor.addEventListener('click', function () {
+        elements_for_fade.forEach(function (item) {
+          item.element.style.animationDelay = item.delay;
+          item.element.classList.add('fadeOutDown', 'animated');
+        });
+      });
+    });
+
+    // check localStorage to decide whether to fade in the sections
     if (localStorage.getItem('add_fade') === 'false') {
-      newsPage.classList.remove('fadeInUp');
-      newsPage.classList.remove('animated');
-
-      // reset localstorage
-      localStorage.setItem('add_fade', true)
+      elements_for_fade.forEach(function (item) {
+        item.element.classList.remove('fadeInUp', 'animated');
+      });
     }
+
+    // reset fade on local storage
+    localStorage.setItem('add_fade', true)
 
     const readFullArticleLink = document.querySelector('.link-back');
     if (readFullArticleLink) {

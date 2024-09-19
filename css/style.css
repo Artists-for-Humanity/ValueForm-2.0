@@ -700,6 +700,11 @@ header {
   opacity: var(--header-opacity, 0);
 }
 
+#news_page_main,
+#top_banner_main {
+  opacity: var(--header-opacity, 0);
+}
+
 header.internal {
   position: relative;
 }
