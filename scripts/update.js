@@ -341,9 +341,9 @@ function updateContent(textData) {
   handleFooter(textData);
   const delay = 500;
 
-  setTimeout(() => {
-    setLottieAttributes(textData);
-  }, delay);
+  // setTimeout(() => {
+  //   setLottieAttributes(textData);
+  // }, delay);
 }
 
 window.addEventListener('load', () => {
