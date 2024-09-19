@@ -388,7 +388,7 @@ END OF ACCORDION STYLES -- NOT USED */
   li {
     padding: 11px 0;
     padding-bottom: 11px !important;
-    width: calc(50% - 12.5apx);
+    width: calc(50% - 12.5px);
   }
 } /* DESKTOP LIST PADDING */
 
@@ -874,10 +874,12 @@ main.internal .container::after {
   z-index: -2;
 }
 
-main.internal .container + .container::before, main.internal .container + .container::after {
+main.internal .container + .container::before,
+main.internal .container + .container::after {
   content: "01.";
 }
-main.internal .container+.container+.container::before, main.internal .container+.container+.container::after{
+main.internal .container + .container + .container::before,
+main.internal .container + .container + .container::after {
   content: "02.";
 }
 
@@ -886,38 +888,150 @@ main.internal .container + .container + .container + .container::after {
   content: "03.";
 }
 
-main.internal .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "04.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "05.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container + .container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "06.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "07.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "08.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "09.";
 }
 
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::before,
-main.internal .container + .container + .container + .container + .container + .container + .container + .container + .container + .container + .container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "10.";
 }
 
@@ -942,19 +1056,19 @@ main.internal.lead .container {
   padding-bottom: 19px;
 }
 
-  /* Handle the general case where the last child should have 53px bottom padding */
-  main.internal.lead .container:last-child,
-  main.internal.lead .intro + .container.no-border {
-    padding-bottom: 54px;
-  }
-  
-  /* Ensure that when there is only one block, it retains the 53px bottom padding */
+/* Handle the general case where the last child should have 53px bottom padding */
+main.internal.lead .container:last-child,
+main.internal.lead .intro + .container.no-border {
+  padding-bottom: 54px;
+}
+
+/* Ensure that when there is only one block, it retains the 53px bottom padding */
 main.internal.lead .container:only-child,
 main.internal.lead .intro + .container.no-border {
   padding-bottom: 54px;
 }
 
-  /* Apply padding only when there are multiple blocks */
+/* Apply padding only when there are multiple blocks */
 main.internal.lead .container:first-child,
 main.internal.lead .intro + .container.no-border:not(:last-child) {
   padding-top: 23px;
@@ -962,7 +1076,6 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
 }
 
 @media (min-width: 700px) {
-
   main.internal.lead .container:last-child {
     padding-top: 25px;
   }
@@ -974,12 +1087,14 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   }
 
   /* Ensure that when there is only one block, it retains the 53px bottom padding */
-  main.internal.lead .container:only-child, main.internal .intro + .container.no-border {
+  main.internal.lead .container:only-child,
+  main.internal .intro + .container.no-border {
     padding-bottom: 43px !important;
   }
 
   /* Handle the general case where the last child should have 43px bottom padding */
-  main.internal.lead .container:last-child, main.internal .intro + .container.no-border {
+  main.internal.lead .container:last-child,
+  main.internal .intro + .container.no-border {
     padding-bottom: 43px !important;
   }
   main.internal .intro + .container {
@@ -1030,7 +1145,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   }
 
   main.internal p {
-    padding-bottom: 31px;
+    padding-bottom: 27px;
   }
   /* .Apply padding only when there are multiple blocks */
   main.internal.lead .intro + .container.no-border:not(:last-child) {
@@ -1039,25 +1154,27 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   }
 
   /* Ensure that when there is only one block, it retains the 38px bottom padding */
-  main.internal.lead .container:only-child, main.internal .intro + .container.no-border {
-   padding-bottom: 38px;
+  main.internal.lead .container:only-child,
+  main.internal .intro + .container.no-border {
+    padding-bottom: 38px;
   }
 
   /* Handle the general case where the last child should have 38px bottom padding */
-  main.internal.lead .container:last-child, main.internal .intro + .container.no-border {
+  main.internal.lead .container:last-child,
+  main.internal .intro + .container.no-border {
     padding-top: 39px;
     padding-bottom: 44px !important;
   }
 
-  main.internal.lead .container{
+  main.internal.lead .container {
     padding-top: 39px;
-    padding-bottom: 22px; 
+    padding-bottom: 22px;
   }
 
   main.internal.lead .intro + .container.no-border {
     padding-top: 55px;
-
-  }main.internal .intro + .container.no-border {
+  }
+  main.internal .intro + .container.no-border {
     padding-top: 55px;
   }
 
@@ -1071,8 +1188,8 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     top: 29px;
   }
   main.internal h2.text-l {
-    padding-bottom: 10px;
-    padding-top:0px;
+    padding-bottom: 15px;
+    padding-top: 0px;
   }
 
   main.internal .container:last-child {
