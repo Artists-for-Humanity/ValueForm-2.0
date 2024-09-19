@@ -1,8 +1,8 @@
 import { fetchTagline } from "../sanity-studio/fetchTagline.js";
 // import { fetchTeamData } from "../sanity-studio/sanity-utils.js";
-import { fetchIntroBlockData } from "../sanity-studio/fetchApproach.js";
-import { teamData } from "./data/team.js";
-import { introBlock } from "./data/approachIntroBlock.js";
+// import { fetchIntroBlockData } from "../sanity-studio/fetchApproach.js";
+// import { teamData } from "./data/team.js";
+// import { introBlock } from "./data/approachIntroBlock.js";
 // import { approachBlock } from "./data/approachBlock.js";
 import { footer as footerData } from "./data/footer.js"; // Import the footer data
 
@@ -21,9 +21,9 @@ let generalData = {
     // Create the textData object after the tagline has been fetched
     const textData = {
       ...generalData,
-      team: teamData,
+      // team: teamData,
       // ...approachBlock,
-      ...introBlock,
+      // ...introBlock,
       // ...introBlockData,
       footer: footerData,
     };
@@ -349,6 +349,6 @@ function updateContent(textData) {
 
 window.addEventListener('load', () => {
   initializeData();
-  initializeTeamData();
+  // initializeTeamData();
   // initializeApproachBlockData();
 });
