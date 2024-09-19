@@ -1,5 +1,5 @@
 import { fetchTagline } from "../sanity-studio/fetchTagline.js";
-import { fetchTeamData } from "../sanity-studio/sanity-utils.js";
+// import { fetchTeamData } from "../sanity-studio/sanity-utils.js";
 import { fetchIntroBlockData } from "../sanity-studio/fetchApproach.js";
 import { teamData } from "./data/team.js";
 import { introBlock } from "./data/approachIntroBlock.js";
@@ -30,30 +30,30 @@ let generalData = {
 
     // Update content only after data initialization is complete
     updateContent(textData);
-    animateOnLoad();
+    // animateOnLoad();
   } catch (err) {
     console.error("Error fetching tagline:", err);
   }
 }
 
-async function initializeTeamData() {
-  try {
-    const teamMember = await fetchTeamData();
-    const memberData = {
-      team: teamMember,
-    };
+// async function initializeTeamData() {
+//   try {
+    // const teamMember = await fetchTeamData();
+    // const memberData = {
+    //   team: teamMember,
+    // };
 
     // if (Object.entries(memberData.team).length == 1) {
     //   document.querySelector('main.internal').style.minHeight = 'auto';
     // }
 
   // TeamMembers(memberData);
-  animateOnLoad();
-  }
-  catch (err) {
-    console.error("Error fetching teamMember:", err);
-  }
-}
+  // animateOnLoad();
+  // }
+  // catch (err) {
+  //   console.error("Error fetching teamMember:", err);
+  // }
+// }
 
 async function initializeApproachBlockData() {
   try {
@@ -62,10 +62,10 @@ async function initializeApproachBlockData() {
       blocks: approachBlocks,
     };
     // handleApproach(approachBlockData);
-    animateOnLoad();
-  } catch (err) {
-    console.error("Error fetching approach blocks:", err);
-  }
+    // animateOnLoad();
+  // } catch (err) {
+  //   console.error("Error fetching approach blocks:", err);
+  // }
 }
 
 function getNestedValue(obj, key) {
