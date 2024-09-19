@@ -47,7 +47,7 @@ async function initializeTeamData() {
     //   document.querySelector('main.internal').style.minHeight = 'auto';
     // }
 
-  TeamMembers(memberData);
+  // TeamMembers(memberData);
   animateOnLoad();
   }
   catch (err) {
@@ -179,93 +179,93 @@ function handleApproach(approachData) {
   }
 }
 
-function TeamMembers(memberData) {
-  const mainContainer = document.querySelector(".appendToMe");
-  if (!memberData.team || !mainContainer) return;
+// function TeamMembers(memberData) {
+//   const mainContainer = document.querySelector(".appendToMe");
+//   if (!memberData.team || !mainContainer) return;
 
-  // Utility functions for wrapping strings
-  function wrapStringWithLink(str, substr, href, target) {
-    const regex = new RegExp(`(${substr})`, 'g');
-    return str.replace(regex, `<a href="${href}" target="${target}">$1</a>`);
-  }
+//   // Utility functions for wrapping strings
+//   function wrapStringWithLink(str, substr, href, target) {
+//     const regex = new RegExp(`(${substr})`, 'g');
+//     return str.replace(regex, `<a href="${href}" target="${target}">$1</a>`);
+//   }
 
-  function wrapMultipleStringsWithLinks(str, substrings, href, target) {
-    substrings.forEach(substring => {
-      str = wrapStringWithLink(str, substring, href, target);
-    });
-    return str;
-  }
+//   function wrapMultipleStringsWithLinks(str, substrings, href, target) {
+//     substrings.forEach(substring => {
+//       str = wrapStringWithLink(str, substring, href, target);
+//     });
+//     return str;
+//   }
 
-  Object.keys(memberData.team).forEach((memberKey, index) => {
-    const member = memberData.team[memberKey];
-    const memberWrapper = document.createElement("div");
-    memberWrapper.className = "container no-border fadeInUp no-before-after animated";
-    memberWrapper.style.animationDelay = `${600 + index * 100}ms`;
+//   Object.keys(memberData.team).forEach((memberKey, index) => {
+//     const member = memberData.team[memberKey];
+//     const memberWrapper = document.createElement("div");
+//     memberWrapper.className = "container no-border fadeInUp no-before-after animated";
+//     memberWrapper.style.animationDelay = `${600 + index * 100}ms`;
     
-    if (index != 0) {
-      memberWrapper.classList.add("member-top");
-    }
+//     if (index != 0) {
+//       memberWrapper.classList.add("member-top");
+//     }
 
-    const memberContainer = document.createElement("div");
-    memberContainer.className = "desktop-col-7-left tablet-col-4";
+//     const memberContainer = document.createElement("div");
+//     memberContainer.className = "desktop-col-7-left tablet-col-4";
 
-    // Apply link styling to specific parts of the bio
-    let modifiedBio = member.bio;
-    if (member.underlineText) {
-      const linkHref = member.linkHref || "../images/launch-letter.pdf";  // Default link if not specified
-      const linkTarget = member.linkTarget || "_blank";  // Default target if not specified
-      if (Array.isArray(member.underlineText)) {
-        modifiedBio = wrapMultipleStringsWithLinks(modifiedBio, member.underlineText, linkHref, linkTarget);
-      } else {
-        modifiedBio = wrapStringWithLink(modifiedBio, member.underlineText, linkHref, linkTarget);
-      }
-    }
+//     // Apply link styling to specific parts of the bio
+//     let modifiedBio = member.bio;
+//     if (member.underlineText) {
+//       const linkHref = member.linkHref || "../images/launch-letter.pdf";  // Default link if not specified
+//       const linkTarget = member.linkTarget || "_blank";  // Default target if not specified
+//       if (Array.isArray(member.underlineText)) {
+//         modifiedBio = wrapMultipleStringsWithLinks(modifiedBio, member.underlineText, linkHref, linkTarget);
+//       } else {
+//         modifiedBio = wrapStringWithLink(modifiedBio, member.underlineText, linkHref, linkTarget);
+//       }
+//     }
 
-    // Generate client links dynamically
-    let clientHtml = '<h4>Select Clients:</h4><table class="text-m">';
-    Object.keys(member.clients).forEach((categoryKey) => {
-      const category = member.clients[categoryKey];
-      if (category.name && category.list) {
-        clientHtml += `
-          <tr>
-            <th>${category.name}</th>
-            <td>${category.list}</td>
-          </tr>
-        `;
-      }
-    });
-    clientHtml += '</table>';
+//     // Generate client links dynamically
+//     let clientHtml = '<h4>Select Clients:</h4><table class="text-m">';
+//     Object.keys(member.clients).forEach((categoryKey) => {
+//       const category = member.clients[categoryKey];
+//       if (category.name && category.list) {
+//         clientHtml += `
+//           <tr>
+//             <th>${category.name}</th>
+//             <td>${category.list}</td>
+//           </tr>
+//         `;
+//       }
+//     });
+//     clientHtml += '</table>';
 
-    memberContainer.innerHTML = `
-      <h2 class="text-l">${member.name}</h2>
-      <h4>${member.title}</h4>
-      <div class="headshot">
-        <img src="${member.imgSrc}" alt="${member.name}" />
-      </div>
-      <p class="text-m">${modifiedBio}</p>
-      ${clientHtml}
-    `;
+//     memberContainer.innerHTML = `
+//       <h2 class="text-l">${member.name}</h2>
+//       <h4>${member.title}</h4>
+//       <div class="headshot">
+//         <img src="${member.imgSrc}" alt="${member.name}" />
+//       </div>
+//       <p class="text-m">${modifiedBio}</p>
+//       ${clientHtml}
+//     `;
 
-    // Generate contact dynamically
-    const contactContainer = document.createElement("div");
-    contactContainer.className = "desktop-col-5 tablet-col-4";
+//     // Generate contact dynamically
+//     const contactContainer = document.createElement("div");
+//     contactContainer.className = "desktop-col-5 tablet-col-4";
 
-    let contactHtml = '<div class="headshot"><img src="' + member.imgSrc + '" alt="' + member.name + '" /></div><ul>';
-    Object.keys(member.contact).forEach((methodKey) => {
-      const method = member.contact[methodKey];
-      contactHtml += `
-        <li><strong>${method.name}</strong> <a href="${method.link}" target="_blank">${method.display}</a></li>
-      `;
-    });
-    contactHtml += '</ul>';
+//     let contactHtml = '<div class="headshot"><img src="' + member.imgSrc + '" alt="' + member.name + '" /></div><ul>';
+//     Object.keys(member.contact).forEach((methodKey) => {
+//       const method = member.contact[methodKey];
+//       contactHtml += `
+//         <li><strong>${method.name}</strong> <a href="${method.link}" target="_blank">${method.display}</a></li>
+//       `;
+//     });
+//     contactHtml += '</ul>';
 
-    contactContainer.innerHTML = contactHtml;
+//     contactContainer.innerHTML = contactHtml;
 
-    memberWrapper.appendChild(memberContainer);
-    memberWrapper.appendChild(contactContainer);
-    mainContainer.appendChild(memberWrapper);
-  });
-}
+//     memberWrapper.appendChild(memberContainer);
+//     memberWrapper.appendChild(contactContainer);
+//     mainContainer.appendChild(memberWrapper);
+//   });
+// }
 
 
 function handleFooter(textData) {
@@ -310,28 +310,28 @@ function handleFooter(textData) {
   }
 }
 
-function setLottieAttributes(textData) {
-  const lottieContainer = document.getElementById("lottie");
-  if (lottieContainer) {
-    const lottieSrc = getNestedValue(textData, "approach.lottieSrc");
-    const lottieSpeed = getNestedValue(textData, "approach.lottieSpeed");
+// function setLottieAttributes(textData) {
+//   const lottieContainer = document.getElementById("lottie");
+//   if (lottieContainer) {
+//     const lottieSrc = getNestedValue(textData, "approach.lottieSrc");
+//     const lottieSpeed = getNestedValue(textData, "approach.lottieSpeed");
     
-    if (lottieSrc && lottieSpeed) {
-      const lottieHtml = `
-        <dotlottie-player 
-          id="lottieAnimation" 
-          key="approach.lottieSrc"
-          src="${lottieSrc}" 
-          background="transparent" 
-          speed="${lottieSpeed}" 
-          autoplay
-          style="width: 100%; height: 100%;">
-        </dotlottie-player>
-      `;
-      lottieContainer.innerHTML = lottieHtml;
-    }
-  }
-}
+//     if (lottieSrc && lottieSpeed) {
+//       const lottieHtml = `
+//         <dotlottie-player 
+//           id="lottieAnimation" 
+//           key="approach.lottieSrc"
+//           src="${lottieSrc}" 
+//           background="transparent" 
+//           speed="${lottieSpeed}" 
+//           autoplay
+//           style="width: 100%; height: 100%;">
+//         </dotlottie-player>
+//       `;
+//       lottieContainer.innerHTML = lottieHtml;
+//     }
+//   }
+// }
 
 function updateContent(textData) {
   TextElements(textData);
@@ -339,7 +339,7 @@ function updateContent(textData) {
   // handleApproach(approachBlock);
   
   handleFooter(textData);
-  const delay = 500;
+  // const delay = 500;
 
   // setTimeout(() => {
   //   setLottieAttributes(textData);
