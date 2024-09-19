@@ -3,7 +3,7 @@ import { fetchTagline } from "../sanity-studio/fetchTagline.js";
 import { fetchIntroBlockData } from "../sanity-studio/fetchApproach.js";
 import { teamData } from "./data/team.js";
 import { introBlock } from "./data/approachIntroBlock.js";
-import { approachBlock } from "./data/approachBlock.js";
+// import { approachBlock } from "./data/approachBlock.js";
 import { footer as footerData } from "./data/footer.js"; // Import the footer data
 
 let generalData = {
@@ -22,14 +22,14 @@ let generalData = {
     const textData = {
       ...generalData,
       team: teamData,
-      ...approachBlock,
+      // ...approachBlock,
       ...introBlock,
       // ...introBlockData,
       footer: footerData,
     };
 
     // Update content only after data initialization is complete
-    updateContent(textData);
+    // updateContent(textData);
     // animateOnLoad();
   } catch (err) {
     console.error("Error fetching tagline:", err);
@@ -55,18 +55,19 @@ let generalData = {
   // }
 // }
 
-async function initializeApproachBlockData() {
-  try {
-    const approachBlocks = await fetchIntroBlockData();
-    const approachBlockData = {
-      blocks: approachBlocks,
-    };
+// async function initializeApproachBlockData() {
+//   try {
+//     const approachBlocks = await fetchIntroBlockData();
+//     const approachBlockData = {
+//       blocks: approachBlocks,
+//     };
     // handleApproach(approachBlockData);
     // animateOnLoad();
-  // } catch (err) {
+  // } 
+  // catch (err) {
   //   console.error("Error fetching approach blocks:", err);
   // }
-}
+// }
 
 function getNestedValue(obj, key) {
   return key.split(".").reduce((o, i) => (o ? o[i] : null), obj);
@@ -349,5 +350,5 @@ function updateContent(textData) {
 window.addEventListener('load', () => {
   initializeData();
   initializeTeamData();
-  initializeApproachBlockData();
+  // initializeApproachBlockData();
 });
