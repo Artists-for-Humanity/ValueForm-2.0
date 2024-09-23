@@ -1967,15 +1967,6 @@ x-img {
   text-decoration: none;
 }
 
-@media screen and (min-width: 700px) {
-  .article-title.preview {
-    padding: 28px 0px 27px 0px;
-  }
-  .link {
-    margin-bottom: 28px;
-  }
-}
-
 .article-title.preview:last-child {
   padding-bottom: 20px;
 }
@@ -2007,4 +1998,22 @@ x-img {
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 100% */
+}
+@media screen and (min-width: 700px) {
+  .article-title.preview {
+    padding: 28px 0px 27px 0px;
+  }
+  .link {
+    margin-bottom: 28px;
+  }
+  .article-img {
+    margin-top: 15px;
+    margin-bottom: 16px;
+  }
+  .blockQuote {
+    margin-top: 15px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+  }
 }
