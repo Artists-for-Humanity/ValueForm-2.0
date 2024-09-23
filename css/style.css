@@ -1972,24 +1972,20 @@ x-img {
 .article-img {
   width: 100%;
   height: auto;
-  margin-top: 34px;
-  margin-bottom: 34px;
+  /* margin-top: 34px; */
+  margin-bottom: 8px;
   object-fit: cover;
 }
 
-/* .article.img {
-  height: 100px;
-  width: auto;
-  max-width: auto;
-  padding: 0;
-  margin-top: 10px;
-} */
+.article-vid {
+  padding-bottom: 20px;
+}
 
 .blockQuote {
-  padding: 34px 0px 34px 0px;
+  padding: 15px 0px 13px 0px;
   border-top: 1px solid var(--darkgrey);
   border-bottom: 1px solid var(--darkgrey);
-  margin: 34px 0px 34px 0px;
+  margin: 0px 0px 20px 0px;
   color: var(--nearwhite);
   font-family: Helvetica;
   font-size: 20px;
@@ -1997,11 +1993,3 @@ x-img {
   font-weight: 400;
   line-height: 20px; /* 100% */
 }
-
-/* body > section > main > div.container.fadeInUp.animated > a {
-  margin-bottom: 50px;
-} */
-
-/* .trying {
-  margin-bottom: 20px;
-} */
