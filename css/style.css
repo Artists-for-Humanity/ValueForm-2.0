@@ -840,6 +840,9 @@ main.internal {
 main.internal p {
   padding-bottom: 18px;
 }
+main.internal.lead p {
+  padding-bottom: 23px;
+}
 main.internal h4 {
   padding: 4px 0 6px 0;
 }
@@ -1112,6 +1115,10 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   main.internal h2.text-l {
     padding-bottom: 15px;
     /* padding-top: 36px; */
+  }
+
+  main.internal.lead h2.text-l{
+    padding-bottom: 10px;
   }
 
   main.internal .container {
