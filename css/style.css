@@ -1117,7 +1117,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     /* padding-top: 36px; */
   }
 
-  main.internal.lead h2.text-l{
+  main.internal.lead h2.text-l {
     padding-bottom: 10px;
   }
 
@@ -1297,7 +1297,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   padding-bottom: 8px;
 }
 .desktop-col-7-left h4 + .headshot {
-  margin: 20px 0 20px 0;
+  margin: 11px 0 19px 0;
 }
 .container > .desktop-col-7-left p + h4 {
   font-weight: normal;
@@ -1305,6 +1305,10 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
 }
 main.internal > .no-border h4 {
   padding-bottom: 3px;
+}
+
+main.internal.lead > .no-border h4 {
+  padding-bottom: 12px;
 }
 
 @media (min-width: 700px) {
