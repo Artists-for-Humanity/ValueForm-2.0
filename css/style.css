@@ -1346,6 +1346,9 @@ main.internal.lead > .no-border h4 {
   .desktop-col-7-left h4 + .headshot {
     display: none;
   }
+  main.internal.lead > .no-border h4 {
+    padding-bottom: 18px;
+  }
 }
 
 @media (min-width: 1080px) {
@@ -1364,6 +1367,10 @@ main.internal.lead > .no-border h4 {
   }
   main.internal .intro + .container .desktop-col-7-left p {
     padding-bottom: 31px;
+  }
+
+  main.internal.lead > .no-border h4 {
+    padding-bottom: 18px;
   }
 }
 
