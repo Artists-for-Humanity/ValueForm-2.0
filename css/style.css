@@ -633,6 +633,7 @@ MOBILE GRID -- NOT USED */
   .desktop-col-7.img-contain {
     grid-column: 6 / span 5;
     justify-self: center;
+    padding-bottom: 25px;
   }
 
   .article.desktop-col-7 {
@@ -1419,7 +1420,7 @@ main.internal .intro + .container.no-border {
   }
 
   main.internal .intro + .container {
-    padding: 55px 0 33px 0;
+    padding: 57px 0 33px 0;
   }
 
   main.internal .container::before,
@@ -1436,7 +1437,10 @@ main.internal .intro + .container.no-border {
 
   main.internal .container:last-child {
     border: 0;
-    padding-bottom: 43px;
+    padding-bottom: 30px;
+  }
+  main.internal .intro + .container p {
+    padding-bottom: 18px;
   }
 } /* MAIN STYLES FOR DESKTOP */
 
@@ -1968,7 +1972,7 @@ x-img {
 }
 
 .article-title.preview:last-child {
-  padding-bottom: 20px;
+  padding-bottom: 25px;
 }
 
 .popup-text {
@@ -2015,5 +2019,45 @@ x-img {
     padding-top: 14px;
     padding-bottom: 14px;
     margin-bottom: 16px;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .article-title {
+    color: #404040;
+    font-family: Helvetica;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 34px; /* 100% */
+    letter-spacing: -1.02px;
+  }
+  .article-title.preview {
+    padding-top: 36px;
+    padding-bottom: 34px;
+  }
+
+  .link {
+    margin-bottom: 36px;
+    margin-top: 14px;
+  }
+  .article .date {
+    padding-bottom: 32px;
+    padding-top: 15px;
+  }
+  .article-img {
+    padding-bottom: 9px;
+  }
+  .blockQuote {
+    padding-top: 15px;
+    padding-bottom: 13px;
+    margin-bottom: 25px;
+  }
+  .article-vid {
+    padding-top: 14px;
+    padding-bottom: 34px;
+  }
+  .link-back {
+    padding-bottom: 27px;
   }
 }
