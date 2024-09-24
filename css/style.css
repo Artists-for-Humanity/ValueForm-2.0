@@ -841,7 +841,7 @@ main.internal p {
   padding-bottom: 18px;
 }
 main.internal.lead p {
-  padding-bottom: 23px;
+  padding-bottom: 18px;
 }
 main.internal h4 {
   padding: 4px 0 6px 0;
@@ -1143,6 +1143,10 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     top: 25px;
     letter-spacing: 1px;
   }
+
+  main.internal.lead p {
+    padding-bottom: 23px;
+  }
 } /* MAIN STYLES FOR TABLET */
 
 @media (min-width: 1080px) {
@@ -1202,6 +1206,9 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   main.internal .container:last-child {
     border: 0;
     padding-bottom: 43px;
+  }
+  main.internal.lead p {
+    padding-bottom: 31px;
   }
 } /* MAIN STYLES FOR DESKTOP */
 
