@@ -1155,8 +1155,12 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     padding-bottom: 22px;
   }
 
-  main.internal p {
+  main.internal.lead p {
     padding-bottom: 31px;
+  }
+
+  main.internal p {
+    padding-bottom: 27px;
   }
   /* .Apply padding only when there are multiple blocks */
   main.internal.lead .intro + .container.no-border:not(:last-child) {
@@ -1198,7 +1202,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     line-height: 76px;
     top: 29px;
   }
-  main.internal h2.text-l {
+  main.internal.lead h2.text-l {
     padding-bottom: 10px;
     padding-top: 0px;
   }
@@ -1231,7 +1235,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     animation-timing-function: ease-out;
     animation-duration: 250ms;
   }
-  /* p span.divergent:before {
+  p span.divergent:before {
     border-radius: 100%;
     content: url(../images/your-problem-alt.svg);
     width: 662px;
@@ -1259,7 +1263,7 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     top: -161px;
     left: -455px;
     background: rgba(2, 2, 2, 0.8);
-  } */
+  }
 
   p span:hover {
     text-decoration: none;
