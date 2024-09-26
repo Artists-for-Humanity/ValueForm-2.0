@@ -980,7 +980,7 @@ main.internal {
 /* INTRO CONTENT SECTION */
 .intro div {
   border-bottom: 1px solid var(--darkgrey);
-  padding-bottom: 13px;
+  padding-bottom: 14px;
 }
 
 .intro h1 {
