@@ -458,6 +458,9 @@ MOBILE GRID -- NOT USED */
     column-gap: 20px;
     margin: 0 auto;
   }
+  .tablet-col-1 {
+    grid-column: 1 / span 3;
+  }
   .tablet-col-2 {
     grid-column: 2 / span 2;
   }
@@ -478,6 +481,17 @@ MOBILE GRID -- NOT USED */
   }
   .tablet-col-6 {
     grid-column: 3 / span 6;
+  }
+  .tablet-col-7 {
+    grid-column: 4 / span 5;
+  }
+
+  .tablet-col-7.img-contain {
+    justify-self: center;
+  }
+
+  .tablet-col-8 {
+    grid-column: 1 / span 8;
   }
 } /* TABLET GRID */
 
@@ -518,11 +532,23 @@ MOBILE GRID -- NOT USED */
   .desktop-col-7-left {
     grid-column: 1 / span 7;
   }
+  .desktop-col-7.img-contain {
+    grid-column: 6 / span 5;
+    justify-self: center;
+    padding-bottom: 25px;
+  }
+  .article.desktop-col-7 {
+    grid-column: 5 / span 7;
+  }
   .desktop-col-8 {
     grid-column: 5 / span 8;
   }
   .desktop-col-10 {
     grid-column: 3 / span 10;
+  }
+
+  .desktop-col-12 {
+    grid-column: 1 / span 12;
   }
 
   .desktop-col-7-left + .desktop-col-5 {
@@ -695,7 +721,7 @@ nav a {
   width: 50%;
   border: 1px solid var(--nearwhite);
   background: rgba(2, 2, 2, 0.9);
-  border-radius: 6px 0 0 6px;
+  /* border-radius: 6px 0 0 6px; */
   text-align: center;
   display: inline-block;
   text-decoration: none;
@@ -714,15 +740,23 @@ nav a:active {
 nav a:active + a {
   border-left: 2px solid var(--white);
 }
-nav a + a {
+/* nav a + a {
   border-radius: 0 6px 6px 0px;
+} */
+nav a:first-child {
+  border-radius: 6px 0 0 6px;
+  /* Top-right and bottom-right border-radius */
+}
+nav a:last-child {
+  border-radius: 0 6px 6px 0;
+  /* Top-right and bottom-right border-radius */
 }
 nav a:first-child {
   /*left: 2px;*/
   border-right: 0px;
 }
 nav a:last-child {
-  /*right: 2px;*/
+  right: 2px;
 }
 nav a.disabled {
   color: var(--darkgrey);
@@ -761,7 +795,8 @@ nav a.disabled:first-child + a:active {
     width: calc(100% - 78px);
   }
   nav div {
-    width: 279px;
+    /* width: 279px; */
+    width: 417px;
   }
   /*nav a { width: 140px;}*/
 } /* NAV STYLES FOR DESKTOP */
@@ -1046,6 +1081,9 @@ main.internal
 main.internal .intro + .container {
   padding: 19px 0 24px 0;
 }
+main.internal.news .intro + .container {
+  padding: 23px 0 24px 0;
+}
 main.internal .intro + .container.no-border {
   padding: 23px 0 24px 0;
 }
@@ -1078,6 +1116,15 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   padding-bottom: 19px;
 }
 
+/* news-1.4.2 */
+main.internal.news .container:first-child,
+main.internal.news .intro + .container.no-border {
+  padding-top: 55px;
+}
+main.internal.news .container:last-child,
+main.internal.news .intro + .container.no-border {
+  padding-bottom: 36px;
+}
 @media (min-width: 700px) {
   main.internal.lead .container:last-child {
     padding-top: 25px;
@@ -1102,6 +1149,9 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   }
   main.internal .intro + .container {
     padding: 24px 0 24px 0;
+  }
+  main.internal.news .intro + .container {
+    padding: 28px 0 24px 0;
   }
   main.internal .intro + .container.no-border {
     padding-top: 30px;
@@ -1146,6 +1196,18 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
 
   main.internal.lead p {
     padding-bottom: 23px;
+  }
+  /* main.internal h2.text-l {
+    padding-bottom: 15px;
+    padding-top: 0px;
+  }
+
+  main.internal .container:last-child {
+    border: 0;
+    padding-bottom: 30px;
+  }*/
+  main.internal.news .intro + .container p {
+    padding-bottom: 9px;
   }
 } /* MAIN STYLES FOR TABLET */
 
@@ -1196,6 +1258,9 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
   main.internal .intro + .container {
     padding: 55px 0 33px 0;
   }
+  main.internal.news .intro + .container {
+    padding: 57px 0 33px 0;
+  }
   main.internal .container::before,
   .container::after {
     font-size: 76px;
@@ -1211,8 +1276,15 @@ main.internal.lead .intro + .container.no-border:not(:last-child) {
     border: 0;
     padding-bottom: 43px;
   }
+  main.internal.news .container:last-child {
+    border: 0;
+    padding-bottom: 30px;
+  }
   main.internal.lead p {
     padding-bottom: 31px;
+  }
+  main.internal.news .intro + .container p {
+    padding-bottom: 18px;
   }
 } /* MAIN STYLES FOR DESKTOP */
 
@@ -1322,9 +1394,27 @@ main.internal.lead > .no-border h4 {
   padding-bottom: 12px;
 }
 
+aside {
+  display: none;
+}
+
+.sidebar {
+  color: var(--darkgrey);
+  line-height: 17px;
+  height: 0px;
+}
+
+.sidebar:nth-child(2) {
+  display: block;
+  height: 100%;
+}
+
 @media (min-width: 700px) {
   .headshot {
     padding-top: 16px;
+  }
+  aside {
+    display: block;
   }
   .headshot img {
     width: 76.9%;
@@ -1360,6 +1450,10 @@ main.internal.lead > .no-border h4 {
   main.internal.lead > .no-border h4 {
     padding-bottom: 18px;
   }
+  .sidebar:nth-child(2) {
+    display: none;
+    height: 0px;
+  }
 }
 
 @media (min-width: 1080px) {
@@ -1382,6 +1476,13 @@ main.internal.lead > .no-border h4 {
 
   main.internal.lead > .no-border h4 {
     padding-bottom: 18px;
+  }
+  aside {
+    display: block;
+  }
+  .sidebar:nth-child(2) {
+    display: none;
+    height: 0px;
   }
 }
 
@@ -1593,4 +1694,188 @@ nav.fadeInUp {
 
 table {
   width: 100%;
+}
+/* NEWS SECTION */
+.sidebar a {
+  color: var(--darkgrey);
+  text-decoration: underline;
+}
+
+.sidebar a:hover {
+  text-decoration: none;
+}
+
+.article-title {
+  color: #404040;
+  font-family: Helvetica;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 100% */
+  letter-spacing: -0.6px;
+}
+
+.article-title a {
+  text-decoration: none;
+  color: var(--darkgrey);
+}
+
+.article-title a:hover {
+  color: var(--nearwhite);
+}
+
+.article .date {
+  color: var(--nearwhite);
+  font-family: Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  /* 150% */
+  padding-top: 16px;
+  padding-bottom: 18px;
+}
+
+@media screen and (min-width: 700px) {
+  .article .date {
+    padding-bottom: 7px;
+  }
+}
+
+.img-contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+x-img {
+  width: 61px;
+}
+
+.article p:first-child {
+  margin-top: 10px;
+}
+
+.article p {
+  color: var(--nearwhite);
+  /* margin-top: 23px; */
+  /* margin-top: 32px; */
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.article.text p.text-m {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 9px;
+  margin-bottom: 0px;
+}
+
+.link {
+  color: var(--nearwhite);
+  margin-top: 13px;
+  margin-bottom: 22px;
+  font-weight: 700;
+}
+
+.article-title.preview {
+  border-top: 1px solid var(--darkgrey) !important;
+  padding: 24px 0px 21px 0px;
+  display: grid;
+  grid-template-columns: inherit;
+  text-decoration: none;
+}
+
+.article-title.preview:last-child {
+  padding-bottom: 25px;
+}
+
+.popup-text {
+  padding: 4px 0 0px 0px;
+}
+
+.article-img {
+  width: 100%;
+  height: auto;
+  /* margin-top: 34px; */
+  margin-bottom: 8px;
+  object-fit: cover;
+}
+
+.article-vid {
+  padding-bottom: 20px;
+}
+
+.blockQuote {
+  padding: 15px 0px 13px 0px;
+  border-top: 1px solid var(--darkgrey);
+  border-bottom: 1px solid var(--darkgrey);
+  margin: 0px 0px 20px 0px;
+  color: var(--nearwhite);
+  font-family: Helvetica;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 100% */
+}
+@media screen and (min-width: 700px) {
+  .article-title.preview {
+    padding: 28px 0px 27px 0px;
+  }
+  .link {
+    margin-bottom: 28px;
+  }
+  .article-img {
+    margin-top: 15px;
+    margin-bottom: 16px;
+  }
+  .blockQuote {
+    margin-top: 15px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+  }
+}
+@media screen and (min-width: 1080px) {
+  .article-title {
+    color: #404040;
+    font-family: Helvetica;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 34px; /* 100% */
+    letter-spacing: -1.02px;
+  }
+  .article-title.preview {
+    padding-top: 36px;
+    padding-bottom: 34px;
+  }
+
+  .link {
+    margin-bottom: 36px;
+    margin-top: 14px;
+  }
+  .article .date {
+    padding-bottom: 32px;
+    padding-top: 15px;
+  }
+  .article-img {
+    padding-bottom: 9px;
+  }
+  .blockQuote {
+    padding-top: 15px;
+    padding-bottom: 13px;
+    margin-bottom: 25px;
+  }
+  .article-vid {
+    padding-top: 14px;
+    padding-bottom: 34px;
+  }
+  .link-back {
+    padding-bottom: 27px;
+  }
 }
