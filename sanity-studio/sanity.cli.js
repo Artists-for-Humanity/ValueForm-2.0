@@ -1,11 +1,11 @@
-import {defineCliConfig} from 'sanity/cli'
+// import {defineCliConfig} from 'sanity/cli'
 
-export default defineCliConfig({
-  api: {
-    projectId: 'wfwxz1rq',
-    dataset: 'production'
-  },
-  vite: {
-    base: '/admin/',
-  },
-})
+// export default defineCliConfig({
+//   api: {
+//     projectId: 'wfwxz1rq',
+//     dataset: 'production'
+//   },
+//   vite: {
+//     base: '/admin/',
+//   },
+// })

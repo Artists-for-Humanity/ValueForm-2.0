@@ -59,7 +59,6 @@ The project should now be running locally. Open your browser and go to the provi
 
 To edit individual HTML pages, navigate to the **`pages`** folder in VS Code. Here you will find the `.html` files for the different sections of the project.
 
-#
 
 # Deploying Valueform 2.0 on Vercel
 

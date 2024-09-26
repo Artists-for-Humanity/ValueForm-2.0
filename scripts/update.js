@@ -1,40 +1,40 @@
-import { fetchTagline } from "../sanity-studio/fetchTagline.js";
+// import { fetchTagline } from "../sanity-studio/fetchTagline.js";
 // import { fetchTeamData } from "../sanity-studio/sanity-utils.js";
 // import { fetchIntroBlockData } from "../sanity-studio/fetchApproach.js";
 // import { teamData } from "./data/team.js";
 // import { introBlock } from "./data/approachIntroBlock.js";
 // import { approachBlock } from "./data/approachBlock.js";
-import { footer as footerData } from "./data/footer.js"; // Import the footer data
+// import { footer as footerData } from "./data/footer.js"; // Import the footer data
 
-let generalData = {
-  tagline: {
-    home: "Temp",
-  },
-};
+// let generalData = {
+//   tagline: {
+//     home: "Temp",
+//   },
+// };
 
- async function initializeData() {
-  try {
-    const tagline = await fetchTagline();
+//  async function initializeData() {
+//   try {
+//     const tagline = await fetchTagline();
     // const introBlockData = await fetchIntroBlockData();
-    generalData.tagline.home = tagline;
+    // generalData.tagline.home = tagline;
 
     // Create the textData object after the tagline has been fetched
-    const textData = {
-      ...generalData,
+    // const textData = {
+    //   ...generalData,
       // team: teamData,
       // ...approachBlock,
       // ...introBlock,
       // ...introBlockData,
-      footer: footerData,
-    };
+    //   footer: footerData,
+    // };
 
     // Update content only after data initialization is complete
     // updateContent(textData);
     // animateOnLoad();
-  } catch (err) {
-    console.error("Error fetching tagline:", err);
-  }
-}
+//   } catch (err) {
+//     console.error("Error fetching tagline:", err);
+//   }
+// }
 
 // async function initializeTeamData() {
 //   try {
@@ -69,41 +69,41 @@ let generalData = {
   // }
 // }
 
-function getNestedValue(obj, key) {
-  return key.split(".").reduce((o, i) => (o ? o[i] : null), obj);
-}
+// function getNestedValue(obj, key) {
+//   return key.split(".").reduce((o, i) => (o ? o[i] : null), obj);
+// }
 
-function TextElements(textData) {
-  const textElements = document.querySelectorAll("[key]");
+// function TextElements(textData) {
+//   const textElements = document.querySelectorAll("[key]");
 
-  textElements.forEach((element) => {
-    const key = element.getAttribute("key");
-    const value = getNestedValue(textData, key);
+//   textElements.forEach((element) => {
+//     const key = element.getAttribute("key");
+//     const value = getNestedValue(textData, key);
 
-    if (value) {
-      switch (element.tagName.toLowerCase()) {
-        case "img":
-          element.src = value;
-          break;
+//     if (value) {
+//       switch (element.tagName.toLowerCase()) {
+//         case "img":
+//           element.src = value;
+//           break;
 
-        case "a":
-          if (element.hasAttribute("data-display-key")) {
-            element.href = value;
-            const displayKey = element.getAttribute("data-display-key");
-            const displayValue = getNestedValue(textData, displayKey);
-            if (displayValue) {
-              element.textContent = displayValue;
-            }
-          }
-          break;
+//         case "a":
+//           if (element.hasAttribute("data-display-key")) {
+//             element.href = value;
+//             const displayKey = element.getAttribute("data-display-key");
+//             const displayValue = getNestedValue(textData, displayKey);
+//             if (displayValue) {
+//               element.textContent = displayValue;
+//             }
+//           }
+//           break;
 
-        default:
-          element.innerHTML = value;
-          break;
-      }
-    }
-  });
-}
+//         default:
+//           element.innerHTML = value;
+//           break;
+//       }
+//     }
+//   });
+// }
 
 // function handleApproach(approachData) {
 //   const mainContainer = document.querySelector(".approach-container");
@@ -269,47 +269,47 @@ function TextElements(textData) {
 // }
 
 
-function handleFooter(textData) {
-  const footerContainer = document.querySelector("footer");
-  if (footerContainer) {
-    const footerData = textData.footer;
+// function handleFooter(textData) {
+//   const footerContainer = document.querySelector("footer");
+//   if (footerContainer) {
+//     const footerData = textData.footer;
 
-    footerContainer.innerHTML = `
-      <img src="${footerData.logo.src}" alt="${footerData.logo.alt}" ondblclick="document.getElementById('producer-tag').play();" />
+//     footerContainer.innerHTML = `
+//       <img src="${footerData.logo.src}" alt="${footerData.logo.alt}" ondblclick="document.getElementById('producer-tag').play();" />
 
-      <div class="address desktop-col-3 tablet-col-2">
-        <h4>${footerData.address.title}</h4>
-        <p>
-          ${footerData.address.lines.l1}<br />
-          ${footerData.address.lines.l2}<br />
-          ${footerData.address.lines.l3}
-        </p>
-      </div> 
+//       <div class="address desktop-col-3 tablet-col-2">
+//         <h4>${footerData.address.title}</h4>
+//         <p>
+//           ${footerData.address.lines.l1}<br />
+//           ${footerData.address.lines.l2}<br />
+//           ${footerData.address.lines.l3}
+//         </p>
+//       </div> 
 
-      <div class="copyright desktop-col-3-mid tablet-col-2-mid">
-        <h4>${footerData.copyright.title}</h4>
-        <p>&copy;<br /> 
-          Copyright ${footerData.copyright.year}, ${footerData.copyright.company}
-        </p> 
-      </div>
+//       <div class="copyright desktop-col-3-mid tablet-col-2-mid">
+//         <h4>${footerData.copyright.title}</h4>
+//         <p>&copy;<br /> 
+//           Copyright ${footerData.copyright.year}, ${footerData.copyright.company}
+//         </p> 
+//       </div>
 
-      <div class="contacts desktop-col-3-end tablet-col-3-end">
-        <h4>${footerData.contacts.title}</h4>
-        <p>
-          <a href="mailto:${footerData.contacts.emails.business.address}">${footerData.contacts.emails.business.display}</a><br />
-          <a href="mailto:${footerData.contacts.emails.press.address}">${footerData.contacts.emails.press.display}</a><br />
-          <a href="mailto:${footerData.contacts.emails.careers.address}">${footerData.contacts.emails.careers.display}</a><br />
-        </p>
-      </div>
+//       <div class="contacts desktop-col-3-end tablet-col-3-end">
+//         <h4>${footerData.contacts.title}</h4>
+//         <p>
+//           <a href="mailto:${footerData.contacts.emails.business.address}">${footerData.contacts.emails.business.display}</a><br />
+//           <a href="mailto:${footerData.contacts.emails.press.address}">${footerData.contacts.emails.press.display}</a><br />
+//           <a href="mailto:${footerData.contacts.emails.careers.address}">${footerData.contacts.emails.careers.display}</a><br />
+//         </p>
+//       </div>
 
-      <audio id="producer-tag">
-        <source src="images/D1-Whoosh.mp3" type="audio/mpeg">
-      </audio>
+//       <audio id="producer-tag">
+//         <source src="images/D1-Whoosh.mp3" type="audio/mpeg">
+//       </audio>
 
-      <img src="${footerData.logo.src}" alt="${footerData.logo.alt}" ondblclick="document.getElementById('producer-tag').play();" />
-    `;
-  }
-}
+//       <img src="${footerData.logo.src}" alt="${footerData.logo.alt}" ondblclick="document.getElementById('producer-tag').play();" />
+//     `;
+//   }
+// }
 
 // function setLottieAttributes(textData) {
 //   const lottieContainer = document.getElementById("lottie");
@@ -334,21 +334,21 @@ function handleFooter(textData) {
 //   }
 // }
 
-function updateContent(textData) {
-  TextElements(textData);
-  // TeamMembers(textData);
-  // handleApproach(approachBlock);
+// function updateContent(textData) {
+//   TextElements(textData);
+//   // TeamMembers(textData);
+//   // handleApproach(approachBlock);
   
-  handleFooter(textData);
-  // const delay = 500;
+//   handleFooter(textData);
+//   // const delay = 500;
 
-  // setTimeout(() => {
-  //   setLottieAttributes(textData);
-  // }, delay);
-}
+//   // setTimeout(() => {
+//   //   setLottieAttributes(textData);
+//   // }, delay);
+// }
 
-window.addEventListener('load', () => {
-  initializeData();
-  // initializeTeamData();
-  // initializeApproachBlockData();
-});
+// window.addEventListener('load', () => {
+//   initializeData();
+//   // initializeTeamData();
+//   // initializeApproachBlockData();
+// });
