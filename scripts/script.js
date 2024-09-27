@@ -8,6 +8,35 @@ function isInViewport(element) {
   );
 }
 
+// check on whether or not the news section is already shown on screen
+function handleMainNewsFade() {
+  const element = document.querySelector(".news_page_airlines");
+  if (element) {
+    if (isInViewport(element)) {
+      console.log("The element is in the viewport.");
+      localStorage.setItem("add_fade", false);
+    } else {
+      console.log("The element is not in the viewport.");
+      localStorage.setItem("add_fade", true);
+    }
+  } else {
+    console.log("No element with class found.");
+  }
+  return false;
+}
+
+// fade the links for redirect when clicking read all articles
+function exit_fade_previews() {
+  const elements = document.querySelectorAll('.fade_link');
+  elements.forEach(function (div) {
+    div.classList.replace('fadeInUp', 'fadeOutDown');
+  });
+  document.querySelector('footer').style.visibility = 'hidden';
+  setTimeout(() => {
+    window.location = '../pages/airlines.html'
+  }, 1200);
+}
+
 function handleNavigation(fadeInUpElements) {
   const navLinks = document.querySelectorAll("nav a");
   const logoLinks = document.querySelectorAll("header a img");
@@ -20,31 +49,32 @@ function handleNavigation(fadeInUpElements) {
     if (anchor.classList.contains("disabled")) return;
 
     anchor.addEventListener("click", (e) => {
-
-      const isPureAnchor = anchor.getAttribute('href').startsWith('#') && anchor.host === window.location.host && anchor.pathname === window.location.pathname;
+      const isPureAnchor =
+        anchor.getAttribute("href").startsWith("#") &&
+        anchor.host === window.location.host &&
+        anchor.pathname === window.location.pathname;
 
       if (isPureAnchor) {
         return;
       } else {
+        e.preventDefault();
+        const targetUrl = anchor.href;
+        let delayCounter = 0;
 
-      e.preventDefault();
-      const targetUrl = anchor.href;
-      let delayCounter = 0;
+        fadeInUpElements
+          .filter(isInViewport)
+          .reverse()
+          .forEach((element, index) => {
+            element.classList.replace("fadeInUp", "fadeOutDown");
+            element.style.animationDelay = `${index * 600}ms`;
+            delayCounter++;
+          });
 
-      fadeInUpElements
-        .filter(isInViewport)
-        .reverse()
-        .forEach((element, index) => {
-          element.classList.replace("fadeInUp", "fadeOutDown");
-          element.style.animationDelay = `${index * 600}ms`;
-          delayCounter++;
-        });
-
-      setTimeout(
-        () => (window.location.href = targetUrl),
-        delayCounter * 600 + 800
-      );
-    }
+        setTimeout(
+          () => (window.location.href = targetUrl),
+          delayCounter * 600 + 800
+        );
+      }
     });
   });
 }
@@ -55,15 +85,13 @@ function animateOnLoad() {
   );
 
   setTimeout(() => {
-    let viewportIndex = 0; 
+    let viewportIndex = 0;
 
     fadeInUpElements.forEach((element) => {
       if (isInViewport(element)) {
-
         element.style.animationDelay = `${viewportIndex * 600}ms`;
         element.classList.add("animated");
-        viewportIndex++;  
-
+        viewportIndex++;
       } else {
         element.style.visibility = "visible";
       }
@@ -113,12 +141,15 @@ let headerChecked = false; // boolean that's false so we can hit one of the cond
 function checkHeaderInView() {
   const header = document.getElementById("animatedHeader");
   const isInViewNow = isInViewport(header);
-  
+
   if ((!isInViewNow && wasInViewport) || (!isInViewNow && !headerChecked)) {
     sessionStorage.removeItem("dontAnimateHeader");
     wasInViewport = false;
     headerChecked = true;
-  } else if ((isInViewNow && !wasInViewport)||(isInViewNow && !headerChecked)) {
+  } else if (
+    (isInViewNow && !wasInViewport) ||
+    (isInViewNow && !headerChecked)
+  ) {
     sessionStorage.setItem("dontAnimateHeader", "true");
     wasInViewport = true;
     headerChecked = true;
@@ -136,7 +167,7 @@ window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
     ("Page was loaded from the cache");
     // re-initialize animations or reset styles here
-    document.querySelectorAll(".fadeOutDown").forEach(el => {
+    document.querySelectorAll(".fadeOutDown").forEach((el) => {
       el.classList.replace("fadeOutDown", "fadeInUp");
     });
   }
@@ -147,23 +178,17 @@ window.addEventListener("pageshow", (event) => {
   watchHeaderInView();
 });
 
-
-
-
 function isMacOS() {
-  return window.navigator.platform.includes('Mac');
+  return window.navigator.platform.includes("Mac");
 }
 
 function applyWhiteTextShadow() {
   if (isMacOS()) {
-      var elements = document.querySelectorAll('.text-jumbo');
-      elements.forEach(function(element) {
-          element.classList.add('white-text-shadow');
-      });
+    var elements = document.querySelectorAll(".text-jumbo");
+    elements.forEach(function (element) {
+      element.classList.add("white-text-shadow");
+    });
   }
 }
 
-
-document.addEventListener('DOMContentLoaded', applyWhiteTextShadow);
-
-
+document.addEventListener("DOMContentLoaded", applyWhiteTextShadow);
