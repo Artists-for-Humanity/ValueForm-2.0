@@ -1854,8 +1854,7 @@ nav.fadeInUp {
 }
 
 .white-text-shadow {
-  text-shadow:
-    1px 0 0 var(--darkgrey),
+  text-shadow: 1px 0 0 var(--darkgrey),
     -1px 0 0 var(--darkgrey) 0 1px 0 var(--darkgrey),
     0 -1px 0 var(--darkgrey) 1px 1px 0 var(--darkgrey),
     -1px -1px 0 var(--darkgrey) -1px 1px 0 var(--darkgrey) 1px -1px 0
@@ -2003,6 +2002,18 @@ x-img {
   font-weight: 400;
   line-height: 20px; /* 100% */
 }
+.quote {
+  margin-bottom: 10px;
+}
+cite {
+  font-size: 16px;
+
+  color: var(--nearwhite);
+}
+
+cite bold {
+  font-weight: 700;
+}
 @media screen and (min-width: 700px) {
   .article-title.preview {
     padding: 28px 0px 27px 0px;
@@ -2019,6 +2030,13 @@ x-img {
     padding-top: 14px;
     padding-bottom: 14px;
     margin-bottom: 16px;
+  }
+  .quote {
+    margin-bottom: 12px;
+  }
+  cite {
+    font-size: 16px;
+    color: var(--nearwhite);
   }
 }
 
@@ -2049,9 +2067,16 @@ x-img {
     padding-bottom: 9px;
   }
   .blockQuote {
-    padding-top: 15px;
-    padding-bottom: 13px;
+    /* padding-top: 15px;
+    padding-bottom: 13px; */
+    padding-top: 29px;
+    padding-bottom: 26px;
     margin-bottom: 25px;
+
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 34px; /* 100% */
   }
   .article-vid {
     padding-top: 14px;
@@ -2059,5 +2084,12 @@ x-img {
   }
   .link-back {
     padding-bottom: 27px;
+  }
+  .quote {
+    margin-bottom: 14px;
+  }
+  cite {
+    font-size: 16px;
+    color: var(--nearwhite);
   }
 }
