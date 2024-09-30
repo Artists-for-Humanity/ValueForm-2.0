@@ -1775,11 +1775,23 @@ x-img {
   margin-bottom: 0px;
 }
 
-.link {
+/* .link {
   color: var(--nearwhite);
   margin-top: 13px;
   margin-bottom: 22px;
   font-weight: 700;
+} */
+
+.link,
+.link_read {
+  color: var(--nearwhite);
+  margin-top: 27px;
+  margin-bottom: 35px;
+  font-weight: 700;
+}
+
+.link_read {
+  cursor: pointer;
 }
 
 .article-title.preview {
