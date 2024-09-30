@@ -27,13 +27,13 @@ function handleMainNewsFade() {
 
 // fade the links for redirect when clicking read all articles
 function exit_fade_previews() {
-  const elements = document.querySelectorAll('.fade_link');
+  const elements = document.querySelectorAll(".fade_link");
   elements.forEach(function (div) {
-    div.classList.replace('fadeInUp', 'fadeOutDown');
+    div.classList.replace("fadeInUp", "fadeOutDown");
   });
-  document.querySelector('footer').style.visibility = 'hidden';
+  document.querySelector("footer").style.visibility = "hidden";
   setTimeout(() => {
-    window.location = '../pages/airlines.html'
+    window.location = "../pages/airlines.html";
   }, 1200);
 }
 
@@ -42,9 +42,22 @@ function handleNavigation(fadeInUpElements) {
   const logoLinks = document.querySelectorAll("header a img");
   const footerLinks = document.querySelectorAll("footer a img");
   const headerLinks = document.querySelectorAll("header a");
+  const articleElements = document.querySelectorAll(".article-title.preview");
+  const linkBack = document.querySelectorAll(".link-back");
+  const clickMe = document.querySelectorAll(".click-me");
 
-  [...navLinks, ...logoLinks, ...footerLinks, ...headerLinks].forEach((img) => {
-    const anchor = img.closest("a");
+  [
+    ...clickMe,
+    ...navLinks,
+    ...logoLinks,
+    ...footerLinks,
+    ...headerLinks,
+    ...articleElements,
+    ...linkBack,
+  ].forEach((element) => {
+    // const anchor = img.closest("a");
+    const isAnchor = element.tagName.toLowerCase() === "a";
+    const anchor = isAnchor ? element : element.closest("a") || element;
 
     if (anchor.classList.contains("disabled")) return;
 
@@ -58,7 +71,7 @@ function handleNavigation(fadeInUpElements) {
         return;
       } else {
         e.preventDefault();
-        const targetUrl = anchor.href;
+        const targetUrl = anchor.getAttribute("href");
         let delayCounter = 0;
 
         fadeInUpElements
