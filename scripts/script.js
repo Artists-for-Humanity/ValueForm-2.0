@@ -199,6 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
   animateHeader("animatedHeader");
   animateOncePerSession("animatedNav", "animated-nav");
   watchHeaderInView();
+  applyWhiteTextShadow();
 });
 
 window.addEventListener("pageshow", (event) => {
@@ -228,5 +229,3 @@ function applyWhiteTextShadow() {
     });
   }
 }
-
-document.addEventListener("DOMContentLoaded", applyWhiteTextShadow);
