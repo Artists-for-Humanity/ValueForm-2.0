@@ -37,6 +37,32 @@ function exit_fade_previews() {
   }, 1200);
 }
 
+// elements that need to be checked for fade
+let elements_for_fade = [
+  { element: document.getElementById('news_page_main'), delay: '600ms' },
+  { element: document.getElementById('top_banner_main'), delay: '1200ms' }
+];
+
+// add fade out animation when 'a' tags are clicked
+document.querySelectorAll('a').forEach(function (anchor) {
+  anchor.addEventListener('click', function () {
+    elements_for_fade.forEach(function (item) {
+      item.element.style.animationDelay = item.delay;
+      item.element.classList.add('fadeOutDown', 'animated');
+    });
+  });
+});
+
+// check localStorage to decide whether to fade in the sections
+if (localStorage.getItem('add_fade') === 'false') {
+  elements_for_fade.forEach(function (item) {
+    item.element.classList.remove('fadeInUp', 'animated');
+  });
+}
+
+// reset fade on local storage
+localStorage.setItem('add_fade', true)
+
 function handleNavigation(fadeInUpElements) {
   const navLinks = document.querySelectorAll("nav a");
   const logoLinks = document.querySelectorAll("header a img");
