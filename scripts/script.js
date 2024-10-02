@@ -63,7 +63,7 @@ function handleNavigation(fadeInUpElements) {
 
     anchor.addEventListener("click", (e) => {
       const isPureAnchor =
-        anchor.getAttribute("href").startsWith("#") &&
+        // anchor.getAttribute("href").startsWith("#") &&
         anchor.host === window.location.host &&
         anchor.pathname === window.location.pathname;
 
@@ -168,6 +168,51 @@ function checkHeaderInView() {
     headerChecked = true;
   }
 }
+
+ // Function to store the scroll position in sessionStorage
+ function storeScrollPosition() {
+  const scrollPosition = window.scrollY;
+  sessionStorage.setItem('scrollPosition', scrollPosition);
+}
+
+// Function to restore the scroll position when the page loads
+function restoreScrollPosition() {
+  const storedScrollPosition = sessionStorage.getItem('scrollPosition');
+  if (storedScrollPosition !== null) {
+    window.scrollTo(0, parseInt(storedScrollPosition));
+  }
+}
+
+// Helper function to get the current page's filename
+function getCurrentPage() {
+  const path = window.location.pathname;
+  return path.substring(path.lastIndexOf('/') + 1);
+}
+
+// Detect when any anchor tag is clicked
+document.querySelectorAll('a').forEach(anchor => {
+  anchor.addEventListener('click', function(event) {
+    // Get the target page from the href attribute
+    const targetPage = anchor.getAttribute('href');
+
+    // Only store the scroll position if navigating between news.html and airlines.html
+    const currentPage = getCurrentPage();
+    if (
+      (currentPage === 'news.html' && targetPage.includes('airlines.html')) ||
+      (currentPage === 'airlines.html' && targetPage.includes('news.html'))
+    ) {
+      storeScrollPosition();
+    }
+  });
+});
+
+// Restore the scroll position when the page loads, only on news.html or airlines.html
+window.addEventListener('DOMContentLoaded', function () {
+  const currentPage = getCurrentPage();
+  if (currentPage === 'news.html' || currentPage === 'airlines.html') {
+    restoreScrollPosition();
+  }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   animateOnLoad();
