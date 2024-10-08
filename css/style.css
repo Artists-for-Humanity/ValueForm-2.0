@@ -1397,6 +1397,9 @@ main.internal.lead > .no-border h4 {
 aside {
   display: none;
 }
+aside:nth-child(2){
+  display:block
+}
 
 .sidebar {
   color: var(--darkgrey);
@@ -1416,6 +1419,10 @@ aside {
   aside {
     display: block;
   }
+  aside:nth-child(2){
+    display:none;
+  }
+  
   .headshot img {
     width: 76.9%;
     /* position: absolute;
@@ -1451,7 +1458,7 @@ aside {
     padding-bottom: 18px;
   }
   .sidebar:nth-child(2) {
-    display: none;
+    display: none !important;
     height: 0px;
   }
 }
@@ -1480,8 +1487,12 @@ aside {
   aside {
     display: block;
   }
+  aside:nth-child(2){
+    display:none;
+  }
+  
   .sidebar:nth-child(2) {
-    display: none;
+    display: none !important; 
     height: 0px;
   }
 }
