@@ -171,8 +171,7 @@ function checkHeaderInView() {
 
  // Function to store the scroll position in sessionStorage
  function storeScrollPosition() {
-  const scrollPosition = window.scrollY;
-  sessionStorage.setItem('scrollPosition', scrollPosition);
+  sessionStorage.setItem('scrollPosition', window.scrollY);
 }
 
 // Function to restore the scroll position when the page loads
@@ -183,10 +182,20 @@ function restoreScrollPosition() {
   }
 }
 
+if (isTargetPage()) {
+  window.addEventListener('scroll', storeScrollPosition);
+  window.addEventListener('DOMContentLoaded', restoreScrollPosition);
+}
+
 // Helper function to get the current page's filename
-function getCurrentPage() {
-  const path = window.location.pathname;
-  return path.substring(path.lastIndexOf('/') + 1);
+// function getCurrentPage() {
+//   const path = window.location.pathname;
+//   return path.substring(path.lastIndexOf('/') + 1);
+// }
+
+function isTargetPage() {
+  const currentPage = window.location.pathname.split('/').pop();
+  return currentPage === 'news.html' || currentPage === 'airlines.html';
 }
 
 // Detect when any anchor tag is clicked
