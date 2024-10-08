@@ -1394,35 +1394,21 @@ main.internal.lead > .no-border h4 {
   padding-bottom: 12px;
 }
 
-aside {
-  display: none;
-}
-aside:nth-child(2){
-  display:block
-}
+
 
 .sidebar {
-  color: var(--darkgrey);
-  line-height: 17px;
-  height: 0px;
+  /* color: var(--darkgrey); */
+  /* line-height: 17px; */
+  /* height: 0px; */
 }
 
-.sidebar:nth-child(2) {
-  display: block;
-  height: 100%;
-}
+
 
 @media (min-width: 700px) {
   .headshot {
     padding-top: 16px;
   }
-  aside {
-    display: block;
-  }
-  aside:nth-child(2){
-    display:none;
-  }
-  
+
   .headshot img {
     width: 76.9%;
     /* position: absolute;
@@ -1457,10 +1443,7 @@ aside:nth-child(2){
   main.internal.lead > .no-border h4 {
     padding-bottom: 18px;
   }
-  .sidebar:nth-child(2) {
-    display: none !important;
-    height: 0px;
-  }
+ 
 }
 
 @media (min-width: 1080px) {
@@ -1484,43 +1467,10 @@ aside:nth-child(2){
   main.internal.lead > .no-border h4 {
     padding-bottom: 18px;
   }
-  aside {
-    display: block;
-  }
-  aside:nth-child(2){
-    display:none;
-  }
-  
-  .sidebar:nth-child(2) {
-    display: none !important; 
-    height: 0px;
-  }
 }
 
-/* END OF BIO MAIN CONTENT SECTION */
 
-/* NEWS CONTENT SECTION 
 
-.desktop-col-4.text-s {
-	h5 {font-weight: bold; padding-bottom: 9px;}
-	color: var(--darkgrey);
-	line-height: 17px;
-}
-
-.news {align-items: baseline;}
-.news:before, .news:after {display: none !important;}
-a+span {font-size: 24px; text-decoration: none;}
-
-@media (min-width: 700px) {
-	.container > .desktop-col-7-left h4, time {padding:0 0 22px 0;}
-	main.internal .intro+.container > .desktop-col-8 p {padding-bottom:18px;}
-}
-
-@media (min-width: 1080px) {
-	main.internal .intro+.container > .desktop-col-8 p {padding-right:13%;}
-}
-
-/* END OF NEWS SECTION */
 
 /* ANIMATIONS */
 @keyframes flicker {
@@ -1771,8 +1721,7 @@ x-img {
 
 .article p {
   color: var(--nearwhite);
-  /* margin-top: 23px; */
-  /* margin-top: 32px; */
+
   margin-top: 0px;
   margin-bottom: 0px;
   padding-top: 0px;
@@ -1785,13 +1734,6 @@ x-img {
   margin-top: 9px;
   margin-bottom: 0px;
 }
-
-/* .link {
-  color: var(--nearwhite);
-  margin-top: 13px;
-  margin-bottom: 22px;
-  font-weight: 700;
-} */
 
 .link,
 .link_read {
@@ -1940,5 +1882,33 @@ cite bold {
   }
   .link-back {
     padding-bottom: 27px;
+  }
+}
+
+.sidebar-top, .sidebar-bottom {
+  display: none;
+  color: var(--darkgrey);
+  line-height: 17px;
+}
+
+.sidebar-bottom{
+  display:block;
+}
+
+@media (min-width: 700px) {
+  .sidebar-top {
+      display: block;
+  }
+  .sidebar-bottom{
+  display:none;
+  }
+}
+
+@media (min-width:1080px){
+  .sidebar-top {
+      display: block;
+  }
+  .sidebar-bottom{
+  display:none;
   }
 }
