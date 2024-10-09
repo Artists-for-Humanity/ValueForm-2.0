@@ -1651,6 +1651,11 @@ nav.fadeInUp {
 
 .underline {
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.underline:hover {
+  text-decoration: none;
 }
 
 table {
