@@ -42,7 +42,7 @@ function handleNavigation(fadeInUpElements) {
 
       setTimeout(
         () => (window.location.href = targetUrl),
-        delayCounter * 600 + 500
+        delayCounter * 600 + 800
       );
     }
     });
@@ -55,12 +55,15 @@ function animateOnLoad() {
   );
 
   setTimeout(() => {
-    let viewportIndex = 0;  
+    let viewportIndex = 0; 
+
     fadeInUpElements.forEach((element) => {
       if (isInViewport(element)) {
+
         element.style.animationDelay = `${viewportIndex * 600}ms`;
         element.classList.add("animated");
         viewportIndex++;  
+
       } else {
         element.style.visibility = "visible";
       }
@@ -143,4 +146,24 @@ window.addEventListener("pageshow", (event) => {
   animateOncePerSession("animatedNav", "animated-nav");
   watchHeaderInView();
 });
+
+
+
+
+function isMacOS() {
+  return window.navigator.platform.includes('Mac');
+}
+
+function applyWhiteTextShadow() {
+  if (isMacOS()) {
+      var elements = document.querySelectorAll('.text-jumbo');
+      elements.forEach(function(element) {
+          element.classList.add('white-text-shadow');
+      });
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', applyWhiteTextShadow);
+
 
