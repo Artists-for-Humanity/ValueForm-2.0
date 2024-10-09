@@ -169,27 +169,37 @@ function checkHeaderInView() {
   }
 }
 
- // store scroll postion on scroll
- function storeScrollPosition() {
+// Store scroll position on scroll
+function storeScrollPosition() {
   sessionStorage.setItem('scrollPosition', window.scrollY);
 }
 
-// Function to restore the scroll position when the page loads
+// Restore the scroll position when the page loads
 function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem('scrollPosition');
   if (storedScrollPosition !== null) {
-    window.scrollTo(0, parseInt(storedScrollPosition));
+    window.scrollTo(0, parseInt(storedScrollPosition, 10));
   }
 }
 
+// Check if the current page is a target page
 function isTargetPage() {
   const currentPage = window.location.pathname.split('/').pop();
   return currentPage === 'news.html' || currentPage === 'airlines.html';
 }
 
+// Clear scroll position and reset to 0 if not on the target page
+function clearScrollPosition() {
+  sessionStorage.removeItem('scrollPosition');
+  window.scrollTo(0, 0);
+}
+
+// Initialize scroll handling based on the page
 if (isTargetPage()) {
   window.addEventListener('scroll', storeScrollPosition);
   window.addEventListener('DOMContentLoaded', restoreScrollPosition);
+} else {
+  window.addEventListener('DOMContentLoaded', clearScrollPosition);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
