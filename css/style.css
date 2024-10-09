@@ -1767,6 +1767,10 @@ x-img {
 .popup-text {
   padding: 4px 0 0px 0px;
 }
+.popup-text a {
+  padding: 4px 0 0px 0px;
+  color: var(--darkgrey)
+}
 
 .article-img {
   width: 100%;
