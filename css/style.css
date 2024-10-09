@@ -1681,8 +1681,13 @@ table {
   color: var(--darkgrey);
 }
 
-.article-title a:hover {
+.article-title:hover {
+  cursor: pointer;
+}
+
+.article-title:hover a{
   color: var(--nearwhite);
+
 }
 
 .article .date {
