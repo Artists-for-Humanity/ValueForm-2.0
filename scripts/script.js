@@ -1,3 +1,4 @@
+//checks if element is in the viewport
 function isInViewport(element) {
   const rect = element.getBoundingClientRect();
   return (
@@ -8,7 +9,8 @@ function isInViewport(element) {
   );
 }
 
-// check on whether or not the news section is already shown on screen
+// check on whether or not the news preview section is already shown on screen (vinh)
+// sets localstorage item add_fade to true or false
 function handleMainNewsFade() {
   const element = document.querySelector(".news_page_airlines");
   if (element) {
@@ -25,7 +27,7 @@ function handleMainNewsFade() {
   return false;
 }
 
-// fade the links for redirect when clicking read all articles
+// fade the article-links for redirect when clicking read all articles + set footer to hidden (vinh)
 function exit_fade_previews() {
   const elements = document.querySelectorAll(".fade_link");
   elements.forEach(function (div) {
@@ -37,6 +39,7 @@ function exit_fade_previews() {
   }, 1200);
 }
 
+//handle animation behavior for almost all links
 function handleNavigation(fadeInUpElements) {
   const navLinks = document.querySelectorAll("nav a");
   const logoLinks = document.querySelectorAll("header a img");
@@ -55,7 +58,6 @@ function handleNavigation(fadeInUpElements) {
     ...articleElements,
     ...linkBack,
   ].forEach((element) => {
-    // const anchor = img.closest("a");
     const isAnchor = element.tagName.toLowerCase() === "a";
     const anchor = isAnchor ? element : element.closest("a") || element;
 
@@ -63,7 +65,6 @@ function handleNavigation(fadeInUpElements) {
 
     anchor.addEventListener("click", (e) => {
       const isPureAnchor =
-        // anchor.getAttribute("href").startsWith("#") &&
         anchor.host === window.location.host &&
         anchor.pathname === window.location.pathname;
 
@@ -92,6 +93,7 @@ function handleNavigation(fadeInUpElements) {
   });
 }
 
+//fades things in on load, initalizes navigation logic for the rest of the page, and plays the lottie animation
 function animateOnLoad() {
   const fadeInUpElements = Array.from(
     document.querySelectorAll(".fadeInUp:not(nav)")
@@ -119,6 +121,7 @@ function animateOnLoad() {
   }, 1000);
 }
 
+// animate an element once per session
 function animateOncePerSession(elementId, animationClass) {
   const element = document.getElementById(elementId);
   if (element && !sessionStorage.getItem(`${elementId}Animated`)) {
@@ -127,30 +130,11 @@ function animateOncePerSession(elementId, animationClass) {
   }
 }
 
-function animateHeader(elementId) {
-  const element = document.getElementById(elementId);
-  const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
-
-  if (element) {
-    // First load
-    if (dontAnimate != "true") {
-      element.classList.add("animated-header");
-    }
-  }
-}
-
-function watchHeaderInView() {
-  checkHeaderInView();
-
-  window.addEventListener("scroll", () => {
-    checkHeaderInView();
-  });
-}
-
 const header = document.getElementById("animatedHeader");
 let wasInViewport = isInViewport(header);
 let headerChecked = false; // boolean that's false so we can hit one of the conditions in checkHeaderInView
 
+// Check if the header is in view and set the session storage item
 function checkHeaderInView() {
   const header = document.getElementById("animatedHeader");
   const isInViewNow = isInViewport(header);
@@ -168,13 +152,33 @@ function checkHeaderInView() {
     headerChecked = true;
   }
 }
+//calls check header in view on scroll
+function watchHeaderInView() {
+  checkHeaderInView();
 
-// Store scroll position on scroll
+  window.addEventListener("scroll", () => {
+    checkHeaderInView();
+  });
+}
+
+// manages header animation
+function animateHeader(elementId) {
+  const element = document.getElementById(elementId);
+  const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
+
+  if (element) {
+    // First load
+    if (dontAnimate != "true") {
+      element.classList.add("animated-header");
+    }
+  }
+}
+// store scroll position on scroll as a session storage item
 function storeScrollPosition() {
   sessionStorage.setItem('scrollPosition', window.scrollY);
 }
 
-// Restore the scroll position when the page loads
+// restore the scroll position when the page loads
 function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem('scrollPosition');
   if (storedScrollPosition !== null) {
@@ -182,13 +186,13 @@ function restoreScrollPosition() {
   }
 }
 
-// Check if the current page is a target page
+// check if the current page is a target page
 function isTargetPage() {
   const currentPage = window.location.pathname.split('/').pop();
   return currentPage === 'news.html' || currentPage === 'airlines.html';
 }
 
-// Clear scroll position and reset to 0 if not on the target page
+// clear scroll position and reset to 0 if not on the target page
 function clearScrollPosition() {
   sessionStorage.removeItem('scrollPosition');
   window.scrollTo(0, 0);
@@ -202,6 +206,9 @@ if (isTargetPage()) {
   window.addEventListener('DOMContentLoaded', clearScrollPosition);
 }
 
+
+
+//rRun the following code when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
   animateOnLoad();
   animateHeader("animatedHeader");
@@ -209,6 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
   watchHeaderInView();
 });
 
+//run this code is the page is loaded from scratch
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
     ("Page was loaded from the cache");
@@ -224,10 +232,12 @@ window.addEventListener("pageshow", (event) => {
   watchHeaderInView();
 });
 
+//check if the user is on a mac and apply white text shadow if trueq
 function isMacOS() {
   return window.navigator.platform.includes("Mac");
 }
 
+// apply white text shadow to jumbo text on mac
 function applyWhiteTextShadow() {
   if (isMacOS()) {
     var elements = document.querySelectorAll(".text-jumbo");
@@ -237,4 +247,5 @@ function applyWhiteTextShadow() {
   }
 }
 
+// run the white text shadow function on page load
 document.addEventListener("DOMContentLoaded", applyWhiteTextShadow);
