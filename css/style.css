@@ -1762,8 +1762,22 @@ x-img {
   padding: 24px 0px 21px 0px;
   display: grid;
   grid-template-columns: inherit;
+  /* grid-template-columns: repeat(12, minmax(0, 1fr)); */
   text-decoration: none;
 }
+@media screen and (min-width: 700px) {
+  .article-title.preview {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1080px) {
+
+  .article-title.preview{
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
 
 .article-title.preview:last-child {
   padding-bottom: 25px;
