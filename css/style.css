@@ -1970,12 +1970,12 @@ cite bold {
 .percent {
 -webkit-text-stroke-width: 1px;
 -webkit-text-stroke-color: var(--darkgrey);
-font-family: Helvetica;
-font-size: 45px;
-font-style: normal;
-font-weight: 700;
-letter-spacing: -1.35px;
-color: var(--almostblack);
+  font-family: Helvetica;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -1.35px;
+  color: var(--almostblack);
 }
 
 .metric-percent{
