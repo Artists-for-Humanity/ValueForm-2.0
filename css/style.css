@@ -502,6 +502,12 @@ MOBILE GRID -- NOT USED */
     max-width: 1187px;
     margin: 0 auto;
   }
+  .desktop-col-2 {
+    grid-column: 1 / span 3;
+  }
+  .desktop-col-3-1{
+    grid-column: 4/ span 1;
+  }
   .desktop-col-3 {
     grid-column: 3 / span 3;
   }
@@ -1672,7 +1678,7 @@ table {
 }
 
 .article-title {
-  color: #404040;
+  color: var(--darkgrey);
   font-family: Helvetica;
   font-size: 20px;
   font-style: normal;
@@ -1854,7 +1860,7 @@ cite bold {
 }
 @media screen and (min-width: 1080px) {
   .article-title {
-    color: #404040;
+    color: var(--darkgrey);
     font-family: Helvetica;
     font-size: 34px;
     font-style: normal;
@@ -1945,4 +1951,69 @@ cite bold {
   font-weight:bold;
   font-size:24px;
   margin-bottom:15px;
+}
+
+/* OUTCOMES PAGE */
+
+.metric{
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--darkgrey);
+  font-family: Helvetica;
+  font-size: 225px;
+  font-style: normal;
+  font-weight: 700;
+  /* line-height: normal; */
+  letter-spacing: -6.75px;
+  color: var(--almostblack);
+}
+
+.percent {
+-webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: var(--darkgrey);
+font-family: Helvetica;
+font-size: 45px;
+font-style: normal;
+font-weight: 700;
+letter-spacing: -1.35px;
+color: var(--almostblack);
+}
+
+.metric-percent{
+  display:flex;
+}
+
+.metric-percent:hover .percent,
+.metric-percent:hover .metric {
+  color: var(--nearwhite);
+  -webkit-text-stroke-color: var(--nearwhite);
+}
+
+
+.outcomes-title{
+  color: var(--darkgrey);
+  font-family: Helvetica;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 34px;
+  letter-spacing: -1.02px;
+  margin-bottom:14px;
+}
+
+.outcomes-highlight {
+  color: var(--nearwhite);
+}
+
+.outcomes-description {
+  color: #BEBEBE;
+font-family: Helvetica;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+margin-bottom:20px
+}
+
+.outcomes-logo{
+max-height:100px;
 }
