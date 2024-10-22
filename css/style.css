@@ -2062,6 +2062,9 @@ max-height:100px;
 .outcomes-metric{
   border-bottom: 1px solid var(--darkgrey);
 }
+a.outcomes-border{
+  text-decoration: none;
+}
 
 .outcomes-metric:last-child{
   border-bottom: 0;
