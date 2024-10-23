@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
   watchHeaderInView();
 });
 
-//run this code is the page is loaded from scratch
+//run this code is the page is loaded from cache
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
     ("Page was loaded from the cache");
