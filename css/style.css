@@ -1946,3 +1946,7 @@ cite bold {
   font-size:24px;
   margin-bottom:15px;
 }
+
+.preload {
+  visibility: hidden;
+}

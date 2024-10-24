@@ -36,7 +36,7 @@ function exit_fade_previews() {
   document.querySelector("footer").style.visibility = "hidden";
   setTimeout(() => {
     window.location = "../pages/airlines.html";
-  }, 1200);
+  }, 600);
 }
 
 //handle animation behavior for almost all links
@@ -173,40 +173,43 @@ function animateHeader(elementId) {
     }
   }
 }
+
 // store scroll position on scroll as a session storage item
 function storeScrollPosition() {
-  sessionStorage.setItem('scrollPosition', window.scrollY);
+  sessionStorage.setItem("scrollPosition", window.scrollY);
 }
 
 // restore the scroll position when the page loads
 function restoreScrollPosition() {
-  const storedScrollPosition = sessionStorage.getItem('scrollPosition');
+  const storedScrollPosition = sessionStorage.getItem("scrollPosition");
   if (storedScrollPosition !== null) {
     window.scrollTo(0, parseInt(storedScrollPosition, 10));
   }
+
+  // Show the page content after restoring scroll
+  document.body.classList.remove("preload");
 }
 
 // check if the current page is a target page
 function isTargetPage() {
-  const currentPage = window.location.pathname.split('/').pop();
-  return currentPage === 'news.html' || currentPage === 'airlines.html';
+  const currentPage = window.location.pathname.split("/").pop();
+  return currentPage === "news.html" || currentPage === "airlines.html";
 }
 
 // clear scroll position and reset to 0 if not on the target page
 function clearScrollPosition() {
-  sessionStorage.removeItem('scrollPosition');
+  sessionStorage.removeItem("scrollPosition");
   window.scrollTo(0, 0);
 }
 
 // Initialize scroll handling based on the page
 if (isTargetPage()) {
-  window.addEventListener('scroll', storeScrollPosition);
-  window.addEventListener('DOMContentLoaded', restoreScrollPosition);
+  window.addEventListener("scroll", storeScrollPosition);
+  // window.addEventListener('beforeunload', storeScrollPosition);
+  window.addEventListener("DOMContentLoaded", restoreScrollPosition);
 } else {
-  window.addEventListener('DOMContentLoaded', clearScrollPosition);
+  window.addEventListener("DOMContentLoaded", clearScrollPosition);
 }
-
-
 
 //rRun the following code when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
@@ -252,33 +255,33 @@ document.addEventListener("DOMContentLoaded", applyWhiteTextShadow);
 
 document.addEventListener("DOMContentLoaded", function () {
   let elements_for_fade = [
-    { element: document.getElementById('news_page_main'), delay: '600ms' },
-    { element: document.getElementById('top_banner_main'), delay: '1200ms' }
+    { element: document.getElementById("news_page_main"), delay: "600ms" },
+    { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
   // calculate total aniamtion time
   function calculateAnimationDuration() {
-    const fadeInUpElements = document.querySelectorAll('.fadeInUp');
+    const fadeInUpElements = document.querySelectorAll(".fadeInUp");
     const baseDuration = 600;
     const additionalDuration = 300;
-    return baseDuration + (fadeInUpElements.length * additionalDuration);
+    return baseDuration + fadeInUpElements.length * additionalDuration;
   }
   // article preview links
-  const clickableLinks = document.querySelectorAll('.click-me');
+  const clickableLinks = document.querySelectorAll(".click-me");
   clickableLinks.forEach(function (link) {
-    link.addEventListener('click', function (event) {
-      event.preventDefault();  // prevent default navigation
+    link.addEventListener("click", function (event) {
+      event.preventDefault(); // prevent default navigation
       // valid link href?
-      const targetHref = link.getAttribute('href');
+      const targetHref = link.getAttribute("href");
       if (!targetHref) {
-        console.error('No target URL found for this link.');
+        console.error("No target URL found for this link.");
         return;
       }
       // add fade-out
       elements_for_fade.forEach(function (item) {
         if (item.element) {
           item.element.style.animationDelay = item.delay;
-          item.element.classList.add('fadeOutDown', 'animated');
+          item.element.classList.add("fadeOutDown", "animated");
         }
       });
 
@@ -290,25 +293,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-
-
   //"read full article" link
-  const readFullArticleLink = document.querySelector('.link-back');
+  const readFullArticleLink = document.querySelector(".link-back");
   if (readFullArticleLink) {
-    readFullArticleLink.addEventListener('click', function (event) {
+    readFullArticleLink.addEventListener("click", function (event) {
       // prevent default navigation
       event.preventDefault();
       //valid url?
-      const targetHref = readFullArticleLink.getAttribute('href');
+      const targetHref = readFullArticleLink.getAttribute("href");
       if (!targetHref) {
-        console.error('No target URL found for this link.');
+        console.error("No target URL found for this link.");
         return;
       }
       //add fade
       elements_for_fade.forEach(function (item) {
         if (item.element) {
           item.element.style.animationDelay = item.delay;
-          item.element.classList.add('fadeOutDown', 'animated');
+          item.element.classList.add("fadeOutDown", "animated");
         }
       });
 
@@ -318,19 +319,19 @@ document.addEventListener("DOMContentLoaded", function () {
       // Delay navigation until fade-out is complete
       setTimeout(function () {
         window.location.href = targetHref;
-      }, totalAnimationDuration);  // Adjust timeout based on total calculated duration
+      }, totalAnimationDuration); // Adjust timeout based on total calculated duration
     });
   }
 
   // Check localStorage to decide whether to fade in the sections
-  if (localStorage.getItem('add_fade') === 'false') {
+  if (localStorage.getItem("add_fade") === "false") {
     elements_for_fade.forEach(function (item) {
       if (item.element) {
-        item.element.classList.remove('fadeInUp', 'animated');
+        item.element.classList.remove("fadeInUp", "animated");
       }
     });
   }
 
   // Reset fade on localStorage
-  localStorage.setItem('add_fade', true);
+  localStorage.setItem("add_fade", true);
 });
