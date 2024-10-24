@@ -133,6 +133,10 @@ table {
   --white: #ffffff;
 }
 
+html{
+  background-color: var(--almostblack)
+}
+
 * {
   box-sizing: border-box;
   position: relative;
@@ -2136,23 +2140,48 @@ font-family: Helvetica;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
-line-height: 24px; /* 150% */
+line-height: 24px;
 }
 
 .remove-border{
   border: 0px !important;
 }
-/* 
-img{
-  overflow: hidden;
-} */
 
 .outcomes-text p.outcomes{
 padding-right:0px
 }
 
 .outcomes{
-  /* display:block; */
   display:grid;
   grid-template-columns: inherit;
 }
+
+body.outcomes {
+  position: relative;
+  transition: background-color 0.3s ease;
+  background-color: var(--almostblack); 
+}
+
+.hovered {
+  background-color: rgba(2, 2, 2, 0.8) !important;
+}
+
+.video-background {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  z-index: -1; 
+  object-fit: cover; /* Ensure the video scales to cover the area */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none; /* Prevent interaction with the video */
+}
+
+.appendToMe {
+  position: relative; 
+  overflow: hidden;
+  height: 90%; 
+}
+
