@@ -465,9 +465,14 @@ MOBILE GRID -- NOT USED */
   .tablet-col-1 {
     grid-column: 1 / span 3;
   }
+
+  .tablet-col-1-2 {
+    grid-column: 1 / span 2;
+  }
   .tablet-col-2 {
     grid-column: 2 / span 2;
   }
+
   .tablet-col-2-mid {
     grid-column: 4 / span 2;
   }
@@ -483,6 +488,9 @@ MOBILE GRID -- NOT USED */
   .tablet-col-4 + .tablet-col-4 {
     grid-column: 5 / span 4;
   }
+  .tablet-col-4-3{
+    grid-column: 4 / span 3;
+  }
   .tablet-col-6 {
     grid-column: 3 / span 6;
   }
@@ -494,9 +502,14 @@ MOBILE GRID -- NOT USED */
     justify-self: center;
   }
 
+  .tablet-col-7-2{
+    grid-column: 7 / span 2;
+  }
+
   .tablet-col-8 {
     grid-column: 1 / span 8;
   }
+
 } /* TABLET GRID */
 
 @media (min-width: 1080px) {
@@ -2107,6 +2120,22 @@ max-height:100px;
   font-weight: 700;
   line-height: 34px; /* 100% */
   letter-spacing: -1.02px;
+}
+
+@media screen and (min-width: 700px) {
+  
+  .outcomes-metric {
+    font-size: 30px;
+    letter-spacing: -0.9px;
+  }
+  .outcomes-stat{
+    font-size: 89px;
+    letter-spacing: -2.67px;
+  }
+  div.container.outcomes-border{
+    border-bottom:0px;
+  }
+  
 }
 
 .outcomes-metric{
