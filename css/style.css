@@ -2009,6 +2009,31 @@ cite bold {
   color: var(--almostblack);
 }
 
+@media screen and (min-width: 700px) {
+  .metric {
+    font-size: 210px;
+    letter-spacing: -6.3px;
+  }
+  
+}
+
+@media screen and (max-width: 700px) {
+ .outcome-stat{
+  display:flex;
+  flex-direction: column;
+ }
+ .metric-percent{
+  align-self: center;
+ }
+ .outcomes-description-container{
+  display:flex;
+  flex-direction: column;
+ }
+ .outcomes-logo{
+  align-self: center;
+ }
+}
+
 .percent {
 -webkit-text-stroke-width: 1px;
 -webkit-text-stroke-color: var(--darkgrey);
