@@ -1917,6 +1917,7 @@ cite bold {
   display: none;
   color: var(--darkgrey);
   line-height: 17px;
+  height: auto;
 }
 
 .sidebar-bottom{
@@ -1926,6 +1927,7 @@ cite bold {
 @media (min-width: 700px) {
   .sidebar-top {
       display: block;
+      height: 0px;
   }
   .sidebar-bottom{
   display:none;
@@ -1935,6 +1937,7 @@ cite bold {
 @media (min-width:1080px){
   .sidebar-top {
       display: block;
+      height: 0px;
   }
   .sidebar-bottom{
   display:none;
