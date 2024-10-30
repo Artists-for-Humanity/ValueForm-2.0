@@ -1748,8 +1748,8 @@ x-img {
 .link,
 .link_read {
   color: var(--nearwhite);
-  margin-top: 27px;
-  margin-bottom: 35px;
+  margin-top: 13px;
+  margin-bottom: 12px;
   font-weight: 700;
 }
 
@@ -1907,9 +1907,6 @@ cite bold {
   .article-vid {
     padding-top: 14px;
     padding-bottom: 34px;
-  }
-  .link-back {
-    padding-bottom: 27px;
   }
 }
 
