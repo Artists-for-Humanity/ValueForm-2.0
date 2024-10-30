@@ -465,6 +465,9 @@ MOBILE GRID -- NOT USED */
   .tablet-col-1 {
     grid-column: 1 / span 3;
   }
+  .tablet-col-1-5{
+    grid-column: 1 / span 5;
+  }
 
   .tablet-col-1-2 {
     grid-column: 1 / span 2;
@@ -473,6 +476,9 @@ MOBILE GRID -- NOT USED */
     grid-column: 2 / span 2;
   }
 
+  .tablet-col-2-6 {
+    grid-column: 2 / span 6;
+  }
   .tablet-col-2-mid {
     grid-column: 4 / span 2;
   }
@@ -1984,6 +1990,12 @@ cite bold {
   display:block;
 }
 
+.subheader{
+  font-weight:bold;
+  font-size:24px;
+  margin-bottom:15px;
+}
+
 @media (min-width: 700px) {
   .sidebar-top {
       display: block;
@@ -2002,11 +2014,7 @@ cite bold {
   }
 }
 
-.subheader{
-  font-weight:bold;
-  font-size:24px;
-  margin-bottom:15px;
-}
+
 
 /* OUTCOMES PAGE */
 
@@ -2022,42 +2030,17 @@ cite bold {
   color: var(--almostblack);
 }
 
-@media screen and (min-width: 700px) {
-  .metric {
-    font-size: 210px;
-    letter-spacing: -6.3px;
-  }
-  
-}
-
-@media screen and (max-width: 700px) {
- .outcome-stat{
-  display:flex;
-  flex-direction: column;
- }
- .metric-percent{
-  align-self: center;
- }
- .outcomes-description-container{
-  display:flex;
-  flex-direction: column;
- }
- .outcomes-logo{
-  align-self: center;
- }
-}
-
 .percent {
--webkit-text-stroke-width: 1px;
--webkit-text-stroke-color: var(--darkgrey);
-  font-family: Helvetica;
-  font-size: 45px;
-  font-style: normal;
-  font-weight: 700;
-  letter-spacing: -1.35px;
-  color: var(--almostblack);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--darkgrey);
+    font-family: Helvetica;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -1.35px;
+    color: var(--almostblack);
 }
-
+  
 .metric-percent{
   display:flex;
 }
@@ -2067,8 +2050,8 @@ cite bold {
   color: var(--nearwhite);
   -webkit-text-stroke-color: var(--nearwhite);
 }
-
-
+  
+  
 .outcomes-title{
   color: var(--darkgrey);
   font-family: Helvetica;
@@ -2122,29 +2105,14 @@ max-height:100px;
   letter-spacing: -1.02px;
 }
 
-@media screen and (min-width: 700px) {
-  
-  .outcomes-metric {
-    font-size: 30px;
-    letter-spacing: -0.9px;
-  }
-  .outcomes-stat{
-    font-size: 89px;
-    letter-spacing: -2.67px;
-  }
-  div.container.outcomes-border{
-    border-bottom:0px;
-  }
-  
+.info{
+  padding-bottom:15px;
 }
 
-.outcomes-metric{
-  border-bottom: 1px solid var(--darkgrey);
-}
 a.outcomes-border{
   text-decoration: none;
 }
-
+  
 .outcomes-metric:last-child{
   border-bottom: 0;
 }
@@ -2160,7 +2128,6 @@ a.outcomes-border{
   object-fit: cover;
 
 }
-
 
 .play-button {
   position: absolute;
@@ -2180,21 +2147,24 @@ a.outcomes-border{
 
 .outcomes-header{
   color: var(--darkgrey);
-        font-family: Helvetica;
-        font-size: 34px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 34px;
-        letter-spacing: -1.02px;
+leading-trim: both;
+text-edge: cap;
+font-family: Helvetica;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; /* 125% */
+letter-spacing: -0.6px;
 }
 
+
 .outcomes-text{
-  color: var(--nearwhite);
+  color: #BEBEBE;
 font-family: Helvetica;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
-line-height: 24px;
+line-height: 24px; /* 150% */
 }
 
 .remove-border{
@@ -2238,4 +2208,80 @@ body.outcomes {
   overflow: hidden;
   height: 90%; 
 }
+
+.outcomes-img{
+  padding-bottom:25px;
+  height: 201px;
+}
+
+
+
+@media screen and (min-width: 700px) {
+  .metric {
+    font-size: 210px;
+    letter-spacing: -6.3px;
+  }
+  .outcomes-metric{
+    border-bottom: 1px solid var(--darkgrey);
+  }
+  .outcomes-header{
+    color: var(--darkgrey);
+          font-family: Helvetica;
+          font-size: 34px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 34px;
+          letter-spacing: -1.02px;
+  }
+  .outcomes-metric {
+    font-size: 30px;
+    letter-spacing: -0.9px;
+  }
+  .outcomes-stat{
+    font-size: 89px;
+    letter-spacing: -2.67px;
+  }
+  div.container.outcomes-border{
+    border-bottom:0px;
+  }
+  .info{
+    padding-bottom:0px;
+  }
+  .outcomes-text{
+    color: var(--nearwhite);
+  font-family: Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  }
+  .outcomes-img{
+    padding-bottom:10px;
+    height:auto;
+  }
+  
+  
+
+  
+}
+
+@media screen and (max-width: 700px) {
+ .outcome-stat{
+  display:flex;
+  flex-direction: column;
+ }
+ .metric-percent{
+  align-self: center;
+ }
+ .outcomes-description-container{
+  display:flex;
+  flex-direction: column;
+ }
+ .outcomes-logo{
+  align-self: center;
+ }
+}
+
+
+
 
