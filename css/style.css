@@ -1794,6 +1794,15 @@ x-img {
   padding-bottom: 20px;
 }
 
+
+@media screen and (min-width: 1080px) {
+
+  .article-title.preview:last-child {
+    padding-bottom: 24px;
+  }
+}
+
+
 .popup-text {
   padding: 4px 0 0px 0px;
 }
@@ -1918,7 +1927,7 @@ cite bold {
     margin-top: 14px;
   }
   .article .date {
-    padding-bottom: 32px;
+    padding-bottom: 16px;
     padding-top: 15px;
   }
   .article-img {
@@ -1941,7 +1950,8 @@ cite bold {
     padding-bottom: 34px;
   }
   .link-back {
-    padding-bottom: 27px;
+    padding-bottom: 9px;
+    padding-top:8px;
   }
   .quote {
     margin-bottom: 14px;
