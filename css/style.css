@@ -488,6 +488,7 @@ MOBILE GRID -- NOT USED */
 
   .tablet-col-7.img-contain {
     justify-self: center;
+    padding: 16px 0px 16px 0px;
   }
 
   .tablet-col-8 {
@@ -1759,6 +1760,14 @@ x-img {
   cursor: pointer;
 }
 
+@media screen and (min-width: 700px) {
+  .link_read {
+    margin-top:19px;
+    margin-bottom: 27px;
+  }
+  
+}
+
 .article-title.preview {
   border-top: 1px solid var(--darkgrey) !important;
   padding: 24px 0px 21px 0px;
@@ -1802,8 +1811,17 @@ x-img {
 }
 
 .article-vid {
-  padding-bottom: 13px;
   padding-top:14px;
+  padding-bottom: 13px;
+ 
+}
+
+@media screen and (min-width: 700px) {
+  .article-vid {
+    padding-top: 19px;
+    padding-bottom: 26px;
+  }
+  
 }
 aside.sidebar-bottom h4.text-s{
   padding-bottom: 8px;
@@ -1813,13 +1831,19 @@ aside.sidebar-bottom h4.text-s + p.text-s{
   padding-bottom: 20px;
 }
 
-@media screen and (max-width: 700px) {
+.link-back {
+  padding-bottom: 21px;
+}
 
+@media screen and (min-width: 700px) {
   .link-back {
-    padding-bottom: 21px;
+    padding-bottom: 33px;
   }
+
   
 }
+
+
 
 /* aside.sidebar-bottom + .link-back .link{
   padding-bottom: 21px;
@@ -1852,6 +1876,7 @@ cite bold {
   .article-title.preview {
     padding: 28px 0px 27px 0px;
   }
+
   .link {
     margin-bottom: 28px;
   }
@@ -1860,9 +1885,9 @@ cite bold {
     margin-bottom: 16px;
   }
   .blockQuote {
-    margin-top: 15px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    margin-top: 19px;
+    padding-top: 29px;
+    padding-bottom: 26px;
     margin-bottom: 16px;
   }
   .quote {
