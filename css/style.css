@@ -479,6 +479,10 @@ MOBILE GRID -- NOT USED */
   .tablet-col-6 {
     grid-column: 3 / span 6;
   }
+
+  .tablet-col-8 {
+    grid-column: 1 / span 8;
+  }
 } /* TABLET GRID */
 
 @media (min-width: 1080px) {
@@ -531,6 +535,10 @@ MOBILE GRID -- NOT USED */
 
   .desktop-col-7-left + .desktop-col-6 {
     grid-column: 1 / span 6;
+  }
+
+  .desktop-col-12 {
+    grid-column: 1 / span 12;
   }
 } /* DESKTOP GRID */
 
@@ -1593,4 +1601,77 @@ nav.fadeInUp {
 
 table {
   width: 100%;
+}
+
+.article-vid {
+  padding-top:14px;
+  padding-bottom: 13px;
+ 
+}
+
+
+@media screen and (min-width: 700px) {
+  .article-vid {
+    padding-top: 19px;
+    padding-bottom: 26px;
+  }
+  
+}
+
+@media screen and (min-width: 1080px) {
+  .article-title {
+    color: #404040;
+    font-family: Helvetica;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 34px; 
+    letter-spacing: -1.02px;
+  }
+  /* .article-title.preview {
+    padding-top: 36px;
+    padding-bottom: 34px;
+  }
+
+  .link {
+    margin-bottom: 36px;
+    margin-top: 14px;
+  }
+  .article .date {
+    padding-bottom: 32px;
+    padding-top: 15px;
+  }
+  .article-img {
+    padding-bottom: 9px;
+  }
+  .blockQuote {
+    /* padding-top: 15px;
+    padding-bottom: 13px; */
+    /* padding-top: 37px;
+    padding-bottom: 26px;
+    margin-bottom: 25px;
+
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 34px;
+  }  */
+  .article-vid {
+    padding-top: 14px;
+    padding-bottom: 34px;
+  }
+  /* .link-back {
+    padding-bottom: 27px;
+  }
+  .quote {
+    margin-bottom: 14px;
+  }
+  cite {
+    font-size: 16px;
+    color: var(--nearwhite);
+  } */
+  .article-vid {
+    padding-top: 14px;
+    padding-bottom: 34px;
+  }
 }
