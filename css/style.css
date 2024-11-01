@@ -1703,7 +1703,8 @@ table {
   font-weight: 700;
   line-height: 24px;
   /* 150% */
-  padding-top: 16px;
+  /* padding-top: 16px; */
+  padding-top:7px;
   padding-bottom: 18px;
 }
 
@@ -1743,13 +1744,14 @@ x-img {
   padding-bottom: 0px;
   margin-top: 9px;
   margin-bottom: 0px;
+  padding-bottom: 4px !important;
 }
 
 .link,
 .link_read {
   color: var(--nearwhite);
   margin-top: 13px;
-  margin-bottom: 12px;
+  margin-bottom: 22px;
   font-weight: 700;
 }
 
@@ -1780,7 +1782,7 @@ x-img {
 
 
 .article-title.preview:last-child {
-  padding-bottom: 25px;
+  padding-bottom: 20px;
 }
 
 .popup-text {
@@ -1794,20 +1796,39 @@ x-img {
 .article-img {
   width: 100%;
   height: auto;
-  /* margin-top: 34px; */
+  margin-top: 14px;
   margin-bottom: 8px;
   object-fit: cover;
 }
 
 .article-vid {
+  padding-bottom: 13px;
+  padding-top:14px;
+}
+aside.sidebar-bottom h4.text-s{
+  padding-bottom: 8px;
+}
+
+aside.sidebar-bottom h4.text-s + p.text-s{
   padding-bottom: 20px;
 }
 
+@media screen and (max-width: 700px) {
+
+  .link-back {
+    padding-bottom: 21px;
+  }
+  
+}
+
+/* aside.sidebar-bottom + .link-back .link{
+  padding-bottom: 21px;
+} */
 .blockQuote {
-  padding: 15px 0px 13px 0px;
+  padding: 24px 0px 21px 0px;
   border-top: 1px solid var(--darkgrey);
   border-bottom: 1px solid var(--darkgrey);
-  margin: 0px 0px 20px 0px;
+  margin: 14px 0px 20px 0px;
   color: var(--nearwhite);
   font-family: Helvetica;
   font-size: 20px;
@@ -1816,7 +1837,7 @@ x-img {
   line-height: 20px; /* 100% */
 }
 .quote {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 cite {
   font-size: 16px;
