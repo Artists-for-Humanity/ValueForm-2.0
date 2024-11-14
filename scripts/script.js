@@ -206,6 +206,37 @@ if (isTargetPage()) {
   window.addEventListener('DOMContentLoaded', clearScrollPosition);
 }
 
+// Adds hover effect to metric and percent when hovering over specific elements
+function addHoverEffectOnOutcomeElements() {
+  const hoverTargets = document.querySelectorAll('.outcomes-title, .outcomes-description, .outcomes-logo');
+  const metricElements = document.querySelectorAll('.metric');
+  const percentElements = document.querySelectorAll('.percent');
+
+  hoverTargets.forEach(target => {
+    target.addEventListener('mouseenter', () => {
+      metricElements.forEach(metric => {
+        metric.style.color = 'var(--nearwhite)';
+        metric.style.webkitTextStrokeColor = 'var(--nearwhite)';
+      });
+      percentElements.forEach(percent => {
+        percent.style.color = 'var(--nearwhite)';
+        percent.style.webkitTextStrokeColor = 'var(--nearwhite)';
+      });
+    });
+
+    target.addEventListener('mouseleave', () => {
+      metricElements.forEach(metric => {
+        metric.style.color = '';
+        metric.style.webkitTextStrokeColor = '';
+      });
+      percentElements.forEach(percent => {
+        percent.style.color = '';
+        percent.style.webkitTextStrokeColor = '';
+      });
+    });
+  });
+}
+
 
 
 //rRun the following code when the DOM is fully loaded
@@ -214,6 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
   animateHeader("animatedHeader");
   animateOncePerSession("animatedNav", "animated-nav");
   watchHeaderInView();
+  addHoverEffectOnOutcomeElements();
 });
 
 //run this code is the page is loaded from scratch
@@ -230,6 +262,7 @@ window.addEventListener("pageshow", (event) => {
   animateHeader("animatedHeader");
   animateOncePerSession("animatedNav", "animated-nav");
   watchHeaderInView();
+  addHoverEffectOnOutcomeElements();
 });
 
 //check if the user is on a mac and apply white text shadow if trueq

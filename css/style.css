@@ -2049,7 +2049,10 @@ cite bold {
 .metric-percent:hover .metric {
   color: var(--nearwhite);
   -webkit-text-stroke-color: var(--nearwhite);
+  cursor: pointer !important;
 }
+
+
   
   
 .outcomes-title{

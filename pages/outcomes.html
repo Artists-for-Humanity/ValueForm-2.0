@@ -173,6 +173,46 @@ careers@valueform.io
 		  });
 		});
 	  </script>
+
+	  <!-- <script>
+		const videoBackground = document.querySelector('.video-background');
+		const videoSource = videoBackground.querySelector('source');
+	  
+		// Function to handle video display on hover
+		function showVideoOnHover(item) {
+		  item.addEventListener('mouseenter', () => {
+			const videoSrc = item.getAttribute('data-video');
+			if (videoSrc) {
+			  videoSource.setAttribute('src', videoSrc);
+			  videoBackground.load(); // Load the new video source
+			}
+			document.querySelector('body.outcomes').classList.add('hovered');
+			videoBackground.style.opacity = '1'; // Show the video
+		  });
+	  
+		  item.addEventListener('mouseleave', () => {
+			document.querySelector('body.outcomes').classList.remove('hovered');
+			videoBackground.style.opacity = '0'; // Hide the video
+		  });
+		}
+	  
+		// Apply hover effect to .metric elements
+		document.querySelectorAll('.metric').forEach(showVideoOnHover);
+	  
+		// Apply hover effect to .outcomes-title, .outcomes-description, and .outcomes-logo elements
+		document.querySelectorAll('.outcomes-title, .outcomes-description, .outcomes-logo').forEach(element => {
+		  element.addEventListener('mouseenter', () => {
+			document.querySelector('body.outcomes').classList.add('hovered');
+			videoBackground.style.opacity = '1'; // Show the video
+		  });
+	  
+		  element.addEventListener('mouseleave', () => {
+			document.querySelector('body.outcomes').classList.remove('hovered');
+			videoBackground.style.opacity = '0'; // Hide the video
+		  });
+		});
+	  </script>
+	   -->
 	  
 	  
 
