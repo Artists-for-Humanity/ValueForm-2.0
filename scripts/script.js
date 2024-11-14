@@ -208,12 +208,17 @@ if (isTargetPage()) {
 
 function addHoverEffectOnOutcomeElements() {
   const titleElements = document.querySelectorAll('.outcomes-title');
-  const descriptionElements = document.querySelectorAll('.outcomes-description');
   const logoElements = document.querySelectorAll('.outcomes-logo');
   const metricElements = document.querySelectorAll('.metric');
   const percentElements = document.querySelectorAll('.percent');
   const videoBackground = document.querySelector('.video-background');
   const videoSource = videoBackground.querySelector('source');
+  
+  const targetHrefs = [
+    "./outcomes/pokemon.html",
+    "./outcomes/pokemon.html",
+    "./outcomes/pokemon.html",
+  ];
 
   // hover effect for a GROUP of elements
   function applyHoverEffects(index) {
@@ -233,6 +238,9 @@ function addHoverEffectOnOutcomeElements() {
     if (title) {
       title.classList.add('outcomes-highlight');
       title.style.cursor = 'pointer';
+    }
+    if (logoElements[index]) {
+      logoElements[index].style.cursor = 'pointer';
     }
 
     //  video src based on metric data-video attribute
@@ -266,19 +274,27 @@ function addHoverEffectOnOutcomeElements() {
       title.classList.remove('outcomes-highlight');
       title.style.cursor = '';
     }
+    if (logoElements[index]) {
+      logoElements[index].style.cursor = '';
+    }
 
     // hide background
     document.querySelector('body.outcomes').classList.remove('hovered');
     videoBackground.style.opacity = '0';
   }
 
-  // iterate over index nums  and add event listeners
-  for (let i = 0; i < Math.min(titleElements.length, descriptionElements.length, logoElements.length, metricElements.length, percentElements.length); i++) {
-    const elementsGroup = [titleElements[i], descriptionElements[i], logoElements[i], metricElements[i]];
+  // iterate over index nums and add event listeners
+  for (let i = 0; i < Math.min(titleElements.length, logoElements.length, metricElements.length, percentElements.length, targetHrefs.length); i++) {
+    const elementsGroup = [titleElements[i], logoElements[i], metricElements[i]];
 
     elementsGroup.forEach(element => {
       element.addEventListener('mouseenter', () => applyHoverEffects(i));
       element.addEventListener('mouseleave', () => removeHoverEffects(i));
+      
+      // navigate to the target URL for this index
+      element.addEventListener('click', () => {
+        window.location.href = targetHrefs[i];
+      });
     });
   }
 }

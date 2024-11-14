@@ -2245,9 +2245,9 @@ body.outcomes {
     font-size: 89px;
     letter-spacing: -2.67px;
   }
-  div.container.outcomes-border{
+  /* div.container.outcomes-border{
     border-bottom:0px;
-  }
+  } */
   .info{
     padding-bottom:0px;
   }
@@ -2262,11 +2262,7 @@ body.outcomes {
   .outcomes-img{
     padding-bottom:10px;
     height:auto;
-  }
-  
-  
-
-  
+  }  
 }
 
 @media screen and (max-width: 700px) {
