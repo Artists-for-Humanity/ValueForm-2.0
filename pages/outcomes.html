@@ -14,19 +14,15 @@ careers@valueform.io
 	<title>Our Leadership | ValueForm</title>
 	<meta name="description"
 		content="ValueForm's leaders are battle-tested. They've worked on some of the most complex software that exists. They're hands-on practitioners of their craft.">
-
 	<link rel="icon" type="image/x-icon" href="../images/favicon/favicon.ico">
 	<link href="../images/favicon/android-chrome-192x192.png" rel="apple-touch-icon" sizes="180x180">
 	<link href="../images/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
 	<link href="../images/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
-
 	<link rel="stylesheet" href="../css/style.css" type="text/css" />
-	<!-- <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> -->
 	<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 	</head>
 
 	<body class="outcomes">
-		<!-- <script type="module" src="../scripts/update.js" async></script> -->
 	
 		<script>
 			const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
@@ -95,7 +91,7 @@ careers@valueform.io
                     </h2>
 
                     <div class="desktop-col-8  tablet-col-7 outcomes-description-container">
-                        <div class="outcomes-title"><span class="outcomes-highlight">Faster testing of rockets at Relativity Space. </span></div>
+                        <div class="outcomes-title">Faster testing of rockets at <span class="outcomes-highlight">Relativity Space. </span></div>
                         <div class="outcomes-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec convallis magna. Cras at mi augue. Phasellus vel dictum dolor. Mauris vestibulum. </div>
                         <img  class="outcomes-logo" src="../images/outcomes/relativity.png" alt="" srcset="">
                     </div>
@@ -151,71 +147,7 @@ careers@valueform.io
 
 
 	</body>
-
-	  <script>
-		const videoBackground = document.querySelector('.video-background');
-		const videoSource = videoBackground.querySelector('source');
 	  
-		document.querySelectorAll('.metric').forEach(item => {
-		  item.addEventListener('mouseenter', () => {
-			const videoSrc = item.getAttribute('data-video');
-			if (videoSrc) {
-			  videoSource.setAttribute('src', videoSrc);
-			  videoBackground.load(); // Load the new video source
-			}
-			document.querySelector('body.outcomes').classList.add('hovered');
-			videoBackground.style.opacity = '1'; // Show the video
-		  });
-	  
-		  item.addEventListener('mouseleave', () => {
-			document.querySelector('body.outcomes').classList.remove('hovered');
-			videoBackground.style.opacity = '0'; // Hide the video
-		  });
-		});
-	  </script>
-
-	  <!-- <script>
-		const videoBackground = document.querySelector('.video-background');
-		const videoSource = videoBackground.querySelector('source');
-	  
-		// Function to handle video display on hover
-		function showVideoOnHover(item) {
-		  item.addEventListener('mouseenter', () => {
-			const videoSrc = item.getAttribute('data-video');
-			if (videoSrc) {
-			  videoSource.setAttribute('src', videoSrc);
-			  videoBackground.load(); // Load the new video source
-			}
-			document.querySelector('body.outcomes').classList.add('hovered');
-			videoBackground.style.opacity = '1'; // Show the video
-		  });
-	  
-		  item.addEventListener('mouseleave', () => {
-			document.querySelector('body.outcomes').classList.remove('hovered');
-			videoBackground.style.opacity = '0'; // Hide the video
-		  });
-		}
-	  
-		// Apply hover effect to .metric elements
-		document.querySelectorAll('.metric').forEach(showVideoOnHover);
-	  
-		// Apply hover effect to .outcomes-title, .outcomes-description, and .outcomes-logo elements
-		document.querySelectorAll('.outcomes-title, .outcomes-description, .outcomes-logo').forEach(element => {
-		  element.addEventListener('mouseenter', () => {
-			document.querySelector('body.outcomes').classList.add('hovered');
-			videoBackground.style.opacity = '1'; // Show the video
-		  });
-	  
-		  element.addEventListener('mouseleave', () => {
-			document.querySelector('body.outcomes').classList.remove('hovered');
-			videoBackground.style.opacity = '0'; // Hide the video
-		  });
-		});
-	  </script>
-	   -->
-	  
-	  
-
 	<script src="../scripts/script.js"></script>
 
 </html>

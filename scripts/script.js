@@ -206,40 +206,86 @@ if (isTargetPage()) {
   window.addEventListener('DOMContentLoaded', clearScrollPosition);
 }
 
-// Adds hover effect to metric and percent when hovering over specific elements
 function addHoverEffectOnOutcomeElements() {
-  const hoverTargets = document.querySelectorAll('.outcomes-title, .outcomes-description, .outcomes-logo');
+  const titleElements = document.querySelectorAll('.outcomes-title');
+  const descriptionElements = document.querySelectorAll('.outcomes-description');
+  const logoElements = document.querySelectorAll('.outcomes-logo');
   const metricElements = document.querySelectorAll('.metric');
   const percentElements = document.querySelectorAll('.percent');
+  const videoBackground = document.querySelector('.video-background');
+  const videoSource = videoBackground.querySelector('source');
 
-  hoverTargets.forEach(target => {
-    target.addEventListener('mouseenter', () => {
-      metricElements.forEach(metric => {
-        metric.style.color = 'var(--nearwhite)';
-        metric.style.webkitTextStrokeColor = 'var(--nearwhite)';
-      });
-      percentElements.forEach(percent => {
-        percent.style.color = 'var(--nearwhite)';
-        percent.style.webkitTextStrokeColor = 'var(--nearwhite)';
-      });
-    });
+  // hover effect for a GROUP of elements
+  function applyHoverEffects(index) {
+    const metric = metricElements[index];
+    const percent = percentElements[index];
+    const title = titleElements[index];
 
-    target.addEventListener('mouseleave', () => {
-      metricElements.forEach(metric => {
-        metric.style.color = '';
-        metric.style.webkitTextStrokeColor = '';
-      });
-      percentElements.forEach(percent => {
-        percent.style.color = '';
-        percent.style.webkitTextStrokeColor = '';
-      });
+    if (metric && percent) {
+      metric.style.color = 'var(--nearwhite)';
+      metric.style.webkitTextStrokeColor = 'var(--nearwhite)';
+      percent.style.color = 'var(--nearwhite)';
+      percent.style.webkitTextStrokeColor = 'var(--nearwhite)';
+      metric.style.cursor = 'pointer';
+      percent.style.cursor = 'pointer';
+    }
+
+    if (title) {
+      title.classList.add('outcomes-highlight');
+      title.style.cursor = 'pointer';
+    }
+
+    //  video src based on metric data-video attribute
+    const videoSrc = metric ? metric.getAttribute('data-video') : null;
+    if (videoSrc) {
+      videoSource.setAttribute('src', videoSrc);
+      videoBackground.load(); 
+    }
+
+    // show the video background
+    document.querySelector('body.outcomes').classList.add('hovered');
+    videoBackground.style.opacity = '1';
+  }
+
+  // remove hover effects
+  function removeHoverEffects(index) {
+    const metric = metricElements[index];
+    const percent = percentElements[index];
+    const title = titleElements[index];
+
+    if (metric && percent) {
+      metric.style.color = '';
+      metric.style.webkitTextStrokeColor = '';
+      percent.style.color = '';
+      percent.style.webkitTextStrokeColor = '';
+      metric.style.cursor = '';
+      percent.style.cursor = '';
+    }
+
+    if (title) {
+      title.classList.remove('outcomes-highlight');
+      title.style.cursor = '';
+    }
+
+    // hide background
+    document.querySelector('body.outcomes').classList.remove('hovered');
+    videoBackground.style.opacity = '0';
+  }
+
+  // iterate over index nums  and add event listeners
+  for (let i = 0; i < Math.min(titleElements.length, descriptionElements.length, logoElements.length, metricElements.length, percentElements.length); i++) {
+    const elementsGroup = [titleElements[i], descriptionElements[i], logoElements[i], metricElements[i]];
+
+    elementsGroup.forEach(element => {
+      element.addEventListener('mouseenter', () => applyHoverEffects(i));
+      element.addEventListener('mouseleave', () => removeHoverEffects(i));
     });
-  });
+  }
 }
 
 
 
-//rRun the following code when the DOM is fully loaded
+//run the following code when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
   animateOnLoad();
   animateHeader("animatedHeader");
