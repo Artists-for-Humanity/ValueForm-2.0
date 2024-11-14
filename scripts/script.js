@@ -33,10 +33,10 @@ function exit_fade_previews() {
   elements.forEach(function (div) {
     div.classList.replace("fadeInUp", "fadeOutDown");
   });
-  document.querySelector("footer").style.visibility = "hidden";
+  // document.querySelector("footer").style.visibility = "hidden";
   setTimeout(() => {
     window.location = "../pages/airlines.html";
-  }, 600);
+  }, 1100);
 }
 
 //handle animation behavior for almost all links
