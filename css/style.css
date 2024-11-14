@@ -127,10 +127,10 @@ table {
 
 /* GLOBAL STYLES & VARIABLES */
 :root {
-  --almostblack: #020202;
-  --darkgrey: #404040;
-  --nearwhite: #bebebe;
-  --white: #ffffff;
+  --almostblack: rgba(2, 2, 2, 1);        /* #020202 */
+  --darkgrey: rgba(64, 64, 64, 1);        /* #404040 */
+  --nearwhite: rgba(190, 190, 190, 1);    /* #bebebe */
+  --white: rgba(255, 255, 255, 1);        /* #ffffff */
 }
 
 html{
@@ -2071,7 +2071,7 @@ cite bold {
 }
 
 .outcomes-description {
-  color: #BEBEBE;
+  color: var(--nearwhite);
 font-family: Helvetica;
 font-size: 16px;
 font-style: normal;
@@ -2162,7 +2162,7 @@ letter-spacing: -0.6px;
 
 
 .outcomes-text{
-  color: #BEBEBE;
+  color: var(--nearwhite);
 font-family: Helvetica;
 font-size: 16px;
 font-style: normal;
