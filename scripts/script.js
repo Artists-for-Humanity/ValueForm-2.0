@@ -300,6 +300,24 @@ function addHoverEffectOnOutcomeElements() {
 }
 
 
+const carousel = document.querySelector('.carousel');
+const items = document.querySelectorAll('.carousel-item');
+
+carousel.addEventListener('scroll', () => {
+  items.forEach(item => {
+    const rect = item.getBoundingClientRect();
+    const carouselRect = carousel.getBoundingClientRect();
+
+    if (
+      rect.left >= carouselRect.left &&
+      rect.right <= carouselRect.right
+    ) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+});
 
 //run the following code when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {

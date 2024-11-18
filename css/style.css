@@ -2290,6 +2290,61 @@ body.outcomes {
  }
 }
 
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+
+}
+.carousel-item {
+  min-width: 300px;
+  height: 200px; 
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  scroll-snap-align: center;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.carousel-item:not(.active) {
+  transform: scale(0.9);
+  opacity: 0.6;
+  filter: blur(2px);
+  box-shadow: inset 0 0 10px #000;
+}
+
+.carousel-item.active {
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
 
 
+/* .carousel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px; 
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 20px;
+}
 
+.carousel-item {
+  background-color: #444;
+  color: white;
+  height: 200px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  scroll-snap-align: start;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.carousel-item:hover {
+  transform: scale(1.05); 
+} */
