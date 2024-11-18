@@ -2309,7 +2309,7 @@ body.outcomes {
 }
 
 .carousel-item:not(.active) {
-  transform: scale(0.9);
+  transform: scale(0.7);
   opacity: 0.6;
   filter: blur(2px);
   box-shadow: inset 0 0 10px #000;
@@ -2321,30 +2321,7 @@ body.outcomes {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-
-/* .carousel-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px; 
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 20px;
+body > section > main > div.container.fadeInUp.no-before-after.desktop-col-12.outcomes-carousel.animated{
+  border-bottom:0px ;
+  padding: 0px;
 }
-
-.carousel-item {
-  background-color: #444;
-  color: white;
-  height: 200px; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  scroll-snap-align: start;
-  border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s, opacity 0.3s;
-}
-
-.carousel-item:hover {
-  transform: scale(1.05); 
-} */
