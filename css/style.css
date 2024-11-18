@@ -2022,11 +2022,11 @@ cite bold {
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: var(--darkgrey);
   font-family: Helvetica;
-  font-size: 225px;
+  font-size: 89px;
   font-style: normal;
   font-weight: 700;
-  /* line-height: normal; */
-  letter-spacing: -6.75px;
+  /* letter-spacing: -6.75px; */
+  letter-spacing: -2.67px;
   color: var(--almostblack);
 }
 
@@ -2058,11 +2058,11 @@ cite bold {
 .outcomes-title{
   color: var(--darkgrey);
   font-family: Helvetica;
-  font-size: 34px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  line-height: 34px;
-  letter-spacing: -1.02px;
+  line-height: 25px; /* 125% */
+  letter-spacing: -0.6px;
   margin-bottom:14px;
 }
 
@@ -2089,13 +2089,23 @@ max-height:100px;
   leading-trim: both;
   text-edge: cap;
   font-family: Helvetica;
-  font-size: 89px;
+  font-size: 31px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: -2.67px;
+  letter-spacing: -0.93px;
 }
-
+.outcomes-stat-description{
+  color: var(--nearwhite);
+leading-trim: both;
+text-edge: cap;
+font-family: Helvetica;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: 24px; /* 120% */
+letter-spacing: -0.6px;
+}
 .outcomes-metric{
   color: var(--nearwhite);
   leading-trim: both;
@@ -2265,8 +2275,8 @@ body.outcomes {
 
 @media screen and (max-width: 700px) {
  .outcome-stat{
-  display:flex;
-  flex-direction: column;
+  /* display:flex; */
+  /* flex-direction: column; */
  }
  .metric-percent{
   align-self: center;
@@ -2276,7 +2286,7 @@ body.outcomes {
   flex-direction: column;
  }
  .outcomes-logo{
-  align-self: center;
+  align-self: start;
  }
 }
 
