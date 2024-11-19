@@ -1847,6 +1847,9 @@ aside.sidebar-bottom h4.text-s + p.text-s{
 .link-back {
   padding-bottom: 21px;
 }
+.link-back-test {
+  padding-bottom: 21px;
+}
 
 @media screen and (min-width: 700px) {
   .link-back {

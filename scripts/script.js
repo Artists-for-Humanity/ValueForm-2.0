@@ -9,35 +9,6 @@ function isInViewport(element) {
   );
 }
 
-// function isInViewport(element) {
-//   const rect = element.getBoundingClientRect();
-//   return (
-//     rect.top >= 0 &&
-//     rect.left >= 0 &&
-//     rect.bottom <=
-//       (window.innerHeight || document.documentElement.clientHeight) &&
-//     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-//   );
-// }
-
-// check on whether or not the news preview section is already shown on screen (vinh)
-// sets localstorage item add_fade to true or false
-// function handleMainNewsFade() {
-//   const element = document.querySelector(".news_page_airlines");
-//   if (element) {
-//     if (isInViewport(element)) {
-//       console.log("The element is in the viewport.");
-//       localStorage.setItem("add_fade", false);
-//     } else {
-//       console.log("The element is not in the viewport.");
-//       localStorage.setItem("add_fade", true);
-//     }
-//   } else {
-//     console.log("No element with class found.");
-//   }
-//   return false;
-// }
-
 function handleMainNewsFade() {
   const elements = document.querySelectorAll(".news_page_airlines");
   if (elements.length > 0) {
@@ -282,99 +253,6 @@ function applyWhiteTextShadow() {
 // run the white text shadow function on page load
 document.addEventListener("DOMContentLoaded", applyWhiteTextShadow);
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   let elements_for_fade = [
-//     { element: document.getElementById("news_page_main"), delay: "600ms" },
-//     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
-//   ];
-
-//   // calculate total aniamtion time
-//   function calculateAnimationDuration() {
-//     const fadeInUpElements = document.querySelectorAll(".fadeInUp");
-//     const baseDuration = 600;
-//     const additionalDuration = 300;
-//     return baseDuration + fadeInUpElements.length * additionalDuration;
-//   }
-//   // article preview links
-//   const clickableLinks = document.querySelectorAll(".click-me");
-//   clickableLinks.forEach(function (link) {
-//     link.addEventListener("click", function (event) {
-//       event.preventDefault(); // prevent default navigation
-//       // valid link href?
-//       const targetHref = link.getAttribute("href");
-//       if (!targetHref) {
-//         console.error("No target URL found for this link.");
-//         return;
-//       }
-//       // add fade-out
-//       elements_for_fade.forEach(function (item) {
-//         if (item.element) {
-//           item.element.style.animationDelay = item.delay;
-//           item.element.classList.add("fadeOutDown", "animated");
-//         }
-//       });
-
-//       const totalAnimationDuration = calculateAnimationDuration();
-//       // delay navigation until fade-out is done
-//       setTimeout(function () {
-//         window.location.href = targetHref;
-//       }, totalAnimationDuration);
-//     });
-//   });
-
-//   //"read full article" link
-//   const readFullArticleLink = document.querySelector(".link-back");
-//   if (readFullArticleLink) {
-//     readFullArticleLink.addEventListener("click", function (event) {
-//       // prevent default navigation
-//       event.preventDefault();
-//       //valid url?
-//       // Hardcoded target URL
-//       // const targetHref = "/pages/airlines.html";
-
-//       const targetHref = readFullArticleLink.getAttribute("href");
-//       if (!targetHref) {
-//         console.error("No target URL found for this link.");
-//         return;
-//       }
-
-//       // const targetHref = readFullArticleLink.getAttribute("data-target");
-//       // if (!targetHref) {
-//       //   console.error("No target URL found for this link.");
-//       //   return;
-//       // }
-
-//       //add fade
-//       elements_for_fade.forEach(function (item) {
-//         if (item.element) {
-//           item.element.style.animationDelay = item.delay;
-//           item.element.classList.add("fadeOutDown", "animated");
-//         }
-//       });
-
-//       // Calculate total animation duration based on elements
-//       const totalAnimationDuration = calculateAnimationDuration();
-
-//       // Delay navigation until fade-out is complete
-//       setTimeout(function () {
-//         window.location.href = targetHref;
-//       }, totalAnimationDuration); // Adjust timeout based on total calculated duration
-//     });
-//   }
-
-//   // Check localStorage to decide whether to fade in the sections
-//   if (localStorage.getItem("add_fade") === "false") {
-//     elements_for_fade.forEach(function (item) {
-//       if (item.element) {
-//         item.element.classList.remove("fadeInUp", "animated");
-//       }
-//     });
-//   }
-
-//   // Reset fade on localStorage
-//   localStorage.setItem("add_fade", true);
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
   let elements_for_fade = [
     { element: document.getElementById("news_page_main"), delay: "600ms" },
@@ -388,6 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const additionalDuration = 300;
     return baseDuration + fadeInUpElements.length * additionalDuration;
   }
+
   // article preview links
   const clickableLinks = document.querySelectorAll(".click-me");
   clickableLinks.forEach(function (link) {
@@ -416,13 +295,47 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   //"read full article" link
-  const readFullArticleLink = document.querySelector(".link-back");
+  const readFullArticleLink = document.querySelector(".link-back-news");
   if (readFullArticleLink) {
     readFullArticleLink.addEventListener("click", function (event) {
       // prevent default navigation
       event.preventDefault();
       //valid url?
       const targetHref = readFullArticleLink.getAttribute("href");
+      // const targetHref = "/pages/airlines.html";
+
+      if (!targetHref) {
+        console.error("No target URL found for this link.");
+        return;
+      }
+      //add fade
+      elements_for_fade.forEach(function (item) {
+        if (item.element) {
+          item.element.style.animationDelay = item.delay;
+          item.element.classList.add("fadeOutDown", "animated");
+        }
+      });
+
+      // Calculate total animation duration based on elements
+      const totalAnimationDuration = calculateAnimationDuration();
+
+      // Delay navigation until fade-out is complete
+      setTimeout(function () {
+        window.location.href = targetHref;
+      }, totalAnimationDuration); // Adjust timeout based on total calculated duration
+    });
+  }
+
+  //"read all news" link
+  const readAllArticleLink = document.querySelector(".link-back");
+  if (readAllArticleLink) {
+    readAllArticleLink.addEventListener("click", function (event) {
+      // prevent default navigation
+      event.preventDefault();
+      //valid url?
+      const targetHref = readAllArticleLink.getAttribute("href");
+      // const targetHref = "/pages/news.html";
+
       if (!targetHref) {
         console.error("No target URL found for this link.");
         return;
