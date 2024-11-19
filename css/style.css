@@ -1672,14 +1672,8 @@ table {
   text-decoration: none;
 }
 
-.article-title-no-link {
-  color: #404040;
-  font-family: Helvetica;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 20px; /* 100% */
-  letter-spacing: -0.6px;
+.article-title:first-child:hover{
+  cursor: text;
 }
 
 .article-title {
