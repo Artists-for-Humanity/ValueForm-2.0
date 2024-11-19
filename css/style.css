@@ -1672,6 +1672,16 @@ table {
   text-decoration: none;
 }
 
+.article-title-no-link {
+  color: #404040;
+  font-family: Helvetica;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 100% */
+  letter-spacing: -0.6px;
+}
+
 .article-title {
   color: #404040;
   font-family: Helvetica;
@@ -1909,6 +1919,16 @@ cite bold {
 }
 @media screen and (min-width: 1080px) {
   .article-title {
+    color: #404040;
+    font-family: Helvetica;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 34px; /* 100% */
+    letter-spacing: -1.02px;
+  }
+
+  .article-title-no-link {
     color: #404040;
     font-family: Helvetica;
     font-size: 34px;
