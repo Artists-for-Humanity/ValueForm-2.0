@@ -44,7 +44,7 @@ function exit_fade_previews() {
 
   setTimeout(() => {
     window.location = "../pages/airlines.html";
-  },  elements.length * 600 - 800);
+  },  elements.length * 600 + 800);
 }
 
 // function exit_fade_previews() {
