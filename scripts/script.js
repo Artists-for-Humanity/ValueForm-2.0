@@ -389,7 +389,7 @@ function removeFadeInUp() {
 }
 
 function addFadeInUp() {
-  const block = document.querySelectorAll(".container");
+  const block = document.querySelectorAll(".above_read_full", ".container");
   block.forEach(function (item) {
     if (item) {
       item.classList.add("fadeInUp");
