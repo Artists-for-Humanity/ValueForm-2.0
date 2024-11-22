@@ -389,10 +389,34 @@ function removeFadeInUp() {
 }
 
 function addFadeInUp() {
-  const block = document.querySelectorAll(".above_read_full", ".container");
+  const block = document.querySelectorAll(".above_read_full");
   block.forEach(function (item) {
     if (item) {
-      item.classList.add("fadeInUp");
+      item.classList.add("fadeInUp", "animated");
+      console.log('reached addFadeInUp() loop');
+      
     }
   });
+}
+
+function addFadeOutDown() {
+  let elements_for_fade = [
+    { element: document.getElementById("news_page_main"), delay: "600ms" },
+    { element: document.getElementById("top_banner_main"), delay: "1200ms" },
+  ];
+
+  elements_for_fade.forEach(function (item) {
+    if (item.element) {
+      item.element.style.animationDelay = item.delay;
+      item.element.classList.add("fadeOutDown", "animated");
+      console.log("reached fadeOutDown() loop");
+    }
+  });
+  // const block = document.querySelectorAll(".above_read_full");
+  // block.forEach(function (item) {
+  //   if (item) {
+  //     item.classList.add("fadeOutDown", "animated");
+  //     console.log("reached addFadeOutDown() loop");
+  //   }
+  // });
 }
