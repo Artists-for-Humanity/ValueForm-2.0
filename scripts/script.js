@@ -10,7 +10,6 @@ function isInViewport(element) {
 }
 
 function handleMainNewsFade() {
-  console.log("reached handleMainNewsFade()");
   const elements = document.querySelectorAll(".news_page_airlines");
 
   if (elements.length > 0) {
@@ -77,7 +76,7 @@ function handleNavigation(fadeInUpElements) {
   const logoLinks = document.querySelectorAll("header a img");
   const footerLinks = document.querySelectorAll("footer a img");
   const headerLinks = document.querySelectorAll("header a");
-  const articleElements = document.querySelectorAll(".article-title.preview");
+  // const articleElements = document.querySelectorAll(".article-title.preview");
   const linkBack = document.querySelectorAll(".link-back");
   const clickMe = document.querySelectorAll(".click-me");
   const linkBackNews = document.querySelectorAll(".link-back-news");
@@ -88,7 +87,7 @@ function handleNavigation(fadeInUpElements) {
     ...logoLinks,
     ...footerLinks,
     ...headerLinks,
-    ...articleElements,
+    // ...articleElements,
     ...linkBack,
     ...linkBackNews,
   ].forEach((element) => {
@@ -288,7 +287,16 @@ function applyWhiteTextShadow() {
   }
 }
 
-// run the white text shadow function on page load
+// calculate total aniamtion time
+function calculateAnimationDuration() {
+  const fadeInUpElements = document.querySelectorAll(".fadeInUp");
+  const baseDuration = 600;
+  const additionalDuration = 300;
+  console.log(baseDuration * fadeInUpElements.length + additionalDuration);
+  return baseDuration + fadeInUpElements.length * additionalDuration;
+}
+
+// run the white text  shadow function on page load
 document.addEventListener("DOMContentLoaded", applyWhiteTextShadow);
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -297,41 +305,34 @@ document.addEventListener("DOMContentLoaded", function () {
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
-  // calculate total aniamtion time
-  function calculateAnimationDuration() {
-    const fadeInUpElements = document.querySelectorAll(".fadeInUp");
-    const baseDuration = 600;
-    const additionalDuration = 300;
-    return baseDuration + fadeInUpElements.length * additionalDuration;
-  }
-
   // article preview links
-  const clickableLinks = document.querySelectorAll(".click-me");
-  clickableLinks.forEach(function (link) {
-    link.addEventListener("click", function (event) {
-      event.preventDefault(); // prevent default navigation
-      // valid link href?
-      const targetHref = link.getAttribute("href");
-      if (!targetHref) {
-        console.error("No target URL found for this link.");
-        return;
-      }
-      // add fade-out
-      elements_for_fade.forEach(function (item) {
-        if (item.element) {
-          item.element.style.animationDelay = item.delay;
-          item.element.classList.add("fadeOutDown", "animated");
-          console.log("adding fadeOutDown");
-        }
-      });
+  // const clickableLinks = document.querySelectorAll(".click-me");
+  // clickableLinks.forEach(function (link) {
+  //   link.addEventListener("click", function (event) {
+  //     event.preventDefault(); // prevent default navigation
+  //     // valid link href?
+  //     const targetHref = link.getAttribute("href");
+  //     if (!targetHref) {
+  //       console.error("No target URL found for this link.");
+  //       return;
+  //     }
+  //     // add fade-out
+  //     elements_for_fade.forEach(function (item) {
+  //       if (item.element) {
+  //         item.element.style.animationDelay = item.delay;
+  //         item.element.classList.add("fadeOutDown", "animated");
+  //       }
+  //     });
 
-      const totalAnimationDuration = calculateAnimationDuration();
-      // delay navigation until fade-out is done
-      setTimeout(function () {
-        window.location.href = targetHref;
-      }, totalAnimationDuration);
-    });
-  });
+  //     const totalAnimationDuration = calculateAnimationDuration();
+  //     console.log(totalAnimationDuration);
+
+  //     // delay navigation until fade-out is done
+  //     setTimeout(function () {
+  //       window.location.href = targetHref;
+  //     }, totalAnimationDuration);
+  //   });
+  // });
 
   //"read all news" link
   const readAllArticleLink = document.querySelector(".link-back");
@@ -393,30 +394,56 @@ function addFadeInUp() {
   block.forEach(function (item) {
     if (item) {
       item.classList.add("fadeInUp", "animated");
-      console.log('reached addFadeInUp() loop');
-      
+      console.log("reached addFadeInUp() loop");
     }
   });
 }
 
+// function test(){
+
+//   const fadeInUpElements = Array.from(
+//     document.querySelectorAll(".fadeInUp:not(nav)")
+//   );
+
+
+//   fadeInUpElements
+//   .filter(isInViewport)
+//   .reverse()
+//   .forEach((element, index) => {
+//     // console.log("reached handleNavigation else conditional");
+
+//     element.style.animationDelay = `${index * 600}ms`;
+//     // console.log("index B = " + index);
+//   });
+//   console.log(fadeInUpElements.length * 600 + 800)
+
+//   return fadeInUpElements.length * 600 + 800
+
+// }
+
 function addFadeOutDown() {
+
+  
+
+
+  // Calculate total animation duration based on elements
+  const totalAnimationDuration = test();
   let elements_for_fade = [
-    { element: document.getElementById("news_page_main"), delay: "600ms" },
-    { element: document.getElementById("top_banner_main"), delay: "1200ms" },
+    {
+      element: document.getElementById("news_page_main"),
+      delay: `${totalAnimationDuration}ms`,
+    },
+    {
+      element: document.getElementById("top_banner_main"),
+      delay: `${totalAnimationDuration}ms`,
+    },
   ];
 
   elements_for_fade.forEach(function (item) {
     if (item.element) {
       item.element.style.animationDelay = item.delay;
       item.element.classList.add("fadeOutDown", "animated");
-      console.log("reached fadeOutDown() loop");
+      // console.log("elements_for_fade = " + item.delay);
     }
   });
-  // const block = document.querySelectorAll(".above_read_full");
-  // block.forEach(function (item) {
-  //   if (item) {
-  //     item.classList.add("fadeOutDown", "animated");
-  //     console.log("reached addFadeOutDown() loop");
-  //   }
-  // });
 }
