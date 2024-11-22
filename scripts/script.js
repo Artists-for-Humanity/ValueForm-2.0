@@ -10,7 +10,9 @@ function isInViewport(element) {
 }
 
 function handleMainNewsFade() {
+  console.log("reached handleMainNewsFade()");
   const elements = document.querySelectorAll(".news_page_airlines");
+
   if (elements.length > 0) {
     elements.forEach((element) => {
       if (isInViewport(element)) {
@@ -27,6 +29,25 @@ function handleMainNewsFade() {
   return false;
 }
 
+// function handleMainNewsFade() {
+//   const elements = document.querySelectorAll(".link-back-news");
+
+//   if (elements.length > 0 || document.querySelectorAll(".link-back-news")){
+//     elements.forEach((element) => {
+//       if (isInViewport(element)) {
+//         // console.log("The element is in the viewport.");
+//         localStorage.setItem("add_fade", false);
+//       } else {
+//         // console.log("The element is not in the viewport.");
+//         localStorage.setItem("add_fade", true);
+//       }
+//     });
+//   } else {
+//     console.log("No elements with the .link-back-news class found.");
+//   }
+//   return false;
+// }
+
 // fade the article-links for redirect when clicking read all articles + set footer to hidden (vinh)
 function exit_fade_previews() {
   const elements = document.querySelectorAll(".fade_link");
@@ -37,29 +58,18 @@ function exit_fade_previews() {
     div.classList.replace("fadeInUp", "fadeOutDown");
     div.style.animationDelay = `${index * 600}ms`;
     // delayCounter++;
-    console.log("index A = " + index);
+    // console.log("index A = " + index);
   });
 
   // Add an extra delay for smooth transition
 
-  setTimeout(() => {
-    window.location = "../pages/airlines.html";
-  },  elements.length * 600 + 800);
+  setTimeout(
+    () => {
+      window.location = "../pages/airlines.html";
+    },
+    elements.length * 600 + 800
+  );
 }
-
-// function exit_fade_previews() {
-//   const elements = document.querySelectorAll(".fade_link");
-//   // console.log("elements = " + elements);
-
-//   elements.forEach(function (div) {
-//     div.classList.replace("fadeInUp", "fadeOutDown");
-
-//   });
-//   // document.querySelector("footer").style.visibility = "hidden";
-//   setTimeout(() => {
-//     window.location = "../pages/airlines.html";
-//   }, 1100);
-// }
 
 //handle animation behavior for almost all links
 function handleNavigation(fadeInUpElements) {
@@ -103,10 +113,12 @@ function handleNavigation(fadeInUpElements) {
           .filter(isInViewport)
           .reverse()
           .forEach((element, index) => {
+            // console.log("reached handleNavigation else conditional");
+
             element.classList.replace("fadeInUp", "fadeOutDown");
             element.style.animationDelay = `${index * 600}ms`;
             delayCounter++;
-            console.log("index B = " + index);
+            // console.log("index B = " + index);
           });
 
         setTimeout(
@@ -244,12 +256,13 @@ document.addEventListener("DOMContentLoaded", () => {
   watchHeaderInView();
 });
 
-//run this code is the page is loaded from cache
+//run this code if the page is loaded from cache
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
     ("Page was loaded from the cache");
     // re-initialize animations or reset styles here
     document.querySelectorAll(".fadeOutDown").forEach((el) => {
+      console.log("loading page from cache");
       el.classList.replace("fadeOutDown", "fadeInUp");
     });
   }
@@ -308,6 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (item.element) {
           item.element.style.animationDelay = item.delay;
           item.element.classList.add("fadeOutDown", "animated");
+          console.log("adding fadeOutDown");
         }
       });
 
@@ -319,44 +333,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  //"read full article" link
-  // const readFullArticleLink = document.querySelector(".link-back-news");
-  // console.log("reached " + readFullArticleLink)
-
-  // if (readFullArticleLink) {
-  //   readFullArticleLink.addEventListener("click", function (event) {
-  //     // prevent default navigation
-  //     event.preventDefault();
-  //     //valid url?
-  //     const targetHref = readFullArticleLink.getAttribute("href");
-  //     // const targetHref = "/pages/airlines.html";
-
-  //     if (!targetHref) {
-  //       console.error("No target URL found for this link.");
-  //       return;
-  //     }
-  //     //add fade
-  //     elements_for_fade.forEach(function (item) {
-  //       if (item.element) {
-  //         item.element.style.animationDelay = item.delay;
-  //         item.element.classList.add("fadeOutDown", "animated");
-  //         console.log("elements_for_fade = " + item.element.classList.add("fadeOutDown", "animated"));
-  //       }
-  //     });
-
-  //     // Calculate total animation duration based on elements
-  //     const totalAnimationDuration = calculateAnimationDuration();
-
-  //     // Delay navigation until fade-out is complete
-  //     setTimeout(function () {
-  //       window.location.href = targetHref;
-  //     }, totalAnimationDuration); // Adjust timeout based on total calculated duration
-  //   });
-  // }
-
   //"read all news" link
   const readAllArticleLink = document.querySelector(".link-back");
-  // console.log("reached " + readAllArticleLink)
   if (readAllArticleLink) {
     readAllArticleLink.addEventListener("click", function (event) {
       // prevent default navigation
@@ -392,6 +370,7 @@ document.addEventListener("DOMContentLoaded", function () {
     elements_for_fade.forEach(function (item) {
       if (item.element) {
         item.element.classList.remove("fadeInUp", "animated");
+        console.log("removing fadeInUp");
       }
     });
   }
@@ -399,3 +378,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // Reset fade on localStorage
   localStorage.setItem("add_fade", true);
 });
+
+function removeFadeInUp() {
+  const block = document.querySelectorAll(".above_read_full");
+  block.forEach(function (item) {
+    if (item) {
+      item.classList.remove("fadeInUp", "animated");
+    }
+  });
+}
+
+function addFadeInUp() {
+  const block = document.querySelectorAll(".container");
+  block.forEach(function (item) {
+    if (item) {
+      item.classList.add("fadeInUp");
+    }
+  });
+}
