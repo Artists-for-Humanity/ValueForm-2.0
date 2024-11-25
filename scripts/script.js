@@ -28,45 +28,22 @@ function handleMainNewsFade() {
   return false;
 }
 
-// function handleMainNewsFade() {
-//   const elements = document.querySelectorAll(".link-back-news");
-
-//   if (elements.length > 0 || document.querySelectorAll(".link-back-news")){
-//     elements.forEach((element) => {
-//       if (isInViewport(element)) {
-//         // console.log("The element is in the viewport.");
-//         localStorage.setItem("add_fade", false);
-//       } else {
-//         // console.log("The element is not in the viewport.");
-//         localStorage.setItem("add_fade", true);
-//       }
-//     });
-//   } else {
-//     console.log("No elements with the .link-back-news class found.");
-//   }
-//   return false;
-// }
-
 // fade the article-links for redirect when clicking read all articles + set footer to hidden (vinh)
 function exit_fade_previews() {
   const elements = document.querySelectorAll(".fade_link");
 
-  // let delayCounter = 0;
 
   elements.forEach((div, index) => {
     div.classList.replace("fadeInUp", "fadeOutDown");
     div.style.animationDelay = `${index * 600}ms`;
-    // delayCounter++;
-    // console.log("index A = " + index);
   });
 
-  // Add an extra delay for smooth transition
 
   setTimeout(
     () => {
       window.location = "../pages/airlines.html";
     },
-    elements.length * 600 + 800
+    elements.length * 600 + 800 // Add an extra delay for smooth transition
   );
 }
 
@@ -112,19 +89,78 @@ function handleNavigation(fadeInUpElements) {
           .filter(isInViewport)
           .reverse()
           .forEach((element, index) => {
-            // console.log("reached handleNavigation else conditional");
-
             element.classList.replace("fadeInUp", "fadeOutDown");
             element.style.animationDelay = `${index * 600}ms`;
             delayCounter++;
-            // console.log("index B = " + index);
           });
 
-        setTimeout(
-          () => (window.location.href = targetUrl),
-          delayCounter * 600 + 800
-        );
+        // Check the current page based on pathname or title
+        const currentPage = window.location.pathname; // e.g., "/home", "/about"
+        const targetPage = window.location.pathname;
+        // console.log(`Current page: ${currentPage}`);
+
+        const newsPageMain = document.getElementById("news_page_main")
+        const topBannerMain = document.getElementById("top_banner_main")
+        const isNewsPageMainInViewport = newsPageMain && isInViewport(newsPageMain);
+        // console.log(isNewsPageMainInViewport);
+        const isTopBannerMainInViewport = topBannerMain && isInViewport(topBannerMain);
+
+        // Example: Add specific behavior for a certain page
+        // console.log("target url:" + targetUrl);
+        if (currentPage === "/pages/airlines.html" && targetUrl != "./news.html") {
+          console.log("This is the airlines page");
+          // Log if specific elements are in the viewport
+
+
+          // Increment delayCounter for each ID that is in the viewport
+          if (isNewsPageMainInViewport) {
+            delayCounter++;
+            console.log("Incremented delayCounter for #news_page_main");
+            setTimeout(() => {
+              const NewsPageMain = document.getElementById("news_page_main");
+              NewsPageMain.classList.add("fadeOutDown");
+              console.log(delayCounter);
+            }, (delayCounter - 1) * 600);
+          }
+
+          if (isTopBannerMainInViewport) {
+            delayCounter++;
+            console.log("Incremented delayCounter for #top_banner_main");
+            setTimeout(() => {
+              const TopBannerMain = document.getElementById("top_banner_main");
+              TopBannerMain.classList.add("fadeOutDown");
+              console.log(delayCounter);
+            }, (delayCounter - 1) * 600);
+          } else {
+            console.log("This is a different page");
+          }
+        }
+
+        if (currentPage === "/pages/news.html" && targetUrl === "./airlines.html") {
+          console.log("Decrementing delayCounter");
+
+          if (localStorage.getItem("newsFade") === "true") {
+            if (isNewsPageMainInViewport) {
+              delayCounter--;
+            }
+            if (isTopBannerMainInViewport) {
+              delayCounter--;
+            }
+
+            console.log("I got ehrer")
+          }
+          localStorage.setItem("newsFade", false);
+        }
+
+        console.log(delayCounter);
+
+        setTimeout(() => {
+          console.log(`Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`)
+          window.location.href = targetUrl;
+        }, delayCounter * 600 + 800);
+
       }
+
     });
   });
 }
@@ -229,7 +265,7 @@ function restoreScrollPosition() {
 // check if the current page is a target page
 function isTargetPage() {
   const currentPage = window.location.pathname.split("/").pop();
-  return currentPage === "news.html" || currentPage === "airlines.html";
+  return currentPage === "news.html" || currentPage === "airlines.html" || currentPage === "dizzy.html";
 }
 
 // clear scroll position and reset to 0 if not on the target page
@@ -305,35 +341,6 @@ document.addEventListener("DOMContentLoaded", function () {
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
-  // article preview links
-  // const clickableLinks = document.querySelectorAll(".click-me");
-  // clickableLinks.forEach(function (link) {
-  //   link.addEventListener("click", function (event) {
-  //     event.preventDefault(); // prevent default navigation
-  //     // valid link href?
-  //     const targetHref = link.getAttribute("href");
-  //     if (!targetHref) {
-  //       console.error("No target URL found for this link.");
-  //       return;
-  //     }
-  //     // add fade-out
-  //     elements_for_fade.forEach(function (item) {
-  //       if (item.element) {
-  //         item.element.style.animationDelay = item.delay;
-  //         item.element.classList.add("fadeOutDown", "animated");
-  //       }
-  //     });
-
-  //     const totalAnimationDuration = calculateAnimationDuration();
-  //     console.log(totalAnimationDuration);
-
-  //     // delay navigation until fade-out is done
-  //     setTimeout(function () {
-  //       window.location.href = targetHref;
-  //     }, totalAnimationDuration);
-  //   });
-  // });
-
   //"read all news" link
   const readAllArticleLink = document.querySelector(".link-back");
   if (readAllArticleLink) {
@@ -370,8 +377,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (localStorage.getItem("add_fade") === "false") {
     elements_for_fade.forEach(function (item) {
       if (item.element) {
-        item.element.classList.remove("fadeInUp", "animated");
         console.log("removing fadeInUp");
+        item.element.classList.remove("fadeInUp", "animated");
       }
     });
   }
@@ -384,7 +391,10 @@ function removeFadeInUp() {
   const block = document.querySelectorAll(".above_read_full");
   block.forEach(function (item) {
     if (item) {
+      console.log("removing fadeInUp");
       item.classList.remove("fadeInUp", "animated");
+      localStorage.setItem("newsFade", true);
+
     }
   });
 }
@@ -399,35 +409,33 @@ function addFadeInUp() {
   });
 }
 
-// function test(){
+function test() {
 
-//   const fadeInUpElements = Array.from(
-//     document.querySelectorAll(".fadeInUp:not(nav)")
-//   );
+  const fadeInUpElements = Array.from(
+    document.querySelectorAll(".fadeInUp:not(nav)")
+  );
 
 
-//   fadeInUpElements
-//   .filter(isInViewport)
-//   .reverse()
-//   .forEach((element, index) => {
-//     // console.log("reached handleNavigation else conditional");
+  fadeInUpElements
+    .filter(isInViewport)
+    .reverse()
+    .forEach((element, index) => {
+      // console.log("reached handleNavigation else conditional");
 
-//     element.style.animationDelay = `${index * 600}ms`;
-//     // console.log("index B = " + index);
-//   });
-//   console.log(fadeInUpElements.length * 600 + 800)
+      element.style.animationDelay = `${index * 600}ms`;
+      // console.log("index B = " + index);
+    });
+  console.log(fadeInUpElements.length)
 
-//   return fadeInUpElements.length * 600 + 800
+  return fadeInUpElements.length * 600 + 800
 
-// }
+}
+
 
 function addFadeOutDown() {
-
-  
-
-
   // Calculate total animation duration based on elements
-  const totalAnimationDuration = test();
+  // const totalAnimationDuration = test();
+  const totalAnimationDuration = 600;
   let elements_for_fade = [
     {
       element: document.getElementById("news_page_main"),
@@ -435,7 +443,7 @@ function addFadeOutDown() {
     },
     {
       element: document.getElementById("top_banner_main"),
-      delay: `${totalAnimationDuration}ms`,
+      delay: `${totalAnimationDuration + 600}ms`,
     },
   ];
 
@@ -446,4 +454,15 @@ function addFadeOutDown() {
       // console.log("elements_for_fade = " + item.delay);
     }
   });
+}
+
+function staticTitle() {
+  const item = document.querySelector("#top_banner_main.above_read_full");
+  if (item) {
+    console.log("Removing fadeInUp from #top_banner_main");
+    item.classList.remove("fadeInUp", "animated");
+    // localStorage.setItem("newsFade", true);
+  } else {
+    console.log("Element #top_banner_main with class above_read_full not found.");
+  }
 }
