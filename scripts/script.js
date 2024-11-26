@@ -103,17 +103,17 @@ function handleNavigation(fadeInUpElements) {
         // Example: Add specific behavior for a certain page
         if (
           currentPage === "/pages/articles/airlines.html" &&
-          targetUrl != "./news.html"
+          targetUrl != "../news.html"
         ) {
           // Increment delayCounter for each ID that is in the viewport
           if (isNewsPageMainInViewport) {
             delayCounter++;
-            console.log("Incremented delayCounter for #news_page_main");
+            // console.log("Incremented delayCounter for #news_page_main");
             setTimeout(
               () => {
                 const NewsPageMain = document.getElementById("news_page_main");
                 NewsPageMain.classList.add("fadeOutDown");
-                console.log(delayCounter);
+                // console.log(delayCounter);
               },
               (delayCounter - 1) * 600
             );
@@ -121,13 +121,14 @@ function handleNavigation(fadeInUpElements) {
 
           if (isTopBannerMainInViewport) {
             delayCounter++;
-            console.log("Incremented delayCounter for #top_banner_main");
+            // console.log("Incremented delayCounter for #top_banner_main");
             setTimeout(
               () => {
                 const TopBannerMain =
                   document.getElementById("top_banner_main");
                 TopBannerMain.classList.add("fadeOutDown");
-                console.log(delayCounter);
+                // console.log(delayCounter);
+                console.log("adding fadeOutDown");
               },
               (delayCounter - 1) * 600
             );
@@ -148,12 +149,11 @@ function handleNavigation(fadeInUpElements) {
               delayCounter--;
             }
 
-            console.log("I got ehrer");
           }
           localStorage.setItem("newsFade", false);
         }
 
-        console.log(delayCounter);
+        // console.log(delayCounter);
 
         setTimeout(
           () => {
@@ -260,7 +260,7 @@ function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
   if (storedScrollPosition !== null) {
     window.scrollTo(0, parseInt(storedScrollPosition, 10));
-    console.log("retoring scroll position");
+    // console.log("retoring scroll position");
   }
 
   // Show the page content after restoring scroll
@@ -386,7 +386,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (localStorage.getItem("add_fade") === "false") {
     elements_for_fade.forEach(function (item) {
       if (item.element) {
-        console.log("removing fadeInUp");
+        console.log("removing fadeInUp when add_fade = false");
         item.element.classList.remove("fadeInUp", "animated");
       }
     });
