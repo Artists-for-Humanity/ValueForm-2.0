@@ -36,7 +36,7 @@ careers@valueform.io
 
 </head>
 
-<body>
+<body class="preload">
     <script>
         const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
         if (dontAnimate === 'true') {
@@ -71,12 +71,12 @@ careers@valueform.io
             <div>
                 <a href="../our-approach.html">Our Approach</a>
                 <a href="../leadership.html">Leadership</a>
-                <a href="../news.html">News</a>
+                <a href="../news.html" onclick=" staticTitle(); handleMainNewsFade();">News</a>
             </div>
         </nav>
 
         <main class="internal news">
-            <div class="intro fadeInUp">
+            <div id="top_banner_main" class="intro above_read_full news_page_airlines">
                 <h1 class="text-m"> C. News.</h1>
                 <div>
                     <h2 class="text-xl">Ear to the Streets.</h2>
@@ -107,12 +107,12 @@ careers@valueform.io
 
                 <div class="desktop-col-7 tablet-col-7  img-contain">
                     <!-- <img src="/images/logo.svg" alt="" srcset="" style="width:112px;"> -->
-                    <img src="/images/news/spinning logo-faster.gif" alt=""  style="z-index: -3; width:212px">
+                    <img src="/images/news/spinning logo-faster.gif" alt="" style="z-index: -3; width:212px">
                     <!-- <video autoplay src="/images//news/spinning logo-faster.mov"></video> -->
                 </div>
 
                 <div class="fadeInUp desktop-col-7 tablet-col-7  article text">
-                 
+
                     <div class="text-l subheader">
                         Something happened to experience design.
                     </div>
@@ -135,8 +135,8 @@ careers@valueform.io
                         role of creative partners has shifted. Agencies and consultancies lost their ability and
                         consequently, permission to help businesses leapfrog their competitors. I plan on taking it
                         back.
-                        <div class="text-l subheader">  Today, most firms fall into two categories:</div>
-                      
+                    <div class="text-l subheader"> Today, most firms fall into two categories:</div>
+
                     <p class="text-m"><span class="bold">The Production Shop:</span> When brands lack in-house teams,
                         firms function as production units or staff augmentation. They follow orders, but novel thinking
                         is absent. Soon you won't need these firms. With the rise of Al development and design tools,
@@ -150,7 +150,7 @@ careers@valueform.io
                     <p class="text-m">
                         Neither of these alone delivers business outcomes, and they rarely work together or originate
                         from the same firm. There's a gap in the way things are done.
-                        
+
                     </p>
                 </div>
                 <blockquote class="fadeInUp blockQuote desktop-col-8 tablet-col-7 ">
@@ -175,14 +175,15 @@ careers@valueform.io
                 <div class="fadeInUp desktop-col-7 tablet-col-7 article text">
                     <div class="text-m subheader">The model is disjointed and broken.</div>
                     <p class="text-m">
-                       
+
                         Value needs to be formed. And we won't get there by following orders blindly or cheering from
                         the sideline.
                         That's why I started ValueForm. So we can return to generating outcomes, not presentations or
                         skinned SaaS software. Some time ago, we moved away from that. ValueForm is going to get there
                         by:
                     </p>
-                    <p class="text-m bold"> - Setting clear goals. We'll establish specific and measurable outcomes, and our
+                    <p class="text-m bold"> - Setting clear goals. We'll establish specific and measurable outcomes, and
+                        our
                         compensation is directly tied to them. </p>
                     <p class="text-m bold"> - Providing both the end experience and the system that creates it. We make
                         execution inevitable.</p>
@@ -202,28 +203,31 @@ careers@valueform.io
                     </p>
                 </div>
 
-               
-          
+
+
 
                 <div class=" fadeInUp desktop-col-8 tablet-col-7 ">
                     <div class="sidebar-bottom">
                         <h4 class="text-s">About Valueform:</h4>
 
                         <p class="text-s">
-                            Being evidence-based. We design experiments and build prototypes to test our assumptions and hypotheses at every stage. When was the last time someone tested a strategy for you? I invite you to explore ValueForm's approach to how we're changing the game. I am excited about the chance to collaborate and drive tangible outcomes together.
+                            Being evidence-based. We design experiments and build prototypes to test our assumptions and
+                            hypotheses at every stage. When was the last time someone tested a strategy for you? I
+                            invite you to explore ValueForm's approach to how we're changing the game. I am excited
+                            about the chance to collaborate and drive tangible outcomes together.
                         </p>
 
                     </div>
-                  
+
                     <a href="./../news.html" class="underline strong link ">
                         Read all News
                     </a>
 
-                  
+
 
                 </div>
 
-              
+
 
             </div>
         </main>
