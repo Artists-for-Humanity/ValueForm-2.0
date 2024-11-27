@@ -1279,7 +1279,7 @@ main.internal.news .intro + .container.no-border {
   }
   main.internal.news .container:last-child {
     border: 0;
-    padding-bottom: 30px;
+    padding-bottom: 38px;
   }
   main.internal.lead p {
     padding-bottom: 31px;
@@ -1716,6 +1716,7 @@ table {
 @media screen and (min-width: 700px) {
   .article .date {
     padding-bottom: 7px;
+    padding-top:9px;
   }
 }
 
@@ -1749,7 +1750,7 @@ x-img {
   padding-bottom: 0px;
   margin-top: 9px;
   margin-bottom: 0px;
-  padding-bottom: 4px !important;
+  padding-bottom: 9px !important;
 }
 
 .link,
@@ -1768,6 +1769,14 @@ x-img {
   .link_read {
     margin-top:19px;
     margin-bottom: 27px;
+  }
+  
+}
+
+@media screen and (min-width: 1080px) {
+  .link_read {
+    margin-top:14px;
+    margin-bottom: 37px;
   }
   
 }
@@ -1818,14 +1827,14 @@ x-img {
 .article-img {
   width: 100%;
   height: auto;
-  margin-top: 14px;
+  margin-top: 9px;
   margin-bottom: 8px;
   object-fit: cover;
 }
 
 .article-vid {
-  padding-top:14px;
-  padding-bottom: 13px;
+  padding-top:9px;
+  padding-bottom: 20px;
  
 }
 
@@ -1848,7 +1857,7 @@ aside.sidebar-bottom h4.text-s + p.text-s{
   padding-bottom: 21px;
 }
 .link-back-test {
-  padding-bottom: 21px;
+  padding-bottom: 16px;
 }
 
 @media screen and (min-width: 700px) {
@@ -1868,7 +1877,7 @@ aside.sidebar-bottom h4.text-s + p.text-s{
   padding: 24px 0px 21px 0px;
   border-top: 1px solid var(--darkgrey);
   border-bottom: 1px solid var(--darkgrey);
-  margin: 14px 0px 20px 0px;
+  margin: 9px 0px 20px 0px;
   color: var(--nearwhite);
   font-family: Helvetica;
   font-size: 20px;
@@ -1968,7 +1977,7 @@ cite bold {
     padding-bottom: 34px;
   }
   .link-back {
-    padding-bottom: 27px;
+    padding-bottom: 34px;
     padding-top:8px;
   }
   .quote {
