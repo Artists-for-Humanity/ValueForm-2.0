@@ -295,12 +295,14 @@ function clearScrollPosition() {
 }
 
 // Initialize scroll handling based on the page
+const topBannerMain = document.getElementById("top_banner_main");
 if (isTargetPage()) {
   window.addEventListener("scroll", storeScrollPosition);
   // window.addEventListener('beforeunload', storeScrollPosition);
   window.addEventListener("DOMContentLoaded", restoreScrollPosition);
 } else {
   window.addEventListener("DOMContentLoaded", clearScrollPosition);
+  console.log("clearing Scroll Position");
 }
 
 //rRun the following code when the DOM is fully loaded
@@ -361,37 +363,37 @@ document.addEventListener("DOMContentLoaded", function () {
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
-  //"read all news" link
-  const readAllArticleLink = document.querySelector(".link-back");
-  if (readAllArticleLink) {
-    readAllArticleLink.addEventListener("click", function (event) {
-      // prevent default navigation
-      event.preventDefault();
-      //valid url?
-      const targetHref = readAllArticleLink.getAttribute("href");
-      // const targetHref = "/pages/news.html";
+  // //"read all news" link
+  // const readAllArticleLink = document.querySelector(".link-back");
+  // if (readAllArticleLink) {
+  //   readAllArticleLink.addEventListener("click", function (event) {
+  //     // prevent default navigation
+  //     event.preventDefault();
+  //     //valid url?
+  //     const targetHref = readAllArticleLink.getAttribute("href");
+  //     // const targetHref = "/pages/news.html";
 
-      if (!targetHref) {
-        console.error("No target URL found for this link.");
-        return;
-      }
-      //add fade
-      elements_for_fade.forEach(function (item) {
-        if (item.element) {
-          item.element.style.animationDelay = item.delay;
-          item.element.classList.add("fadeOutDown", "animated");
-        }
-      });
+  //     if (!targetHref) {
+  //       console.error("No target URL found for this link.");
+  //       return;
+  //     }
+  //     //add fade
+  //     elements_for_fade.forEach(function (item) {
+  //       if (item.element) {
+  //         item.element.style.animationDelay = item.delay;
+  //         item.element.classList.add("fadeOutDown", "animated");
+  //       }
+  //     });
 
-      // Calculate total animation duration based on elements
-      const totalAnimationDuration = calculateAnimationDuration();
+  //     // Calculate total animation duration based on elements
+  //     const totalAnimationDuration = calculateAnimationDuration();
 
-      // Delay navigation until fade-out is complete
-      setTimeout(function () {
-        window.location.href = targetHref;
-      }, totalAnimationDuration); // Adjust timeout based on total calculated duration
-    });
-  }
+  //     // Delay navigation until fade-out is complete
+  //     setTimeout(function () {
+  //       window.location.href = targetHref;
+  //     }, totalAnimationDuration); // Adjust timeout based on total calculated duration
+  //   });
+  // }
 
   // Check localStorage and the previous page to decide whether to fade in the sections
   const previousPage = document.referrer;
