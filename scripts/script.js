@@ -206,6 +206,7 @@ if (isTargetPage()) {
   window.addEventListener('DOMContentLoaded', clearScrollPosition);
 }
 
+
 function addHoverEffectOnOutcomeElements() {
   const titleElements = document.querySelectorAll('.outcomes-title');
   const logoElements = document.querySelectorAll('.outcomes-logo');
@@ -213,14 +214,15 @@ function addHoverEffectOnOutcomeElements() {
   const percentElements = document.querySelectorAll('.percent');
   const videoBackground = document.querySelector('.video-background');
   const videoSource = videoBackground.querySelector('source');
-  
+  console.log(videoSource);
+
   const targetHrefs = [
     "./outcomes/pokemon.html",
     "./outcomes/pokemon.html",
     "./outcomes/pokemon.html",
   ];
 
-  // hover effect for a GROUP of elements
+  // Apply hover effects
   function applyHoverEffects(index) {
     const metric = metricElements[index];
     const percent = percentElements[index];
@@ -243,19 +245,17 @@ function addHoverEffectOnOutcomeElements() {
       logoElements[index].style.cursor = 'pointer';
     }
 
-    //  video src based on metric data-video attribute
     const videoSrc = metric ? metric.getAttribute('data-video') : null;
     if (videoSrc) {
       videoSource.setAttribute('src', videoSrc);
-      videoBackground.load(); 
+      videoBackground.load();
     }
 
-    // show the video background
     document.querySelector('body.outcomes').classList.add('hovered');
     videoBackground.style.opacity = '1';
   }
 
-  // remove hover effects
+  // Remove hover effects
   function removeHoverEffects(index) {
     const metric = metricElements[index];
     const percent = percentElements[index];
@@ -278,26 +278,48 @@ function addHoverEffectOnOutcomeElements() {
       logoElements[index].style.cursor = '';
     }
 
-    // hide background
     document.querySelector('body.outcomes').classList.remove('hovered');
     videoBackground.style.opacity = '0';
   }
 
-  // iterate over index nums and add event listeners
+  // Trigger fade out and navigate with delay
+  function fadeOutAndNavigate(index) {
+    const fadeInUpElements = Array.from(
+      document.querySelectorAll('.fadeInUp:not(nav)')
+    );
+    let delayCounter = 0;
+
+    fadeInUpElements
+      .filter(isInViewport)
+      .reverse()
+      .forEach((element, idx) => {
+        element.classList.replace('fadeInUp', 'fadeOutDown');
+        element.style.animationDelay = `${idx * 600}ms`;
+        delayCounter++;
+   
+      });
+     console.log(delayCounter)
+    setTimeout(() => {
+      window.location.href = targetHrefs[index];
+    }, delayCounter * 600 + 800); // Adjust delay to match the animation duration
+  }
+
+  // Iterate over elements and add event listeners
   for (let i = 0; i < Math.min(titleElements.length, logoElements.length, metricElements.length, percentElements.length, targetHrefs.length); i++) {
     const elementsGroup = [titleElements[i], logoElements[i], metricElements[i]];
 
     elementsGroup.forEach(element => {
       element.addEventListener('mouseenter', () => applyHoverEffects(i));
       element.addEventListener('mouseleave', () => removeHoverEffects(i));
-      
-      // navigate to the target URL for this index
-      element.addEventListener('click', () => {
-        window.location.href = targetHrefs[i];
+
+      element.addEventListener('click', (e) => {
+        e.preventDefault();
+        fadeOutAndNavigate(i);
       });
     });
   }
 }
+
 
 
 // const carousel = document.querySelector('.carousel');

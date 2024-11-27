@@ -2280,10 +2280,12 @@ body.outcomes {
  }
  .metric-percent{
   align-self: center;
+  line-height:71px;
  }
  .outcomes-description-container{
   display:flex;
   flex-direction: column;
+  padding-top:8px;
  }
  .outcomes-logo{
   align-self: start;

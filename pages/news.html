@@ -201,7 +201,7 @@ careers@valueform.io
  
 
 
-  <script>
+  <!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
       let elements_for_fade = [
         { element: document.getElementById('news_page_main'), delay: '600ms' },
@@ -215,6 +215,7 @@ careers@valueform.io
         const additionalDuration = 300; 
         return baseDuration + (fadeInUpElements.length * additionalDuration);
       }
+     
       // article preview links
       const clickableLinks = document.querySelectorAll('.click-me');
       clickableLinks.forEach(function (link) {
@@ -254,7 +255,7 @@ careers@valueform.io
           const targetHref = readFullArticleLink.getAttribute('href');
           if (!targetHref) {
             console.error('No target URL found for this link.');
-            return;
+            // return;
           }
           //add fade
           elements_for_fade.forEach(function (item) {
@@ -287,8 +288,100 @@ careers@valueform.io
       localStorage.setItem('add_fade', true);
     });
 
-  </script>
+  </script> -->
   
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Initialize the page
+      initializePage();
+    });
+  
+    // Main initialization function
+    function initializePage() {
+      setupFadeElements();
+      setupClickableLinks();
+      setupReadFullArticleLink();
+      checkAndHandleFadeState();
+    }
+  
+    // Define the elements that will be animated
+    function setupFadeElements() {
+      window.elementsForFade = [
+        { element: document.getElementById('news_page_main'), delay: '600ms' },
+        { element: document.getElementById('top_banner_main'), delay: '1200ms' }
+      ];
+    }
+  
+    // Calculate the total animation duration
+    function calculateAnimationDuration() {
+      const fadeInUpElements = document.querySelectorAll('.fadeInUp');
+      const baseDuration = 600;
+      const additionalDuration = 300;
+      return baseDuration + (fadeInUpElements.length * additionalDuration);
+    }
+  
+    // Set up click handlers for clickable links
+    function setupClickableLinks() {
+      const clickableLinks = document.querySelectorAll('.click-me');
+      clickableLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          event.preventDefault(); // Prevent default navigation
+          const targetHref = link.getAttribute('href');
+          if (!targetHref) {
+            console.error('No target URL found for this link.');
+            return;
+          }
+          handleFadeOutAndNavigate(targetHref);
+        });
+      });
+    }
+  
+    // Set up the "Read full article" link
+    function setupReadFullArticleLink() {
+      const readFullArticleLink = document.querySelector('.link-back');
+      if (readFullArticleLink) {
+        readFullArticleLink.addEventListener('click', function (event) {
+          event.preventDefault(); // Prevent default navigation
+          const targetHref = readFullArticleLink.getAttribute('href');
+          if (!targetHref) {
+            console.error('No target URL found for this link.');
+            return;
+          }
+          handleFadeOutAndNavigate(targetHref);
+        });
+      }
+    }
+  
+    // Handle fade-out animation and navigation
+    function handleFadeOutAndNavigate(targetHref) {
+      if (!window.elementsForFade) return;
+      window.elementsForFade.forEach(function (item) {
+        if (item.element) {
+          item.element.style.animationDelay = item.delay;
+          item.element.classList.add('fadeOutDown', 'animated');
+        }
+      });
+  
+      const totalAnimationDuration = calculateAnimationDuration();
+      setTimeout(function () {
+        window.location.href = targetHref;
+      }, totalAnimationDuration);
+    }
+  
+    // Check localStorage and adjust fade states
+    function checkAndHandleFadeState() {
+      if (localStorage.getItem('add_fade') === 'false') {
+        window.elementsForFade.forEach(function (item) {
+          if (item.element) {
+            item.element.classList.remove('fadeInUp', 'animated');
+          }
+        });
+      }
+  
+      // Reset fade state in localStorage
+      localStorage.setItem('add_fade', true);
+    }
+  </script>
   
   <script src="../scripts/script.js"></script>
 
