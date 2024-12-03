@@ -35,7 +35,7 @@ function exit_fade_previews() {
 
   setTimeout(
     () => {
-      window.location = "../pages/articles/airlines.html";
+      window.location = "../pages/articles/pinned.html";
     },
     elements.length * 600 + 800 // Add an extra delay for smooth transition
   );
@@ -100,7 +100,7 @@ function handleNavigation(fadeInUpElements) {
 
         // Example: Add specific behavior for a certain page
         if (
-          currentPage === "/pages/articles/airlines.html" &&
+          currentPage === "/pages/articles/pinned.html" &&
           targetUrl != "../news.html"
         ) {
           // Increment delayCounter for each ID that is in the viewport
@@ -134,7 +134,7 @@ function handleNavigation(fadeInUpElements) {
         // New condition: Increment delayCounter if navigating from /pages/news.html to /pages/articles/*
         if (
           currentPage === "/pages/news.html" &&
-          targetUrl.startsWith("./articles/") && targetUrl != ("./articles/airlines.html")
+          targetUrl.startsWith("./articles/") && targetUrl != ("./articles/pinned.html")
         ) {
           if (isNewsPageMainInViewport) {
             delayCounter++;
@@ -150,7 +150,7 @@ function handleNavigation(fadeInUpElements) {
 
         if (
           currentPage === "/pages/news.html" &&
-          targetUrl === "./articles/airlines.html"
+          targetUrl === "./articles/pinned.html"
         ) {
           if (localStorage.getItem("newsFade") === "true") {
             if (isNewsPageMainInViewport) {
@@ -282,7 +282,7 @@ function isTargetPage() {
   const currentPage = window.location.pathname.split("/").pop();
   return (
     currentPage === "news.html" ||
-    currentPage === "airlines.html" ||
+    currentPage === "pinned.html" ||
     currentPage === "dizzy.html" ||
     currentPage === "letter.html"
   );
@@ -398,8 +398,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Check localStorage and the previous page to decide whether to fade in the sections
   const previousPage = document.referrer;
 
-  // If the previous page is /pages/articles/airlines.html
-  if (previousPage.includes("/pages/articles/airlines.html")) {
+  // If the previous page is /pages/articles/pinned.html
+  if (previousPage.includes("/pages/articles/pinned.html")) {
     if (localStorage.getItem("add_fade") === "false") {
       elements_for_fade.forEach(function (item) {
         if (item.element) {
@@ -412,7 +412,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const topBannerMain = document.getElementById("top_banner_main");
     if (topBannerMain && localStorage.getItem("add_fade") === "false") {
       console.log(
-        "removing fadeInUp from #top_banner_main when add_fade = false and previous page is not /pages/articles/airlines.html"
+        "removing fadeInUp from #top_banner_main when add_fade = false and previous page is not /pages/articles/pinned.html"
       );
       topBannerMain.classList.remove("fadeInUp", "animated");
     }
