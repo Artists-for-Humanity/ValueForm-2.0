@@ -2044,3 +2044,14 @@ cite bold {
 .text-s.sidebar-title {
   padding: 0px 0 0px 0px;
 }
+
+.quote {
+  line-height: 20px;
+}
+
+@media screen and (min-width: 700px) {
+  .quote {
+    line-height: 34px;
+  }
+  
+}
