@@ -2040,3 +2040,7 @@ cite bold {
 .preload {
   visibility: hidden;
 }
+
+.text-s.sidebar-title {
+  padding: 0px 0 0px 0px;
+}
