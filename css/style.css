@@ -1673,7 +1673,11 @@ table {
 }
 
 .article-title:first-child:hover{
-  /* cursor: text; */
+  cursor: text;
+}
+
+.article-title.preview:hover {
+  cursor: pointer;
 }
 
 .article-title {
