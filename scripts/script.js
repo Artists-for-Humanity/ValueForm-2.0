@@ -331,19 +331,19 @@ window.addEventListener("pageshow", (event) => {
 });
 
 //check if the user is on a mac and apply white text shadow if trueq
-function isMacOS() {
-  return window.navigator.platform.includes("Mac");
-}
+// function isMacOS() {
+//   return window.navigator.platform.includes("Mac");
+// }
 
 // apply white text shadow to jumbo text on mac
-function applyWhiteTextShadow() {
-  if (isMacOS()) {
-    var elements = document.querySelectorAll(".text-jumbo");
-    elements.forEach(function (element) {
-      element.classList.add("white-text-shadow");
-    });
-  }
-}
+// function applyWhiteTextShadow() {
+//   if (isMacOS()) {
+//     var elements = document.querySelectorAll(".text-jumbo");
+//     elements.forEach(function (element) {
+//       element.classList.add("white-text-shadow");
+//     });
+//   }
+// }
 
 // calculate total aniamtion time
 function calculateAnimationDuration() {
