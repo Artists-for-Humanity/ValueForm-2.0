@@ -154,16 +154,16 @@ function isMacOS() {
   return window.navigator.platform.includes('Mac');
 }
 
-function applyWhiteTextShadow() {
-  if (isMacOS()) {
-      var elements = document.querySelectorAll('.text-jumbo');
-      elements.forEach(function(element) {
-          element.classList.add('white-text-shadow');
-      });
-  }
-}
+// function applyWhiteTextShadow() {
+//   if (isMacOS()) {
+//       var elements = document.querySelectorAll('.text-jumbo');
+//       elements.forEach(function(element) {
+//           element.classList.add('white-text-shadow');
+//       });
+//   }
+// }
 
 
-document.addEventListener('DOMContentLoaded', applyWhiteTextShadow);
+// document.addEventListener('DOMContentLoaded', applyWhiteTextShadow);
 
 
