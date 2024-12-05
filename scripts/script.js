@@ -485,4 +485,5 @@ function staticTitle() {
   }
 }
 
-window.history.replaceState({}, document.title, window.location.pathname);
+// back button debug attempt 0
+// window.history.replaceState({}, document.title, window.location.pathname);
