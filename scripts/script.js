@@ -166,24 +166,15 @@ function handleNavigation(fadeInUpElements) {
 
         // console.log(delayCounter);
 
-        if (window.location.pathname !== targetUrl) {
-          setTimeout(() => {
+        setTimeout(
+          () => {
             console.log(
               `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
             );
             window.location.href = targetUrl;
-          }, delayCounter * 600 + 800);
-        }
-
-        // setTimeout(
-        //   () => {
-        //     console.log(
-        //       `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
-        //     );
-        //     window.location.href = targetUrl;
-        //   },
-        //   delayCounter * 600 + 800
-        // );
+          },
+          delayCounter * 600 + 800
+        );
       }
     });
   });
