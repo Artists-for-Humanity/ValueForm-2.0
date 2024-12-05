@@ -26,6 +26,7 @@ function handleMainNewsFade() {
 
 // fade the article-links for redirect when clicking read all articles (vinh)
 function exit_fade_previews() {
+  console.log("calling exit_fade_previews");
   const elements = document.querySelectorAll(".fade_link");
 
   elements.forEach((div, index) => {
@@ -302,7 +303,7 @@ if (isTargetPage()) {
   window.addEventListener("DOMContentLoaded", restoreScrollPosition);
 } else {
   window.addEventListener("DOMContentLoaded", clearScrollPosition);
-  console.log("clearing Scroll Position");
+  // console.log("clearing Scroll Position");
 }
 
 //rRun the following code when the DOM is fully loaded
@@ -319,7 +320,7 @@ window.addEventListener("pageshow", (event) => {
     ("Page was loaded from the cache");
     // re-initialize animations or reset styles here
     document.querySelectorAll(".fadeOutDown").forEach((el) => {
-      console.log("loading page from cache");
+      // console.log("loading page from cache");
       el.classList.replace("fadeOutDown", "fadeInUp");
     });
   }
