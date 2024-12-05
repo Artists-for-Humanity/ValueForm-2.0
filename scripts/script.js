@@ -355,7 +355,7 @@ function calculateAnimationDuration() {
 }
 
 // run the white text  shadow function on page load
-document.addEventListener("DOMContentLoaded", applyWhiteTextShadow);
+// document.addEventListener("DOMContentLoaded", applyWhiteTextShadow);
 
 document.addEventListener("DOMContentLoaded", function () {
   let elements_for_fade = [
