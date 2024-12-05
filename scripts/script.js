@@ -24,24 +24,6 @@ function handleMainNewsFade() {
   return false;
 }
 
-// fade the article-links for redirect when clicking read all articles (vinh)
-function exit_fade_previews() {
-  console.log("calling exit_fade_previews");
-  const elements = document.querySelectorAll(".fade_link");
-
-  elements.forEach((div, index) => {
-    div.classList.replace("fadeInUp", "fadeOutDown");
-    div.style.animationDelay = `${index * 600}ms`;
-  });
-
-  setTimeout(
-    () => {
-      window.location = "../pages/articles/pinned.html";
-    },
-    elements.length * 600 + 800 // Add an extra delay for smooth transition
-  );
-}
-
 //handle animation behavior for almost all links
 function handleNavigation(fadeInUpElements) {
   const navLinks = document.querySelectorAll("nav a");
@@ -331,21 +313,6 @@ window.addEventListener("pageshow", (event) => {
   watchHeaderInView();
 });
 
-//check if the user is on a mac and apply white text shadow if trueq
-// function isMacOS() {
-//   return window.navigator.platform.includes("Mac");
-// }
-
-// apply white text shadow to jumbo text on mac
-// function applyWhiteTextShadow() {
-//   if (isMacOS()) {
-//     var elements = document.querySelectorAll(".text-jumbo");
-//     elements.forEach(function (element) {
-//       element.classList.add("white-text-shadow");
-//     });
-//   }
-// }
-
 // calculate total aniamtion time
 function calculateAnimationDuration() {
   const fadeInUpElements = document.querySelectorAll(".fadeInUp");
@@ -364,37 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
-  // //"read all news" link
-  // const readAllArticleLink = document.querySelector(".link-back");
-  // if (readAllArticleLink) {
-  //   readAllArticleLink.addEventListener("click", function (event) {
-  //     // prevent default navigation
-  //     event.preventDefault();
-  //     //valid url?
-  //     const targetHref = readAllArticleLink.getAttribute("href");
-  //     // const targetHref = "/pages/news.html";
 
-  //     if (!targetHref) {
-  //       console.error("No target URL found for this link.");
-  //       return;
-  //     }
-  //     //add fade
-  //     elements_for_fade.forEach(function (item) {
-  //       if (item.element) {
-  //         item.element.style.animationDelay = item.delay;
-  //         item.element.classList.add("fadeOutDown", "animated");
-  //       }
-  //     });
-
-  //     // Calculate total animation duration based on elements
-  //     const totalAnimationDuration = calculateAnimationDuration();
-
-  //     // Delay navigation until fade-out is complete
-  //     setTimeout(function () {
-  //       window.location.href = targetHref;
-  //     }, totalAnimationDuration); // Adjust timeout based on total calculated duration
-  //   });
-  // }
 
   // Check localStorage and the previous page to decide whether to fade in the sections
   const previousPage = document.referrer;
@@ -423,15 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
   localStorage.setItem("add_fade", true);
 });
 
-function removeFadeInUp() {
-  const block = document.querySelectorAll(".above_read_full");
-  block.forEach(function (item) {
-    if (item) {
-      item.classList.remove("fadeInUp", "animated");
-      localStorage.setItem("newsFade", true);
-    }
-  });
-}
+
 
 function addFadeInUp() {
   const block = document.querySelectorAll(".above_read_full");
@@ -486,5 +415,111 @@ function staticTitle() {
   }
 }
 
+function handleFadeAndRedirect() {
+  console.log("calling handleFadeAndRedirect");
+
+  // Remove "fadeInUp" and "animated" classes from elements with class "above_read_full"
+  const blocks = document.querySelectorAll(".above_read_full");
+  blocks.forEach((item) => {
+    if (item) {
+      item.classList.remove("fadeInUp", "animated");
+    }
+  });
+
+  // Set localStorage for "newsFade"
+  localStorage.setItem("newsFade", true);
+
+  // Fade out elements with class "fade_link" and redirect after transition
+  const elements = document.querySelectorAll(".fade_link");
+  elements.forEach((div, index) => {
+    div.classList.replace("fadeInUp", "fadeOutDown");
+    div.style.animationDelay = `${index * 600}ms`;
+  });
+
+  setTimeout(
+    () => {
+      window.location = "../pages/articles/pinned.html";
+    },
+    elements.length * 600 + 800 // Add an extra delay for smooth transition
+  );
+}
+
 // back button debug attempt 0
 // window.history.replaceState({}, document.title, window.location.pathname);
+
+// function removeFadeInUp() {
+//   const block = document.querySelectorAll(".above_read_full");
+//   block.forEach(function (item) {
+//     if (item) {
+//       item.classList.remove("fadeInUp", "animated");
+//       localStorage.setItem("newsFade", true);
+//     }
+//   });
+// }
+
+// // fade the article-links for redirect when clicking read all articles (vinh)
+// function exit_fade_previews() {
+//   console.log("calling exit_fade_previews");
+//   const elements = document.querySelectorAll(".fade_link");
+
+//   elements.forEach((div, index) => {
+//     div.classList.replace("fadeInUp", "fadeOutDown");
+//     div.style.animationDelay = `${index * 600}ms`;
+//   });
+
+//   setTimeout(
+//     () => {
+//       window.location = "../pages/articles/pinned.html";
+//     },
+//     elements.length * 600 + 800 // Add an extra delay for smooth transition
+//   );
+// }
+
+
+  // //"read all news" link
+  // const readAllArticleLink = document.querySelector(".link-back");
+  // if (readAllArticleLink) {
+  //   readAllArticleLink.addEventListener("click", function (event) {
+  //     // prevent default navigation
+  //     event.preventDefault();
+  //     //valid url?
+  //     const targetHref = readAllArticleLink.getAttribute("href");
+  //     // const targetHref = "/pages/news.html";
+
+  //     if (!targetHref) {
+  //       console.error("No target URL found for this link.");
+  //       return;
+  //     }
+  //     //add fade
+  //     elements_for_fade.forEach(function (item) {
+  //       if (item.element) {
+  //         item.element.style.animationDelay = item.delay;
+  //         item.element.classList.add("fadeOutDown", "animated");
+  //       }
+  //     });
+
+  //     // Calculate total animation duration based on elements
+  //     const totalAnimationDuration = calculateAnimationDuration();
+
+  //     // Delay navigation until fade-out is complete
+  //     setTimeout(function () {
+  //       window.location.href = targetHref;
+  //     }, totalAnimationDuration); // Adjust timeout based on total calculated duration
+  //   });
+  // }
+
+
+  //check if the user is on a mac and apply white text shadow if trueq
+// function isMacOS() {
+//   return window.navigator.platform.includes("Mac");
+// }
+
+// apply white text shadow to jumbo text on mac
+// function applyWhiteTextShadow() {
+//   if (isMacOS()) {
+//     var elements = document.querySelectorAll(".text-jumbo");
+//     elements.forEach(function (element) {
+//       element.classList.add("white-text-shadow");
+//     });
+//   }
+// }
