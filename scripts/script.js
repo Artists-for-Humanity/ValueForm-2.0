@@ -415,6 +415,8 @@ function staticTitle() {
   }
 }
 
+let exitFadeTimeout; // Store timeout globally
+
 function handleFadeAndRedirect() {
   console.log("calling handleFadeAndRedirect");
 
@@ -436,13 +438,58 @@ function handleFadeAndRedirect() {
     div.style.animationDelay = `${index * 600}ms`;
   });
 
-  setTimeout(
+  // Redirect after all animations are done
+  exitFadeTimeout = setTimeout(
     () => {
+      console.log("Redirecting to pinned.html");
       window.location = "../pages/articles/pinned.html";
     },
     elements.length * 600 + 800 // Add an extra delay for smooth transition
   );
 }
+
+// Handle bfcache and back button navigation
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    console.log("Page restored from bfcache. Clearing timeouts.");
+    clearTimeout(exitFadeTimeout);
+  }
+});
+
+window.addEventListener("popstate", () => {
+  console.log("Back/forward navigation detected. Clearing timeouts.");
+  clearTimeout(exitFadeTimeout);
+});
+
+
+// function handleFadeAndRedirect() {
+//   console.log("calling handleFadeAndRedirect");
+
+//   // Remove "fadeInUp" and "animated" classes from elements with class "above_read_full"
+//   const blocks = document.querySelectorAll(".above_read_full");
+//   blocks.forEach((item) => {
+//     if (item) {
+//       item.classList.remove("fadeInUp", "animated");
+//     }
+//   });
+
+//   // Set localStorage for "newsFade"
+//   localStorage.setItem("newsFade", true);
+
+//   // Fade out elements with class "fade_link" and redirect after transition
+//   const elements = document.querySelectorAll(".fade_link");
+//   elements.forEach((div, index) => {
+//     div.classList.replace("fadeInUp", "fadeOutDown");
+//     div.style.animationDelay = `${index * 600}ms`;
+//   });
+
+//   setTimeout(
+//     () => {
+//       window.location = "../pages/articles/pinned.html";
+//     },
+//     elements.length * 600 + 800 // Add an extra delay for smooth transition
+//   );
+// }
 
 // back button debug attempt 0
 // window.history.replaceState({}, document.title, window.location.pathname);
