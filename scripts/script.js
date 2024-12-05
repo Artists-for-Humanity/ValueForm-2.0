@@ -420,6 +420,12 @@ let exitFadeTimeout; // Store timeout globally
 function handleFadeAndRedirect() {
   console.log("calling handleFadeAndRedirect");
 
+  // Check if already on the target page
+  if (window.location.pathname === "/pages/articles/pinned.html") {
+    console.log("Already on pinned.html. Skipping redirection.");
+    return;
+  }
+
   // Remove "fadeInUp" and "animated" classes from elements with class "above_read_full"
   const blocks = document.querySelectorAll(".above_read_full");
   blocks.forEach((item) => {
@@ -448,6 +454,12 @@ function handleFadeAndRedirect() {
   );
 }
 
+// Clear timeouts on page unload or restore
+window.addEventListener("beforeunload", () => {
+  console.log("Clearing redirect timeout on beforeunload");
+  clearTimeout(exitFadeTimeout);
+});
+
 // Handle bfcache and back button navigation
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
@@ -460,6 +472,14 @@ window.addEventListener("popstate", () => {
   console.log("Back/forward navigation detected. Clearing timeouts.");
   clearTimeout(exitFadeTimeout);
 });
+
+const readAllButton = document.querySelector(".read-all-articles");
+
+if (readAllButton && !readAllButton._hasListener) {
+  readAllButton._hasListener = true; // Flag to prevent duplicate listeners
+  readAllButton.addEventListener("click", handleFadeAndRedirect);
+}
+
 
 
 // function handleFadeAndRedirect() {
