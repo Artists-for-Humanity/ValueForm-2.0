@@ -290,44 +290,6 @@ if (isTargetPage()) {
   // console.log("clearing Scroll Position");
 }
 
-// run the following code when the DOM is fully loaded
-// document.addEventListener("DOMContentLoaded", () => {
-//   console.log("reacheme10")
-//   animateOnLoad();
-//   animateHeader("animatedHeader");
-//   animateOncePerSession("animatedNav", "animated-nav");
-//   watchHeaderInView();
-//   console.log("reacheme11")
-
-// });
-
-// //run this code if the page is loaded from cache
-// window.addEventListener("pageshow", (event) => {
-//   console.log("reacheme12")
-
-//   if (event.persisted) {
-//     const currentPage = window.location.pathname;
-//     if (currentPage === "/pages/news.html") {
-//       console.log("Navigated back to news")
-//       return;
-//     }
-//     document.querySelectorAll(".fadeOutDown").forEach((el) => {
-//       el.classList.replace("fadeOutDown", "fadeInUp");
-//     });
-//   }
-
-//   // console.log("Reachme00")
-//   // always call initialization functions
-//   animateOnLoad();
-//   animateHeader("animatedHeader");
-//   animateOncePerSession("animatedNav", "animated-nav");
-//   watchHeaderInView();
-//   console.log("reacheme13")
-
-//   // console.log("Reachme01")
-
-// });
-
 // calculate total aniamtion time
 function calculateAnimationDuration() {
   const fadeInUpElements = document.querySelectorAll(".fadeInUp");
