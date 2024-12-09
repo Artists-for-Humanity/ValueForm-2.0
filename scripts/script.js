@@ -24,7 +24,7 @@ function handleMainNewsFade() {
   return false;
 }
 
-//handle animation behavior for almost all links
+// handle animation behavior for almost all links
 function handleNavigation(fadeInUpElements) {
   const navLinks = document.querySelectorAll("nav a");
   const logoLinks = document.querySelectorAll("header a img");
@@ -41,7 +41,6 @@ function handleNavigation(fadeInUpElements) {
     ...logoLinks,
     ...footerLinks,
     ...headerLinks,
-    // ...articleElements,
     ...linkBack,
     ...linkBackNews,
   ].forEach((element) => {
@@ -80,6 +79,7 @@ function handleNavigation(fadeInUpElements) {
           newsPageMain && isInViewport(newsPageMain);
         const isTopBannerMainInViewport =
           topBannerMain && isInViewport(topBannerMain);
+      
 
         // Example: Add specific behavior for a certain page
         if (
@@ -146,10 +146,12 @@ function handleNavigation(fadeInUpElements) {
           localStorage.setItem("newsFade", false);
         }
 
-        // console.log(delayCounter);
 
         setTimeout(
           () => {
+            console.log(currentPage + " This is the Current Page!!!!");
+            console.log(targetUrl + " This is the Target URL****");
+
             console.log(
               `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
             );
@@ -289,31 +291,42 @@ if (isTargetPage()) {
 }
 
 // run the following code when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("running animateonLoad when fully loading DOM")
-  animateOnLoad();
-  animateHeader("animatedHeader");
-  animateOncePerSession("animatedNav", "animated-nav");
-  watchHeaderInView();
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   console.log("reacheme10")
+//   animateOnLoad();
+//   animateHeader("animatedHeader");
+//   animateOncePerSession("animatedNav", "animated-nav");
+//   watchHeaderInView();
+//   console.log("reacheme11")
 
-//run this code if the page is loaded from cache
-window.addEventListener("pageshow", (event) => {
-  if (event.persisted) {
-    ("Page was loaded from the cache");
-    // re-initialize animations or reset styles here
-    document.querySelectorAll(".fadeOutDown").forEach((el) => {
-      // console.log("loading page from cache");
-      el.classList.replace("fadeOutDown", "fadeInUp");
-    });
-  }
-  // always call initialization functions
-  console.log("running animateonLoad() if the page is loaded from cache")
-  animateOnLoad();
-  animateHeader("animatedHeader");
-  animateOncePerSession("animatedNav", "animated-nav");
-  watchHeaderInView();
-});
+// });
+
+// //run this code if the page is loaded from cache
+// window.addEventListener("pageshow", (event) => {
+//   console.log("reacheme12")
+
+//   if (event.persisted) {
+//     const currentPage = window.location.pathname;
+//     if (currentPage === "/pages/news.html") {
+//       console.log("Navigated back to news")
+//       return;
+//     }
+//     document.querySelectorAll(".fadeOutDown").forEach((el) => {
+//       el.classList.replace("fadeOutDown", "fadeInUp");
+//     });
+//   }
+
+//   // console.log("Reachme00")
+//   // always call initialization functions
+//   animateOnLoad();
+//   animateHeader("animatedHeader");
+//   animateOncePerSession("animatedNav", "animated-nav");
+//   watchHeaderInView();
+//   console.log("reacheme13")
+
+//   // console.log("Reachme01")
+
+// });
 
 // calculate total aniamtion time
 function calculateAnimationDuration() {
@@ -420,11 +433,9 @@ function staticTitle() {
 let exitFadeTimeout; // Store timeout globally
 
 function handleFadeAndRedirect() {
-  console.log("calling handleFadeAndRedirect");
 
   // Check if already on the target page
   if (window.location.pathname === "/pages/articles/pinned.html") {
-    console.log("Already on pinned.html. Skipping redirection.");
     return;
   }
 
@@ -458,7 +469,6 @@ function handleFadeAndRedirect() {
 
 // Clear timeouts on page unload or restore
 window.addEventListener("beforeunload", () => {
-  console.log("Clearing redirect timeout on beforeunload");
   clearTimeout(exitFadeTimeout);
 });
 
@@ -483,112 +493,56 @@ if (readAllButton && !readAllButton._hasListener) {
 }
 
 
+///////////////////////////////////////////////////////////////////////
 
-// function handleFadeAndRedirect() {
-//   console.log("calling handleFadeAndRedirect");
+// TESTING FUNCTIONS
 
-//   // Remove "fadeInUp" and "animated" classes from elements with class "above_read_full"
-//   const blocks = document.querySelectorAll(".above_read_full");
-//   blocks.forEach((item) => {
-//     if (item) {
-//       item.classList.remove("fadeInUp", "animated");
-//     }
-//   });
+// // Flag to track initialization state
+let isInitialized = false;
 
-//   // Set localStorage for "newsFade"
-//   localStorage.setItem("newsFade", true);
+// Run the following code when the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+  if (!isInitialized) {
+    initializePage(); // General initialization
+    isInitialized = true; // Prevent reinitialization
+  }
+});
 
-//   // Fade out elements with class "fade_link" and redirect after transition
-//   const elements = document.querySelectorAll(".fade_link");
-//   elements.forEach((div, index) => {
-//     div.classList.replace("fadeInUp", "fadeOutDown");
-//     div.style.animationDelay = `${index * 600}ms`;
-//   });
+// Run this code if the page is loaded from cache
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    console.log("Page restored from bfcache.");
+    handleCacheRestore(); // Handle cache-specific logic
+  }
 
-//   setTimeout(
-//     () => {
-//       window.location = "../pages/articles/pinned.html";
-//     },
-//     elements.length * 600 + 800 // Add an extra delay for smooth transition
-//   );
-// }
+  // Ensure global initialization logic runs if needed
+  if (!isInitialized) {
+    initializePage();
+    isInitialized = true;
+  }
+});
 
-// back button debug attempt 0
-// window.history.replaceState({}, document.title, window.location.pathname);
+function initializePage() {
+  console.log("Initializing page...");
+  animateOnLoad();
+  animateHeader("animatedHeader");
+  animateOncePerSession("animatedNav", "animated-nav");
+  watchHeaderInView();
+}
 
-// function removeFadeInUp() {
-//   const block = document.querySelectorAll(".above_read_full");
-//   block.forEach(function (item) {
-//     if (item) {
-//       item.classList.remove("fadeInUp", "animated");
-//       localStorage.setItem("newsFade", true);
-//     }
-//   });
-// }
+function handleCacheRestore() {
+  const currentPage = window.location.pathname;
+  if (currentPage === "/pages/news.html") {
+    console.log("Navigated back to news");
+  }
 
-// // fade the article-links for redirect when clicking read all articles (vinh)
-// function exit_fade_previews() {
-//   console.log("calling exit_fade_previews");
-//   const elements = document.querySelectorAll(".fade_link");
-
-//   elements.forEach((div, index) => {
-//     div.classList.replace("fadeInUp", "fadeOutDown");
-//     div.style.animationDelay = `${index * 600}ms`;
-//   });
-
-//   setTimeout(
-//     () => {
-//       window.location = "../pages/articles/pinned.html";
-//     },
-//     elements.length * 600 + 800 // Add an extra delay for smooth transition
-//   );
-// }
+  // Reverse fade-out animations to fade-in
+  document.querySelectorAll(".fadeOutDown").forEach((el) => {
+    el.classList.replace("fadeOutDown", "fadeInUp");
+  });
+}
 
 
-  // //"read all news" link
-  // const readAllArticleLink = document.querySelector(".link-back");
-  // if (readAllArticleLink) {
-  //   readAllArticleLink.addEventListener("click", function (event) {
-  //     // prevent default navigation
-  //     event.preventDefault();
-  //     //valid url?
-  //     const targetHref = readAllArticleLink.getAttribute("href");
-  //     // const targetHref = "/pages/news.html";
-
-  //     if (!targetHref) {
-  //       console.error("No target URL found for this link.");
-  //       return;
-  //     }
-  //     //add fade
-  //     elements_for_fade.forEach(function (item) {
-  //       if (item.element) {
-  //         item.element.style.animationDelay = item.delay;
-  //         item.element.classList.add("fadeOutDown", "animated");
-  //       }
-  //     });
-
-  //     // Calculate total animation duration based on elements
-  //     const totalAnimationDuration = calculateAnimationDuration();
-
-  //     // Delay navigation until fade-out is complete
-  //     setTimeout(function () {
-  //       window.location.href = targetHref;
-  //     }, totalAnimationDuration); // Adjust timeout based on total calculated duration
-  //   });
-  // }
 
 
-  //check if the user is on a mac and apply white text shadow if trueq
-// function isMacOS() {
-//   return window.navigator.platform.includes("Mac");
-// }
-
-// apply white text shadow to jumbo text on mac
-// function applyWhiteTextShadow() {
-//   if (isMacOS()) {
-//     var elements = document.querySelectorAll(".text-jumbo");
-//     elements.forEach(function (element) {
-//       element.classList.add("white-text-shadow");
-//     });
-//   }
-// }
+//////////////////////////////////////////////////////////////////////
