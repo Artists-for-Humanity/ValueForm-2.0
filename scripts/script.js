@@ -288,8 +288,9 @@ if (isTargetPage()) {
   // console.log("clearing Scroll Position");
 }
 
-//rRun the following code when the DOM is fully loaded
+// run the following code when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("running animateonLoad when fully loading DOM")
   animateOnLoad();
   animateHeader("animatedHeader");
   animateOncePerSession("animatedNav", "animated-nav");
@@ -307,6 +308,7 @@ window.addEventListener("pageshow", (event) => {
     });
   }
   // always call initialization functions
+  console.log("running animateonLoad() if the page is loaded from cache")
   animateOnLoad();
   animateHeader("animatedHeader");
   animateOncePerSession("animatedNav", "animated-nav");
