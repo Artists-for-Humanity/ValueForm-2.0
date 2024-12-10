@@ -60,7 +60,7 @@ function handleNavigation(fadeInUpElements) {
         e.preventDefault();
         const targetUrl = anchor.getAttribute("href");
         let delayCounter = 0;
-
+        console.log("reachme00");
         fadeInUpElements
           .filter(isInViewport)
           .reverse()
@@ -149,8 +149,8 @@ function handleNavigation(fadeInUpElements) {
 
         setTimeout(
           () => {
-            console.log(currentPage + " This is the Current Page!!!!");
-            console.log(targetUrl + " This is the Target URL****");
+            // console.log(currentPage + " This is the Current Page!!!!");
+            // console.log(targetUrl + " This is the Target URL****");
 
             console.log(
               `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
@@ -172,7 +172,7 @@ function animateOnLoad() {
 
   setTimeout(() => {
     let viewportIndex = 0;
-
+    console.log("reachme01");
     fadeInUpElements.forEach((element) => {
       if (isInViewport(element)) {
         element.style.animationDelay = `${viewportIndex * 600}ms`;
@@ -410,7 +410,7 @@ function addFadeOutDown() {
       delay: `${totalAnimationDuration + 600}ms`,
     },
   ];
-
+  console.log("reachme02");
   elements_for_fade.forEach(function (item) {
     if (item.element) {
       item.element.style.animationDelay = item.delay;
@@ -452,6 +452,7 @@ function handleFadeAndRedirect() {
 
   // Fade out elements with class "fade_link" and redirect after transition
   const elements = document.querySelectorAll(".fade_link");
+  console.log("reachme03");
   elements.forEach((div, index) => {
     div.classList.replace("fadeInUp", "fadeOutDown");
     div.style.animationDelay = `${index * 600}ms`;
@@ -475,7 +476,7 @@ window.addEventListener("beforeunload", () => {
 // Handle bfcache and back button navigation
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
-    console.log("Page restored from bfcache. Clearing timeouts.");
+    // console.log("Page restored from bfcache. Clearing timeouts.");
     clearTimeout(exitFadeTimeout);
   }
 });
@@ -502,28 +503,29 @@ let isInitialized = false;
 
 // Run the following code when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  if (!isInitialized) {
-    initializePage(); // General initialization
-    isInitialized = true; // Prevent reinitialization
-  }
+  // if (!isInitialized) {
+  //   initializePage(); // General initialization
+  //   isInitialized = true; // Prevent reinitialization
+  // }
 });
 
 // Run this code if the page is loaded from cache
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
-    console.log("Page restored from bfcache.");
+    // console.log("Page restored from bfcache.");
     handleCacheRestore(); // Handle cache-specific logic
   }
-
+  initializePage();
+  // animateOnLoad();
   // Ensure global initialization logic runs if needed
-  if (!isInitialized) {
-    initializePage();
-    isInitialized = true;
-  }
+  // if (!isInitialized) {
+  //   initializePage();
+  //   isInitialized = true;
+  // }
 });
 
 function initializePage() {
-  console.log("Initializing page...");
+  // console.log("Initializing page...");
   animateOnLoad();
   animateHeader("animatedHeader");
   animateOncePerSession("animatedNav", "animated-nav");
