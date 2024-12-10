@@ -30,7 +30,6 @@ function handleNavigation(fadeInUpElements) {
   const logoLinks = document.querySelectorAll("header a img");
   const footerLinks = document.querySelectorAll("footer a img");
   const headerLinks = document.querySelectorAll("header a");
-  // const articleElements = document.querySelectorAll(".article-title.preview");
   const linkBack = document.querySelectorAll(".link-back");
   const clickMe = document.querySelectorAll(".click-me");
   const linkBackNews = document.querySelectorAll(".link-back-news");
@@ -67,6 +66,7 @@ function handleNavigation(fadeInUpElements) {
           .forEach((element, index) => {
             element.classList.replace("fadeInUp", "fadeOutDown");
             element.style.animationDelay = `${index * 600}ms`;
+            // console.log("Animation Delay #" + index + " = " + element.style.animationDelay + "!!!!!!!")
             delayCounter++;
           });
 
@@ -79,7 +79,7 @@ function handleNavigation(fadeInUpElements) {
           newsPageMain && isInViewport(newsPageMain);
         const isTopBannerMainInViewport =
           topBannerMain && isInViewport(topBannerMain);
-      
+
 
         // Example: Add specific behavior for a certain page
         if (
@@ -149,8 +149,8 @@ function handleNavigation(fadeInUpElements) {
 
         setTimeout(
           () => {
-            console.log(currentPage + " This is the Current Page!!!!");
-            console.log(targetUrl + " This is the Target URL****");
+            // console.log(currentPage + " This is the Current Page!!!!");
+            // console.log(targetUrl + " This is the Target URL****");
 
             console.log(
               `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
@@ -184,7 +184,7 @@ function animateOnLoad() {
     });
   }, 10);
 
-  handleNavigation(fadeInUpElements);
+  // handleNavigation(fadeInUpElements);
 
   setTimeout(() => {
     const player = document.getElementById("lottieAnimation");
@@ -290,44 +290,6 @@ if (isTargetPage()) {
   // console.log("clearing Scroll Position");
 }
 
-// run the following code when the DOM is fully loaded
-// document.addEventListener("DOMContentLoaded", () => {
-//   console.log("reacheme10")
-//   animateOnLoad();
-//   animateHeader("animatedHeader");
-//   animateOncePerSession("animatedNav", "animated-nav");
-//   watchHeaderInView();
-//   console.log("reacheme11")
-
-// });
-
-// //run this code if the page is loaded from cache
-// window.addEventListener("pageshow", (event) => {
-//   console.log("reacheme12")
-
-//   if (event.persisted) {
-//     const currentPage = window.location.pathname;
-//     if (currentPage === "/pages/news.html") {
-//       console.log("Navigated back to news")
-//       return;
-//     }
-//     document.querySelectorAll(".fadeOutDown").forEach((el) => {
-//       el.classList.replace("fadeOutDown", "fadeInUp");
-//     });
-//   }
-
-//   // console.log("Reachme00")
-//   // always call initialization functions
-//   animateOnLoad();
-//   animateHeader("animatedHeader");
-//   animateOncePerSession("animatedNav", "animated-nav");
-//   watchHeaderInView();
-//   console.log("reacheme13")
-
-//   // console.log("Reachme01")
-
-// });
-
 // calculate total aniamtion time
 function calculateAnimationDuration() {
   const fadeInUpElements = document.querySelectorAll(".fadeInUp");
@@ -345,8 +307,6 @@ document.addEventListener("DOMContentLoaded", function () {
     { element: document.getElementById("news_page_main"), delay: "600ms" },
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
-
-
 
   // Check localStorage and the previous page to decide whether to fade in the sections
   const previousPage = document.referrer;
@@ -382,7 +342,7 @@ function addFadeInUp() {
   block.forEach(function (item) {
     if (item) {
       item.classList.add("fadeInUp", "animated");
-      console.log("reached addFadeInUp() loop");
+      // console.log("reached addFadeInUp() loop");
     }
   });
 }
@@ -492,13 +452,9 @@ if (readAllButton && !readAllButton._hasListener) {
   readAllButton.addEventListener("click", handleFadeAndRedirect);
 }
 
-
-///////////////////////////////////////////////////////////////////////
-
-// TESTING FUNCTIONS
-
 // // Flag to track initialization state
 let isInitialized = false;
+let isBackNavigation = false;
 
 // Run the following code when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
@@ -513,7 +469,9 @@ window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
     console.log("Page restored from bfcache.");
     handleCacheRestore(); // Handle cache-specific logic
+    isBackNavigation = true;
   }
+  // animateOnLoad();
 
   // Ensure global initialization logic runs if needed
   if (!isInitialized) {
@@ -524,17 +482,23 @@ window.addEventListener("pageshow", (event) => {
 
 function initializePage() {
   console.log("Initializing page...");
+  if (isBackNavigation) {
+    resetAnimations();
+    isBackNavigation = false;
+  }
+  // animateOnLoadTest();
   animateOnLoad();
   animateHeader("animatedHeader");
   animateOncePerSession("animatedNav", "animated-nav");
   watchHeaderInView();
+  setupNavigation();
 }
 
 function handleCacheRestore() {
-  const currentPage = window.location.pathname;
-  if (currentPage === "/pages/news.html") {
-    console.log("Navigated back to news");
-  }
+  // const currentPage = window.location.pathname;
+  // if (currentPage === "/pages/news.html") {
+  //   console.log("Navigated back to news");
+  // }
 
   // Reverse fade-out animations to fade-in
   document.querySelectorAll(".fadeOutDown").forEach((el) => {
@@ -544,5 +508,53 @@ function handleCacheRestore() {
 
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// TESTING FUNCTIONS
 
-//////////////////////////////////////////////////////////////////////
+function resetAnimations() {
+  const fadeOutElements = document.querySelectorAll(".fadeOutDown");
+  fadeOutElements.forEach((el) => {
+    el.classList.replace("fadeOutDown", "fadeInUp");
+  });
+  console.log("Animations reset for back navigation.");
+}
+
+function setupNavigation() {
+  const navLinks = document.querySelectorAll("nav a");
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const targetUrl = link.getAttribute("href");
+      const fadeInUpElements = document.querySelectorAll(".fadeInUp");
+      let delayCounter = 0;
+
+      // Trigger fade-out animation
+      fadeInUpElements.forEach((element, index) => {
+        element.classList.replace("fadeInUp", "fadeOutDown");
+        element.style.animationDelay = `${index * 600}ms`;
+        delayCounter++;
+      });
+
+      e.preventDefault();
+      setTimeout(() => {
+        console.log("reachme00");
+        console.log(`Navigating to ${targetUrl} after animations.`);
+        window.location.href = targetUrl;
+      }, delayCounter * 600 + 800);
+    });
+  });
+}
+
+function animateOnLoadTest() {
+  const elementsToAnimate = document.querySelectorAll(".fadeInUp:not(nav)");
+  elementsToAnimate.forEach((element, index) => {
+    element.style.animationDelay = `${index * 600}ms`;
+    element.classList.add("animated");
+  });
+
+  setTimeout(() => {
+    const player = document.getElementById("lottieAnimation");
+    if (player) player.play();
+  }, 1000);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
