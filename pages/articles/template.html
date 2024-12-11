@@ -36,7 +36,7 @@ careers@valueform.io
 
 </head>
 
-<body>
+<body class="preload">
     <script>
         const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
         if (dontAnimate === 'true') {
@@ -71,12 +71,12 @@ careers@valueform.io
             <div>
                 <a href="../our-approach.html">Our Approach</a>
                 <a href="../leadership.html">Leadership</a>
-                <a href="../news.html">News</a>
+                <a href="../news.html" onclick= "handleMainNewsFade()">News</a>
             </div>
         </nav>
 
         <main class="internal news">
-            <div class="intro fadeInUp">
+            <div class="intro ">
                 <h1 class="text-m"> C. News.</h1>
                 <div>
                     <h2 class="text-xl">Ear to the Streets.</h2>
@@ -85,7 +85,7 @@ careers@valueform.io
             </div>
 
             <div class="container fadeInUp">
-                <aside class="desktop-col-4 tablet-col-1 sidebar-top">
+                <aside class="desktop-col-4 tablet-col-1 sidebar-top news_page_airlines">
                     <h4 class="text-s sidebar-title">About The Webby Awards:</h4>
 
                     <p class="text-s popup-text">

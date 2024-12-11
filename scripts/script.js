@@ -11,6 +11,7 @@ function isInViewport(element) {
 
 function handleMainNewsFade() {
   const elements = document.querySelectorAll(".news_page_airlines");
+  console.log("handleMainNewsFade() Triggered elements = " + elements);
 
   if (elements.length > 0) {
     elements.forEach((element) => {
@@ -30,10 +31,11 @@ function handleNavigation(fadeInUpElements) {
   const logoLinks = document.querySelectorAll("header a img");
   const footerLinks = document.querySelectorAll("footer a img");
   const headerLinks = document.querySelectorAll("header a");
-  // const articleElements = document.querySelectorAll(".article-title.preview");
   const linkBack = document.querySelectorAll(".link-back");
   const clickMe = document.querySelectorAll(".click-me");
   const linkBackNews = document.querySelectorAll(".link-back-news");
+  // const blocks = document.querySelectorAll(".above_read_full");
+
 
   [
     ...clickMe,
@@ -60,15 +62,18 @@ function handleNavigation(fadeInUpElements) {
         e.preventDefault();
         const targetUrl = anchor.getAttribute("href");
         let delayCounter = 0;
-        console.log("reachme00");
         fadeInUpElements
           .filter(isInViewport)
           .reverse()
           .forEach((element, index) => {
+            console.log(`Element #${index}:`, element); // Print the element and its index
+
             element.classList.replace("fadeInUp", "fadeOutDown");
             element.style.animationDelay = `${index * 600}ms`;
+            console.log(`Animation Delay for Element #${index}: ${element.style.animationDelay}`);
             delayCounter++;
           });
+        console.log("delayCounter = " + delayCounter)
 
         // Check the current page based on pathname or title
         const currentPage = window.location.pathname; // e.g., "/home", "/about"
@@ -79,7 +84,14 @@ function handleNavigation(fadeInUpElements) {
           newsPageMain && isInViewport(newsPageMain);
         const isTopBannerMainInViewport =
           topBannerMain && isInViewport(topBannerMain);
-      
+
+        // edge case above_read_full removed fadeInUp class and needs to account for less elemts
+        if (newsPageMain && topBannerMain && delayCounter === 2) {
+          console.log("reachme00");
+          delayCounter = delayCounter + 2;
+
+        }
+
 
         // Example: Add specific behavior for a certain page
         if (
@@ -99,13 +111,12 @@ function handleNavigation(fadeInUpElements) {
           }
 
           if (isTopBannerMainInViewport) {
-            delayCounter++;
+            // delayCounter++;
             setTimeout(
               () => {
                 const TopBannerMain =
                   document.getElementById("top_banner_main");
                 TopBannerMain.classList.add("fadeOutDown");
-                console.log("adding fadeOutDown");
               },
               (delayCounter - 1) * 600
             );
@@ -120,7 +131,7 @@ function handleNavigation(fadeInUpElements) {
           targetUrl.startsWith("./articles/") && targetUrl != ("./articles/pinned.html")
         ) {
           if (isNewsPageMainInViewport) {
-            delayCounter++;
+            // delayCounter++;
             setTimeout(
               () => {
                 const NewsPageMain = document.getElementById("news_page_main");
@@ -136,25 +147,31 @@ function handleNavigation(fadeInUpElements) {
           targetUrl === "./articles/pinned.html"
         ) {
           if (localStorage.getItem("newsFade") === "true") {
+            console.log("reachme03");
             if (isNewsPageMainInViewport) {
+              console.log("reachme01");
               delayCounter--;
             }
             if (isTopBannerMainInViewport) {
+              console.log("reachme02");
               delayCounter--;
             }
           }
           localStorage.setItem("newsFade", false);
         }
-
+        console.log(
+          `Redirecting to ${targetUrl} after  delay of ${delayCounter * 600 + 800} ms ` + delayCounter + " delay(s)"
+        );
 
         setTimeout(
           () => {
+            console.log("reachme05");
             // console.log(currentPage + " This is the Current Page!!!!");
             // console.log(targetUrl + " This is the Target URL****");
 
-            console.log(
-              `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
-            );
+            // console.log(
+            //   `Redirecting to ${targetUrl} after  delay of ${delayCounter * 600 + 800} ms ` + delayCounter + " delay(s)"
+            // );
             window.location.href = targetUrl;
           },
           delayCounter * 600 + 800
@@ -166,13 +183,13 @@ function handleNavigation(fadeInUpElements) {
 
 //fades things in on load, initalizes navigation logic for the rest of the page, and plays the lottie animation
 function animateOnLoad() {
+  // console.log("animatOnLoad() Triggered");
   const fadeInUpElements = Array.from(
     document.querySelectorAll(".fadeInUp:not(nav)")
   );
 
   setTimeout(() => {
     let viewportIndex = 0;
-    console.log("reachme01");
     fadeInUpElements.forEach((element) => {
       if (isInViewport(element)) {
         element.style.animationDelay = `${viewportIndex * 600}ms`;
@@ -269,7 +286,8 @@ function isTargetPage() {
     currentPage === "news.html" ||
     currentPage === "pinned.html" ||
     currentPage === "dizzy.html" ||
-    currentPage === "letter.html"
+    currentPage === "letter.html" ||
+    currentPage === "template.html"
   );
 }
 
@@ -281,52 +299,34 @@ function clearScrollPosition() {
 
 // Initialize scroll handling based on the page
 const topBannerMain = document.getElementById("top_banner_main");
+const currentPage = window.location.pathname.split("/").pop();
 if (isTargetPage()) {
-  window.addEventListener("scroll", storeScrollPosition);
-  // window.addEventListener('beforeunload', storeScrollPosition);
-  window.addEventListener("DOMContentLoaded", restoreScrollPosition);
+  if (currentPage === "news.html" && topBannerMain) {
+    // Check if the element is in the viewport
+    if (isInViewport(topBannerMain)) {
+      window.addEventListener("DOMContentLoaded", restoreScrollPosition);
+    } else {
+      window.addEventListener("DOMContentLoaded", clearScrollPosition);
+    }
+  } else {
+    // Handle other target pages
+    window.addEventListener("scroll", storeScrollPosition);
+    window.addEventListener("beforeunload", storeScrollPosition);
+    window.addEventListener("DOMContentLoaded", restoreScrollPosition);
+  }
 } else {
+  // Non-target pages
   window.addEventListener("DOMContentLoaded", clearScrollPosition);
-  // console.log("clearing Scroll Position");
 }
 
-// run the following code when the DOM is fully loaded
-// document.addEventListener("DOMContentLoaded", () => {
-//   console.log("reacheme10")
-//   animateOnLoad();
-//   animateHeader("animatedHeader");
-//   animateOncePerSession("animatedNav", "animated-nav");
-//   watchHeaderInView();
-//   console.log("reacheme11")
-
-// });
-
-// //run this code if the page is loaded from cache
-// window.addEventListener("pageshow", (event) => {
-//   console.log("reacheme12")
-
-//   if (event.persisted) {
-//     const currentPage = window.location.pathname;
-//     if (currentPage === "/pages/news.html") {
-//       console.log("Navigated back to news")
-//       return;
-//     }
-//     document.querySelectorAll(".fadeOutDown").forEach((el) => {
-//       el.classList.replace("fadeOutDown", "fadeInUp");
-//     });
-//   }
-
-//   // console.log("Reachme00")
-//   // always call initialization functions
-//   animateOnLoad();
-//   animateHeader("animatedHeader");
-//   animateOncePerSession("animatedNav", "animated-nav");
-//   watchHeaderInView();
-//   console.log("reacheme13")
-
-//   // console.log("Reachme01")
-
-// });
+// if (isTargetPage()) {
+//   window.addEventListener("scroll", storeScrollPosition);
+//   window.addEventListener('beforeunload', storeScrollPosition);
+//   window.addEventListener("DOMContentLoaded", restoreScrollPosition);
+// } else {
+//   window.addEventListener("DOMContentLoaded", clearScrollPosition);
+//   // console.log("clearing Scroll Position");
+// }
 
 // calculate total aniamtion time
 function calculateAnimationDuration() {
@@ -382,23 +382,22 @@ function addFadeInUp() {
   block.forEach(function (item) {
     if (item) {
       item.classList.add("fadeInUp", "animated");
-      console.log("reached addFadeInUp() loop");
     }
   });
 }
 
-function addFadeInUpToArticle() {
-  const newsPageMain = document.getElementById("news_page_main");
+// function addFadeInUpToArticle() {
+//   console.log("addFadeInUpToArticle() Triggered")
+//   const newsPageMain = document.getElementById("news_page_main");
 
-  // Add fadeInUp class to the news_page_main element
-  if (newsPageMain) {
-    newsPageMain.classList.add("fadeInUp", "animated");
-  }
-}
+//   // Add fadeInUp class to the news_page_main element
+//   if (newsPageMain) {
+//     newsPageMain.classList.add("fadeInUp", "animated");
+//   }
+// }
 
 function addFadeOutDown() {
   // Calculate total animation duration based on elements
-  // const totalAnimationDuration = test();
   const totalAnimationDuration = 600;
   let elements_for_fade = [
     {
@@ -410,7 +409,6 @@ function addFadeOutDown() {
       delay: `${totalAnimationDuration + 600}ms`,
     },
   ];
-  console.log("reachme02");
   elements_for_fade.forEach(function (item) {
     if (item.element) {
       item.element.style.animationDelay = item.delay;
@@ -433,6 +431,7 @@ function staticTitle() {
 let exitFadeTimeout; // Store timeout globally
 
 function handleFadeAndRedirect() {
+  console.log("handleFadeAndRedirect() Triggered");
 
   // Check if already on the target page
   if (window.location.pathname === "/pages/articles/pinned.html") {
@@ -452,7 +451,6 @@ function handleFadeAndRedirect() {
 
   // Fade out elements with class "fade_link" and redirect after transition
   const elements = document.querySelectorAll(".fade_link");
-  console.log("reachme03");
   elements.forEach((div, index) => {
     div.classList.replace("fadeInUp", "fadeOutDown");
     div.style.animationDelay = `${index * 600}ms`;
@@ -461,7 +459,6 @@ function handleFadeAndRedirect() {
   // Redirect after all animations are done
   exitFadeTimeout = setTimeout(
     () => {
-      console.log("Redirecting to pinned.html");
       window.location = "../pages/articles/pinned.html";
     },
     elements.length * 600 + 800 // Add an extra delay for smooth transition
@@ -476,7 +473,6 @@ window.addEventListener("beforeunload", () => {
 // Handle bfcache and back button navigation
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
-    // console.log("Page restored from bfcache. Clearing timeouts.");
     clearTimeout(exitFadeTimeout);
   }
 });
@@ -486,42 +482,28 @@ window.addEventListener("popstate", () => {
   clearTimeout(exitFadeTimeout);
 });
 
-const readAllButton = document.querySelector(".read-all-articles");
+// const readAllButton = document.querySelector(".read-all-articles");
 
-if (readAllButton && !readAllButton._hasListener) {
-  readAllButton._hasListener = true; // Flag to prevent duplicate listeners
-  readAllButton.addEventListener("click", handleFadeAndRedirect);
-}
+// if (readAllButton && !readAllButton._hasListener) {
+//   readAllButton._hasListener = true; // Flag to prevent duplicate listeners
+//   readAllButton.addEventListener("click", handleFadeAndRedirect);
+// }
 
-
-///////////////////////////////////////////////////////////////////////
-
-// TESTING FUNCTIONS
-
-// // Flag to track initialization state
+// Flag to track initialization state
 let isInitialized = false;
 
 // Run the following code when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  // if (!isInitialized) {
-  //   initializePage(); // General initialization
-  //   isInitialized = true; // Prevent reinitialization
-  // }
+
 });
 
 // Run this code if the page is loaded from cache
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
-    // console.log("Page restored from bfcache.");
     handleCacheRestore(); // Handle cache-specific logic
   }
   initializePage();
-  // animateOnLoad();
-  // Ensure global initialization logic runs if needed
-  // if (!isInitialized) {
-  //   initializePage();
-  //   isInitialized = true;
-  // }
+
 });
 
 function initializePage() {
@@ -535,7 +517,6 @@ function initializePage() {
 function handleCacheRestore() {
   const currentPage = window.location.pathname;
   if (currentPage === "/pages/news.html") {
-    console.log("Navigated back to news");
   }
 
   // Reverse fade-out animations to fade-in
@@ -543,8 +524,3 @@ function handleCacheRestore() {
     el.classList.replace("fadeOutDown", "fadeInUp");
   });
 }
-
-
-
-
-//////////////////////////////////////////////////////////////////////
