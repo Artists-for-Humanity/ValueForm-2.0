@@ -1868,15 +1868,25 @@ aside.sidebar-bottom h4.text-s + p.text-s{
   padding-bottom: 21px;
 }
 .link-back-test {
-  padding-top: 8px;
-  padding-bottom: 19px;
+  padding-bottom: 16px;
 }
 
 @media screen and (min-width: 700px) {
   .link-back {
     padding-bottom: 33px;
   }
+  .link-back-test {
+    padding-bottom: 34px;
+  }
+  
+}
 
+@media screen and (min-width: 1080px) {
+ 
+  .link-back-test {
+    padding-top: 8px;
+    padding-bottom: 19px;
+  }
   
 }
 
@@ -1923,7 +1933,7 @@ cite bold {
   }
   .blockQuote {
     margin-top: 19px;
-    padding-top: 29px;
+    padding-top: 25px;
     padding-bottom: 26px;
     margin-bottom: 16px;
   }
@@ -2052,6 +2062,7 @@ cite bold {
 
 @media screen and (min-width: 700px) {
   .quote {
+    font-size: 30px;
     line-height: 34px;
   }
   
