@@ -1208,7 +1208,7 @@ main.internal.news .intro + .container.no-border {
     padding-bottom: 30px;
   }*/
   main.internal.news .intro + .container p {
-    padding-bottom: 10px;
+    padding-bottom: 5px;
   }
 } /* MAIN STYLES FOR TABLET */
 
@@ -1822,7 +1822,7 @@ x-img {
 @media screen and (min-width: 1080px) {
 
   .article-title.preview:last-child {
-    padding-bottom: 24px;
+    padding-bottom: 16px;
   }
 }
 
@@ -1868,7 +1868,8 @@ aside.sidebar-bottom h4.text-s + p.text-s{
   padding-bottom: 21px;
 }
 .link-back-test {
-  padding-bottom: 16px;
+  padding-top: 8px;
+  padding-bottom: 19px;
 }
 
 @media screen and (min-width: 700px) {
@@ -2045,10 +2046,6 @@ cite bold {
   visibility: hidden;
 }
 
-.text-s.sidebar-title {
-  padding: 0px 0 0px 0px;
-}
-
 .quote {
   line-height: 20px;
 }
@@ -2058,4 +2055,7 @@ cite bold {
     line-height: 34px;
   }
   
+  .text-s.sidebar-title {
+    padding: 0px 0px 5px 0px;
+  }
 }
