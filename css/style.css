@@ -853,7 +853,7 @@ main.internal {
     letter-spacing: 0;
   }
   .intro div {
-    padding-bottom: 9px;
+    padding-bottom: 18px;
   }
 } /* TABLET INTRO PADDING */
 
@@ -883,7 +883,7 @@ main.internal h4 {
   padding: 4px 0 6px 0;
 }
 main.internal .intro + .container p {
-  padding-bottom: 18px;
+  padding-bottom: 9px;
 }
 main.internal .container {
   border-bottom: 1px solid var(--darkgrey);
