@@ -2026,7 +2026,7 @@ cite bold {
   display:block;
 }
 
-h4.sidebar-bottom-title.text-s{
+aside.sidebar-bottom h4.sidebar-bottom-title.text-s{
   padding-bottom:8px;
 }
 
@@ -2038,7 +2038,7 @@ h4.sidebar-bottom-title.text-s{
   .sidebar-bottom{
   display:none;
   }
-  h4.sidebar-bottom-title.text-s{
+  aside.sidebar-bottom h4.sidebar-bottom-title.text-s{
     padding-bottom:5px;
   }
 }
@@ -2051,7 +2051,7 @@ h4.sidebar-bottom-title.text-s{
   .sidebar-bottom{
   display:none;
   }
-  h4.sidebar-bottom-title.text-s{
+  aside.sidebar-bottom h4.sidebar-bottom-title.text-s{
     padding-bottom:5px;
   }
 
