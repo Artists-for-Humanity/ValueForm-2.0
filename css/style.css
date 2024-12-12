@@ -2026,6 +2026,10 @@ cite bold {
   display:block;
 }
 
+h4.sidebar-bottom-title.text-s{
+  padding-bottom:8px;
+}
+
 @media (min-width: 700px) {
   .sidebar-top {
       display: block;
@@ -2033,6 +2037,9 @@ cite bold {
   }
   .sidebar-bottom{
   display:none;
+  }
+  h4.sidebar-bottom-title.text-s{
+    padding-bottom:5px;
   }
 }
 
@@ -2044,6 +2051,10 @@ cite bold {
   .sidebar-bottom{
   display:none;
   }
+  h4.sidebar-bottom-title.text-s{
+    padding-bottom:5px;
+  }
+
 }
 
 .subheader{
