@@ -1985,7 +1985,7 @@ cite bold {
     margin-top:15px;
     /* padding-top: 15px;
     padding-bottom: 13px; */
-    padding-top: 37px;
+    padding-top: 34px;
     padding-bottom: 28px;
     margin-bottom: 25px;
 
@@ -2003,7 +2003,7 @@ cite bold {
     padding-top:8px;
   }
   .quote {
-    margin-bottom: 17px;
+    margin-bottom:2px;
   }
   cite {
     font-size: 16px;
