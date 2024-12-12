@@ -1208,7 +1208,7 @@ main.internal.news .intro + .container.no-border {
     padding-bottom: 30px;
   }*/
   main.internal.news .intro + .container p {
-    padding-bottom: 5px;
+    padding-bottom: 9px;
   }
 } /* MAIN STYLES FOR TABLET */
 
@@ -1932,8 +1932,8 @@ cite bold {
     margin-bottom: 16px;
   }
   .blockQuote {
-    margin-top: 19px;
-    padding-top: 25px;
+    margin-top: 15px;
+    padding-top: 23px;
     padding-bottom: 26px;
     margin-bottom: 16px;
   }
