@@ -2087,3 +2087,23 @@ aside.sidebar-bottom h4.sidebar-bottom-title.text-s{
     padding: 0px 0px 5px 0px;
   }
 }
+
+/* Ensure unordered lists have bullets */
+ul {
+  list-style-type: disc; /* Standard bullet points */
+  margin: 1em 0;         /* Add vertical spacing for better readability */
+  padding-left: 20px;    /* Ensure bullets appear indented */
+}
+
+ul.article-list {
+  list-style-type: disc; /* Ensure bullets appear for article lists */
+  padding-left: 20px;
+  margin-left: 0;        /* Remove extra left margin if set elsewhere */
+}
+
+/* Style the list items for better spacing */
+li {
+  margin-bottom: 0.5em; /* Add spacing between list items */
+}
+
+
