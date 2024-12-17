@@ -223,6 +223,7 @@ function checkHeaderInView() {
     headerChecked = true;
   }
 }
+
 //calls check header in view on scroll
 function watchHeaderInView() {
   checkHeaderInView();
@@ -250,17 +251,63 @@ function storeScrollPosition() {
   sessionStorage.setItem("scrollPosition", window.scrollY);
 }
 
-// restore the scroll position when the page loads
+
+//////////////////////////////////////////////////////////////////////
+
+// // restore the scroll position when the page loads
+// function restoreScrollPosition() {
+//   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
+//   if (storedScrollPosition !== null) {
+//     window.scrollTo(0, parseInt(storedScrollPosition, 10));
+//     // console.log("retoring scroll position");
+//   }
+
+//   // Show the page content after restoring scroll
+//   document.body.classList.remove("preload");
+// }
+
+// Restore the scroll position and manage animations based on visibility
 function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
+  const topBannerMain = document.getElementById("top_banner_main");
+
   if (storedScrollPosition !== null) {
     window.scrollTo(0, parseInt(storedScrollPosition, 10));
-    // console.log("retoring scroll position");
+
+    // Check if "top_banner_main" is in viewport after restoring scroll position
+    if (isInViewport(topBannerMain)) {
+      // Prevent animation if visible
+      sessionStorage.setItem("dontAnimateBanner", "true");
+    } else {
+      // Clear scroll position if not visible and re-enable animations
+      clearScrollPosition();
+      sessionStorage.removeItem("dontAnimateBanner");
+    }
   }
 
   // Show the page content after restoring scroll
   document.body.classList.remove("preload");
 }
+
+
+// Manage animation for "top_banner_main"
+function manageTopBannerAnimation() {
+  const topBannerMain = document.getElementById("top_banner_main");
+  const dontAnimate = sessionStorage.getItem("dontAnimateBanner");
+
+  if (topBannerMain) {
+    if (dontAnimate === "true") {
+      // Prevent animation
+      topBannerMain.classList.remove("animated-banner");
+    } else {
+      // Animate normally
+      topBannerMain.classList.add("animated-banner");
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
 
 // check if the current page is a target page
 function isTargetPage() {
@@ -269,7 +316,8 @@ function isTargetPage() {
     currentPage === "news.html" ||
     currentPage === "pinned.html" ||
     currentPage === "dizzy.html" ||
-    currentPage === "letter.html"
+    currentPage === "letter.html" ||
+    currentPage === "template.html"
   );
 }
 
@@ -279,54 +327,34 @@ function clearScrollPosition() {
   window.scrollTo(0, 0);
 }
 
+//////////////////////////////////////////////////////////////////////
+
+// // Initialize scroll handling based on the page
+// const topBannerMain = document.getElementById("top_banner_main");
+// if (isTargetPage()) {
+//   window.addEventListener("scroll", storeScrollPosition);
+//   // window.addEventListener('beforeunload', storeScrollPosition);
+//   window.addEventListener("DOMContentLoaded", restoreScrollPosition);
+// } else {
+//   window.addEventListener("DOMContentLoaded", clearScrollPosition);
+//   // console.log("clearing Scroll Position");
+// }
+
 // Initialize scroll handling based on the page
-const topBannerMain = document.getElementById("top_banner_main");
-if (isTargetPage()) {
-  window.addEventListener("scroll", storeScrollPosition);
-  // window.addEventListener('beforeunload', storeScrollPosition);
-  window.addEventListener("DOMContentLoaded", restoreScrollPosition);
-} else {
-  window.addEventListener("DOMContentLoaded", clearScrollPosition);
-  // console.log("clearing Scroll Position");
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const topBannerMain = document.getElementById("top_banner_main");
 
-// run the following code when the DOM is fully loaded
-// document.addEventListener("DOMContentLoaded", () => {
-//   console.log("reacheme10")
-//   animateOnLoad();
-//   animateHeader("animatedHeader");
-//   animateOncePerSession("animatedNav", "animated-nav");
-//   watchHeaderInView();
-//   console.log("reacheme11")
+  if (isTargetPage()) {
+    restoreScrollPosition();
+    manageTopBannerAnimation();
+    window.addEventListener("scroll", storeScrollPosition);
+  } else {
+    clearScrollPosition();
+    topBannerMain?.classList.add("animated-banner"); // Default animation for non-target pages
+  }
+});
 
-// });
-
-// //run this code if the page is loaded from cache
-// window.addEventListener("pageshow", (event) => {
-//   console.log("reacheme12")
-
-//   if (event.persisted) {
-//     const currentPage = window.location.pathname;
-//     if (currentPage === "/pages/news.html") {
-//       console.log("Navigated back to news")
-//       return;
-//     }
-//     document.querySelectorAll(".fadeOutDown").forEach((el) => {
-//       el.classList.replace("fadeOutDown", "fadeInUp");
-//     });
-//   }
-
-//   // console.log("Reachme00")
-//   // always call initialization functions
-//   animateOnLoad();
-//   animateHeader("animatedHeader");
-//   animateOncePerSession("animatedNav", "animated-nav");
-//   watchHeaderInView();
-//   console.log("reacheme13")
-
-//   // console.log("Reachme01")
-
-// });
+//////////////////////////////////////////////////////////////////////
 
 // calculate total aniamtion time
 function calculateAnimationDuration() {
@@ -544,6 +572,8 @@ function handleCacheRestore() {
   });
 }
 
+
+//////////////////////////////////////////////////////////////////////
 
 
 

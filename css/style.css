@@ -1616,6 +1616,12 @@ nav.fadeInUp {
   animation-duration: 600ms;
 }
 
+.animated-banner {
+  animation-timing-function: ease-out;
+  animation-name: fadeInUp;
+  animation-duration: 600ms;
+}
+
 .animated-footer {
   animation-timing-function: ease-out;
   animation-name: fadeInUp;
