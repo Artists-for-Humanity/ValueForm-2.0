@@ -885,6 +885,9 @@ main.internal h4 {
 main.internal .intro + .container p {
   padding-bottom: 9px;
 }
+main.internal .intro + .container p.pages {
+  padding-bottom: 18px;
+}
 main.internal .container {
   border-bottom: 1px solid var(--darkgrey);
 }
@@ -2089,7 +2092,7 @@ aside.sidebar-bottom h4.sidebar-bottom-title.text-s{
 }
 
 /* Ensure unordered lists have bullets */
-ul {
+ul.article-list {
   list-style-type: disc; /* Standard bullet points */
   margin: 1em 0;         /* Add vertical spacing for better readability */
   padding-left: 20px;    /* Ensure bullets appear indented */
@@ -2102,7 +2105,7 @@ ul.article-list {
 }
 
 /* Style the list items for better spacing */
-li {
+li.article-list {
   margin-bottom: 0.5em; /* Add spacing between list items */
 }
 
