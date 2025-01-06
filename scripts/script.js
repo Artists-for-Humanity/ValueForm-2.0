@@ -278,6 +278,8 @@ function restoreScrollPosition() {
     if (isInViewport(topBannerMain)) {
       // Prevent animation if visible
       sessionStorage.setItem("dontAnimateBanner", "true");
+      // topBannerMain.classList.remove("fadeInUp", "animated");
+
     } else {
       // Clear scroll position if not visible and re-enable animations
       clearScrollPosition();
@@ -410,7 +412,7 @@ function addFadeInUp() {
   block.forEach(function (item) {
     if (item) {
       item.classList.add("fadeInUp", "animated");
-      console.log("reached addFadeInUp() loop");
+      // console.log("reached addFadeInUp() loop");
     }
   });
 }
@@ -458,6 +460,17 @@ function staticTitle() {
   }
 }
 
+function staticPreview() {
+  const item = document.querySelector("#news_page_main.above_read_full");
+  if (item) {
+    item.classList.remove("fadeInUp", "animated");
+  } else {
+    console.log(
+      "Element #news_page_main with class above_read_full not found."
+    );
+  }
+}
+
 let exitFadeTimeout; // Store timeout globally
 
 function handleFadeAndRedirect() {
@@ -468,19 +481,15 @@ function handleFadeAndRedirect() {
   }
 
   // Remove "fadeInUp" and "animated" classes from elements with class "above_read_full"
-  const blocks = document.querySelectorAll(".above_read_full");
-  blocks.forEach((item) => {
-    if (item) {
-      item.classList.remove("fadeInUp", "animated");
-    }
-  });
+  staticTitle();
+  staticPreview();
 
   // Set localStorage for "newsFade"
   localStorage.setItem("newsFade", true);
 
   // Fade out elements with class "fade_link" and redirect after transition
   const elements = document.querySelectorAll(".fade_link");
-  console.log("reachme03");
+  // console.log("reachme03");
   elements.forEach((div, index) => {
     div.classList.replace("fadeInUp", "fadeOutDown");
     div.style.animationDelay = `${index * 600}ms`;
