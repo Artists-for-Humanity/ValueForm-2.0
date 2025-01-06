@@ -10,7 +10,7 @@ function isInViewport(element) {
 }
 
 function handleMainNewsFade() {
-  const elements = document.querySelectorAll(".news_page_airlines");
+  const elements = document.querySelectorAll(".title_fade");
 
   if (elements.length > 0) {
     elements.forEach((element) => {
@@ -367,16 +367,11 @@ function calculateAnimationDuration() {
   return baseDuration + fadeInUpElements.length * additionalDuration;
 }
 
-// run the white text  shadow function on page load
-// document.addEventListener("DOMContentLoaded", applyWhiteTextShadow);
-
 document.addEventListener("DOMContentLoaded", function () {
   let elements_for_fade = [
     { element: document.getElementById("news_page_main"), delay: "600ms" },
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
-
-
 
   // Check localStorage and the previous page to decide whether to fade in the sections
   const previousPage = document.referrer;
