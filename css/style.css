@@ -1854,7 +1854,7 @@ x-img {
 
 .article-vid {
   padding-top:9px;
-  padding-bottom: 20px;
+  padding-bottom: 13px;
  
 }
 
@@ -1877,7 +1877,7 @@ aside.sidebar-bottom h4.text-s + p.text-s{
   padding-bottom: 21px;
 }
 .link-back-test {
-  padding-bottom: 16px;
+  padding-bottom: 20px;
 }
 
 @media screen and (min-width: 700px) {
