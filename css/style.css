@@ -2096,17 +2096,26 @@ ul.article-list {
   list-style-type: disc; /* Standard bullet points */
   margin: 1em 0;         /* Add vertical spacing for better readability */
   padding-left: 20px;    /* Ensure bullets appear indented */
+  box-sizing: border-box; /* Include padding in the width calculation */
 }
 
-ul.article-list {
-  list-style-type: disc; /* Ensure bullets appear for article lists */
-  padding-left: 20px;
-  margin-left: 0;        /* Remove extra left margin if set elsewhere */
+ul.article-list li{
+  margin-bottom: 0.5em; /*Add spacing between list items */
+  display: list-item;
+  width: 100%;
+  word-wrap: break-word;
+  white-space: normal;
+  /* padding-left: 20px; */
+ /*margin-left: 0;        /* Remove extra left margin if set elsewhere */
+  /* list-style-type: disc; /* Ensure bullets appear for article lists */
+
+
 }
 
 /* Style the list items for better spacing */
-li.article-list {
-  margin-bottom: 0.5em; /* Add spacing between list items */
-}
+/* li.article-list {
+  margin-bottom: 0.5em; Add spacing between list items
+
+} */
 
 
