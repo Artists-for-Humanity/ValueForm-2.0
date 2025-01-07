@@ -2105,6 +2105,7 @@ ul.article-list li{
   width: 100%;
   word-wrap: break-word;
   white-space: normal;
+  border-bottom: none;
   /* padding-left: 20px; */
  /*margin-left: 0;        /* Remove extra left margin if set elsewhere */
   /* list-style-type: disc; /* Ensure bullets appear for article lists */
@@ -2118,4 +2119,6 @@ ul.article-list li{
 
 } */
 
-
+.text-m em {
+  font-style: italic;
+}
