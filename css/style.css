@@ -2124,11 +2124,16 @@ ul.article-list {
   margin: 1em 0;         /* Add vertical spacing for better readability */
   padding-left: 16px;    /* Ensure bullets appear indented */
   box-sizing: border-box; /* Include padding in the width calculation */
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 9px;
+  margin-bottom: 14px;
 }
 
 @media screen and (min-width: 700px) {
   ul.article-list {
     padding-left: 32px; /* Ensure bullets appear indented */
+    margin-bottom:7px;
   }
 }
 
@@ -2140,9 +2145,8 @@ ul.article-list li{
   white-space: normal;
   border-bottom: none;
   padding-left:4px;
-  padding-top:0px;
-  padding-bottom:0px;
-
+padding-top:0px;
+padding-bottom:0px;
 }
 
 @media screen and (min-width: 700px) {
