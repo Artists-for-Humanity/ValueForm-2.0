@@ -10,12 +10,12 @@ careers@valueform.io
 -->
 
 <head>
-    <html lang="en">
+  <html lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title> Article | ValueForm</title>
     <meta name="description"
-        content="ValueForm's approach is designed to deliver outcomes. We create conviction in your outcomes by directly tying our compensation to them. We design experiences that organizations can handle operationally, making execution inevitable.">
+      content="ValueForm's approach is designed to deliver outcomes. We create conviction in your outcomes by directly tying our compensation to them. We design experiences that organizations can handle operationally, making execution inevitable.">
 
     <link rel="icon" type="image/x-icon" href="../../images/favicon/favicon.ico">
     <link href="../../images/favicon/android-chrome-192x192.png" rel="apple-touch-icon" sizes="180x180">
@@ -26,213 +26,238 @@ careers@valueform.io
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
     <script defer>
-        document.addEventListener("DOMContentLoaded", function () {
-            setTimeout(function () {
-                document.documentElement.classList.add('smooth-scroll');
-            }, 10);
-        });
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          document.documentElement.classList.add('smooth-scroll');
+        }, 10);
+      });
     </script>
 
 </head>
 
 <body class="preload">
-    <script>
-        const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
-        if (dontAnimate === 'true') {
-            document.body.style.setProperty('--header-opacity', "1");
-        }
-    </script>
-    <section class="wrapper">
-        <header class="container text-s internal fadeInUp" id="animatedHeader">
-            <a href="../../index.html">
-                <img src="../../images/logo.svg" alt="ValueForm's Logo" />
-            </a>
+  <script>
+    const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
+    if (dontAnimate === 'true') {
+      document.body.style.setProperty('--header-opacity', "1");
+    }
+  </script>
+  <section class="wrapper">
+    <header class="container text-s internal" id="animatedHeader">
+      <a href="../../index.html" onclick="addFadeOutDown();">
+        <img src="../../images/logo.svg" alt="ValueForm's Logo" />
+      </a>
 
-            <div class="how-we desktop-col-3 tablet-col-3">
-                <h4>How we do it</h4>
-                <p><strong>ValueForm</strong> uses experience design to help businesses. To us that encompasses <a
-                        href="../our-approach.html#potential">service design</a>, <a
-                        href="../our-approach.html#potential">product
-                        design</a>, and <a href="../our-approach.html#potential">software engineering</a>.
+      <div class="how-we desktop-col-3 tablet-col-3">
+        <h4>How we do it</h4>
+        <p><strong>ValueForm</strong> uses experience design to help businesses. To us that encompasses <a
+            href="../our-approach.html#potential">service design</a>, <a href="../our-approach.html#potential">product
+            design</a>, and <a href="../our-approach.html#potential">software engineering</a>.
+        </p>
+      </div>
+
+      <div class="contacts desktop-col-3-end tablet-col-3-end">
+        <h4>Contacts</h4>
+        <p><a href="mailto:newbusiness@valueform.io" class="disabled">newbusiness@valueform.io</a><br />
+          <a href="mailto:press@valueform.io" class="disabled">press@valueform.io</a><br />
+          <a href="mailto:careers@valueform.io" class="disabled">careers@valueform.io</a><br />
+        </p>
+      </div>
+    </header>
+
+    <nav id="animatedNav" class="text-s">
+      <div>
+        <a href="../our-approach.html" onclick="addFadeOutDown();">Our Approach</a>
+        <a href="../leadership.html">Leadership</a>
+        <a href="../news.html" onclick="handleMainNewsFade()">News</a>
+
+      </div>
+    </nav>
+
+    <main class="internal news">
+      <div id="top_banner_main" class="intro">
+        <h1 class="text-m"> C. News.</h1>
+        <div>
+          <h2 class="text-xl">Ear to the Streets.</h2>
+          <h2 class="text-xl">Ear to the Streets.</h2>
+        </div>
+      </div>
+
+      <div id="news_page_main" class="container">
+        <!-- <aside class="desktop-col-4 tablet-col-1 sidebar-top title_fade">
+          <h4 class="text-s sidebar-title">About Southwest Airlines:</h4>
+          <p class="text-s popup-text">
+            Southwest Airlines Co. <a href="https://finance.yahoo.com/quote/LUV/?guccounter=1" target="_blank">(NYSE:
+              LUV)</a> Southwest Airlines Co.operates one of the world's most admired and awarded airlines, offering its
+            one-of-a-kind value and Hospitality at 121 airports across 11 countries. Southwest took flight in 1971 to
+            democratize the sky through friendly, reliable, and low-cost air travel and now carries more air travelers
+            flying nonstop within the United States than any other airline.
+          </p>
+        </aside> -->
+
+        <aside class="desktop-col-4 tablet-col-1 sidebar-top title_fade">
+          <h4 class="text-s sidebar-title">About BNY:</h4>
+
+          <p class="text-s popup-text">
+            BNY <a
+              href="https://www.google.com/finance/quote/BK:NYSE?sa=X&sqi=2&ved=2ahUKEwiZmufEmaCKAxU1jYkEHX0mLckQ3ecFegQINBAX"
+              target="_blank">(NYSE:
+              BK)</a> is a global financial services company that makes money work for the world. Managing it, moving
+            it, and keeping it safe.
+            For 240 years BNY put its expertise and platforms to work to help clients achieve their ambitions.
+            Today BNY helps over 90% of Fortune 100 companies and the top 100 banks globally access the money they need.
+            As of September 2024, BNY oversees $52.1 trillion in assets under custody and $2.1 trillion in assets under
+            management.
+          </p>
+        </aside>
+
+
+        <div class="desktop-col-8 tablet-col-7 article title_fade">
+          <h3 class="desktop-col-8 article-title">
+            BNY taps ValueForm to better its trading systems and execution services.
+            <time class="text-m date">January 20th, 2025</time>
+          </h3>
+
+        </div>
+
+
+        <div class="desktop-col-7 tablet-col-7  img-contain">
+          <img src="../../images/news/BNY.svg" alt="" srcset="" >
+      </div>
+
+
+        <div class=" desktop-col-7 tablet-col-7 article text title_fade">
+          <p class="text-m">
+            ValueForm is excited to partner with BNY to elevate its trading systems and execution services.
+            Together, we’re creating more seamless, efficient, and instinctive experiences for BNY’s clients
+            and traders.
+          </p>
+
+          <p class="text-m">
+            Markets are a game of seconds, where usability issues can cost traders time and ultimately
+            millions of dollars.
+            BNY’s decision to partner with us reflects its commitment to achieving business outcomes through
+            human-centered thinking.
+          </p>
+          <p class="text-m">
+            “Our experience designing complex systems, specifically in financial markets, makes this a great
+            fit.”
+            said Christopher Pross, our Managing Partner. “We’re excited to help BNY optimize its tools and
+            drive efficiency and outcomes.”
+        </div>
+
+        <blockquote class="fadeInUp blockQuote desktop-col-8 tablet-col-7 title_fade">
+          <div class="quote">
+            Our experience designing complex systems, specifically in financial markets, makes this a great
+            fit.
+          </div>
+          <cite>
+            <bold>Christopher Pross</bold> Managing Partner, ValueForm
+          </cite>
+        </blockquote>
+
+        <!-- <img src="../../images/news/img-block.png" alt=""
+          class="desktop-col-8 tablet-col-7 article-img fadeInUp fade_link">
+
+        <div class="fadeInUp desktop-col-7 tablet-col-7  article text">
+          <p class="text-m">
+            lectus. In imperdiet metus sed leo tincidunt, a congue dui auctor. Aliquam dictum nulla ut maximus tempus.
+            Donec et enim volutpat nisi posuere viverra. Aliquam erat volutpat. Mauris id euismod est, at commodo elit.
+            Aliquam auctor eu diam gravida auctor. Nullam leo dolor, aliquam vel ante pharetra, pellentesque pretium mi.
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean at elit
+            sed lectus maximus semper id in urna.
+          </p>
+        </div> -->
+
+        <div class="fadeInUp desktop-col-7 tablet-col-7 article text">
+            <h4 class="text-m"> The partnership will focus on:</h4>
+     
+          <ul class="article-list">
+              <li>
+                  Systems Optimization: We’ll analyze and adjust existing back-end processes and
+                  infrastructure to create smoother, more intuitive user-facing experiences.</li>
+              <li>
+                  Creating and Testing New Experience Models: We’ll experiment with new and unconventional
+                  paradigms for traders engaging with markets.
+                  Going beyond functionality to make tools more instinctive, intuitive, and minimize mental
+                  effort.
+              </li>
+              <li>
+                  Embracing problems to be solved rather than solutions to be vetted. During our
+                  process, we'll offer multiple answers. Some digital, some not. We don't handicap ourselves
+                  when
+                  creating business outcomes.
+              </li>
+              <li>
+                  User-Centered Roadmaps: We’ll create and sequence roadmaps based on user needs, ensuring
+                  alignment with trader and client expectations.
+                  These roadmaps will de-risk and guide the engineering effort by ensuring its alignment with
+                  users.
+              </li>
+
+          </ul>
+
+          <p class="text-m">
+
+              We’re thrilled about this collaboration and can’t wait to share updates as we shape the future
+              of trading tools together. </p>
+
+              <aside class="desktop-col-4 tablet-col-1 sidebar-bottom">
+                <h4 class="text-s sidebar-bottom-title">Jonathan Dizzy</h4>
+    
+                <p class="text-s">
+                    Hailed as the “Internet’s highest honor” by The New York Times, The Webby Awards is the
+                    leading
+                    international awards organization honoring excellence on the Internet. Established in 1996,
+                    The Webby
+                    Awards
+                    are presented by the International Academy of Digital Arts and Sciences (IADAS).
                 </p>
-            </div>
+    
+          
+            </aside>
+    
+            <div class=" desktop-col-8 tablet-col-7  link-back-test">
+              <a href="../news.html" class="underline strong link link-back" onclick="handleMainNewsFade()">
+                  Read all news
+              </a>
+          </div>
 
-            <div class="contacts desktop-col-3-end tablet-col-3-end">
-                <h4>Contacts</h4>
-                <p><a href="mailto:newbusiness@valueform.io" class="disabled">newbusiness@valueform.io</a><br />
-                    <a href="mailto:press@valueform.io" class="disabled">press@valueform.io</a><br />
-                    <a href="mailto:careers@valueform.io" class="disabled">careers@valueform.io</a><br />
-                </p>
-            </div>
-        </header>
-
-        <nav id="animatedNav" class="text-s">
-            <div>
-                <a href="../our-approach.html">Our Approach</a>
-                <a href="../leadership.html">Leadership</a>
-                <a href="../news.html">News</a>
-            </div>
-        </nav>
-
-        <main class="internal news">
-            <div id="top_banner_main" class="intro fadeInUp">
-                <h1 class="text-m"> C. News.</h1>
-                <div>
-                    <h2 class="text-xl">Ear to the Streets.</h2>
-                    <h2 class="text-xl">Ear to the Streets.</h2>
-                </div>
-            </div>
-
-            <div class="container fadeInUp">
-                <aside class="desktop-col-4 tablet-col-1 sidebar-top">
-                    <h4 class="text-s sidebar-title">About BNY:</h4>
-
-                    <p class="text-s popup-text">
-                        BNY <a href="https://www.google.com/finance/quote/BK:NYSE?sa=X&sqi=2&ved=2ahUKEwiZmufEmaCKAxU1jYkEHX0mLckQ3ecFegQINBAX" target="_blank">(NYSE:
-                            BK)</a> is a global financial services company that makes money work for the world. Managing it, moving it, and keeping it safe. 
-                        For 240 years BNY put its expertise and platforms to work to help clients achieve their ambitions.
-                         Today BNY helps over 90% of Fortune 100 companies and the top 100 banks globally access the money they need. 
-                         As of September 2024, BNY oversees $52.1 trillion in assets under custody and $2.1 trillion in assets under management.
-                    </p>
-                </aside>
-
-                <div class="desktop-col-8 tablet-col-7 article">
-                    <h3 class="desktop-col-8 article-title">
-                        BNY taps ValueForm to better its trading systems and execution services.
-                        <time class="text-m date">January 20th, 2025</time>
-                    </h3>
-
-                </div>
+      </div>
 
 
-                <div class="desktop-col-7 tablet-col-7  img-contain">
-                    <img src="../../images/news/BNY.svg" alt="" srcset="">
-                </div>
+      </div>
+    </main>
+  </section>
 
-                <div class="fadeInUp desktop-col-7 tablet-col-7  article text">
-                    <p class="text-m">
-                        ValueForm is excited to partner with BNY to elevate its trading systems and execution services.
-                        Together, we’re creating more seamless, efficient, and instinctive experiences for BNY’s clients
-                        and traders.
-                    </p>
+  <footer class="container text-s fadeInUp">
+    <a href="../../index.html"><img src="../../images/logo.svg" alt="ValueForm's Logo" /></a>
 
-                    <p class="text-m">
-                        Markets are a game of seconds, where usability issues can cost traders time and ultimately
-                        millions of dollars.
-                        BNY’s decision to partner with us reflects its commitment to achieving business outcomes through
-                        human-centered thinking.
-                    </p>
-                    <p class="text-m">
-                        “Our experience designing complex systems, specifically in financial markets, makes this a great
-                        fit.”
-                        said Christopher Pross, our Managing Partner. “We’re excited to help BNY optimize its tools and
-                        drive efficiency and outcomes.”
-                </div>
+    <div class="address desktop-col-3 tablet-col-2">
+      <h4>New York</h4>
+      <p>3 World Trade Center<br />
+        175 Greenwich St.<br />
+        New York, NY 10007
+      </p>
+    </div>
 
-                <blockquote class="fadeInUp blockQuote desktop-col-8 tablet-col-7 ">
-                    <div class="quote">
-                        Our experience designing complex systems, specifically in financial markets, makes this a great
-                        fit.
-                    </div>
-                    <cite>
-                        <bold>Christopher Pross</bold> Managing Partner, ValueForm
-                    </cite>
-                </blockquote>
+    <div class="copyright desktop-col-3-mid tablet-col-2-mid">
+      <h4>Copyright</h4>
+      <p>&copy;<br />
+        Copyright 2024, ValueForm
+      </p>
+    </div>
 
-
-                <div class="fadeInUp desktop-col-7 tablet-col-7 article text">
-                    <h4 class="text-m"> The partnership will focus on:</h4>
-
-              
-                    <ul class="article-list">
-                        <li>
-                            Systems Optimization: We’ll analyze and adjust existing back-end processes and
-                            infrastructure to create smoother, more intuitive user-facing experiences.</li>
-                        <li>
-                            Creating and Testing New Experience Models: We’ll experiment with new and unconventional
-                            paradigms for traders engaging with markets.
-                            Going beyond functionality to make tools more instinctive, intuitive, and minimize mental
-                            effort.
-                        </li>
-                        <li>
-                            Embracing problems to be solved rather than solutions to be vetted. During our
-                            process, we'll offer multiple answers. Some digital, some not. We don't handicap ourselves
-                            when
-                            creating business outcomes.
-                        </li>
-                        <li>
-                            User-Centered Roadmaps: We’ll create and sequence roadmaps based on user needs, ensuring
-                            alignment with trader and client expectations.
-                            These roadmaps will de-risk and guide the engineering effort by ensuring its alignment with
-                            users.
-                        </li>
-
-                    </ul>
-
-                    <p class="text-m">
-
-                        We’re thrilled about this collaboration and can’t wait to share updates as we shape the future
-                        of trading tools together. </p>
-
-                </div>
-
-
-                <div class=" fadeInUp desktop-col-8 tablet-col-7 ">
-                 
-                    <div class=" desktop-col-8 tablet-col-7  link-back-test">
-                        <a href="../news.html" class="underline strong link link-back" onclick="handleMainNewsFade()">
-                            Read all news
-                        </a>
-                    </div>
-
-                    <aside class="desktop-col-4 tablet-col-1 sidebar-bottom">
-                        <h4 class="text-s sidebar-bottom-title">Jonathan Dizzy</h4>
-
-                        <p class="text-s">
-                            Hailed as the “Internet’s highest honor” by The New York Times, The Webby Awards is the
-                            leading
-                            international awards organization honoring excellence on the Internet. Established in 1996,
-                            The Webby
-                            Awards
-                            are presented by the International Academy of Digital Arts and Sciences (IADAS).
-                        </p>
-                    </aside>
-
-                </div>
-
-            </div>
-
-        </main>
-
-    </section>
-
-    <footer class="container text-s fadeInUp">
-        <a href="../../index.html"><img src="../../images/logo.svg" alt="ValueForm's Logo" /></a>
-
-        <div class="address desktop-col-3 tablet-col-2">
-            <h4>New York</h4>
-            <p>3 World Trade Center<br />
-                175 Greenwich St.<br />
-                New York, NY 10007
-            </p>
-        </div>
-
-        <div class="copyright desktop-col-3-mid tablet-col-2-mid">
-            <h4>Copyright</h4>
-            <p>&copy;<br />
-                Copyright 2024, ValueForm
-            </p>
-        </div>
-
-        <div class="contacts desktop-col-3-end tablet-col-3-end">
-            <h4>Contacts</h4>
-            <p><a href="mailto:newbusiness@valueform.io" class="disabled">newbusiness@valueform.io</a><br />
-                <a href="mailto:press@valueform.io" class="disabled">press@valueform.io</a><br />
-                <a href="mailto:careers@valueform.io" class="disabled">careers@valueform.io</a><br />
-            </p>
-        </div>
-        <a href="../../index.html"><img src="../../images/logo.svg" alt="ValueForm's Logo" /></a>
-    </footer>
+    <div class="contacts desktop-col-3-end tablet-col-3-end">
+      <h4>Contacts</h4>
+      <p><a href="mailto:newbusiness@valueform.io" class="disabled">newbusiness@valueform.io</a><br />
+        <a href="mailto:press@valueform.io" class="disabled">press@valueform.io</a><br />
+        <a href="mailto:careers@valueform.io" class="disabled">careers@valueform.io</a><br />
+      </p>
+    </div>
+    <a href="../../index.html " onclick="addFadeOutDown();"><img src="../../images/logo.svg"
+        alt="ValueForm's Logo" /></a>
+  </footer>
 
 </body>
 
