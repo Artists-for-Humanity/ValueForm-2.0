@@ -2133,16 +2133,31 @@ ul.article-list {
 }
 
 ul.article-list li{
-  margin-bottom: 0.5em; /*Add spacing between list items */
+  margin-bottom: 4px; /*Add spacing between list items */
   display: list-item;
   width: 100%;
   word-wrap: break-word;
   white-space: normal;
   border-bottom: none;
   padding-left:4px;
+  padding-top:0px;
+  padding-bottom:0px;
 
 }
 
+@media screen and (min-width: 700px) {
+  ul.article-list li {
+    margin-bottom: 13px; /*Add spacing between list items */
+  }
+  
+}
+
+@media screen and (min-width: 700px) {
+  ul.article-list li {
+    margin-bottom: 2px; /*Add spacing between list items */
+  }
+  
+}
 
 
 .text-m em {
