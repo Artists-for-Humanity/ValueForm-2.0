@@ -1689,7 +1689,12 @@ table {
 .sidebar a:hover {
   text-decoration: none;
 }
-
+.article-block{
+  display: grid;
+    grid-template-columns: inherit;
+    /* grid-template-columns: repeat(12, minmax(0, 1fr)); */
+    text-decoration: none;
+}
 .article-title:first-child:hover{
   cursor: text;
 }
