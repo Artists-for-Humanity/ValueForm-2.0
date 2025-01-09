@@ -1937,6 +1937,10 @@ cite {
 cite bold {
   font-weight: 700;
 }
+
+#news_page_main > div.desktop-col-7.tablet-col-7.img-contain > img{
+  max-width:375px;
+}
 @media screen and (min-width: 700px) {
   .article-title.preview {
     padding: 28px 0px 27px 0px;
@@ -1961,6 +1965,9 @@ cite bold {
   cite {
     font-size: 16px;
     color: var(--nearwhite);
+  }
+  #news_page_main > div.desktop-col-7.tablet-col-7.img-contain > img{
+    max-width:400px;
   }
 }
 @media screen and (min-width: 1080px) {
@@ -2031,6 +2038,11 @@ cite bold {
     padding-top: 14px;
     padding-bottom: 27px;
   }
+  #news_page_main > div.desktop-col-7.tablet-col-7.img-contain > img{
+    max-width:100%;
+  }
+
+
 }
 
 .sidebar-top, .sidebar-bottom {
