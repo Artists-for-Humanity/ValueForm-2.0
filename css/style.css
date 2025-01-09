@@ -204,6 +204,12 @@ h2.text-l {
   padding-bottom: 8px;
   letter-spacing: -1px;
 }
+h3.text-l{
+  color: var(--darkgrey);
+  font-weight: bold;
+  padding-bottom: 8px;
+  letter-spacing: -1px; 
+}
 h2 a {
   color: var(--darkgrey);
   text-decoration: none;
@@ -1169,6 +1175,9 @@ main.internal.news .intro + .container.no-border {
   main.internal h2.text-l {
     padding-bottom: 15px;
     /* padding-top: 36px; */
+  }
+  main.internal.h3.text-l{
+    padding-bottom:15px;
   }
 
   main.internal.lead h2.text-l {
