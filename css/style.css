@@ -1885,6 +1885,7 @@ aside.sidebar-bottom h4.text-s{
 
 aside.sidebar-bottom h4.text-s + p.text-s{
   padding-bottom: 20px;
+  color: var(--darkgrey);
 }
 
 .link-back {
@@ -2139,18 +2140,10 @@ ul.article-list li{
   white-space: normal;
   border-bottom: none;
   padding-left:4px;
-  /* padding-left: 20px; */
- /*margin-left: 0;        /* Remove extra left margin if set elsewhere */
-  /* list-style-type: disc; /* Ensure bullets appear for article lists */
-
 
 }
 
-/* Style the list items for better spacing */
-/* li.article-list {
-  margin-bottom: 0.5em; Add spacing between list items
 
-} */
 
 .text-m em {
   font-style: italic;
