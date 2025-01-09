@@ -2121,8 +2121,14 @@ aside.sidebar-bottom h4.sidebar-bottom-title.text-s{
 ul.article-list {
   list-style-type: disc; /* Standard bullet points */
   margin: 1em 0;         /* Add vertical spacing for better readability */
-  padding-left: 20px;    /* Ensure bullets appear indented */
+  padding-left: 16px;    /* Ensure bullets appear indented */
   box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+@media screen and (min-width: 700px) {
+  ul.article-list {
+    padding-left: 32px; /* Ensure bullets appear indented */
+  }
 }
 
 ul.article-list li{
@@ -2132,6 +2138,7 @@ ul.article-list li{
   word-wrap: break-word;
   white-space: normal;
   border-bottom: none;
+  padding-left:4px;
   /* padding-left: 20px; */
  /*margin-left: 0;        /* Remove extra left margin if set elsewhere */
   /* list-style-type: disc; /* Ensure bullets appear for article lists */
