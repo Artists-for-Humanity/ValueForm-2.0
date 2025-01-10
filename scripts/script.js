@@ -318,7 +318,7 @@ function isTargetPage() {
     currentPage === "news.html" ||
     currentPage === "pinned.html" ||
     currentPage === "dizzy.html" ||
-    currentPage === "ooas.html" ||
+    currentPage === "musings.html" ||
     currentPage === "letter.html" ||
     currentPage === "template.html"
   );
