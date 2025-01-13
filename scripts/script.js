@@ -79,7 +79,7 @@ function handleNavigation(fadeInUpElements) {
           newsPageMain && isInViewport(newsPageMain);
         const isTopBannerMainInViewport =
           topBannerMain && isInViewport(topBannerMain);
-      
+
 
         // Example: Add specific behavior for a certain page
         if (
@@ -369,25 +369,27 @@ function calculateAnimationDuration() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  let elements_for_fade = [
+  // Define elements with their fade-in delay
+  let elementsForFade = [
     { element: document.getElementById("news_page_main"), delay: "600ms" },
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
-  // Check localStorage and the previous page to decide whether to fade in the sections
+  // Get the referring page URL
   const previousPage = document.referrer;
 
-  // If the previous page is /pages/articles/pinned.html
+  // Logic for pinned article
   if (previousPage.includes("/pages/articles/pinned.html")) {
     if (localStorage.getItem("add_fade") === "false") {
-      elements_for_fade.forEach(function (item) {
-        if (item.element) {
-          item.element.classList.remove("fadeInUp", "animated");
+      // Remove fadeInUp for both elements
+      elementsForFade.forEach(({ element }) => {
+        if (element) {
+          element.classList.remove("fadeInUp", "animated");
         }
       });
     }
   } else {
-    // For any other previous page, only remove the class from #top_banner_main
+    // For other pages, only remove fadeInUp from #top_banner_main
     const topBannerMain = document.getElementById("top_banner_main");
     if (topBannerMain && localStorage.getItem("add_fade") === "false") {
       console.log(
@@ -397,11 +399,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Reset fade on localStorage
+  // Reset fade status in localStorage for subsequent visits
   localStorage.setItem("add_fade", true);
 });
-
-
 
 function addFadeInUp() {
   const block = document.querySelectorAll(".above_read_full");
