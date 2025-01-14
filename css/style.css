@@ -544,6 +544,10 @@ MOBILE GRID -- NOT USED */
     justify-self: center;
     padding-bottom: 25px;
   }
+
+  .desktop-col-7-left.img-contain.spinning-logo{
+    grid-column: 7/ span 3; 
+  }
   .article.desktop-col-7 {
     grid-column: 5 / span 7;
   }
