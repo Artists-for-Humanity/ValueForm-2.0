@@ -1985,6 +1985,7 @@ cite bold {
     font-weight: 700;
     line-height: 34px; /* 100% */
     letter-spacing: -1.02px;
+    margin-top:11px;
   }
 
   .article-title-no-link {
@@ -1999,6 +2000,7 @@ cite bold {
   .article-title.preview {
     padding-top: 36px;
     padding-bottom: 34px;
+    margin-top:0px;
   }
 
   .link {
