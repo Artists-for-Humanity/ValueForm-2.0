@@ -2111,6 +2111,11 @@ aside.sidebar-bottom h4.sidebar-bottom-title.text-s{
   margin-bottom:15px;
 }
 
+main.internal h4.article-subhead{
+  padding-top:13px;
+  padding-bottom:8px;
+}
+
 .preload {
   visibility: hidden;
 }
@@ -2173,6 +2178,10 @@ padding-bottom:0px;
     margin-bottom: 2px; /*Add spacing between list items */
   }
   
+}
+
+.spinning-logo{
+  padding-bottom:17px;
 }
 
 
