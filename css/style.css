@@ -1993,7 +1993,7 @@ cite bold {
     font-weight: 700;
     line-height: 34px; /* 100% */
     letter-spacing: -1.02px;
-    margin-top:11px;
+    /* margin-top:11px; */
   }
 
   .article-title-no-link {
@@ -2072,6 +2072,7 @@ cite bold {
   display:block;
 }
 
+
 aside.sidebar-bottom h4.sidebar-bottom-title.text-s{
   padding-bottom:8px;
 }
@@ -2093,6 +2094,7 @@ aside.sidebar-bottom h4.sidebar-bottom-title.text-s{
   .sidebar-top {
       display: block;
       height: 0px;
+      transform: translateY(-10px);
   }
   .sidebar-bottom{
   display:none;
