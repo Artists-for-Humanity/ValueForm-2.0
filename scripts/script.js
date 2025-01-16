@@ -511,6 +511,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // }
 });
 
+// checking for pinned file
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('/files')
+      .then(response => response.json())
+      .then(files => {
+          console.log('File in the pinned folder:', files);
+      })
+      .catch(error => console.error('Error fetching files:', error));
+});
+
 // Run this code if the page is loaded from cache
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
