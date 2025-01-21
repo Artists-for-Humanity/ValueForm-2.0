@@ -293,20 +293,20 @@ function restoreScrollPosition() {
   // Show the page content after restoring scroll
   document.body.classList.remove("preload");
 }
-function manageTopBannerAnimation() {
-  const topBannerMain = document.getElementById("top_banner_main");
-  const dontAnimate = sessionStorage.getItem("dontAnimateBanner");
+// function manageTopBannerAnimation() {
+//   const topBannerMain = document.getElementById("top_banner_main");
+//   const dontAnimate = sessionStorage.getItem("dontAnimateBanner");
 
-  if (topBannerMain) {
-    if (dontAnimate === "true") {
-      // Prevent animation
-      topBannerMain.classList.remove("animated-banner");
-    } else {
-      // Animate normally
-      topBannerMain.classList.add("animated-banner");
-    }
-  }
-}
+//   if (topBannerMain) {
+//     if (dontAnimate === "true") {
+//       // Prevent animation
+//       topBannerMain.classList.remove("animated-banner");
+//     } else {
+//       // Animate normally
+//       topBannerMain.classList.add("animated-banner");
+//     }
+//   }
+// }
 function isTargetPage() {
   const currentPage = window.location.pathname.split("/").pop();
   return (
@@ -327,11 +327,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (isTargetPage()) {
     restoreScrollPosition();
-    manageTopBannerAnimation();
+    // manageTopBannerAnimation();
     window.addEventListener("scroll", storeScrollPosition);
   } else {
     clearScrollPosition();
-    topBannerMain?.classList.add("animated-banner"); // Default animation for non-target pages
+    // topBannerMain?.classList.add("animated-banner"); // Default animation for non-target pages
   }
 });
 
