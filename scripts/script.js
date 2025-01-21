@@ -40,8 +40,8 @@ function getPinnedPage() {
         const pinnedFileName = files[0]; 
         console.log('File in the pinned folder:', pinnedFileName);
         localStorage.setItem("pinnedFileName", pinnedFileName);
-        // pinnedFilePath = `/pages/articles/pinned/${pinnedFileName}`;
-        // localStorage.setItem("pinnedFilePath", pinnedFilePath);
+        pinnedFilePath = `/pinned/${pinnedFileName}`;
+        localStorage.setItem("pinnedFilePath", pinnedFilePath);
       } else {
         console.warn('No files found in the pinned folder.');
         pinnedFilePath = null; 
@@ -63,7 +63,6 @@ function handleNavigation(fadeInUpElements) {
   const linkBack = document.querySelectorAll(".link-back");
   const clickMe = document.querySelectorAll(".click-me");
   const linkBackNews = document.querySelectorAll(".link-back-news");
-
   const newsPageMain = document.getElementById("news_page_main");
   const topBannerMain = document.getElementById("top_banner_main");
 
