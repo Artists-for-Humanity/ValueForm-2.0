@@ -60,12 +60,14 @@ function handleNavigation(fadeInUpElements) {
   const logoLinks = document.querySelectorAll("header a img");
   const footerLinks = document.querySelectorAll("footer a img");
   const headerLinks = document.querySelectorAll("header a");
-  // const articleElements = document.querySelectorAll(".article-title.preview");
   const linkBack = document.querySelectorAll(".link-back");
   const clickMe = document.querySelectorAll(".click-me");
   const linkBackNews = document.querySelectorAll(".link-back-news");
 
-  [
+  const newsPageMain = document.getElementById("news_page_main");
+  const topBannerMain = document.getElementById("top_banner_main");
+
+  const allLinks = [
     ...clickMe,
     ...navLinks,
     ...logoLinks,
@@ -73,7 +75,9 @@ function handleNavigation(fadeInUpElements) {
     ...headerLinks,
     ...linkBack,
     ...linkBackNews,
-  ].forEach((element) => {
+  ];
+
+  allLinks.forEach((element) => {
     const isAnchor = element.tagName.toLowerCase() === "a";
     const anchor = isAnchor ? element : element.closest("a") || element;
 
@@ -86,127 +90,94 @@ function handleNavigation(fadeInUpElements) {
 
       if (isPureAnchor) {
         return;
-      } else {
-        e.preventDefault();
-        const targetUrl = anchor.getAttribute("href");
-        let delayCounter = 0;
-        fadeInUpElements
-          .filter(isInViewport)
-          .reverse()
-          .forEach((element, index) => {
-            element.classList.replace("fadeInUp", "fadeOutDown");
-            element.style.animationDelay = `${index * 600}ms`;
-            delayCounter++;
-          });
-
-        // Check the current page based on pathname or title
-        const currentPage = window.location.pathname; // e.g., "/home", "/about"
-        // const targetPage = window.location.pathname;
-        const newsPageMain = document.getElementById("news_page_main");
-        const topBannerMain = document.getElementById("top_banner_main");
-        const isNewsPageMainInViewport =
-          newsPageMain && isInViewport(newsPageMain);
-        const isTopBannerMainInViewport =
-          topBannerMain && isInViewport(topBannerMain);
-
-        // Example: Add specific behavior for a certain page
-        if (
-          currentPage === "/pages/articles/pinned.html" &&
-          targetUrl != "../news.html"
-        ) {
-          // Increment delayCounter for each ID that is in the viewport
-          if (isNewsPageMainInViewport) {
-            delayCounter++;
-            setTimeout(
-              () => {
-                const NewsPageMain = document.getElementById("news_page_main");
-                NewsPageMain.classList.add("fadeOutDown");
-              },
-              (delayCounter - 1) * 600
-            );
-          }
-
-          if (isTopBannerMainInViewport) {
-            delayCounter++;
-            setTimeout(
-              () => {
-                const TopBannerMain =
-                  document.getElementById("top_banner_main");
-                TopBannerMain.classList.add("fadeOutDown");
-              },
-              (delayCounter - 1) * 600
-            );
-          } else {
-            console.log("This is a different page");
-          }
-        }
-
-        // New condition: Increment delayCounter if navigating from /pages/news.html to /pages/articles/*
-        if (
-          currentPage === "/pages/news.html" &&
-          targetUrl.startsWith("./articles/") &&
-          targetUrl != "./articles/pinned.html"
-        ) {
-          if (isNewsPageMainInViewport) {
-            delayCounter++;
-            setTimeout(
-              () => {
-                const NewsPageMain = document.getElementById("news_page_main");
-                NewsPageMain.classList.add("fadeOutDown");
-              },
-              (delayCounter - 1) * 600
-            );
-          }
-        }
-
-        // New condition: Increment delayCounter if navigating from /pages/news.html to /pages/our-approach.html or /pages/leadership.html
-        if (
-          currentPage === "/pages/news.html" &&
-          (targetUrl === "./our-approach.html" ||
-            targetUrl === "./leadership.html")
-        ) {
-          if (isNewsPageMainInViewport) {
-            delayCounter++;
-            setTimeout(
-              () => {
-                const NewsPageMain = document.getElementById("news_page_main");
-                NewsPageMain.classList.add("fadeOutDown");
-              },
-              (delayCounter - 1) * 600
-            );
-            setTimeout(() => {
-              const TopBannerMain = document.getElementById("top_banner_main");
-              TopBannerMain.classList.add("fadeOutDown");
-            }, 1200);
-          }
-        }
-
-        if (
-          currentPage === "/pages/news.html" &&
-          targetUrl === "./articles/pinned.html"
-        ) {
-          if (localStorage.getItem("newsFade") === "true") {
-            if (isNewsPageMainInViewport) {
-              delayCounter--;
-            }
-            if (isTopBannerMainInViewport) {
-              delayCounter--;
-            }
-          }
-          localStorage.setItem("newsFade", false);
-        }
-
-        setTimeout(
-          () => {
-
-            console.log(
-              `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
-            );
-            window.location.href = targetUrl;
-          },
-          delayCounter * 600 + 800
-        );
       }
+
+      e.preventDefault();
+      const targetUrl = anchor.getAttribute("href");
+      let delayCounter = 0;
+
+      fadeInUpElements
+        .filter(isInViewport)
+        .reverse()
+        .forEach((element, index) => {
+          element.classList.replace("fadeInUp", "fadeOutDown");
+          element.style.animationDelay = `${index * 600}ms`;
+          delayCounter++;
+        });
+
+      const currentPage = window.location.pathname;
+      const isNewsPageMainInViewport = newsPageMain && isInViewport(newsPageMain);
+      const isTopBannerMainInViewport = topBannerMain && isInViewport(topBannerMain);
+
+      if (
+        currentPage === "/pages/articles/pinned.html" &&
+        targetUrl !== "../news.html"
+      ) {
+        if (isNewsPageMainInViewport) {
+          delayCounter++;
+          setTimeout(() => {
+            newsPageMain.classList.add("fadeOutDown");
+          }, (delayCounter - 1) * 600);
+        }
+
+        if (isTopBannerMainInViewport) {
+          delayCounter++;
+          setTimeout(() => {
+            topBannerMain.classList.add("fadeOutDown");
+          }, (delayCounter - 1) * 600);
+        }
+      }
+
+      if (
+        currentPage === "/pages/news.html" &&
+        targetUrl.startsWith("./articles/") &&
+        targetUrl !== "./articles/pinned.html"
+      ) {
+        if (isNewsPageMainInViewport) {
+          delayCounter++;
+          setTimeout(() => {
+            newsPageMain.classList.add("fadeOutDown");
+          }, (delayCounter - 1) * 600);
+        }
+      }
+
+      if (
+        currentPage === "/pages/news.html" &&
+        (targetUrl === "./our-approach.html" || targetUrl === "./leadership.html")
+      ) {
+        if (isNewsPageMainInViewport) {
+          delayCounter++;
+          setTimeout(() => {
+            newsPageMain.classList.add("fadeOutDown");
+          }, (delayCounter - 1) * 600);
+
+          setTimeout(() => {
+            topBannerMain.classList.add("fadeOutDown");
+          }, 1200);
+        }
+      }
+
+      if (
+        currentPage === "/pages/news.html" &&
+        targetUrl === "./articles/pinned.html"
+      ) {
+        if (localStorage.getItem("newsFade") === "true") {
+          if (isNewsPageMainInViewport) {
+            console.log("reachme 111");
+          }
+          if (isTopBannerMainInViewport) {
+            console.log("reachme 000");
+          }
+        }
+        localStorage.setItem("newsFade", false);
+      }
+
+      setTimeout(() => {
+        console.log(
+          `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
+        );
+        window.location.href = targetUrl;
+      }, delayCounter * 600 + 800);
     });
   });
 }
