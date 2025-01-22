@@ -38,7 +38,7 @@ function getPinnedPage() {
     .then((files) => {
       if (files.length > 0) {
         const pinnedFileName = files[0];
-        console.log("File in the pinned folder:", pinnedFileName);
+        // console.log("File in the pinned folder:", pinnedFileName);
         localStorage.setItem("pinnedFileName", pinnedFileName);
         pinnedFilePath = `/pinned/${pinnedFileName}`;
         localStorage.setItem("pinnedFilePath", pinnedFilePath);
@@ -141,6 +141,12 @@ function handleNavigation(fadeInUpElements) {
         targetUrl !== "./articles/pinned.html"
       ) {
         if (isNewsPageMainInViewport) {
+          if (
+            topBannerMain.classList.contains("animated") ||
+            newsPageMain.classList.contains("animated")
+          ) {
+            delayCounter--;
+          }
           delayCounter++;
           setTimeout(
             () => {
@@ -184,6 +190,30 @@ function handleNavigation(fadeInUpElements) {
       }
 
       if (
+        currentPage.startsWith("/pages/articles/") &&
+        targetUrl !== "./articles/pinned.html" &&
+        (targetUrl === "../our-approach.html" ||
+          targetUrl === "../leadership.html")
+      ) {
+        if (isTopBannerMainInViewport) {
+          if (topBannerMain.classList.contains("animated")) {
+            delayCounter--;
+          } else {
+            delayCounter++;
+          }
+          delayCounter++;
+
+          setTimeout(
+            () => {
+              topBannerMain.classList.add("fadeOutDown");
+            },
+            (delayCounter - 2) * 600
+          );
+          delayCounter--;
+        }
+      }
+
+      if (
         currentPage === "/pages/news.html" &&
         targetUrl === "./articles/pinned.html"
       ) {
@@ -191,9 +221,7 @@ function handleNavigation(fadeInUpElements) {
           if (delayCounter <= 1) {
             console.log("reachme 0000");
           } else {
-            console.log("reachme 1111");
-            delayCounter--
-            delayCounter--
+            delayCounter--;
           }
         }
         localStorage.setItem("newsFade", false);
