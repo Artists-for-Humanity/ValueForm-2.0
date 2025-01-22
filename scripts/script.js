@@ -372,6 +372,7 @@ function restoreScrollPosition() {
 //   }
 // }
 function isTargetPage() {
+  const pinnedFileName = localStorage.getItem("pinnedFileName");
   const currentPage = window.location.pathname.split("/").pop();
   return (
     currentPage === "news.html" ||
@@ -380,7 +381,9 @@ function isTargetPage() {
     currentPage === "musings.html" ||
     currentPage === "letter.html" ||
     currentPage === "template.html" ||
-    currentPage === "bny.html" 
+    currentPage === "bny.html" ||
+    currentPage === "ahhh.html" ||
+    currentPage === `${pinnedFileName}`
   );
 }
 function clearScrollPosition() {
