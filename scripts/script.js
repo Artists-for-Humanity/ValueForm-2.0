@@ -61,6 +61,7 @@ function getPinnedPage() {
       const href = pinnedLink.getAttribute("href");
       if (href) {
         const fileName = href.split('/').pop(); // Get the last part after '/'
+        localStorage.setItem("pinnedFileName", fileName);
           pinnedFilePath = `pinned/${fileName}`;
       }
     }
