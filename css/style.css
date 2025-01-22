@@ -1369,7 +1369,14 @@ main.internal.news .intro + .container.no-border {
 /* BIO MAIN CONTENT SECTION */
 
 h3.text-l.name{
+  padding-bottom:8px;
+}
+
+@media screen and (min-width: 700px) {
+ h3.text-l.name{
   padding-bottom:10px;
+ }
+  
 }
 
 .headshot {
@@ -2193,3 +2200,9 @@ padding-bottom:0px;
 em {
   font-style: italic !important;
 }
+
+
+  h3.desktop-col-10.tablet-col-6.text-l.title{
+    padding-bottom:15px;
+  }
+ 
