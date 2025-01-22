@@ -1367,6 +1367,11 @@ main.internal.news .intro + .container.no-border {
 } /* END OF HOVER IMAGES */
 
 /* BIO MAIN CONTENT SECTION */
+
+h3.text-l.name{
+  padding-bottom:10px;
+}
+
 .headshot {
   grid-row: 1 / span 3;
   background-image: url(../images/headshot-bg.svg);
