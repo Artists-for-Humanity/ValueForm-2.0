@@ -16,7 +16,6 @@ function isInViewport(element) {
 // ========================================
 function handleMainNewsFade() {
   const elements = document.querySelectorAll(".title_fade");
-
   if (elements.length > 0) {
     elements.forEach((element) => {
       if (isInViewport(element)) {
@@ -40,7 +39,7 @@ function getPinnedPage() {
         const pinnedFileName = files[0];
         // console.log("File in the pinned folder:", pinnedFileName);
         localStorage.setItem("pinnedFileName", pinnedFileName);
-        pinnedFilePath = `/pinned/${pinnedFileName}`;
+        pinnedFilePath = `pinned/${pinnedFileName}`;
         localStorage.setItem("pinnedFilePath", pinnedFilePath);
       } else {
         console.warn("No files found in the pinned folder.");
@@ -65,6 +64,7 @@ function handleNavigation(fadeInUpElements) {
   const linkBackNews = document.querySelectorAll(".link-back-news");
   const newsPageMain = document.getElementById("news_page_main");
   const topBannerMain = document.getElementById("top_banner_main");
+  const pinnedFilePath = localStorage.getItem("pinnedFilePath");
 
   const allLinks = [
     ...clickMe,
@@ -109,10 +109,12 @@ function handleNavigation(fadeInUpElements) {
         newsPageMain && isInViewport(newsPageMain);
       const isTopBannerMainInViewport =
         topBannerMain && isInViewport(topBannerMain);
+     
 
       if (
-        currentPage === "/pages/articles/pinned.html" &&
-        targetUrl !== "../news.html"
+        // currentPage === "/pages/articles/pinned.html" &&
+        currentPage === "/pages/articles/" + pinnedFilePath &&
+        targetUrl !== "../../news.html"
       ) {
         if (isNewsPageMainInViewport) {
           delayCounter++;
@@ -138,7 +140,9 @@ function handleNavigation(fadeInUpElements) {
       if (
         currentPage === "/pages/news.html" &&
         targetUrl.startsWith("./articles/") &&
-        targetUrl !== "./articles/pinned.html"
+        // targetUrl !== "./articles/pinned.html"
+        targetUrl !== "./articles/" + pinnedFilePath
+
       ) {
         if (isNewsPageMainInViewport) {
           if (
@@ -191,7 +195,9 @@ function handleNavigation(fadeInUpElements) {
 
       if (
         currentPage.startsWith("/pages/articles/") &&
-        targetUrl !== "./articles/pinned.html" &&
+        // targetUrl !== "./articles/pinned.html" &&
+        targetUrl !== "./articles/" + pinnedFilePath &&
+
         (targetUrl === "../our-approach.html" ||
           targetUrl === "../leadership.html")
       ) {
@@ -215,7 +221,8 @@ function handleNavigation(fadeInUpElements) {
 
       if (
         currentPage === "/pages/news.html" &&
-        targetUrl === "./articles/pinned.html"
+        // targetUrl === "./articles/pinned.html"
+        targetUrl === "./articles/" + pinnedFilePath
       ) {
         if (localStorage.getItem("newsFade") === "true") {
           if (delayCounter <= 1) {
@@ -372,7 +379,8 @@ function isTargetPage() {
     currentPage === "dizzy.html" ||
     currentPage === "musings.html" ||
     currentPage === "letter.html" ||
-    currentPage === "template.html"
+    currentPage === "template.html" ||
+    currentPage === "bny.html" 
   );
 }
 function clearScrollPosition() {
@@ -417,7 +425,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const previousPage = document.referrer;
 
   // Logic for pinned article
-  if (previousPage.includes("/pages/articles/pinned.html")) {
+  const pinnedFilePath = localStorage.getItem("pinnedFilePath");
+  // if (previousPage.includes("/pages/articles/pinned.html")) {
+  if (previousPage.includes(`/pages/articles/${pinnedFilePath}`)) {
     if (localStorage.getItem("add_fade") === "false") {
       // Remove fadeInUp for both elements
       elementsForFade.forEach(({ element }) => {
@@ -505,7 +515,8 @@ function staticPreview() {
 let exitFadeTimeout; // Store timeout globally
 function handleFadeAndRedirect() {
   // Check if already on the target page
-  if (window.location.pathname === "/pages/articles/pinned.html") {
+  // if (window.location.pathname === "/pages/articles/pinned.html") {
+    if (window.location.pathname === `/pages/articles/${pinnedFilePath}`) {
     return;
   }
 
@@ -526,7 +537,8 @@ function handleFadeAndRedirect() {
   // Redirect after all animations are done
   exitFadeTimeout = setTimeout(
     () => {
-      window.location = "../pages/articles/pinned.html";
+      window.location = `../pages/articles/${pinnedFilePath}`;
+      // window.location = "../pages/articles/pinned.html";
     },
     elements.length * 600 + 800 // Add an extra delay for smooth transition
   );
