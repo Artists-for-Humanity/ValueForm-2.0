@@ -31,25 +31,50 @@ function handleMainNewsFade() {
 // ========================================
 // Load pinned page name from server
 // ========================================
+// function getPinnedPage() {
+//   fetch("/files")
+//     .then((response) => response.json())
+//     .then((files) => {
+//       if (files.length > 0) {
+//         const pinnedFileName = files[0];
+//         // console.log("File in the pinned folder:", pinnedFileName);
+//         localStorage.setItem("pinnedFileName", pinnedFileName);
+//         pinnedFilePath = `pinned/${pinnedFileName}`;
+//         localStorage.setItem("pinnedFilePath", pinnedFilePath);
+//       } else {
+//         console.warn("No files found in the pinned folder.");
+//         pinnedFilePath = null;
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching files:", error);
+//     });
+// }
+
+
 function getPinnedPage() {
-  fetch("/files")
-    .then((response) => response.json())
-    .then((files) => {
-      if (files.length > 0) {
-        const pinnedFileName = files[0];
-        // console.log("File in the pinned folder:", pinnedFileName);
-        localStorage.setItem("pinnedFileName", pinnedFileName);
-        pinnedFilePath = `pinned/${pinnedFileName}`;
-        localStorage.setItem("pinnedFilePath", pinnedFilePath);
-      } else {
-        console.warn("No files found in the pinned folder.");
-        pinnedFilePath = null;
+  if (window.location.pathname.includes("news.html")) {
+
+
+    const pinnedLink = document.getElementById("pinned-article-link");
+    if (pinnedLink) {
+      const href = pinnedLink.getAttribute("href");
+      if (href) {
+        const fileName = href.split('/').pop(); // Get the last part after '/'
+          pinnedFilePath = `pinned/${fileName}`;
       }
-    })
-    .catch((error) => {
-      console.error("Error fetching files:", error);
-    });
+    }
+
+    if (pinnedFilePath) {
+      localStorage.setItem("pinnedFilePath", pinnedFilePath);
+      console.log("Pinned file path set:", pinnedFilePath);
+    } else {
+      console.warn("No pinned article link found.");
+      localStorage.removeItem("pinnedFilePath");
+    }
+  }
 }
+
 
 // =============================================================
 // Handle navigation logic for the rest of the page
