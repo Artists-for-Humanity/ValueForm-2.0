@@ -51,31 +51,27 @@ function handleMainNewsFade() {
 //     });
 // }
 
-
 function getPinnedPage() {
   if (window.location.pathname.includes("news.html")) {
-
-
     const pinnedLink = document.getElementById("pinned-article-link");
     if (pinnedLink) {
       const href = pinnedLink.getAttribute("href");
       if (href) {
-        const fileName = href.split('/').pop(); // Get the last part after '/'
+        const fileName = href.split("/").pop(); // Get the last part after '/'
         localStorage.setItem("pinnedFileName", fileName);
-          pinnedFilePath = `pinned/${fileName}`;
+        pinnedFilePath = `pinned/${fileName}`;
       }
     }
 
     if (pinnedFilePath) {
       localStorage.setItem("pinnedFilePath", pinnedFilePath);
-      console.log("Pinned file path set:", pinnedFilePath);
+      // console.log("Pinned file path set:", pinnedFilePath);
     } else {
       console.warn("No pinned article link found.");
       localStorage.removeItem("pinnedFilePath");
     }
   }
 }
-
 
 // =============================================================
 // Handle navigation logic for the rest of the page
@@ -135,7 +131,6 @@ function handleNavigation(fadeInUpElements) {
         newsPageMain && isInViewport(newsPageMain);
       const isTopBannerMainInViewport =
         topBannerMain && isInViewport(topBannerMain);
-     
 
       if (
         // currentPage === "/pages/articles/pinned.html" &&
@@ -168,7 +163,6 @@ function handleNavigation(fadeInUpElements) {
         targetUrl.startsWith("./articles/") &&
         // targetUrl !== "./articles/pinned.html"
         targetUrl !== "./articles/" + pinnedFilePath
-
       ) {
         if (isNewsPageMainInViewport) {
           if (
@@ -223,7 +217,6 @@ function handleNavigation(fadeInUpElements) {
         currentPage.startsWith("/pages/articles/") &&
         // targetUrl !== "./articles/pinned.html" &&
         targetUrl !== "./articles/" + pinnedFilePath &&
-
         (targetUrl === "../our-approach.html" ||
           targetUrl === "../leadership.html")
       ) {
@@ -252,9 +245,20 @@ function handleNavigation(fadeInUpElements) {
       ) {
         if (localStorage.getItem("newsFade") === "true") {
           if (delayCounter <= 1) {
-            console.log("reachme 0000");
+            console.log("reachme 00");
           } else {
+            console.log("reachme 11");
             delayCounter--;
+            delayCounter--;
+
+            const footer = document.querySelector("footer");
+            const footerInViewport = isInViewport(footer);
+
+            if (footerInViewport) {
+              console.log("reachme 22");
+              delayCounter++;
+              delayCounter++;
+            }
           }
         }
         localStorage.setItem("newsFade", false);
@@ -545,7 +549,7 @@ let exitFadeTimeout; // Store timeout globally
 function handleFadeAndRedirect() {
   // Check if already on the target page
   // if (window.location.pathname === "/pages/articles/pinned.html") {
-    if (window.location.pathname === `/pages/articles/${pinnedFilePath}`) {
+  if (window.location.pathname === `/pages/articles/${pinnedFilePath}`) {
     return;
   }
 
