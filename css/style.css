@@ -1772,7 +1772,7 @@ table {
 
 .article-title {
   color: #404040;
-  font-family: Helvetica;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -1796,7 +1796,7 @@ table {
 
 .article .date {
   color: var(--nearwhite);
-  font-family: Helvetica;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -1992,7 +1992,7 @@ aside.sidebar-bottom h4.text-s + p.text-s{
   border-bottom: 1px solid var(--darkgrey);
   margin: 9px 0px 20px 0px;
   color: var(--nearwhite);
-  font-family: Helvetica;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -2046,7 +2046,7 @@ cite bold {
 @media screen and (min-width: 1080px) {
   .article-title {
     color: #404040;
-    font-family: Helvetica;
+    font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
     font-size: 34px;
     font-style: normal;
     font-weight: 700;
@@ -2057,7 +2057,7 @@ cite bold {
 
   .article-title-no-link {
     color: #404040;
-    font-family: Helvetica;
+    font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
     font-size: 34px;
     font-style: normal;
     font-weight: 700;
