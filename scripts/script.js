@@ -19,10 +19,8 @@ function handleMainNewsFade() {
   if (elements.length > 0) {
     elements.forEach((element) => {
       if (isInViewport(element)) {
-
         localStorage.setItem("add_fade", false);
       } else {
-
         localStorage.setItem("add_fade", true);
       }
     });
@@ -66,6 +64,7 @@ function handleNavigation(fadeInUpElements) {
   const topBannerMain = document.getElementById("top_banner_main");
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
   const articleTitle = document.getElementById("article_title");
+  const articleTop = document.getElementById("article_top");
 
   const allLinks = [
     ...clickMe,
@@ -114,6 +113,8 @@ function handleNavigation(fadeInUpElements) {
       const footerInViewport = isInViewport(footer);
       const isArticleTitleInViewport =
         articleTitle && isInViewport(articleTitle);
+        const isArticleTopInViewport =
+        articleTop && isInViewport(articleTop);
 
       // from pinned article to non-news pages
       if (
@@ -121,7 +122,6 @@ function handleNavigation(fadeInUpElements) {
         targetUrl !== "../../news.html"
       ) {
         if (isNewsPageMainInViewport) {
-
           if (footerInViewport) {
             console.log("footer is in viewport");
             delayCounter--;
@@ -165,7 +165,7 @@ function handleNavigation(fadeInUpElements) {
           ) {
             delayCounter--;
           }
-          delayCounter++;
+          // delayCounter++;
           setTimeout(
             () => {
               newsPageMain.classList.add("fadeOutDown");
@@ -213,13 +213,23 @@ function handleNavigation(fadeInUpElements) {
         currentPage.startsWith("/pages/articles/") &&
         targetUrl !== "./articles/" + pinnedFilePath &&
         (targetUrl === "../our-approach.html" ||
-          targetUrl === "../leadership.html")
+          targetUrl === "../leadership.html" ||
+          targetUrl === "../../index.html" ||
+          targetUrl === "../news.html")
       ) {
+
+        if (isArticleTitleInViewport || isArticleTopInViewport) {
+
+          delayCounter++;
+        }
+
+        delayCounter--;
+
         if (isTopBannerMainInViewport) {
           if (topBannerMain.classList.contains("animated")) {
             delayCounter--;
           } else {
-            delayCounter++;
+            // delayCounter++;
           }
           delayCounter++;
 
@@ -227,9 +237,8 @@ function handleNavigation(fadeInUpElements) {
             () => {
               topBannerMain.classList.add("fadeOutDown");
             },
-            (delayCounter - 2) * 600
+            (delayCounter - 1) * 600
           );
-          delayCounter--;
         }
       }
 
@@ -449,7 +458,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Logic for pinned article
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
   if (previousPage.includes(`/pages/articles/${pinnedFilePath}`)) {
-
     if (localStorage.getItem("add_fade") === "false") {
       // Remove fadeInUp for both elements
       elementsForFade.forEach(({ element }) => {
@@ -462,7 +470,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // For other pages, only remove fadeInUp from #top_banner_main
     const topBannerMain = document.getElementById("top_banner_main");
     if (topBannerMain && localStorage.getItem("add_fade") === "false") {
-
       topBannerMain.classList.remove("fadeInUp", "animated");
     }
   }
