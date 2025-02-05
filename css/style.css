@@ -1852,13 +1852,17 @@ x-img {
 .link,
 .link_read {
   color: var(--nearwhite);
-  margin-top: 9px;
+  margin-top: 13px;
   margin-bottom: 22px;
   font-weight: 700;
 }
 
 .link_read {
   cursor: pointer;
+}
+
+.bny-top{
+  margin-top:10px;
 }
 
 @media screen and (min-width: 700px) {
@@ -1951,7 +1955,7 @@ aside.sidebar-bottom h4.text-s{
 }
 
 aside.sidebar-bottom h4.text-s + p.text-s{
-  padding-bottom: 20px;
+  padding-bottom: 25px;
   color: var(--darkgrey);
 }
 
@@ -1990,7 +1994,7 @@ aside.sidebar-bottom h4.text-s + p.text-s{
   padding: 24px 0px 21px 0px;
   border-top: 1px solid var(--darkgrey);
   border-bottom: 1px solid var(--darkgrey);
-  margin: 9px 0px 20px 0px;
+  margin: 14px 0px 25px 0px;
   color: var(--nearwhite);
   font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
   font-size: 20px;
@@ -2030,7 +2034,7 @@ cite bold {
     margin-top: 15px;
     padding-top: 23px;
     padding-bottom: 26px;
-    margin-bottom: 16px;
+    margin-bottom: 25px;
   }
   .quote {
     margin-bottom: 13px;
@@ -2087,8 +2091,7 @@ cite bold {
     padding-bottom: 13px; */
     padding-top: 34px;
     padding-bottom: 28px;
-    margin-bottom: 25px;
-
+    margin-bottom: 34px;
     font-size: 34px;
     font-style: normal;
     font-weight: 400;
@@ -2195,6 +2198,10 @@ main.internal h4.article-subhead{
   }
 }
 
+main.internal .intro + .container p.sign-off{
+  padding-bottom:16px
+}
+
 /* Ensure unordered lists have bullets */
 ul.article-list {
   list-style-type: disc; /* Standard bullet points */
@@ -2204,53 +2211,134 @@ ul.article-list {
   padding-top: 0px;
   padding-bottom: 0px;
   margin-top: 9px;
-  margin-bottom: 14px;
+  margin-bottom: -4px;
 }
 
-@media screen and (min-width: 700px) {
-  ul.article-list {
-    padding-left: 32px; /* Ensure bullets appear indented */
-    margin-bottom:7px;
-  }
+ul.article-list.musing{
+  margin-top:4px;
+  margin-bottom: 2px;
+}
+
+ul.article-list.letter{
+  margin-top: 4px;
+}
+.signature{
+  padding-top:13px;
 }
 
 ul.article-list li{
-  margin-bottom: 4px; /*Add spacing between list items */
+  margin-bottom: 13px; /*Add spacing between list items */
   display: list-item;
   width: 100%;
   word-wrap: break-word;
   white-space: normal;
   border-bottom: none;
   padding-left:4px;
-padding-top:0px;
-padding-bottom:0px;
+  padding-top:0px;
+  padding-bottom:0px;
 }
 
+
 @media screen and (min-width: 700px) {
-  ul.article-list li {
-    margin-bottom: 13px; /*Add spacing between list items */
+  ul.article-list {
+    padding-left: 32px; /* Ensure bullets appear indented */
+    margin-bottom:7px;
   }
-  
-}
-
-@media screen and (min-width: 700px) {
+  ul.article-list.musing{
+    margin-top:4px;
+    margin-bottom: 3px;
+  }
+  ul.article-list.letter{
+    margin-bottom: 0px;
+  }
   ul.article-list li {
     margin-bottom: 2px; /*Add spacing between list items */
   }
-  
+  ul.article-list.bny li{
+    margin-bottom: 14px; 
+  }
+  ul.article-list.musing li{
+    margin-bottom: 11px;
+  }  
+  ul.article-list.letter li{
+    margin-bottom: 13px;
+  }
+  ul.article-list.letter li:last-child{
+    margin-bottom:9px;
+  }
+  ul.article-list.bny li:last-child{
+    margin-bottom:2px;
+  }
+  main.internal h4.article-subhead.bump {
+    padding-bottom: 13px;
+  }
+  .signature{
+    padding-top: 9px;
+    padding-bottom:11px;
+  }
+  main.internal .intro + .container p.sign-off{
+    padding-bottom:22px
+  }
 }
 
+@media screen and (min-width: 1080px) {
+  ul.article-list.bny{
+    margin-top:12px
+  }
+  ul.article-list.bny li{
+    margin-bottom: 3px; 
+  }
+  /* ul.article-list.bny li:last-child{
+    margin-bottom: 14px; 
+  }  */
+  ul.article-list.musing{
+    margin-top:0px;
+  }
+  ul.article-list.musing li{
+    margin-bottom:2px;
+  }
+  ul.article-list.musing li:last-child{
+    margin-bottom: 9px;
+  }
+  ul.article-list.letter li{
+    margin-bottom: 2px;
+  }
+  ul.article-list.letter li:last-child{
+    margin-bottom: 7px;
+  }
+  ul.article-list.letter{
+    margin-top: 9px;
+  }
+  main.internal h4.article-subhead.bump{
+padding-bottom:22px;
+  }
+    .signature{
+    padding-top: 15px;
+    padding-bottom:25px
+    }
+  main.internal .intro + .container p.sign-off{
+padding-bottom:23px !important;
+  }
+}
 .spinning-logo{
   padding-bottom:17px;
 }
-
-
 em {
   font-style: italic !important;
 }
-
-
-  h3.desktop-col-10.tablet-col-6.text-l.title{
+h3.desktop-col-10.tablet-col-6.text-l.title{
     padding-bottom:15px;
-  }
+}
+
+/* @media screen and (min-width: 700px) {
+  ul.article-list li {
+    margin-bottom: 13px; /*Add spacing between list items */
+  /* }
+}  */
+
+
+
+
+
+
  
