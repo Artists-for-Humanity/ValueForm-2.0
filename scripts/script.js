@@ -124,7 +124,7 @@ function handleNavigation(fadeInUpElements) {
         if (isNewsPageMainInViewport) {
           if (footerInViewport) {
             console.log("footer is in viewport");
-            delayCounter--;
+            // delayCounter--;
           }
 
           if (isArticleTitleInViewport) {
@@ -165,7 +165,9 @@ function handleNavigation(fadeInUpElements) {
           ) {
             delayCounter--;
           }
-          // delayCounter++;
+          console.log("reachme 01");
+
+          delayCounter++;
           setTimeout(
             () => {
               newsPageMain.classList.add("fadeOutDown");
@@ -255,7 +257,6 @@ function handleNavigation(fadeInUpElements) {
             delayCounter--;
 
             if (footerInViewport) {
-              delayCounter++;
               delayCounter++;
             }
           }
