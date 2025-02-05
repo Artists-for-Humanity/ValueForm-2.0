@@ -19,37 +19,16 @@ function handleMainNewsFade() {
   if (elements.length > 0) {
     elements.forEach((element) => {
       if (isInViewport(element)) {
+
         localStorage.setItem("add_fade", false);
       } else {
+
         localStorage.setItem("add_fade", true);
       }
     });
   }
   return false;
 }
-
-// ========================================
-// Load pinned page name from server
-// ========================================
-// function getPinnedPage() {
-//   fetch("/files")
-//     .then((response) => response.json())
-//     .then((files) => {
-//       if (files.length > 0) {
-//         const pinnedFileName = files[0];
-//         // console.log("File in the pinned folder:", pinnedFileName);
-//         localStorage.setItem("pinnedFileName", pinnedFileName);
-//         pinnedFilePath = `pinned/${pinnedFileName}`;
-//         localStorage.setItem("pinnedFilePath", pinnedFilePath);
-//       } else {
-//         console.warn("No files found in the pinned folder.");
-//         pinnedFilePath = null;
-//       }
-//     })
-//     .catch((error) => {
-//       console.error("Error fetching files:", error);
-//     });
-// }
 
 function getPinnedPage() {
   if (window.location.pathname.includes("news.html")) {
@@ -65,7 +44,6 @@ function getPinnedPage() {
 
     if (pinnedFilePath) {
       localStorage.setItem("pinnedFilePath", pinnedFilePath);
-      // console.log("Pinned file path set:", pinnedFilePath);
     } else {
       console.warn("No pinned article link found.");
       localStorage.removeItem("pinnedFilePath");
@@ -87,6 +65,7 @@ function handleNavigation(fadeInUpElements) {
   const newsPageMain = document.getElementById("news_page_main");
   const topBannerMain = document.getElementById("top_banner_main");
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
+  const articleTitle = document.getElementById("article_title");
 
   const allLinks = [
     ...clickMe,
@@ -131,20 +110,35 @@ function handleNavigation(fadeInUpElements) {
         newsPageMain && isInViewport(newsPageMain);
       const isTopBannerMainInViewport =
         topBannerMain && isInViewport(topBannerMain);
+      const footer = document.querySelector("footer");
+      const footerInViewport = isInViewport(footer);
+      const isArticleTitleInViewport =
+        articleTitle && isInViewport(articleTitle);
 
+      // from pinned article to non-news pages
       if (
-        // currentPage === "/pages/articles/pinned.html" &&
         currentPage === "/pages/articles/" + pinnedFilePath &&
         targetUrl !== "../../news.html"
       ) {
         if (isNewsPageMainInViewport) {
-          delayCounter++;
-          setTimeout(
-            () => {
-              newsPageMain.classList.add("fadeOutDown");
-            },
-            (delayCounter - 1) * 600
-          );
+
+          if (footerInViewport) {
+            console.log("footer is in viewport");
+            delayCounter--;
+          }
+
+          if (isArticleTitleInViewport) {
+            delayCounter++;
+
+            setTimeout(
+              () => {
+                console.log("delayCounter = " + delayCounter);
+
+                newsPageMain.classList.add("fadeOutDown");
+              },
+              (delayCounter - 1) * 600
+            );
+          }
         }
 
         if (isTopBannerMainInViewport) {
@@ -158,10 +152,10 @@ function handleNavigation(fadeInUpElements) {
         }
       }
 
+      // from news to non-pinned articles
       if (
         currentPage === "/pages/news.html" &&
         targetUrl.startsWith("./articles/") &&
-        // targetUrl !== "./articles/pinned.html"
         targetUrl !== "./articles/" + pinnedFilePath
       ) {
         if (isNewsPageMainInViewport) {
@@ -181,6 +175,7 @@ function handleNavigation(fadeInUpElements) {
         }
       }
 
+      // from news to approach or leadership
       if (
         currentPage === "/pages/news.html" &&
         (targetUrl === "./our-approach.html" ||
@@ -213,9 +208,9 @@ function handleNavigation(fadeInUpElements) {
         }
       }
 
+      // From articles to approach or leadership
       if (
         currentPage.startsWith("/pages/articles/") &&
-        // targetUrl !== "./articles/pinned.html" &&
         targetUrl !== "./articles/" + pinnedFilePath &&
         (targetUrl === "../our-approach.html" ||
           targetUrl === "../leadership.html")
@@ -238,6 +233,7 @@ function handleNavigation(fadeInUpElements) {
         }
       }
 
+      // From News to pinned article
       if (
         currentPage === "/pages/news.html" &&
         // targetUrl === "./articles/pinned.html"
@@ -245,17 +241,11 @@ function handleNavigation(fadeInUpElements) {
       ) {
         if (localStorage.getItem("newsFade") === "true") {
           if (delayCounter <= 1) {
-            console.log("reachme 00");
           } else {
-            console.log("reachme 11");
             delayCounter--;
             delayCounter--;
-
-            const footer = document.querySelector("footer");
-            const footerInViewport = isInViewport(footer);
 
             if (footerInViewport) {
-              console.log("reachme 22");
               delayCounter++;
               delayCounter++;
             }
@@ -429,7 +419,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", storeScrollPosition);
   } else {
     clearScrollPosition();
-    // topBannerMain?.classList.add("animated-banner"); // Default animation for non-target pages
   }
 });
 
@@ -459,8 +448,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Logic for pinned article
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
-  // if (previousPage.includes("/pages/articles/pinned.html")) {
   if (previousPage.includes(`/pages/articles/${pinnedFilePath}`)) {
+
     if (localStorage.getItem("add_fade") === "false") {
       // Remove fadeInUp for both elements
       elementsForFade.forEach(({ element }) => {
@@ -473,6 +462,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // For other pages, only remove fadeInUp from #top_banner_main
     const topBannerMain = document.getElementById("top_banner_main");
     if (topBannerMain && localStorage.getItem("add_fade") === "false") {
+
       topBannerMain.classList.remove("fadeInUp", "animated");
     }
   }
@@ -502,7 +492,6 @@ function addFadeInUpToArticle() {
 }
 function addFadeOutDown() {
   // Calculate total animation duration based on elements
-  // const totalAnimationDuration = test();
   const totalAnimationDuration = 600;
   let elements_for_fade = [
     {
@@ -548,7 +537,6 @@ function staticPreview() {
 let exitFadeTimeout; // Store timeout globally
 function handleFadeAndRedirect() {
   // Check if already on the target page
-  // if (window.location.pathname === "/pages/articles/pinned.html") {
   if (window.location.pathname === `/pages/articles/${pinnedFilePath}`) {
     return;
   }
@@ -571,7 +559,6 @@ function handleFadeAndRedirect() {
   exitFadeTimeout = setTimeout(
     () => {
       window.location = `../pages/articles/${pinnedFilePath}`;
-      // window.location = "../pages/articles/pinned.html";
     },
     elements.length * 600 + 800 // Add an extra delay for smooth transition
   );
