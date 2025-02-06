@@ -2004,6 +2004,7 @@ aside.sidebar-bottom h4.text-s + p.text-s{
 }
 .quote {
   margin-bottom: 8px;
+  line-height:20px;
 }
 cite {
   font-size: 16px;
@@ -2036,9 +2037,11 @@ cite bold {
     padding-bottom: 26px;
     margin-bottom: 25px;
   }
-  .quote {
-    margin-bottom: 13px;
-  }
+    .quote {
+      font-size: 30px;
+      line-height: 34px;
+      margin-bottom:13px;
+    }
   cite {
     font-size: 16px;
     color: var(--nearwhite);
@@ -2107,6 +2110,7 @@ cite bold {
   }
   .quote {
     margin-bottom:2px;
+    font-size:34px;
   }
   cite {
     font-size: 16px;
@@ -2183,15 +2187,7 @@ main.internal h4.article-subhead{
   visibility: hidden;
 }
 
-.quote {
-  line-height: 20px;
-}
-
 @media screen and (min-width: 700px) {
-  .quote {
-    font-size: 30px;
-    line-height: 34px;
-  }
   
   .text-s.sidebar-title {
     padding: 0px 0px 5px 0px;
