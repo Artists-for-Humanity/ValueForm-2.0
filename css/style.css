@@ -2293,12 +2293,13 @@ ul.article-list li{
   }  */
   ul.article-list.musing{
     margin-top:0px;
+    transform: translateY(-5px);
   }
   ul.article-list.musing li{
     margin-bottom:2px;
   }
   ul.article-list.musing li:last-child{
-    margin-bottom: 9px;
+    margin-bottom: 4px;
   }
   ul.article-list.letter li{
     margin-bottom: 2px;
@@ -2308,6 +2309,13 @@ ul.article-list li{
   }
   ul.article-list.letter{
     margin-top: 9px;
+  }
+  ul.article-list.letter.first-list{
+    margin-top: 0px;
+    transform: translateY(-5px);
+  } 
+  ul.article-list.letter.first-list li:last-child{
+    margin-bottom: 2px;
   }
   main.internal h4.article-subhead.bump{
 padding-bottom:22px;
