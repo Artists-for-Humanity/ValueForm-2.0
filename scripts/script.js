@@ -113,8 +113,7 @@ function handleNavigation(fadeInUpElements) {
       const footerInViewport = isInViewport(footer);
       const isArticleTitleInViewport =
         articleTitle && isInViewport(articleTitle);
-        const isArticleTopInViewport =
-        articleTop && isInViewport(articleTop);
+      const isArticleTopInViewport = articleTop && isInViewport(articleTop);
 
       // from pinned article to non-news pages
       if (
@@ -132,7 +131,7 @@ function handleNavigation(fadeInUpElements) {
 
             setTimeout(
               () => {
-                console.log("delayCounter = " + delayCounter);
+                // console.log("delayCounter = " + delayCounter);
 
                 newsPageMain.classList.add("fadeOutDown");
               },
@@ -165,7 +164,6 @@ function handleNavigation(fadeInUpElements) {
           ) {
             delayCounter--;
           }
-          console.log("reachme 01");
 
           delayCounter++;
           setTimeout(
@@ -216,12 +214,9 @@ function handleNavigation(fadeInUpElements) {
         targetUrl !== "./articles/" + pinnedFilePath &&
         (targetUrl === "../our-approach.html" ||
           targetUrl === "../leadership.html" ||
-          targetUrl === "../../index.html" ||
-          targetUrl === "../news.html")
+          targetUrl === "../../index.html")
       ) {
-
         if (isArticleTitleInViewport || isArticleTopInViewport) {
-
           delayCounter++;
         }
 
@@ -266,9 +261,9 @@ function handleNavigation(fadeInUpElements) {
 
       setTimeout(
         () => {
-          console.log(
-            `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
-          );
+          // console.log(
+          //   `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
+          // );
           window.location.href = targetUrl;
         },
         delayCounter * 600 + 800
