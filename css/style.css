@@ -2394,6 +2394,9 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
     -webkit-text-stroke-color: var(--darkgrey);
     color: var(--almostblack);
     font-size: 89px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
     letter-spacing: -2.67px;
 
 }
@@ -2496,7 +2499,7 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
   .internal.outcomes{
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: 9px;
+    column-gap: 25px;
     margin: 0 auto;
   }
   .internal.outcomes .grid-column-full{
