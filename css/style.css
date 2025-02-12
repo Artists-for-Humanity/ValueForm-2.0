@@ -767,7 +767,8 @@ nav {
   width: 100%;
   position: fixed;
   font-weight: bold;
-  max-width: 1187px;
+  max-width: 1184px;
+  /* max-width:100%; */
   margin: 0 auto;
   bottom: 16px;
   width: calc(100% - 32px);
@@ -840,6 +841,12 @@ nav a.disabled:first-child + a:active {
   border-left: 2px solid var(--white);
 }
 
+.mobile-approach-button {
+  display: block;
+}
+.default-approach-button {
+  display: none;
+}
 @media (min-width: 700px) {
   nav {
     bottom: 30px;
@@ -848,6 +855,12 @@ nav a.disabled:first-child + a:active {
   nav div {
     /* width: 364px; */
     width:500px;
+  }
+  .mobile-approach-button {
+    display: none;
+  }
+  .default-approach-button {
+    display: block;
   }
   /*nav a {width: 182px;}*/
 } /* NAV STYLES FOR TABLET */
@@ -861,6 +874,12 @@ nav a.disabled:first-child + a:active {
     /* width: 279px; */
     /* width: 417px; */
     width:580px;
+  }
+  .mobile-approach-button {
+    display: none;
+  }
+  .default-approach-button {
+    display: block;
   }
   /*nav a { width: 140px;}*/
 } /* NAV STYLES FOR DESKTOP */
