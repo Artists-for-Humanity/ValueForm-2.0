@@ -2383,6 +2383,7 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
 }
 .outcomes block:last-child{
   padding-bottom:60px;
+  border-bottom:0px;
 }
 
 .outcomes block metric{
@@ -2419,7 +2420,6 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
    /* Shift up to visually align with the top of the number */
    position: relative;
    top: .3em; /* Adjust as necessary to fine-tune */
-
 }
 
 .outcomes block h3 {
@@ -2440,12 +2440,6 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
   font-weight: 400;
   line-height: 24px;
   padding-bottom:18px;
-}
-
-/* Ensure the block is relatively positioned so that children can be layered */
-.outcomes block {
-  position: relative;
-  transition: background-color 0.3s ease;
 }
 
 .outcomes block h3,
