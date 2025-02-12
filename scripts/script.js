@@ -715,6 +715,33 @@ function addHoverEffectOnOutcomeElements() {
   }
 }
 
+ // Wait until the DOM is fully loaded
+ document.addEventListener("DOMContentLoaded", function() {
+  // Select all blocks within the outcomes section
+  const blocks = document.querySelectorAll('.outcomes block');
+  const videoElement = document.getElementById('video');
+  const videoSource = videoElement.querySelector('source');
+
+  blocks.forEach(block => {
+    block.addEventListener('mouseenter', function() {
+      // Retrieve the video source from the data attribute
+      const newVideoSrc = block.getAttribute('data-video');
+      if (newVideoSrc) {
+        // Update the video source
+        videoSource.src = newVideoSrc;
+        // Reload the video
+        videoElement.load();
+        // Reveal the video by changing its opacity
+        videoElement.style.opacity = "0.2";
+      }
+    });
+
+    block.addEventListener('mouseleave', function() {
+      // Hide the video when not hovering over a block
+      videoElement.style.opacity = "0";
+    });
+  });
+});
 
 
 
