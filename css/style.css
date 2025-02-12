@@ -2499,11 +2499,12 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
     line-height: 24px; /* 150% */
     padding-bottom:23px;
   }
+
   .outcomes block img{
     padding-bottom:5px;
   }
-  .outcomes block img:last-child{
-    padding-bottom:0px;
+  .outcomes block:last-child{
+    padding-bottom:55px;
   }
 
 }
@@ -2531,6 +2532,9 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
   .internal.outcomes .grid-inherit .tablet-column-4-6{
     grid-column: 4 / span 2;
     margin: 0px;
+  }
+  .outcomes block metric {
+    transform: translateX(-6px);
   }
   .outcomes block metric number {
     font-size: 225px;
@@ -2570,5 +2574,5 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
   .outcomes block img:last-child{
     padding-bottom:0px;
   }
- 
+
 }
