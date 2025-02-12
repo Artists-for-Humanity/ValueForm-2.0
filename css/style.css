@@ -2418,7 +2418,7 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
   letter-spacing: -2.67px;
    /* Shift up to visually align with the top of the number */
    position: relative;
-   top: .5em; /* Adjust as necessary to fine-tune */
+   top: .3em; /* Adjust as necessary to fine-tune */
 
 }
 
@@ -2513,7 +2513,7 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
     font-size: 45px;
     letter-spacing: -1.35px;
     font-weight: 700;
-    top: 0.8em;
+    top: 0.5em;
   }
 
   .outcomes block h3 {
@@ -2583,7 +2583,7 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
     font-size: 45px;
     letter-spacing: -1.35px;
     font-weight: 700;
-    top: 0.9em;
+    top: 0.5em;
   }
 
   .outcomes block h3 {

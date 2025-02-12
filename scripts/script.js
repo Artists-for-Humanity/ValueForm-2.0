@@ -602,119 +602,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // =======================================
 // Outcomes page hover effects
 // =======================================
-function addHoverEffectOnOutcomeElements() {
-  const titleElements = document.querySelectorAll('.outcomes-title');
-  const logoElements = document.querySelectorAll('.outcomes-logo');
-  const metricElements = document.querySelectorAll('.metric');
-  const percentElements = document.querySelectorAll('.percent');
-  const videoBackground = document.querySelector('.video-background');
-  const videoSource = videoBackground.querySelector('source');
-  console.log(videoSource);
-
-  const targetHrefs = [
-    "./outcomes/pokemon.html",
-    "./outcomes/pokemon.html",
-    "./outcomes/pokemon.html",
-  ];
-
-  // Apply hover effects
-  function applyHoverEffects(index) {
-    const metric = metricElements[index];
-    const percent = percentElements[index];
-    const title = titleElements[index];
-
-    if (metric && percent) {
-      metric.style.color = 'var(--nearwhite)';
-      metric.style.webkitTextStrokeColor = 'var(--nearwhite)';
-      percent.style.color = 'var(--nearwhite)';
-      percent.style.webkitTextStrokeColor = 'var(--nearwhite)';
-      metric.style.cursor = 'pointer';
-      percent.style.cursor = 'pointer';
-    }
-
-    if (title) {
-      title.classList.add('outcomes-highlight');
-      title.style.cursor = 'pointer';
-    }
-    if (logoElements[index]) {
-      logoElements[index].style.cursor = 'pointer';
-    }
-
-    const videoSrc = metric ? metric.getAttribute('data-video') : null;
-    if (videoSrc) {
-      videoSource.setAttribute('src', videoSrc);
-      videoBackground.load();
-    }
-
-    document.querySelector('body.outcomes').classList.add('hovered');
-    videoBackground.style.opacity = '1';
-  }
-
-  // Remove hover effects
-  function removeHoverEffects(index) {
-    const metric = metricElements[index];
-    const percent = percentElements[index];
-    const title = titleElements[index];
-
-    if (metric && percent) {
-      metric.style.color = '';
-      metric.style.webkitTextStrokeColor = '';
-      percent.style.color = '';
-      percent.style.webkitTextStrokeColor = '';
-      metric.style.cursor = '';
-      percent.style.cursor = '';
-    }
-
-    if (title) {
-      title.classList.remove('outcomes-highlight');
-      title.style.cursor = '';
-    }
-    if (logoElements[index]) {
-      logoElements[index].style.cursor = '';
-    }
-
-    document.querySelector('body.outcomes').classList.remove('hovered');
-    videoBackground.style.opacity = '0';
-  }
-
-  // Trigger fade out and navigate with delay
-  function fadeOutAndNavigate(index) {
-    const fadeInUpElements = Array.from(
-      document.querySelectorAll('.fadeInUp:not(nav)')
-    );
-    let delayCounter = 0;
-
-    fadeInUpElements
-      .filter(isInViewport)
-      .reverse()
-      .forEach((element, idx) => {
-        element.classList.replace('fadeInUp', 'fadeOutDown');
-        element.style.animationDelay = `${idx * 600}ms`;
-        delayCounter++;
-   
-      });
-     console.log(delayCounter)
-    setTimeout(() => {
-      window.location.href = targetHrefs[index];
-    }, delayCounter * 600 + 800); // Adjust delay to match the animation duration
-  }
-
-  // Iterate over elements and add event listeners
-  for (let i = 0; i < Math.min(titleElements.length, logoElements.length, metricElements.length, percentElements.length, targetHrefs.length); i++) {
-    const elementsGroup = [titleElements[i], logoElements[i], metricElements[i]];
-
-    elementsGroup.forEach(element => {
-      element.addEventListener('mouseenter', () => applyHoverEffects(i));
-      element.addEventListener('mouseleave', () => removeHoverEffects(i));
-
-      element.addEventListener('click', (e) => {
-        e.preventDefault();
-        fadeOutAndNavigate(i);
-      });
-    });
-  }
-}
-
  // Wait until the DOM is fully loaded
  document.addEventListener("DOMContentLoaded", function() {
   // Select all blocks within the outcomes section
@@ -742,7 +629,6 @@ function addHoverEffectOnOutcomeElements() {
     });
   });
 });
-
 
 
 // =======================================
