@@ -846,7 +846,8 @@ nav a.disabled:first-child + a:active {
     width: calc(100% - 60px);
   }
   nav div {
-    width: 364px;
+    /* width: 364px; */
+    width:500px;
   }
   /*nav a {width: 182px;}*/
 } /* NAV STYLES FOR TABLET */
@@ -858,7 +859,8 @@ nav a.disabled:first-child + a:active {
   }
   nav div {
     /* width: 279px; */
-    width: 417px;
+    /* width: 417px; */
+    width:580px;
   }
   /*nav a { width: 140px;}*/
 } /* NAV STYLES FOR DESKTOP */
