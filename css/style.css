@@ -2639,3 +2639,15 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
     font-size: 225px;
   }
 }
+
+
+/* **************** */
+/* OUTCOMES SUBPAGES */
+/* **************** */
+
+.company-info h2{
+  color:var(--nearwhite);
+  font-weight:400;
+  font-size: 13px;
+  line-height: 25px;
+}
