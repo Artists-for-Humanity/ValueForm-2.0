@@ -65,6 +65,7 @@ function handleNavigation(fadeInUpElements) {
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
   const articleTitle = document.getElementById("article_title");
   const articleTop = document.getElementById("article_top");
+  const outcomesLinks = document.querySelectorAll(".outcomes block");
 
   const allLinks = [
     ...clickMe,
@@ -74,6 +75,7 @@ function handleNavigation(fadeInUpElements) {
     ...headerLinks,
     ...linkBack,
     ...linkBackNews,
+    ...outcomesLinks,
   ];
 
   allLinks.forEach((element) => {

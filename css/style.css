@@ -810,6 +810,9 @@ nav a:first-child {
   border-radius: 6px 0 0 6px;
   /* Top-right and bottom-right border-radius */
 }
+nav a.mobile-approach-button{
+  border-radius: 6px 0 0 6px; 
+}
 nav a:last-child {
   border-radius: 0 6px 6px 0;
   /* Top-right and bottom-right border-radius */
