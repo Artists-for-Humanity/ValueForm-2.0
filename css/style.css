@@ -2467,20 +2467,14 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
 .outcomes block metric number,
 .outcomes block metric percent {
   transition: color 0.3s ease;
-
 }
 
-.outcomes block:hover {
-  background-color: transparent;
-}
-
-.outcomes block:hover h3,
-.outcomes block:hover metric number,
-.outcomes block:hover metric percent {
-  color:var(--nearwhite); 
+.outcomes block.hovered h3,
+.outcomes block.hovered metric number,
+.outcomes block.hovered metric percent {
+  color: var(--nearwhite);
   -webkit-text-stroke-width: 0px;
 }
-
 #video {
   position: fixed;
   top: 0;
@@ -2493,7 +2487,6 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
-
 
 @media screen and (min-width: 700px) {
   .internal.outcomes{
@@ -2586,11 +2579,22 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
     grid-column: 4 / span 2;
     margin: 0px;
   }
+
+  .outcomes block {
+    padding-top:33px;
+    padding-bottom:32px
+  }
+  .outcomes block:first-child{
+    padding-top:55px;
+  }
+  .outcomes block:last-child{
+    padding-bottom:57px;
+  }
   .outcomes block metric {
     transform: translateX(-6px);
   }
   .outcomes block metric number {
-    font-size: 225px;
+    font-size: 187px;
     letter-spacing: -6.75px;
     font-weight:700;
   }
@@ -2600,35 +2604,35 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
     font-weight: 700;
     top: 0.5em;
   }
-
   .outcomes block h3 {
     font-size: 30px;
     font-style: normal;
     font-weight: 700;
-    line-height: 34px; /* 113.333% */
+    line-height: 34px;
     letter-spacing: -0.9px;
-    padding-top:18px;
+    padding-bottom:2px;
+    padding-top:0px;
   }
-
   .outcomes block h3 span {
     color: var(--nearwhite);
   }
-
   .outcomes block h4{
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 150% */
-    padding-bottom:23px;
+    padding-bottom: 26px;
   }
-  .outcomes block img{
+  /* .outcomes block img{
     padding-bottom:5px;
   }
   .outcomes block img:last-child{
     padding-bottom:0px;
-  }
+  } */
 
 }
-
-
-
+@media  (min-width:1265px) {
+  .outcomes block metric number {
+    font-size: 225px;
+  }
+}

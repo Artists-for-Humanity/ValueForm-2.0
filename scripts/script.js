@@ -602,29 +602,34 @@ document.addEventListener("DOMContentLoaded", () => {
 // =======================================
 // Outcomes page hover effects
 // =======================================
-
- document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
   const blocks = document.querySelectorAll('.outcomes block');
   const videoElement = document.getElementById('video');
   const videoSource = videoElement.querySelector('source');
 
   blocks.forEach(block => {
-    block.addEventListener('mouseenter', function() {
-      const newVideoSrc = block.getAttribute('data-video');
-      if (newVideoSrc) {
-        // update the video source
-        videoSource.src = newVideoSrc;
-        // reload the video
-        videoElement.load();
-        videoElement.style.opacity = "0.2";
-      }
-    });
-    block.addEventListener('mouseleave', function() {
-      videoElement.style.opacity = "0";
+    const targets = block.querySelectorAll(' h3, h4, img, percemt, number');
+
+    targets.forEach(target => {
+      target.addEventListener('mouseenter', function() {
+        block.classList.add('hovered');
+
+        const newVideoSrc = block.getAttribute('data-video');
+        if (newVideoSrc) {
+          videoSource.src = newVideoSrc;
+          videoElement.load();
+          videoElement.style.opacity = "0.2";
+        }
+      });
+
+      target.addEventListener('mouseleave', function() {
+       
+        block.classList.remove('hovered');
+        videoElement.style.opacity = "0";
+      });
     });
   });
 });
-
 
 // =======================================
 // Page cache/back button logic
