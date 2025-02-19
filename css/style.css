@@ -2645,12 +2645,18 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
 /* OUTCOMES SUBPAGES */
 /* **************** */
 
+
 .company-info h2{
   color:var(--nearwhite);
   font-weight:400;
   font-size: 13px;
   line-height: 25px;
 }
+
+.company-info h2.bold{
+  font-weight:700;
+}
+
 .outcomes .container img{
   width: 100%;
   padding-top:10px;
@@ -2677,6 +2683,18 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
   line-height: 0px;
   letter-spacing: -1.83px;
   top: -0.9em;
+  left: -0.4em
+}
+.outcomes .container h4.stat span.percent{
+  color: var(--nearwhite);
+  color: #BEBEBE;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 0px;
+  letter-spacing: -1.83px;
+  top: -0.9em;
+  left:0.0em;
 }
 .outcomes .container h4{
   color: var(--darkgrey);
