@@ -596,42 +596,45 @@ let isInitialized = false;
 // =======================================
 // Load pinned file on DOMContentLoaded
 // =======================================
-document.addEventListener("DOMContentLoaded", () => {
-  getPinnedPage();
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   getPinnedPage();
+// });
 
 
 // =======================================
 // Outcomes page hover effects
 // =======================================
-document.addEventListener("DOMContentLoaded", function() {
-  const blocks = document.querySelectorAll('.outcomes block');
-  const videoElement = document.getElementById('video');
-  const videoSource = videoElement.querySelector('source');
+// document.addEventListener("DOMContentLoaded", function() {
+//   const blocks = document.querySelectorAll('.outcomes block');
+//   const videoElement = document.getElementById('video');
+//   console.log(videoElement);
+//   const videoSource = videoElement.querySelector('source');
 
-  blocks.forEach(block => {
-    const targets = block.querySelectorAll(' h3, h4, img, percemt, number');
 
-    targets.forEach(target => {
-      target.addEventListener('mouseenter', function() {
-        block.classList.add('hovered');
 
-        const newVideoSrc = block.getAttribute('data-video');
-        if (newVideoSrc) {
-          videoSource.src = newVideoSrc;
-          videoElement.load();
-          videoElement.style.opacity = "0.2";
-        }
-      });
+//   blocks.forEach(block => {
+//     const targets = block.querySelectorAll(' h3, h4, img, percemt, number');
 
-      target.addEventListener('mouseleave', function() {
+//     targets.forEach(target => {
+//       target.addEventListener('mouseenter', function() {
+//         block.classList.add('hovered');
+
+//         const newVideoSrc = block.getAttribute('data-video');
+//         if (newVideoSrc) {
+//           videoSource.src = newVideoSrc;
+//           videoElement.load();
+//           videoElement.style.opacity = "0.2";
+//         }
+//       });
+
+//       target.addEventListener('mouseleave', function() {
        
-        block.classList.remove('hovered');
-        videoElement.style.opacity = "0";
-      });
-    });
-  });
-});
+//         block.classList.remove('hovered');
+//         videoElement.style.opacity = "0";
+//       });
+//     });
+//   });
+// });
 
 // =======================================
 // Page cache/back button logic
