@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "percy exec -- cypress run",
     "build": "rm -rf dist && mkdir -p dist && cp -r pages dist/pages && cp -r index.html dist && cp -r css dist/css && cp -r images dist/images && cp -r scripts dist/scripts",
     "vercel-build": "npm run build",
     "check-node": "node -v"
