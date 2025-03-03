@@ -609,29 +609,35 @@ document.addEventListener("DOMContentLoaded", function() {
   const videoElement = document.getElementById('video');
   const videoSource = videoElement.querySelector('source');
 
-  blocks.forEach(block => {
-    const targets = block.querySelectorAll(' h3, h4, img, percemt, number');
+  // Check if the device supports touch (i.e., it's a mobile or tablet)
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    targets.forEach(target => {
-      target.addEventListener('mouseenter', function() {
-        block.classList.add('hovered');
+  if (!isTouchDevice) {
+    // Only apply hover functionality on non-touch devices
+    blocks.forEach(block => {
+      const targets = block.querySelectorAll('h3, h4, img, percent, number');
 
-        const newVideoSrc = block.getAttribute('data-video');
-        if (newVideoSrc) {
-          videoSource.src = newVideoSrc;
-          videoElement.load();
-          videoElement.style.opacity = "0.2";
-        }
-      });
+      targets.forEach(target => {
+        target.addEventListener('mouseenter', function() {
+          block.classList.add('hovered');
 
-      target.addEventListener('mouseleave', function() {
-       
-        block.classList.remove('hovered');
-        videoElement.style.opacity = "0";
+          const newVideoSrc = block.getAttribute('data-video');
+          if (newVideoSrc) {
+            videoSource.src = newVideoSrc;
+            videoElement.load();
+            videoElement.style.opacity = "0.2";
+          }
+        });
+
+        target.addEventListener('mouseleave', function() {
+          block.classList.remove('hovered');
+          videoElement.style.opacity = "0";
+        });
       });
     });
-  });
+  }
 });
+
 
 // =======================================
 // Page cache/back button logic
