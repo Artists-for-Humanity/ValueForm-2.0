@@ -2718,6 +2718,7 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
 /* *****************************/
 .outcomes.subpage img{
   width:100%;
+  padding:5px;
 }
 .outcomes.subpage .center-img{
   padding-top:10px;
@@ -2792,7 +2793,21 @@ line-height: 24px;
 
 .outcomes.subpage .mobile-carousel{
   display:block;
-  text-align: center;
+  align-items: start;
+  display:flex;
+  overflow:scroll;
+  touch-action: pan-x;
+  padding:0px;
+}
+.outcomes.subpage .mobile-carousel {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+.outcomes.subpage .mobile-carousel::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
+}
+.outcomes.subpage .mobile-carousel img{
+  width:80%;
 }
 .outcomes.subpage .desktop-carousel{
   display:none;
