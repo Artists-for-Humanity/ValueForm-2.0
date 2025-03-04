@@ -2543,7 +2543,7 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
 @media screen and (min-width: 700px) {
 
   .outcomes block metric number {
-    font-size: 210px;
+    font-size: 180px;
     letter-spacing: -6.3px;
     font-weight:700;
   }
@@ -2583,6 +2583,14 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
     padding-bottom:55px;
   }
 
+}
+
+@media screen and (min-width: 760px){
+  .outcomes block metric number{
+    font-size: 210px;
+    letter-spacing: -6.3px;
+    font-weight:700;
+  }
 }
 
 @media screen and (min-width: 1080px) {
