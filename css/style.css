@@ -1224,7 +1224,7 @@ main.internal.news .intro + .container.no-border {
   main.internal.lead .container {
     padding: 25px 0 8px 0;
   }
-  main.internal h2.text-l {
+  main.internal h3.text-l.title {
     padding-bottom: 15px;
     /* padding-top: 36px; */
   }
@@ -2247,6 +2247,6 @@ em {
   font-style: italic !important;
 }
 
-h3.desktop-col-10.tablet-col-6.text-l.title {
+/* h3.desktop-col-10.tablet-col-6.text-l.title {
   padding-bottom: 15px;
-}
+} */
