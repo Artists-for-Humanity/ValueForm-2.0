@@ -1218,7 +1218,7 @@ main.internal.news .intro + .container.no-border {
   main.internal .intro + .container.no-border {
     padding-top: 30px;
   }
-  main.internal .intro + .container p {
+  main.internal .intro + .container p.pages {
     padding-bottom: 0;
   }
   main.internal.lead .container {
