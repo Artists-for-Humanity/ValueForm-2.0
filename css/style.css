@@ -1833,6 +1833,13 @@ x-img {
   margin-bottom: 0px;
   padding-bottom: 9px;
 }
+p.text-m.article.text {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 9px;
+  margin-bottom: 0px;
+  padding-bottom: 9px;
+}
 
 .link,
 .link_read {
