@@ -1844,7 +1844,7 @@ p.text-m.article.text {
 .link,
 .link_read {
   color: var(--nearwhite);
-  margin-top: 9px;
+  margin-top: 13px;
   margin-bottom: 22px;
   font-weight: 700;
 }
