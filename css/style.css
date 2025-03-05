@@ -1709,8 +1709,7 @@ nav.fadeInUp {
 }
 
 .white-text-shadow {
-  text-shadow:
-    1px 0 0 var(--darkgrey),
+  text-shadow: 1px 0 0 var(--darkgrey),
     -1px 0 0 var(--darkgrey) 0 1px 0 var(--darkgrey),
     0 -1px 0 var(--darkgrey) 1px 1px 0 var(--darkgrey),
     -1px -1px 0 var(--darkgrey) -1px 1px 0 var(--darkgrey) 1px -1px 0
@@ -2236,9 +2235,6 @@ ol.article-list li {
 }
 
 @media screen and (min-width: 700px) {
-  ul.article-list li {
-    margin-bottom: 13px; /*Add spacing between list items */
-  }
   ol.article-list li {
     margin-bottom: 13px; /*Add spacing between list items */
   }
@@ -2246,10 +2242,13 @@ ol.article-list li {
 
 @media screen and (min-width: 700px) {
   ul.article-list li {
-    margin-bottom: 2px; /*Add spacing between list items */
+    margin-bottom: 14px; /*Add spacing between list items */
   }
   ol.article-list li {
     margin-bottom: 2px; /*Add spacing between list items */
+  }
+  ul.article-list.bny li:last-child {
+    margin-bottom: 2px;
   }
 }
 
