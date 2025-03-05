@@ -2207,7 +2207,7 @@ ol.article-list {
   }
   ol.article-list {
     padding-left: 32px; /* Ensure bullets appear indented */
-    margin-bottom: 7px;
+    /* margin-bottom: 7px; */
   }
 }
 
@@ -2234,25 +2234,6 @@ ol.article-list li {
   padding-bottom: 0px;
 }
 
-@media screen and (min-width: 700px) {
-  ol.article-list li {
-    margin-bottom: 13px; /*Add spacing between list items */
-  }
-}
-
-@media screen and (min-width: 700px) {
-  ul.article-list li {
-    margin-bottom: 14px; /*Add spacing between list items */
-  }
-  ol.article-list li {
-    margin-bottom: 2px; /*Add spacing between list items */
-  }
-  ul.article-list.bny li:last-child {
-    margin-bottom: 2px;
-  }ul.article-list.musing li:last-child {
-    padding-bottom: 6px;
-  }
-}
 
 .spinning-logo {
   padding-bottom: 17px;
@@ -2273,6 +2254,37 @@ main.internal .intro + .container p.sign-off {
 ul.article-list.musing {
   margin-top: 4px;
   margin-bottom: 2px;
+}
+
+
+@media screen and (min-width: 700px) {
+  ol.article-list li {
+    margin-bottom: 13px; /*Add spacing between list items */
+  }
+}
+
+@media screen and (min-width: 700px) {
+  ul.article-list li {
+    margin-bottom: 14px; /*Add spacing between list items */
+  }
+  /* ol.article-list li {
+    margin-bottom: 2px;
+  } */
+  ul.article-list.bny li:last-child {
+    margin-bottom: 2px;
+  }
+  ul.article-list.musing li:last-child {
+    padding-bottom: 6px;
+  }
+  ul.article-list.letter li:last-child {
+    margin-bottom: 9px;
+  }
+  ul.article-list.letter li.model {
+    margin-bottom: 3px;
+  }
+  main.internal .intro + .container p.sign-off {
+    padding-bottom: 22px;
+  }
 }
 
 /* h3.desktop-col-10.tablet-col-6.text-l.title {
