@@ -2269,6 +2269,11 @@ main.internal .intro + .container p.sign-off {
   padding-bottom: 16px;
 }
 
+ul.article-list.musing {
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
 /* h3.desktop-col-10.tablet-col-6.text-l.title {
   padding-bottom: 15px;
 } */
