@@ -635,40 +635,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
       });
     });
-  } else{
-     
-   
-    // threshold controls how much of the block must be visible before triggering.
-    // You can adjust threshold to something like 0.5 for "center" portion.
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // When a block enters the viewport (intersecting at our threshold), show its video
-          const block = entry.target;
-          const newVideoSrc = block.getAttribute('data-video');
-
-          if (newVideoSrc) {
-            videoSource.src = newVideoSrc;
-            videoElement.load();
-            videoElement.style.opacity = "0.2";
-          }
-        } else {
-          // If you want the video to hide or change once the block is no longer in view, do so here.
-          // If you prefer to leave the currently playing video until another block takes over, 
-          // you can omit this part:
-          // videoElement.style.opacity = "0";
-        }
-      });
-    }, {
-      threshold: 0.5 
-    });
-
-    //  observer that watches each block.
-    blocks.forEach(block => {
-      observer.observe(block);
-    });
+  } else {
+    return;
   }
-});
+  });
 
 
 // =======================================
