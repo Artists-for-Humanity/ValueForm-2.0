@@ -396,8 +396,8 @@ END OF ACCORDION STYLES -- NOT USED */
 
 @media (min-width: 1080px) {
   li {
-    padding: 11px 0;
-    padding-bottom: 11px !important;
+    padding: 0px 0;
+    padding-bottom: 0px !important;
     width: calc(50% - 12.5px);
   }
 } /* DESKTOP LIST PADDING */
@@ -2286,6 +2286,14 @@ ul.article-list.musing {
     padding-bottom: 22px;
   }
 }
+
+@media (min-width: 1080px) {
+  ul.article-list.bny li:last-child {
+    margin-bottom: 11px;
+  }
+
+}
+
 
 /* h3.desktop-col-10.tablet-col-6.text-l.title {
   padding-bottom: 15px;
