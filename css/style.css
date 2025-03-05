@@ -2183,6 +2183,13 @@ ul.article-list {
   margin-bottom: -4px;
 }
 
+ul.article-list.letter {
+  margin-top: 4px;
+}
+ol.article-list.letter {
+  margin-top: 4px;
+}
+
 ol.article-list {
   list-style-type: decimal; /* Standard bullet  */
   margin: 1em 0; /* Add vertical spacing for better readability */
@@ -2191,7 +2198,7 @@ ol.article-list {
   padding-top: 0px;
   padding-bottom: 0px;
   margin-top: 9px;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
 @media screen and (min-width: 700px) {
@@ -2217,7 +2224,7 @@ ul.article-list li {
   padding-bottom: 0px;
 }
 ol.article-list li {
-  margin-bottom: 4px; /*Add spacing between list items */
+  margin-bottom: 13px; /*Add spacing between list items */
   display: list-item;
   width: 100%;
   word-wrap: break-word;
@@ -2252,6 +2259,14 @@ ol.article-list li {
 
 em {
   font-style: italic !important;
+}
+
+.signature {
+  padding-top: 13px;
+}
+
+main.internal .intro + .container p.sign-off {
+  padding-bottom: 16px;
 }
 
 /* h3.desktop-col-10.tablet-col-6.text-l.title {
