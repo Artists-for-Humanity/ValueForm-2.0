@@ -2249,6 +2249,8 @@ ol.article-list li {
   }
   ul.article-list.bny li:last-child {
     margin-bottom: 2px;
+  }ul.article-list.musing li:last-child {
+    padding-bottom: 6px;
   }
 }
 
