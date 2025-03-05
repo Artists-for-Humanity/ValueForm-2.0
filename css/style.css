@@ -1931,11 +1931,11 @@ p.text-m.article.text {
   }
 }
 aside.sidebar-bottom h4.text-s {
-  padding-bottom: 5px;
+  padding-bottom: 8px;
 }
 
 aside.sidebar-bottom h4.text-s + p.text-s {
-  padding-bottom: 20px;
+  padding-bottom: 25px;
   color: var(--darkgrey);
 }
 
@@ -1969,7 +1969,7 @@ aside.sidebar-bottom h4.text-s + p.text-s {
   padding: 24px 0px 21px 0px;
   border-top: 1px solid var(--darkgrey);
   border-bottom: 1px solid var(--darkgrey);
-  margin: 14px 0px 25px 0px;
+  margin: 14px 0px 16px 0px;
   color: var(--nearwhite);
   font-family: Helvetica;
   font-size: 20px;
@@ -2180,7 +2180,7 @@ ul.article-list {
   padding-top: 0px;
   padding-bottom: 0px;
   margin-top: 9px;
-  margin-bottom: 14px;
+  margin-bottom: -4px;
 }
 
 ol.article-list {
@@ -2206,7 +2206,7 @@ ol.article-list {
 }
 
 ul.article-list li {
-  margin-bottom: 4px; /*Add spacing between list items */
+  margin-bottom: 13px; /*Add spacing between list items */
   display: list-item;
   width: 100%;
   word-wrap: break-word;
