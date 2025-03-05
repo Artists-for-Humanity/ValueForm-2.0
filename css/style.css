@@ -2716,7 +2716,7 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
   .internal.outcomes .grid-inherit .desktop-col-5-12{
     grid-column: 3 / span 8;
   }
-  .outcomes .grid-inherit .desktop-col-9-12{
+  .internal.outcomes .grid-inherit .desktop-col-9-12{
     grid-column: 9 / span 4;
   }
 }
@@ -2814,10 +2814,11 @@ line-height: 24px;
 
 .outcomes.subpage .mobile-carousel img {
   flex: 0 0 auto;
-  width: 80%;
+  width: 83%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-
+  padding:0px;
+  max-width: 400px;
 }
 
 .outcomes.subpage .mobile-carousel img:last-child {
