@@ -1423,11 +1423,13 @@ main.internal.news .intro+.container.no-border {
     padding-bottom: 18px !important;
   }
 
-  main.internal.news .intro+.container p.musing {
+  main.internal.news .intro+.container p.musing,
+  main.internal.news .intro+.container p.letter {
     padding-bottom: 9px !important;
   }
 
-  
+
+
 }
 
 /* MAIN STYLES FOR DESKTOP */
@@ -2466,10 +2468,22 @@ ul.article-list.musing {
   ul.article-list.bny li:last-child {
     margin-bottom: 11px;
   }
+
   ul.article-list.musing {
     margin-top: 4px;
     margin-bottom: 6px;
   }
+
+  ul.article-list {
+    padding-left: 32px;
+    margin-bottom: 18px;
+}
+ol.article-list.letter {
+  margin-bottom: 27px;
+}
+main.internal .intro+.container p.sign-off {
+  padding-bottom: 24px !important;
+}
 
 }
 
