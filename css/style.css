@@ -2293,6 +2293,8 @@ aside.sidebar-bottom h4.sidebar-bottom-title.text-s {
   aside.sidebar-bottom h4.sidebar-bottom-title.text-s {
     padding-bottom: 5px;
   }
+
+ 
 }
 
 .subheader {
@@ -2311,13 +2313,14 @@ main.internal h4.article-subhead {
 }
 
 .quote {
-  line-height: 20px;
+  font-size: 20px;
+  line-height: 25px;
 }
 
 @media screen and (min-width: 700px) {
   .quote {
     font-size: 30px;
-    line-height: 34px;
+    line-height: 30px;
   }
 
   .text-s.sidebar-title {
@@ -2465,6 +2468,10 @@ ul.article-list.musing {
 }
 
 @media (min-width: 1080px) {
+  .quote {
+    font-size: 34px;
+    line-height: 34px;
+  } 
   ul.article-list.bny li:last-child {
     margin-bottom: 11px;
   }
@@ -2484,6 +2491,7 @@ ol.article-list.letter {
 main.internal .intro+.container p.sign-off {
   padding-bottom: 24px !important;
 }
+
 
 }
 
