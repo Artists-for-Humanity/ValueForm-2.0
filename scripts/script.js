@@ -261,9 +261,9 @@ function handleNavigation(fadeInUpElements) {
 
       setTimeout(
         () => {
-          // console.log(
-          //   `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
-          // );
+          console.log(
+            `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
+          );
           window.location.href = targetUrl;
         },
         delayCounter * 600 + 800
@@ -359,7 +359,7 @@ function animateHeader(elementId) {
 // ================================
 function storeScrollPosition() {
   sessionStorage.setItem("scrollPosition", window.scrollY);
-  console.log("storing scroll position " + window.scrollY);
+  // console.log("storing scroll position " + window.scrollY);
 
 }
 function restoreScrollPosition() {
@@ -370,10 +370,10 @@ function restoreScrollPosition() {
   const currentPath = window.location.pathname;
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
   const pinnedPath = "/pages/articles/" + pinnedFilePath
-  console.log("pinnedPath = " + pinnedPath);
-  console.log("current Path = " + currentPath);
+  // console.log("pinnedPath = " + pinnedPath);
+  // console.log("current Path = " + currentPath);
 
-  console.log("RE-storing scroll position: " + storedScrollPosition);
+  // console.log("RE-storing scroll position: " + storedScrollPosition);
 
   if (storedScrollPosition !== null) {
     window.scrollTo(0, parseInt(storedScrollPosition, 10));
@@ -382,10 +382,10 @@ function restoreScrollPosition() {
     if (isInViewport(topBannerMain) && !(storedScrollPosition > 340 && currentPath === "/pages/articles/musings.html")) {
       // Prevent animation if visible
       sessionStorage.setItem("dontAnimateBanner", "true");
-      console.log("top Banner Main is visible after restoring scroll position");
+      // console.log("top Banner Main is visible after restoring scroll position");
     } else if (currentPath !== pinnedPath || currentPath === "/pages/articles/musings.html") {
       // Only clear scroll position if the current page is NOT the pinned article
-      console.log("current path is not the pinned article");
+      // console.log("current path is not the pinned article");
       topBannerMain.classList.add("fadeInUp", "animated");
 
       clearScrollPosition();
@@ -395,7 +395,7 @@ function restoreScrollPosition() {
   // Add a 3-second delay before removing the animation classes
   setTimeout(() => {
     topBannerMain.classList.remove("fadeInUp", "animated");
-    console.log("Removed fadeInUp and animated classes after 1 seconds");
+    // console.log("Removed fadeInUp and animated classes after 1 seconds");
   }, 1000); // 3000ms = 3 seconds
 
   // Show the page content after restoring scroll
