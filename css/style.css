@@ -2785,6 +2785,7 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
 
 .outcomes.subpage  h2.subhead{
   padding-top:10px;
+  /* padding-top:79px; */
   padding-bottom:10px;
 }
 .outcomes.subpage  h3{
@@ -2849,8 +2850,18 @@ line-height: 24px;
     line-height: 34px;
     letter-spacing: -0.9px;
   }
+  .outcomes.subpage h2.subhead {
+    padding-top:79px;
+  }
+  .outcomes.subpage h2.subhead.second {
+    grid-row:2;
+    padding-top:4px;
+  }
 }
 @media screen and (min-width:1080px){
+  .outcomes.subpage h2.subhead {
+    padding-top:24px;
+  }
   .outcomes .figure{
     font-size:70px;
     letter-spacing: -2.67px;
