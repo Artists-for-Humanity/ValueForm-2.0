@@ -57,6 +57,7 @@ function handleNavigation(fadeInUpElements) {
   const logoLinks = document.querySelectorAll("header a img");
   const footerLinks = document.querySelectorAll("footer a img");
   const headerLinks = document.querySelectorAll("header a");
+  const asideLinks = document.querySelectorAll("aside a");
   const linkBack = document.querySelectorAll(".link-back");
   const clickMe = document.querySelectorAll(".click-me");
   const linkBackNews = document.querySelectorAll(".link-back-news");
@@ -72,6 +73,7 @@ function handleNavigation(fadeInUpElements) {
     ...logoLinks,
     ...footerLinks,
     ...headerLinks,
+    ...asideLinks,
     ...linkBack,
     ...linkBackNews,
   ];
