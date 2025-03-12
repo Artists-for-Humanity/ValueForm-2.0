@@ -2745,6 +2745,10 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
 }
 .outcomes .company-info .label{
   font-weight: 700;
+  font-size: 16px;
+}
+.outcomes .company-info .value{
+  font-size: 16px;
 }
 .outcomes.subpage .company-stat-container{
   border-bottom:0px;
