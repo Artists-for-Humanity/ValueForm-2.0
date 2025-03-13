@@ -131,25 +131,19 @@ function handleNavigation(fadeInUpElements) {
           if (isArticleTitleInViewport) {
             delayCounter++;
 
-            setTimeout(
-              () => {
-                // console.log("delayCounter = " + delayCounter);
+            setTimeout(() => {
+              // console.log("delayCounter = " + delayCounter);
 
-                newsPageMain.classList.add("fadeOutDown");
-              },
-              (delayCounter - 1) * 600
-            );
+              newsPageMain.classList.add("fadeOutDown");
+            }, (delayCounter - 1) * 600);
           }
         }
 
         if (isTopBannerMainInViewport) {
           delayCounter++;
-          setTimeout(
-            () => {
-              topBannerMain.classList.add("fadeOutDown");
-            },
-            (delayCounter - 1) * 600
-          );
+          setTimeout(() => {
+            topBannerMain.classList.add("fadeOutDown");
+          }, (delayCounter - 1) * 600);
         }
       }
 
@@ -168,21 +162,19 @@ function handleNavigation(fadeInUpElements) {
           }
 
           delayCounter++;
-          setTimeout(
-            () => {
-              newsPageMain.classList.add("fadeOutDown");
-            },
-            (delayCounter - 1) * 600
-          );
+          setTimeout(() => {
+            newsPageMain.classList.add("fadeOutDown");
+          }, (delayCounter - 1) * 600);
         }
       }
 
       // from news to approach or leadership
       if (
         currentPage === "/pages/news.html" &&
-        (targetUrl === "./our-approach.html" ||
+        (targetUrl.startsWith("./our-approach.html") ||
           targetUrl === "./leadership.html")
       ) {
+        console.log("from news to non-news page 1.1");
         if (isNewsPageMainInViewport) {
           if (
             topBannerMain.classList.contains("animated") ||
@@ -194,29 +186,23 @@ function handleNavigation(fadeInUpElements) {
           }
 
           delayCounter++;
-          setTimeout(
-            () => {
-              newsPageMain.classList.add("fadeOutDown");
-            },
-            (delayCounter - 2) * 600
-          );
+          setTimeout(() => {
+            newsPageMain.classList.add("fadeOutDown");
+          }, (delayCounter - 2) * 600);
 
-          setTimeout(
-            () => {
-              topBannerMain.classList.add("fadeOutDown");
-            },
-            (delayCounter - 2) * 600 + 600
-          );
+          setTimeout(() => {
+            topBannerMain.classList.add("fadeOutDown");
+          }, (delayCounter - 2) * 600 + 600);
         }
       }
 
       // From articles to approach or leadership
       if (
-        currentPage.startsWith("/pages/articles/") &&
-        targetUrl !== "./articles/" + pinnedFilePath &&
-        (targetUrl === "../our-approach.html" ||
-          targetUrl === "../leadership.html" ||
-          targetUrl === "../../index.html")
+        (currentPage.startsWith("/pages/articles/") &&
+          targetUrl !== "./articles/" + pinnedFilePath &&
+          (targetUrl === "../leadership.html" ||
+            targetUrl === "../../index.html")) ||
+        targetUrl.startsWith("../our-approach.html")
       ) {
         if (isArticleTitleInViewport || isArticleTopInViewport) {
           delayCounter++;
@@ -232,12 +218,9 @@ function handleNavigation(fadeInUpElements) {
           }
           delayCounter++;
 
-          setTimeout(
-            () => {
-              topBannerMain.classList.add("fadeOutDown");
-            },
-            (delayCounter - 1) * 600
-          );
+          setTimeout(() => {
+            topBannerMain.classList.add("fadeOutDown");
+          }, (delayCounter - 1) * 600);
         }
       }
 
@@ -261,15 +244,14 @@ function handleNavigation(fadeInUpElements) {
         localStorage.setItem("newsFade", false);
       }
 
-      setTimeout(
-        () => {
-          console.log(
-            `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800} ms`
-          );
-          window.location.href = targetUrl;
-        },
-        delayCounter * 600 + 800
-      );
+      setTimeout(() => {
+        console.log(
+          `Redirecting to ${targetUrl} after a delay of ${
+            delayCounter * 600 + 800
+          } ms`
+        );
+        window.location.href = targetUrl;
+      }, delayCounter * 600 + 800);
     });
   });
 }
@@ -362,7 +344,6 @@ function animateHeader(elementId) {
 function storeScrollPosition() {
   sessionStorage.setItem("scrollPosition", window.scrollY);
   // console.log("storing scroll position " + window.scrollY);
-
 }
 function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
@@ -371,7 +352,7 @@ function restoreScrollPosition() {
   // Define the pinned article path based on the current URL
   const currentPath = window.location.pathname;
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
-  const pinnedPath = "/pages/articles/" + pinnedFilePath
+  const pinnedPath = "/pages/articles/" + pinnedFilePath;
   // console.log("pinnedPath = " + pinnedPath);
   // console.log("current Path = " + currentPath);
 
@@ -381,11 +362,20 @@ function restoreScrollPosition() {
     window.scrollTo(0, parseInt(storedScrollPosition, 10));
 
     // Check if "top_banner_main" is in viewport after restoring scroll position
-    if (isInViewport(topBannerMain) && !(storedScrollPosition > 340 && currentPath === "/pages/articles/musings.html")) {
+    if (
+      isInViewport(topBannerMain) &&
+      !(
+        storedScrollPosition > 340 &&
+        currentPath === "/pages/articles/musings.html"
+      )
+    ) {
       // Prevent animation if visible
       sessionStorage.setItem("dontAnimateBanner", "true");
       // console.log("top Banner Main is visible after restoring scroll position");
-    } else if (currentPath !== pinnedPath || currentPath === "/pages/articles/musings.html") {
+    } else if (
+      currentPath !== pinnedPath ||
+      currentPath === "/pages/articles/musings.html"
+    ) {
       // Only clear scroll position if the current page is NOT the pinned article
       // console.log("current path is not the pinned article");
       topBannerMain.classList.add("fadeInUp", "animated");
@@ -437,7 +427,6 @@ function clearScrollPosition() {
   sessionStorage.removeItem("scrollPosition");
   window.scrollTo(0, 0);
   console.log("clearing scroll position");
-
 }
 document.addEventListener("DOMContentLoaded", () => {
   const topBannerMain = document.getElementById("top_banner_main");
