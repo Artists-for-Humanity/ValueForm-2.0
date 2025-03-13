@@ -1,7 +1,9 @@
+import { handleNavigation } from "./navigation.js";
+
 // ============================
 // Reusable isInViewport functions
 // ============================
-function isInViewport(element) {
+export function isInViewport(element) {
   const rect = element.getBoundingClientRect();
   return (
     rect.bottom > 0 &&
@@ -48,7 +50,7 @@ function getPinnedPage() {
     }
   }
 }
-
+/*
 // =============================================================
 // Handle navigation logic for the rest of the page
 // =============================================================
@@ -153,6 +155,8 @@ function handleNavigation(fadeInUpElements) {
         targetUrl.startsWith("./articles/") &&
         targetUrl !== "./articles/" + pinnedFilePath
       ) {
+        console.log("from news to non-pinned article page 1.1");
+
         if (isNewsPageMainInViewport) {
           if (
             topBannerMain.classList.contains("animated") ||
@@ -160,21 +164,24 @@ function handleNavigation(fadeInUpElements) {
           ) {
             delayCounter--;
           }
+          
 
           delayCounter++;
           setTimeout(() => {
             newsPageMain.classList.add("fadeOutDown");
           }, (delayCounter - 1) * 600);
         }
+        delayCounter--;
+
       }
 
-      // from news to approach or leadership
+      // from news to non-news pages
       if (
         currentPage === "/pages/news.html" &&
         (targetUrl.startsWith("./our-approach.html") ||
           targetUrl === "./leadership.html")
       ) {
-        console.log("from news to non-news page 1.1");
+        console.log("from news to non-news page 1.6");
         if (isNewsPageMainInViewport) {
           if (
             topBannerMain.classList.contains("animated") ||
@@ -192,7 +199,7 @@ function handleNavigation(fadeInUpElements) {
 
           setTimeout(() => {
             topBannerMain.classList.add("fadeOutDown");
-          }, (delayCounter - 2) * 600 + 600);
+          }, (delayCounter - 3) * 600);
         }
       }
 
@@ -254,7 +261,7 @@ function handleNavigation(fadeInUpElements) {
       }, delayCounter * 600 + 800);
     });
   });
-}
+} */
 
 // ============================
 // Standard page load anims
