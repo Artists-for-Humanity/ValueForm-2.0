@@ -24,7 +24,11 @@ careers@valueform.io
 
     <link rel="stylesheet" href="../../css/style.css" type="text/css" />
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-
+    <script type="module">
+        import { handleMainNewsFade, staticTitle } from "../../scripts/script.js";
+        window.handleMainNewsFade = handleMainNewsFade;
+        window.staticTitle = staticTitle;
+      </script>
     <script defer>
         document.addEventListener("DOMContentLoaded", function () {
             setTimeout(function () {
@@ -282,7 +286,7 @@ careers@valueform.io
 </body>
 
 <!-- <script src="../../scripts/script.js"></script> -->
-<script type="module" src="../../scripts/script.js"></script>
+<!-- <script type="module" src="../../scripts/script.js"></script> -->
 
 
 

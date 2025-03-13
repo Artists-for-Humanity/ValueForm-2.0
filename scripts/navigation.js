@@ -130,9 +130,10 @@ export function handleNavigation(fadeInUpElements) {
         if (
           currentPage === "/pages/news.html" &&
           (targetUrl.startsWith("./our-approach.html") ||
-            targetUrl === "./leadership.html")
+            targetUrl === "./leadership.html" ||
+            targetUrl === "../index.html")
         ) {
-          console.log("from news to non-news page 1.6");
+          console.log("from news to non-news page 1.7");
           if (isNewsPageMainInViewport) {
             if (
               topBannerMain.classList.contains("animated") ||

@@ -22,6 +22,12 @@ careers@valueform.io
 
   <link rel="stylesheet" href="../css/style.css" type="text/css" />
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+  <!-- <script type="module" src="../scripts/script.js"></script> -->
+  <script type="module">
+    import { handleFadeAndRedirect, staticTitle } from "../scripts/script.js";
+    window.handleFadeAndRedirect = handleFadeAndRedirect;
+    window.staticTitle = staticTitle;
+  </script>
 
   <script defer>
     document.addEventListener("DOMContentLoaded", function () {
@@ -42,16 +48,15 @@ careers@valueform.io
     </script>
     <section class="wrapper">
       <header class="container text-s internal" id="animatedHeader">
-        <a href="../index.html" onclick="addFadeInUp()">
+        <a href="../index.html">
           <img src="../images/logo.svg" alt="ValueForm's Logo" />
         </a>
 
         <div class="how-we desktop-col-3 tablet-col-3">
           <h4>How we do it</h4>
           <p><strong>ValueForm</strong> uses experience design to help businesses. To us that encompasses <a
-              href="./our-approach.html#potential">service design</a>, <a
-              href="./our-approach.html#potential">product design</a>, and <a
-              href="./our-approach.html#potential">software engineering</a>.
+              href="./our-approach.html#potential">service design</a>, <a href="./our-approach.html#potential">product
+              design</a>, and <a href="./our-approach.html#potential">software engineering</a>.
           </p>
         </div>
 
@@ -89,14 +94,15 @@ careers@valueform.io
             <h4 class="text-s sidebar-title">About BNY:</h4>
 
             <p class="text-s popup-text">
-              BNY <a href="#" onclick="window.open('https://www.google.com/finance/quote/BK:NYSE', '_blank'); return false;">
+              BNY <a href="#"
+                onclick="window.open('https://www.google.com/finance/quote/BK:NYSE', '_blank'); return false;">
                 (NYSE: BK)
               </a>
               is a global financial services company that makes money work for the world. Managing it, moving
-              it, and keeping it safe. For 240 years BNY put its expertise and platforms to work to help clients 
-              achieve their ambitions. Today BNY helps over 90% of Fortune 100 companies and the top 100 banks 
+              it, and keeping it safe. For 240 years BNY put its expertise and platforms to work to help clients
+              achieve their ambitions. Today BNY helps over 90% of Fortune 100 companies and the top 100 banks
               globally access the money they need. As of September 2024, BNY oversees $52.1 trillion in assets
-               under custody and $2.1 trillion in assets under management.
+              under custody and $2.1 trillion in assets under management.
             </p>
           </aside>
 
@@ -164,7 +170,7 @@ careers@valueform.io
     </section>
 
     <footer class="container text-s fadeInUp fade_link ">
-      <a href="../index.html" onclick="addFadeInUp()"><img src=" ../images/logo.svg" alt="ValueForm's Logo" /></a>
+      <a href="../index.html"><img src=" ../images/logo.svg" alt="ValueForm's Logo" /></a>
 
       <div class="address desktop-col-3 tablet-col-2">
         <h4>New York</h4>
@@ -195,6 +201,6 @@ careers@valueform.io
 
 
   <!-- <script src="../scripts/script.js"></script> -->
-  <script type="module" src="../scripts/script.js"></script>
+  <!-- <script type="module" src="../scripts/script.js"></script> -->
 
 </html>
