@@ -203,15 +203,15 @@ export function handleNavigation(fadeInUpElements) {
           // targetUrl === "./articles/pinned.html"
           targetUrl === "./articles/" + pinnedFilePath
         ) {
-          console.log("from news to pinned page 1.0");
+          console.log("from news to pinned page 1.2");
           if (localStorage.getItem("newsFade") === "true") {
             if (delayCounter <= 1) {
             } else {
               delayCounter--;
-              delayCounter--;
+              // delayCounter--;
   
               if (footerInViewport) {
-                // delayCounter++;
+                delayCounter++;
                 console.log("footer is in viewport");
               }
             }
