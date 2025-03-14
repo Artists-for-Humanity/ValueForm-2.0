@@ -133,7 +133,7 @@ export function handleNavigation(fadeInUpElements) {
             targetUrl === "./leadership.html" ||
             targetUrl === "../index.html")
         ) {
-          console.log("from news to non-news page 1.7");
+          console.log("from news to non-news page 2.2");
           if (isNewsPageMainInViewport) {
             if (
               topBannerMain.classList.contains("animated") ||
@@ -143,15 +143,29 @@ export function handleNavigation(fadeInUpElements) {
             } else {
               delayCounter++;
             }
+           
   
             delayCounter++;
             setTimeout(() => {
               newsPageMain.classList.add("fadeOutDown");
             }, (delayCounter - 2) * 600);
   
-            setTimeout(() => {
-              topBannerMain.classList.add("fadeOutDown");
-            }, (delayCounter - 3) * 600);
+            if (footerInViewport) {
+              delayCounter--;
+              console.log("footer is in viewport");
+              setTimeout(() => {
+                topBannerMain.classList.add("fadeOutDown");
+              }, (delayCounter - 3) * 600);
+              delayCounter++
+            }else{
+              setTimeout(() => {
+                topBannerMain.classList.add("fadeOutDown");
+              }, (delayCounter - 3) * 600);
+  
+            }
+            console.log("delayCounter = " + delayCounter);
+            
+
           }
         }
   
@@ -189,6 +203,7 @@ export function handleNavigation(fadeInUpElements) {
           // targetUrl === "./articles/pinned.html"
           targetUrl === "./articles/" + pinnedFilePath
         ) {
+          console.log("from news to pinned page 1.0");
           if (localStorage.getItem("newsFade") === "true") {
             if (delayCounter <= 1) {
             } else {
@@ -196,7 +211,8 @@ export function handleNavigation(fadeInUpElements) {
               delayCounter--;
   
               if (footerInViewport) {
-                delayCounter++;
+                // delayCounter++;
+                console.log("footer is in viewport");
               }
             }
           }
