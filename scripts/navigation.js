@@ -122,7 +122,7 @@ export function handleNavigation(fadeInUpElements) {
               newsPageMain.classList.add("fadeOutDown");
             }, (delayCounter - 1) * 600);
           }
-          delayCounter--;
+          // delayCounter--;
   
         }
   
@@ -146,7 +146,7 @@ export function handleNavigation(fadeInUpElements) {
            
   
             delayCounter++;
-            setTimeout(() => {
+            setTimeout(() => {ee
               newsPageMain.classList.add("fadeOutDown");
             }, (delayCounter - 2) * 600);
   
@@ -155,7 +155,7 @@ export function handleNavigation(fadeInUpElements) {
               console.log("footer is in viewport");
               setTimeout(() => {
                 topBannerMain.classList.add("fadeOutDown");
-              }, (delayCounter - 3) * 600);
+              }, (delayCounter - 3) * 600);s
               delayCounter++
             }else{
               setTimeout(() => {
