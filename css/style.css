@@ -2465,6 +2465,13 @@ h3.desktop-col-10.tablet-col-6.text-l.title{
   padding-bottom: 8px;
 }
 
+.outcomes block .svg-metric{
+	max-width: 130px;
+	height: auto;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #404040; 
+}
+
 .outcomes block metric number,
 .outcomes block metric percent {
   /* Force them to sit inline next to each other */
