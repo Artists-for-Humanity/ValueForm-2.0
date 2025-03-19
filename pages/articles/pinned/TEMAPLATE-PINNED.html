@@ -17,14 +17,18 @@ careers@valueform.io
     <meta name="description"
       content="ValueForm's approach is designed to deliver outcomes. We create conviction in your outcomes by directly tying our compensation to them. We design experiences that organizations can handle operationally, making execution inevitable.">
 
-    <link rel="icon" type="image/x-icon" href="../../images/favicon/favicon.ico">
-    <link href="../../images/favicon/android-chrome-192x192.png" rel="apple-touch-icon" sizes="180x180">
-    <link href="../../images/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
-    <link href="../../images/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+    <link rel="icon" type="image/x-icon" href="../../../images/favicon/favicon.ico">
+    <link href="../../../../images/favicon/android-chrome-192x192.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="../../../images/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <link href="../../../images/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
 
-    <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-
+    <!-- <script type="module" src="../../../scripts/script.js"></script> -->
+    <script type="module">
+      import { handleMainNewsFade } from "../../../scripts/script.js";
+      window.handleMainNewsFade = handleMainNewsFade;
+  </script>
     <script defer>
       document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
@@ -44,15 +48,16 @@ careers@valueform.io
   </script>
   <section class="wrapper">
     <header class="container text-s internal" id="animatedHeader">
-      <a href="../../index.html" onclick="addFadeOutDown();">
-        <img src="../../images/logo.svg" alt="ValueForm's Logo" />
+      <a href="../../../index.html">
+        <img src="../../../images/logo.svg" alt="ValueForm's Logo" />
       </a>
 
       <div class="how-we desktop-col-3 tablet-col-3">
         <h4>How we do it</h4>
         <p><strong>ValueForm</strong> uses experience design to help businesses. To us that encompasses <a
-            href="../our-approach.html#potential">service design</a>, <a href="../our-approach.html#potential">product
-            design</a>, and <a href="../our-approach.html#potential">software engineering</a>.
+            href="../../our-approach.html#potential">service design</a>, <a
+            href="../../our-approach.html#potential">product design</a>, and <a
+            href="../../our-approach.html#potential">software engineering</a>.
         </p>
       </div>
 
@@ -67,9 +72,9 @@ careers@valueform.io
 
     <nav id="animatedNav" class="text-s">
       <div>
-        <a href="../our-approach.html" onclick="addFadeOutDown();">Our Approach</a>
-        <a href="../leadership.html">Leadership</a>
-        <a href="../news.html" onclick="handleMainNewsFade()">News</a>
+        <a href="../../our-approach.html">Our Approach</a>
+        <a href="../../leadership.html">Leadership</a>
+        <a href="../../news.html" onclick="handleMainNewsFade()">News</a>
 
       </div>
     </nav>
@@ -89,10 +94,10 @@ careers@valueform.io
           <h4 class="text-s sidebar-title">About BNY:</h4>
 
           <p class="text-s popup-text">
-            BNY <a
-              href="https://www.google.com/finance/quote/BK:NYSE?sa=X&sqi=2&ved=2ahUKEwiZmufEmaCKAxU1jYkEHX0mLckQ3ecFegQINBAX"
-              target="_blank">(NYSE:
-              BK)</a> is a global financial services company that makes money work for the world. Managing it, moving
+            BNY <a href="#"
+              onclick="window.open('https://www.google.com/finance/quote/BK:NYSE', '_blank'); return false;">
+              (NYSE: BK)
+            </a> is a global financial services company that makes money work for the world. Managing it, moving
             it, and keeping it safe.
             For 240 years BNY put its expertise and platforms to work to help clients achieve their ambitions.
             Today BNY helps over 90% of Fortune 100 companies and the top 100 banks globally access the money they need.
@@ -103,14 +108,15 @@ careers@valueform.io
 
 
         <div class="desktop-col-8 tablet-col-7 article title_fade">
-          <h3 class="desktop-col-8 article-title">
-c          
+          <h3 id="article_title" class="desktop-col-8 article-title">
+            BNY taps ValueForm to better its trading systems and execution services.
+
           </h3>
           <time class="text-m date">January 20th, 2025</time>
         </div>
 
 
-          <img class="desktop-col-7 tablet-col-7  img-contain" src="../../images/news/BNY.svg" alt="" srcset="" >
+        <img class="desktop-col-7 tablet-col-7  img-contain" src="../../../images/news/BNY.svg" alt="" srcset="">
 
 
         <div class=" desktop-col-7 tablet-col-7 article text title_fade">
@@ -126,105 +132,93 @@ c
             BNY’s decision to partner with us reflects its commitment to achieving business outcomes through
             human-centered thinking.
           </p>
-       
+
         </div>
 
 
-        <p class="text-m fadeInUp  desktop-col-7 tablet-col-7 article text">
+        <p class="text-m fadeInUp  desktop-col-7 tablet-col-7 article text bny-top">
           “Our experience designing complex systems, specifically in financial markets, makes this a great
           fit.”
           said Christopher Pross, our Managing Partner. “We’re excited to help BNY optimize its tools and
           drive efficiency and outcomes.”
-          </p>
+        </p>
 
         <blockquote class="fadeInUp blockQuote desktop-col-8 tablet-col-7 title_fade">
           <div class="quote">
-            Our experience designing complex systems, specifically in financial markets, makes this a great
-            fit.
+            Our experience designing complex systems, specifically in trading and financial markets, makes this a great fit.
           </div>
           <cite>
             <bold>Christopher Pross</bold> Managing Partner, ValueForm
           </cite>
         </blockquote>
 
-        <!-- <img src="../../images/news/img-block.png" alt=""
-          class="desktop-col-8 tablet-col-7 article-img fadeInUp fade_link">
+        <div class="fadeInUp desktop-col-7 tablet-col-7 article text grid-inherit">
+          <h4 class="text-m subgrid-col-1-7 article-subhead"> The partnership will focus on:</h4>
 
-        <div class="fadeInUp desktop-col-7 tablet-col-7  article text">
-          <p class="text-m">
-            lectus. In imperdiet metus sed leo tincidunt, a congue dui auctor. Aliquam dictum nulla ut maximus tempus.
-            Donec et enim volutpat nisi posuere viverra. Aliquam erat volutpat. Mauris id euismod est, at commodo elit.
-            Aliquam auctor eu diam gravida auctor. Nullam leo dolor, aliquam vel ante pharetra, pellentesque pretium mi.
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean at elit
-            sed lectus maximus semper id in urna.
-          </p>
-        </div> -->
-
-        <div class="fadeInUp desktop-col-7 tablet-col-7 article text">
-            <h4 class="text-m"> The partnership will focus on:</h4>
-     
-          <ul class="article-list">
-              <li>
-                <em>Systems Optimization:</em>
-                   We’ll analyze and adjust existing back-end processes and
-                  infrastructure to create smoother, more intuitive user-facing experiences.</li>
-              <li>
-                <em>Creating and Testing New Experience Models:</em>
-                   We’ll experiment with new and unconventional
-                  paradigms for traders engaging with markets.
-                  Going beyond functionality to make tools more instinctive, intuitive, and minimize mental
-                  effort.
-              </li>
-              <li>
-                <em>User-Centered Roadmaps:</em>
-                   We’ll create and sequence roadmaps based on user needs, ensuring
-                  alignment with trader and client expectations.
-                  These roadmaps will de-risk and guide the engineering effort by ensuring its alignment with
-                  users.
-              </li>
+          <ul class="article-list bny subgrid-col-1-7">
+            <li>
+              <em>Systems Optimization:</em>
+              We’ll analyze and adjust existing back-end processes and
+              infrastructure to create smoother, more intuitive user-facing experiences.
+            </li>
+            <li>
+              <em>Creating and Testing New Experience Models:</em>
+              We’ll experiment with new and unconventional
+              paradigms for traders engaging with markets.
+              Going beyond functionality to make tools more instinctive, intuitive, and minimize mental
+              effort.
+            </li>
+            <li>
+              <em>User-Centered Roadmaps:</em>
+              We’ll create and sequence roadmaps based on user needs, ensuring
+              alignment with trader and client expectations.
+              These roadmaps will de-risk and guide the engineering effort by ensuring its alignment with
+              users.
+            </li>
 
           </ul>
 
-          <p class="text-m"> We’re thrilled about this collaboration and can’t wait to share updates as we shape the future
-              of trading tools together. </p>
+          <p class="text-m subgrid-col-1-7"> We’re thrilled about this collaboration and can’t wait to share updates as
+            we shape the future
+            of trading tools together. </p>
 
-              <div class="video-container">
-                <video controls autoplay muted loop class="article-vid" style="width: 50%">
-                  <!-- <source src="../../images/news/logo.mp4"> -->
-                  <source src="../../images/news/logo.MP4">
-              </video>
-            </div>
-      
+          <video controls autoplay muted loop class="article-vid subgrid-col-3-5" style="width:100%">
+            <source src="../../../images/news/logo.MP4">
+          </video>
+
+          <aside class="sidebar-bottom subgrid-col-1-7">
+            <h4 class="text-s sidebar-title">About BNY:</h4>
+
+            <p class="text-s popup-text">
+              BNY <a href="#"
+                onclick="window.open('https://www.google.com/finance/quote/BK:NYSE', '_blank'); return false;">
+                (NYSE: BK)
+              </a>is a global financial services company that makes money work for the world. Managing it, moving
+              it, and keeping it safe.
+              For 240 years BNY put its expertise and platforms to work to help clients achieve their ambitions.
+              Today BNY helps over 90% of Fortune 100 companies and the top 100 banks globally access the money they
+              need.
+              As of September 2024, BNY oversees $52.1 trillion in assets under custody and $2.1 trillion in assets
+              under
+              management.
+            </p>
 
 
-            <aside class="desktop-col-4 tablet-col-1 sidebar-bottom">
-              <h4 class="text-s sidebar-bottom-title">Jonathan Dizzy</h4>
-  
-              <p class="text-s">
-                  Hailed as the “Internet’s highest honor” by The New York Times, The Webby Awards is the
-                  leading
-                  international awards organization honoring excellence on the Internet. Established in 1996,
-                  The Webby
-                  Awards
-                  are presented by the International Academy of Digital Arts and Sciences (IADAS).
-              </p>
-  
-          
-            </aside>
-    
-            <div class=" desktop-col-8 tablet-col-7  link-back-test">
-              <a href="../news.html" class="underline strong link link-back" onclick="handleMainNewsFade()">
-                  Read all news
-              </a>
+          </aside>
+
+          <div class=" tablet-col-7  link-back-test subgrid-col-1-7">
+            <a href="../../news.html" class="underline strong link link-back" onclick="handleMainNewsFade()">
+              Read all news
+            </a>
           </div>
 
-      </div>
-    </article>
+        </div>
+      </article>
     </main>
   </section>
 
   <footer class="container text-s fadeInUp">
-    <a href="../../index.html"><img src="../../images/logo.svg" alt="ValueForm's Logo" /></a>
+    <a href="../../../index.html"><img src="../../../images/logo.svg" alt="ValueForm's Logo" /></a>
 
     <div class="address desktop-col-3 tablet-col-2">
       <h4>New York</h4>
@@ -248,12 +242,13 @@ c
         <a href="mailto:careers@valueform.io" class="disabled">careers@valueform.io</a><br />
       </p>
     </div>
-    <a href="../../index.html " onclick="addFadeOutDown();"><img src="../../images/logo.svg"
+    <a href="../../../index.html " onclick="addFadeOutDown();"><img src="../../../images/logo.svg"
         alt="ValueForm's Logo" /></a>
   </footer>
 
 </body>
 
-<script src="../../scripts/script.js"></script>
+<!-- <script src="../../../scripts/script.js"></script> -->
+<!-- <script type="module" src="../../../scripts/script.js"></script> -->
 
 </html>
