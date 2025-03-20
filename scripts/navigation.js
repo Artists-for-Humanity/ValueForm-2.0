@@ -146,16 +146,19 @@ export function handleNavigation(fadeInUpElements) {
            
   
             delayCounter++;
-            setTimeout(() => {ee
+            setTimeout(() => {
               newsPageMain.classList.add("fadeOutDown");
             }, (delayCounter - 2) * 600);
+            topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
+
   
             if (footerInViewport) {
+
               delayCounter--;
               console.log("footer is in viewport");
               setTimeout(() => {
                 topBannerMain.classList.add("fadeOutDown");
-              }, (delayCounter - 3) * 600);s
+              }, (delayCounter - 1) * 600);
               delayCounter++
             }else{
               setTimeout(() => {

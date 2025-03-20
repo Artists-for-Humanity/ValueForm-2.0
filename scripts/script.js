@@ -53,6 +53,26 @@ function getPinnedPage() {
   }
 }
 
+function getArticles() {
+  if (window.location.pathname.includes("news.html")) {
+  let articles = localStorage.getItem("articles");
+  console.log("Got into function")
+
+    console.log("didn't get past articles exisring")
+    
+    const articleLinks = document.querySelectorAll('a[href^="./articles/"]');
+    articles = [];
+
+    articleLinks.forEach(link => {
+      const href = link.getAttribute("href");
+      const fileName = href.split("/").pop();
+      articles.push(fileName);
+    });
+    localStorage.setItem("articles", JSON.stringify(articles));
+  return articles;
+  }
+}
+
 // ============================
 // Standard page load anims
 // ============================
@@ -208,15 +228,13 @@ function restoreScrollPosition() {
 function isTargetPage() {
   const pinnedFileName = localStorage.getItem("pinnedFileName");
   const currentPage = window.location.pathname.split("/").pop();
+
+  const articles = localStorage.getItem("articles");
+
   return (
     currentPage === "news.html" ||
     currentPage === "pinned.html" ||
-    currentPage === "dizzy.html" ||
-    currentPage === "musings.html" ||
-    currentPage === "letter.html" ||
-    currentPage === "template.html" ||
-    currentPage === "bny.html" ||
-    currentPage === "ahhh.html" ||
+    articles.includes(currentPage) ||
     currentPage === `${pinnedFileName}`
   );
 }
@@ -408,6 +426,7 @@ let isInitialized = false;
 // =======================================
 document.addEventListener("DOMContentLoaded", () => {
   getPinnedPage();
+  getArticles();
 });
 
 // =======================================
