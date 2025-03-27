@@ -56,10 +56,6 @@ function getPinnedPage() {
 function getArticles() {
   if (window.location.pathname.includes("news.html")) {
   let articles = localStorage.getItem("articles");
-  console.log("Got into function")
-
-    console.log("didn't get past articles exisring")
-    
     const articleLinks = document.querySelectorAll('a[href^="./articles/"]');
     articles = [];
 
