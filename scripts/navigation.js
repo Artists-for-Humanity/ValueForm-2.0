@@ -149,7 +149,7 @@ export function handleNavigation(fadeInUpElements) {
           targetUrl === "./leadership.html" ||
           targetUrl === "../index.html")
       ) {
-        console.log("from news to non-news page 2.2");
+        console.log("from news to non-news page 2.3");
         console.log(`fadeInUpElements = ${fadeInUpElements.length}`);
 
         if (isNewsPageMainInViewport) {
@@ -166,35 +166,40 @@ export function handleNavigation(fadeInUpElements) {
 
           // }
 
+          if (!containsElementWithId(fadeInUpElements, "news_page_main")) {
+            // console.log("reachme A0")
+            delayCounter++;
+          }
+
           setTimeout(() => {
+          newsPageMain.style.animationDelay = `${(delayCounter - 2) * 600}ms`;
+
+          // console.log("newsPageMain animation Delay = " + newsPageMain.style.animationDelay)
+            
             newsPageMain.classList.add("fadeOutDown");
           }, (delayCounter - 2) * 600);
           // topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
           if (!containsElementWithId(fadeInUpElements, "top_banner_main")) {
-            // console.log("fadeInUpElements contains element with ID 'top_banner_main'");
             delayCounter++;
-            // if (footerInViewport) {
-            //   delayCounter++;
-            //   // console.log("footer is in viewport");
-            // }
           }
+          
 
           if (footerInViewport) {
 
             delayCounter--;
-            console.log("footer is in viewport");
+            // console.log("footer is in viewport");
             setTimeout(() => {
               topBannerMain.classList.add("fadeOutDown");
             }, (delayCounter - 1) * 600);
             delayCounter++;
           } else {
             setTimeout(() => {
-          console.log("delayCounter A = " + delayCounter);
+          // console.log("delayCounter A = " + delayCounter);
 
-          console.log("delayCounter B = " + delayCounter);
+          // console.log("delayCounter B = " + delayCounter);
           topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
 
-          console.log("topBannerMain animation Dealy = " + topBannerMain.style.animationDelay)
+          // console.log("topBannerMain animation Delay = " + topBannerMain.style.animationDelay)
 
 
               topBannerMain.classList.add("fadeOutDown");
