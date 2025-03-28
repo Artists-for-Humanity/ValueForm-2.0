@@ -149,54 +149,41 @@ export function handleNavigation(fadeInUpElements) {
       ) {
         console.log("from news to non-news page 2.3");
         console.log(`fadeInUpElements = ${fadeInUpElements.length}`);
-
         if (!isNewsPageMainInViewport) return;
-
-        let localDelay = delayCounter;
-
         // Adjust delay if "news_page_main" is not part of fadeInUpElements
         if (!containsElementWithId(fadeInUpElements, "news_page_main")) {
-          localDelay++;
+          delayCounter++;
         }
 
         setTimeout(() => {
-          console.log("topBannerMain animation Delay A = " + topBannerMain.style.animationDelay);
-          console.log("newsPageMain animation Delay A = " + newsPageMain.style.animationDelay);
-          console.log("article-title-block animation Delay A = " + articleTitleBlock.style.animationDelay);
+          newsPageMain.style.animationDelay = `${(delayCounter - 2) * 600}ms`;
+          topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
+
           newsPageMain.classList.add("fadeOutDown");
-        }, (localDelay - 2) * 600);
+        }, 0);
 
         // Adjust delay if "top_banner_main" is not part of fadeInUpElements
         if (!containsElementWithId(fadeInUpElements, "top_banner_main")) {
-          localDelay++;
+          delayCounter++;
         }
-
         // If footer is visible, stagger animations with delay
         if (footerInViewport) {
           setTimeout(() => {
             if (!isTopBannerMainInViewport) {
-              newsPageMain.style.animationDelay = `${(localDelay - 1) * 600}ms`;
-              articleTitleBlock.style.animationDelay = `${(localDelay - 2) * 600}ms`;
+              newsPageMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
+              articleTitleBlock.style.animationDelay = `${(delayCounter - 2) * 600}ms`;
             }
-            console.log("topBannerMain animation Delay B = " + topBannerMain.style.animationDelay);
-            console.log("newsPageMain animation Delay B = " + newsPageMain.style.animationDelay);
-            console.log("article-title-block animation Delay B = " + articleTitleBlock.style.animationDelay);
             topBannerMain.classList.add("fadeOutDown");
           }, 0);
         } else {
           // No footer: fire immediately but with correct delay
           setTimeout(() => {
-            newsPageMain.style.animationDelay = `${(localDelay - 2) * 600}ms`;
-            topBannerMain.style.animationDelay = `${(localDelay - 1) * 600}ms`;
-            console.log("topBannerMain animation Delay C = " + topBannerMain.style.animationDelay);
-            console.log("newsPageMain animation Delay C = " + newsPageMain.style.animationDelay);
-            console.log("article-title-block animation Delay C = " + articleTitleBlock.style.animationDelay);
+            newsPageMain.style.animationDelay = `${(delayCounter - 2) * 600}ms`;
+            topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
             topBannerMain.classList.add("fadeOutDown");
           }, 0);
-
         }
-
-        console.log("delayCounter Final = " + localDelay);
+        console.log("delayCounter C = " + delayCounter);
       }
 
       // From articles to approach or leadership
@@ -232,6 +219,7 @@ export function handleNavigation(fadeInUpElements) {
         targetUrl === "./articles/" + pinnedFilePath
       ) {
         console.log("from news to pinned page 1.2");
+        console.log(`fadeInUpElements = ${fadeInUpElements.length}`);
 
         delayCounter = fadeInUpElements.length;
         if (
@@ -243,8 +231,11 @@ export function handleNavigation(fadeInUpElements) {
         if (!footerInViewport) {
           delayCounter--;
         }
-        console.log("delayCounter Final = " + delayCounter);
+        console.log("delayCounter D = " + delayCounter);
       }
+
+      console.log("delayCounter Final = " + delayCounter);
+
       setTimeout(() => {
         console.log(
           `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800
@@ -268,3 +259,7 @@ export function handleNavigation(fadeInUpElements) {
 // for (let i = 0; i < fadeInUpElements.length; i++) {
 //   console.log(`fadeInUpElements[${i}].id = ${fadeInUpElements[i].id}`);
 // }
+
+// console.log("topBannerMain animation Delay A = " + topBannerMain.style.animationDelay);
+// console.log("newsPageMain animation Delay A = " + newsPageMain.style.animationDelay);
+// console.log("article-title-block animation Delay A = " + articleTitleBlock.style.animationDelay);

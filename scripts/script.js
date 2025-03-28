@@ -239,7 +239,7 @@ function isTargetPage() {
 function clearScrollPosition() {
   sessionStorage.removeItem("scrollPosition");
   window.scrollTo(0, 0);
-  console.log("clearing scroll position");
+  // console.log("clearing scroll position");
 }
 document.addEventListener("DOMContentLoaded", () => {
   const topBannerMain = document.getElementById("top_banner_main");
