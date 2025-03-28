@@ -196,12 +196,14 @@ function restoreScrollPosition() {
       clearScrollPosition();
       sessionStorage.removeItem("dontAnimateBanner");
     }
-  }
   // Add a 3-second delay before removing the animation classes
   setTimeout(() => {
     topBannerMain.classList.remove("fadeInUp", "animated");
     // console.log("Removed fadeInUp and animated classes after 1 seconds");
   }, 1000); // 3000ms = 3 seconds
+    
+  }
+
 
   // Show the page content after restoring scroll
   document.body.classList.remove("preload");
