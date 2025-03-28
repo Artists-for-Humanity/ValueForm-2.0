@@ -365,7 +365,7 @@ function staticPreview() {
 // =======================================================
 let exitFadeTimeout; // Store timeout globally
 export function handleFadeAndRedirect() {
-  console.log("handling fade and redirect");
+  // console.log("handling fade and redirect");
 
   // Get pinned file path from localStorage
   let pinnedFilePath = localStorage.getItem("pinnedFilePath");
