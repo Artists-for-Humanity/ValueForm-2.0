@@ -23,6 +23,7 @@ export function handleNavigation(fadeInUpElements) {
   const topBannerMain = document.getElementById("top_banner_main");
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
   const articleTitle = document.getElementById("article_title");
+  const articleTitleBlock = document.getElementById("article_title_block");
   const articleTop = document.getElementById("article_top");
 
   const allLinks = [
@@ -142,72 +143,116 @@ export function handleNavigation(fadeInUpElements) {
         // delayCounter--;
       }
 
-      // from news to non-news pages
+      // From news to non-news pages
       if (
         currentPage === "/pages/news.html" &&
-        (targetUrl.startsWith("./our-approach.html") ||
+        (
+          targetUrl.startsWith("./our-approach.html") ||
           targetUrl === "./leadership.html" ||
-          targetUrl === "../index.html")
+          targetUrl === "../index.html"
+        )
       ) {
         console.log("from news to non-news page 2.3");
         console.log(`fadeInUpElements = ${fadeInUpElements.length}`);
 
-        if (isNewsPageMainInViewport) {
-          // if (
-          //   topBannerMain.classList.contains("animated") ||
-          //   newsPageMain.classList.contains("animated")
-          // ) {
-          // console.log("delayCounter C = " + delayCounter);
+        if (!isNewsPageMainInViewport) return;
 
-          //   delayCounter--;
-          // } else {
-          //   delayCounter++;
-          // console.log("delayCounter D = " + delayCounter);
+        let localDelay = delayCounter;
 
-          // }
-
-          if (!containsElementWithId(fadeInUpElements, "news_page_main")) {
-            // console.log("reachme A0")
-            delayCounter++;
-          }
-
-          setTimeout(() => {
-          newsPageMain.style.animationDelay = `${(delayCounter - 2) * 600}ms`;
-
-          // console.log("newsPageMain animation Delay = " + newsPageMain.style.animationDelay)
-            
-            newsPageMain.classList.add("fadeOutDown");
-          }, (delayCounter - 2) * 600);
-          // topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
-          if (!containsElementWithId(fadeInUpElements, "top_banner_main")) {
-            delayCounter++;
-          }
-          
-
-          if (footerInViewport) {
-
-            delayCounter--;
-            // console.log("footer is in viewport");
-            setTimeout(() => {
-              topBannerMain.classList.add("fadeOutDown");
-            }, (delayCounter - 1) * 600);
-            delayCounter++;
-          } else {
-            setTimeout(() => {
-          // console.log("delayCounter A = " + delayCounter);
-
-          // console.log("delayCounter B = " + delayCounter);
-          topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
-
-          // console.log("topBannerMain animation Delay = " + topBannerMain.style.animationDelay)
-
-
-              topBannerMain.classList.add("fadeOutDown");
-            }, (delayCounter) * 0);
-          }
-          console.log("delayCounter = " + delayCounter);
+        // Adjust delay if "news_page_main" is not part of fadeInUpElements
+        if (!containsElementWithId(fadeInUpElements, "news_page_main")) {
+          localDelay++;
         }
+
+        setTimeout(() => {
+          console.log("topBannerMain animation Delay A = " + topBannerMain.style.animationDelay);
+          console.log("newsPageMain animation Delay A = " + newsPageMain.style.animationDelay);
+          console.log("article-title-block animation Delay A = " + articleTitleBlock.style.animationDelay);
+          newsPageMain.classList.add("fadeOutDown");
+        }, (localDelay - 2) * 600);
+
+        // Adjust delay if "top_banner_main" is not part of fadeInUpElements
+        if (!containsElementWithId(fadeInUpElements, "top_banner_main")) {
+          localDelay++;
+        }
+
+        // If footer is visible, stagger animations with delay
+        if (footerInViewport) {
+          setTimeout(() => {
+            if (!isTopBannerMainInViewport){
+              newsPageMain.style.animationDelay = `${(localDelay - 1) * 600}ms`;
+            articleTitleBlock.style.animationDelay = `${(localDelay - 2) * 600}ms`;
+            }
+          console.log("topBannerMain animation Delay B = " + topBannerMain.style.animationDelay);
+            console.log("newsPageMain animation Delay B = " + newsPageMain.style.animationDelay);
+            console.log("article-title-block animation Delay B = " + articleTitleBlock.style.animationDelay);
+            topBannerMain.classList.add("fadeOutDown");
+          }, 0);
+        } else {
+          // No footer: fire immediately but with correct delay
+          setTimeout(() => {
+            newsPageMain.style.animationDelay = `${(localDelay - 2) * 600}ms`;
+            topBannerMain.style.animationDelay = `${(localDelay - 1) * 600}ms`;
+          console.log("topBannerMain animation Delay C = " + topBannerMain.style.animationDelay);
+            console.log("newsPageMain animation Delay C = " + newsPageMain.style.animationDelay);
+            console.log("article-title-block animation Delay C = " + articleTitleBlock.style.animationDelay);
+            topBannerMain.classList.add("fadeOutDown");
+          }, 0);
+
+        }
+
+        console.log("delayCounter Final = " + localDelay);
       }
+
+
+      // // from news to non-news pages
+      // if (
+      //   currentPage === "/pages/news.html" &&
+      //   (targetUrl.startsWith("./our-approach.html") ||
+      //     targetUrl === "./leadership.html" ||
+      //     targetUrl === "../index.html")
+      // ) {
+      //   console.log("from news to non-news page 2.3");
+      //   console.log(`fadeInUpElements = ${fadeInUpElements.length}`);
+
+      //   if (isNewsPageMainInViewport) {
+      //     if (!containsElementWithId(fadeInUpElements, "news_page_main")) {
+      //       // console.log("reachme A0")
+      //       delayCounter++;
+      //     }
+      //     setTimeout(() => {
+      //     // newsPageMain.style.animationDelay = `${(delayCounter - 2) * 600}ms`;
+
+      //     console.log("newsPageMain animation Delay = " + newsPageMain.style.animationDelay)
+
+      //       newsPageMain.classList.add("fadeOutDown");
+      //     }, (delayCounter - 2) * 600);
+      //     // topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
+      //     if (!containsElementWithId(fadeInUpElements, "top_banner_main")) {
+      //       delayCounter++;
+      //     }
+      //     if (footerInViewport) {
+      //       // console.log("footer is in viewport");
+      //       setTimeout(() => {
+      //     // console.log("article-title-block animation Delay A = " + articleTitleBlock.style.animationDelay);
+      //     newsPageMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
+      //     articleTitleBlock.style.animationDelay = `${(delayCounter - 2) * 600}ms`;
+      //     // newsPageMain.style.animationDelay = `${(delayCounter + 1) * 600}ms`;
+      //     console.log("article-title-block animation Delay B = " + articleTitleBlock.style.animationDelay);
+      //         topBannerMain.classList.add("fadeOutDown");
+      //       }, (delayCounter - 1) * 600);
+      //       // delayCounter++;
+      //     } else {
+      //       setTimeout(() => {
+      //     newsPageMain.style.animationDelay = `${(delayCounter - 2) * 600}ms`;
+      //     topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
+      //     console.log("topBannerMain animation Delay = " + topBannerMain.style.animationDelay)
+      //         topBannerMain.classList.add("fadeOutDown");
+      //       }, (delayCounter) * 0);
+      //     }
+      //     console.log("delayCounter Final = " + delayCounter);
+      //   }
+      // }
 
       // From articles to approach or leadership
       if (
@@ -261,8 +306,7 @@ export function handleNavigation(fadeInUpElements) {
 
       setTimeout(() => {
         console.log(
-          `Redirecting to ${targetUrl} after a delay of ${
-            delayCounter * 600 + 800
+          `Redirecting to ${targetUrl} after a delay of ${delayCounter * 600 + 800
           } ms`
         );
         window.location.href = targetUrl;
