@@ -233,6 +233,7 @@ export function handleNavigation(fadeInUpElements) {
       ) {
         console.log("from news to pinned page 1.2");
 
+        delayCounter = fadeInUpElements.length;
         if (
           containsElementWithId(fadeInUpElements, "news_page_main") &&
           containsElementWithId(fadeInUpElements, "top_banner_main")
