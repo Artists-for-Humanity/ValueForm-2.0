@@ -15,7 +15,7 @@ export const footer = {
   },
   copyright: {
     title: "Copyright",
-    year: 2024,
+    year: 2025,
     company: "ValueForm",
   },
   contacts: {
