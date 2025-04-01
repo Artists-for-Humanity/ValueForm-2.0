@@ -95,8 +95,8 @@ export function handleNavigation(fadeInUpElements) {
           }
         }
 
-        if (isTopBannerMainInViewport) {
-          delayCounter++;
+        if (isTopBannerMainInViewport ) {
+          // delayCounter++;
           setTimeout(() => {
             topBannerMain.classList.add("fadeOutDown");
           }, (delayCounter - 1) * 600);
