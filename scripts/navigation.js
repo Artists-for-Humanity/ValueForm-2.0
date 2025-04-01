@@ -187,6 +187,56 @@ export function handleNavigation(fadeInUpElements) {
         console.log("delayCounter C = " + delayCounter);
       }
 
+      // // From articles to non-news pages
+      // if (
+      //   (currentPage.startsWith("/pages/articles/") &&
+      //     targetUrl !== "./articles/" + pinnedFilePath &&
+      //     (targetUrl === "../leadership.html" ||
+      //       targetUrl === "../../index.html")) ||
+      //   targetUrl.startsWith("../our-approach.html")
+      // ) {
+      //   console.log("From articles to non-news pages 1.3");
+      //   console.log(`fadeInUpElements = ${fadeInUpElements.length}`);
+      //   console.log(
+      //     "topBannerMain animation Delay A = " +
+      //       topBannerMain.style.animationDelay
+      //   );
+      //   console.log("delayCounter A = " + delayCounter);
+      //   if (
+      //     !containsElementWithId(fadeInUpElements, "top_banner_main") &&
+      //     footerInViewport
+      //   ) {
+      //     if (isTopBannerMainInViewport) {
+      //       topBannerMain.style.animationDelay = `${delayCounter * 600}ms`;
+      //       delayCounter++;
+      //     }
+      //   } else if (containsElementWithId(fadeInUpElements, "top_banner_main")) {
+      //     // console.log("reachme 02");
+      //     // do nothing
+      //   } else {
+      //     // console.log("reachme 01");
+
+      //     topBannerMain.style.animationDelay = `${delayCounter * 600}ms`;
+      //     delayCounter++;
+      //   }
+
+      //   console.log(
+      //     "topBannerMain animation Delay B = " +
+      //       topBannerMain.style.animationDelay
+      //   );
+
+      //   if (footerInViewport && isArticleTopInViewport) {
+      //     // // do nothing
+      //     // console.log("reachme 01");
+      //   } else if (footerInViewport) {
+      //     delayCounter--;
+      //   }
+
+      //   setTimeout(() => {
+      //     topBannerMain.classList.add("fadeOutDown");
+      //   }, 0);
+      // }
+
       // From articles to non-news pages
       if (
         (currentPage.startsWith("/pages/articles/") &&
@@ -201,24 +251,33 @@ export function handleNavigation(fadeInUpElements) {
           "topBannerMain animation Delay A = " +
             topBannerMain.style.animationDelay
         );
+        console.log("delayCounter A = " + delayCounter);
 
-        // Adjust delay if "top_banner_main" is not part of fadeInUpElements
-        if (!containsElementWithId(fadeInUpElements, "top_banner_main")) {
-          topBannerMain.style.animationDelay = `${
-            (delayCounter) * 600
-          }ms`;
-          delayCounter++;
-        }else if (!containsElementWithId(fadeInUpElements, "top_banner_main") && footerInViewport){
-          // do nothing
-          console.log("reachme 00");
+        const hasTopBannerInList = containsElementWithId(
+          fadeInUpElements,
+          "top_banner_main"
+        );
+
+        if (!hasTopBannerInList) {
+          if (footerInViewport && isTopBannerMainInViewport) {
+            topBannerMain.style.animationDelay = `${delayCounter * 600}ms`;
+            delayCounter++;
+          } else {
+            topBannerMain.style.animationDelay = `${delayCounter * 600}ms`;
+            delayCounter++;
+          }
         }
 
-        if (footerInViewport) {
+        console.log(
+          "topBannerMain animation Delay B = " +
+            topBannerMain.style.animationDelay
+        );
+
+        if (footerInViewport && !isArticleTopInViewport) {
           delayCounter--;
         }
 
         setTimeout(() => {
-          
           topBannerMain.classList.add("fadeOutDown");
         }, 0);
       }
