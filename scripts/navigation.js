@@ -95,7 +95,7 @@ export function handleNavigation(fadeInUpElements) {
           }
         }
 
-        if (isTopBannerMainInViewport ) {
+        if (isTopBannerMainInViewport) {
           // delayCounter++;
           setTimeout(() => {
             topBannerMain.classList.add("fadeOutDown");
@@ -109,30 +109,37 @@ export function handleNavigation(fadeInUpElements) {
         targetUrl.startsWith("./articles/") &&
         targetUrl !== "./articles/" + pinnedFilePath
       ) {
-        console.log("from news to non-pinned article page 1.5");
+        console.log("from news to non-pinned articles 2.1");
 
-        if (containsElementWithId(fadeInUpElements, "top_banner_main")) {
-          delayCounter--;
-          if (footerInViewport) {
-            delayCounter++;
-            // console.log("footer is in viewport");
-          }
+        const hasTopBannerInList = containsElementWithId(fadeInUpElements, "top_banner_main");
+
+        // Calculate delay adjustments
+        let delayAdjustment = 0;
+
+        // If top_banner_main is not in the list and is visible, increment delay
+        if (!hasTopBannerInList && isTopBannerMainInViewport) {
+          delayAdjustment++;
         }
 
+        // If newsPageMain is in the viewport, apply additional adjustments
         if (isNewsPageMainInViewport) {
-          if (
-            topBannerMain.classList.contains("animated") ||
-            newsPageMain.classList.contains("animated")
-          ) {
-            delayCounter--;
+          if (topBannerMain.classList.contains("animated") || newsPageMain.classList.contains("animated")) {
+            delayAdjustment--;
           }
+          if (isTopBannerMainInViewport && footerInViewport) {
+            delayAdjustment--;
+          }
+          delayAdjustment++; // Final adjustment when newsPageMain is visible
 
-          delayCounter++;
+          delayCounter += delayAdjustment;
+
           setTimeout(() => {
             newsPageMain.classList.add("fadeOutDown");
           }, (delayCounter - 1) * 600);
+        } else {
+          // If newsPageMain is not visible, simply apply the base adjustment
+          delayCounter += delayAdjustment;
         }
-        // delayCounter--;
       }
 
       // From news to non-news pages
@@ -186,56 +193,6 @@ export function handleNavigation(fadeInUpElements) {
         }
         console.log("delayCounter C = " + delayCounter);
       }
-
-      // // From articles to non-news pages
-      // if (
-      //   (currentPage.startsWith("/pages/articles/") &&
-      //     targetUrl !== "./articles/" + pinnedFilePath &&
-      //     (targetUrl === "../leadership.html" ||
-      //       targetUrl === "../../index.html")) ||
-      //   targetUrl.startsWith("../our-approach.html")
-      // ) {
-      //   console.log("From articles to non-news pages 1.3");
-      //   console.log(`fadeInUpElements = ${fadeInUpElements.length}`);
-      //   console.log(
-      //     "topBannerMain animation Delay A = " +
-      //       topBannerMain.style.animationDelay
-      //   );
-      //   console.log("delayCounter A = " + delayCounter);
-      //   if (
-      //     !containsElementWithId(fadeInUpElements, "top_banner_main") &&
-      //     footerInViewport
-      //   ) {
-      //     if (isTopBannerMainInViewport) {
-      //       topBannerMain.style.animationDelay = `${delayCounter * 600}ms`;
-      //       delayCounter++;
-      //     }
-      //   } else if (containsElementWithId(fadeInUpElements, "top_banner_main")) {
-      //     // console.log("reachme 02");
-      //     // do nothing
-      //   } else {
-      //     // console.log("reachme 01");
-
-      //     topBannerMain.style.animationDelay = `${delayCounter * 600}ms`;
-      //     delayCounter++;
-      //   }
-
-      //   console.log(
-      //     "topBannerMain animation Delay B = " +
-      //       topBannerMain.style.animationDelay
-      //   );
-
-      //   if (footerInViewport && isArticleTopInViewport) {
-      //     // // do nothing
-      //     // console.log("reachme 01");
-      //   } else if (footerInViewport) {
-      //     delayCounter--;
-      //   }
-
-      //   setTimeout(() => {
-      //     topBannerMain.classList.add("fadeOutDown");
-      //   }, 0);
-      // }
 
       // From articles to non-news pages
       if (
