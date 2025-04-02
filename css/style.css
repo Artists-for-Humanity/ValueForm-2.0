@@ -431,9 +431,15 @@ END OF ACCORDION STYLES -- NOT USED */
 /* TABLET LIST PADDING */
 
 @media (min-width: 1080px) {
-  li {
+  .article-list li {
     padding: 0px 0;
     padding-bottom: 0px !important;
+    width: calc(50% - 12.5px);
+  }
+
+  li {
+    padding: 11px 0;
+    padding-bottom: 11px !important;
     width: calc(50% - 12.5px);
   }
 }
