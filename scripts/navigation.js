@@ -109,7 +109,7 @@ export function handleNavigation(fadeInUpElements) {
         targetUrl.startsWith("./articles/") &&
         targetUrl !== "./articles/" + pinnedFilePath
       ) {
-        console.log("from news to non-pinned articles 2.2");
+        console.log("from news to non-pinned articles 2.3");
 
         const hasTopBannerInList = containsElementWithId(fadeInUpElements, "top_banner_main");
 
@@ -129,7 +129,7 @@ export function handleNavigation(fadeInUpElements) {
           if (isTopBannerMainInViewport && footerInViewport) {
             delayAdjustment--;
           }
-          if (!footerInViewport) {
+          if (!footerInViewport && hasTopBannerInList) {
             delayAdjustment--;
           }
           delayAdjustment++; // Final adjustment when newsPageMain is visible
