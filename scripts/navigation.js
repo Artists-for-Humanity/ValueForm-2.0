@@ -227,19 +227,18 @@ export function handleNavigation(fadeInUpElements) {
         if (!hasTopBannerInList) {
           if (footerInViewport && isTopBannerMainInViewport) {
             topBannerMain.style.animationDelay = `${delayCounter * 600}ms`;
+            console.log("reachme00");
             delayCounter++;
           } else {
             topBannerMain.style.animationDelay = `${delayCounter * 600}ms`;
+            console.log("reachme01");
             delayCounter++;
           }
         }
 
-        // console.log(
-        //   "topBannerMain animation Delay B = " +
-        //     topBannerMain.style.animationDelay
-        // );
-
         if (footerInViewport && !isArticleTopInViewport) {
+          console.log("reachme02");
+
           delayCounter--;
         }
 
