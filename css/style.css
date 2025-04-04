@@ -2152,13 +2152,13 @@ cite bold {
 
   .blockQuote {
     margin-top: 15px;
-    padding-top: 23px;
-    padding-bottom: 26px;
+    padding-top: 27px;
+    padding-bottom: 27px;
     margin-bottom: 16px;
   }
 
   .quote {
-    margin-bottom: 13px;
+    margin-bottom: 16px;
   }
 
   cite {
@@ -2459,7 +2459,11 @@ ul.article-list.musing {
     margin-bottom: 2px;
   } */
   ul.article-list.bny li:last-child {
-    margin-bottom: 2px;
+    margin-bottom: 3px !important;
+  }
+
+  ul.article-list.goof li:last-child {
+    margin-bottom: 10px !important;
   }
 
   ul.article-list.musing li:last-child {
