@@ -156,7 +156,6 @@ function animateHeader(elementId) {
 // ================================
 function storeScrollPosition() {
   sessionStorage.setItem("scrollPosition", window.scrollY);
-  // console.log("storing scroll position " + window.scrollY);
 }
 function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
@@ -166,10 +165,6 @@ function restoreScrollPosition() {
   const currentPath = window.location.pathname;
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
   const pinnedPath = "/pages/articles/" + pinnedFilePath;
-  // console.log("pinnedPath = " + pinnedPath);
-  // console.log("current Path = " + currentPath);
-
-  // console.log("RE-storing scroll position: " + storedScrollPosition);
 
   if (storedScrollPosition !== null) {
     window.scrollTo(0, parseInt(storedScrollPosition, 10));
@@ -184,13 +179,11 @@ function restoreScrollPosition() {
     ) {
       // Prevent animation if visible
       sessionStorage.setItem("dontAnimateBanner", "true");
-      // console.log("top Banner Main is visible after restoring scroll position");
     } else if (
       currentPath !== pinnedPath ||
       currentPath === "/pages/articles/musings.html"
     ) {
       // Only clear scroll position if the current page is NOT the pinned article
-      // console.log("current path is not the pinned article");
       topBannerMain.classList.add("fadeInUp", "animated");
 
       clearScrollPosition();
@@ -199,30 +192,14 @@ function restoreScrollPosition() {
   // Add a 3-second delay before removing the animation classes
   setTimeout(() => {
     topBannerMain.classList.remove("fadeInUp", "animated");
-    // console.log("Removed fadeInUp and animated classes after 1 seconds");
   }, 1000); // 3000ms = 3 seconds
     
   }
-
 
   // Show the page content after restoring scroll
   document.body.classList.remove("preload");
 }
 
-// function manageTopBannerAnimation() {
-//   const topBannerMain = document.getElementById("top_banner_main");
-//   const dontAnimate = sessionStorage.getItem("dontAnimateBanner");
-
-//   if (topBannerMain) {
-//     if (dontAnimate === "true") {
-//       // Prevent animation
-//       topBannerMain.classList.remove("animated-banner");
-//     } else {
-//       // Animate normally
-//       topBannerMain.classList.add("animated-banner");
-//     }
-//   }
-// }
 function isTargetPage() {
   const pinnedFileName = localStorage.getItem("pinnedFileName");
   const currentPage = window.location.pathname.split("/").pop();
@@ -239,7 +216,6 @@ function isTargetPage() {
 function clearScrollPosition() {
   sessionStorage.removeItem("scrollPosition");
   window.scrollTo(0, 0);
-  // console.log("clearing scroll position");
 }
 document.addEventListener("DOMContentLoaded", () => {
   const topBannerMain = document.getElementById("top_banner_main");
@@ -253,17 +229,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ======================================
-// For debugging total animation time
-// ======================================
-function calculateAnimationDuration() {
-  const fadeInUpElements = document.querySelectorAll(".fadeInUp");
-  const baseDuration = 600;
-  const additionalDuration = 300;
-  console.log(baseDuration * fadeInUpElements.length + additionalDuration);
-  return baseDuration + fadeInUpElements.length * additionalDuration;
-}
-
 // ======================================================
 // Remove fadeInUp based on the referring page
 // ======================================================
@@ -271,6 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Define elements with their fade-in delay
   let elementsForFade = [
     { element: document.getElementById("news_page_main"), delay: "600ms" },
+    
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
@@ -319,27 +285,9 @@ function addFadeInUpToArticle() {
     newsPageMain.classList.add("fadeInUp", "animated");
   }
 }
-function addFadeOutDown() {
-  // Calculate total animation duration based on elements
-  const totalAnimationDuration = 600;
-  let elements_for_fade = [
-    {
-      element: document.getElementById("news_page_main"),
-      delay: `${totalAnimationDuration}ms`,
-    },
-    {
-      element: document.getElementById("top_banner_main"),
-      delay: `${totalAnimationDuration + 600}ms`,
-    },
-  ];
-  elements_for_fade.forEach(function (item) {
-    if (item.element) {
-      item.element.style.animationDelay = item.delay;
-      item.element.classList.add("fadeOutDown", "animated");
-    }
-  });
-}
+
 export function staticTitle() {
+
   const item = document.querySelector("#top_banner_main.above_read_full");
   if (item) {
     item.classList.remove("fadeInUp", "animated");
@@ -365,8 +313,6 @@ function staticPreview() {
 // =======================================================
 let exitFadeTimeout; // Store timeout globally
 export function handleFadeAndRedirect() {
-  // console.log("handling fade and redirect");
-
   // Get pinned file path from localStorage
   let pinnedFilePath = localStorage.getItem("pinnedFilePath");
 
