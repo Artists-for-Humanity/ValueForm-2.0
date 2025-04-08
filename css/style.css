@@ -564,6 +564,11 @@ MOBILE GRID -- NOT USED */
     padding: 16px 0px 16px 0px;
   }
 
+  .tablet-col-7.img-contain.img-goof {
+    justify-self: center;
+    padding: 16px 0px 16px 0px;
+  }
+
   .tablet-col-8 {
     grid-column: 1 / span 8;
   }
@@ -620,6 +625,11 @@ MOBILE GRID -- NOT USED */
   }
 
   .desktop-col-7.img-contain {
+    grid-column: 6 / span 5;
+    justify-self: center;
+    padding-bottom: 25px;
+  }
+  .desktop-col-7.img-contain.img-goof {
     grid-column: 6 / span 5;
     justify-self: center;
     padding-bottom: 25px;
@@ -1940,6 +1950,17 @@ table {
   padding-top:6px;
   padding-bottom: 16px;
   width: 100%;
+}
+
+.img-contain.img-goof {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top:6px;
+  padding-bottom: 16px;
+  width: 61%;
+  height: auto;
+  margin: 0 auto;
 }
 
 x-img {
