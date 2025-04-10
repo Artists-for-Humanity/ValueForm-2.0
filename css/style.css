@@ -254,8 +254,8 @@ time {
   font-weight: bold;
 }
 
-.text-jumbo+.text-jumbo,
-.text-xl+.text-xl {
+.text-jumbo + .text-jumbo,
+.text-xl + .text-xl {
   -webkit-text-stroke: 3px var(--darkgrey);
   position: absolute;
   top: 0;
@@ -264,9 +264,8 @@ time {
 }
 
 @media (min-width: 700px) {
-
-  .text-jumbo+.text-jumbo,
-  .text-xl+.text-xl {
+  .text-jumbo + .text-jumbo,
+  .text-xl + .text-xl {
     -webkit-text-stroke: 4px var(--darkgrey);
   }
 }
@@ -547,7 +546,7 @@ MOBILE GRID -- NOT USED */
     grid-column: 1 / span 4;
   }
 
-  .tablet-col-4+.tablet-col-4 {
+  .tablet-col-4 + .tablet-col-4 {
     grid-column: 5 / span 4;
   }
 
@@ -608,7 +607,7 @@ MOBILE GRID -- NOT USED */
     grid-column: 1 / span 6;
   }
 
-  .desktop-col-6+.desktop-col-6 {
+  .desktop-col-6 + .desktop-col-6 {
     grid-column: 7 / span 6;
   }
 
@@ -660,11 +659,11 @@ MOBILE GRID -- NOT USED */
     grid-column: 1 / span 12;
   }
 
-  .desktop-col-7-left+.desktop-col-5 {
+  .desktop-col-7-left + .desktop-col-5 {
     grid-column: 8 / span 5;
   }
 
-  .desktop-col-7-left+.desktop-col-6 {
+  .desktop-col-7-left + .desktop-col-6 {
     grid-column: 1 / span 6;
   }
 }
@@ -762,7 +761,6 @@ UPDATED 4/17/23
 */
 
 @media (min-width: 810px) {
-
   header img,
   footer img {
     width: 76px;
@@ -772,7 +770,6 @@ UPDATED 4/17/23
 /* DON'T USE 810PX AS A BREAKPOINT THE TABLET BREAKPOINT SHOULD BE 700PX THIS IS A HACK FOR THE LOGO */
 
 @media (min-width: 1080px) {
-
   header img,
   footer img {
     width: 95px;
@@ -846,20 +843,19 @@ footer div {
   margin-bottom: 34px;
 }
 
-footer>a:first-child,
-footer>img:first-child {
+footer > a:first-child,
+footer > img:first-child {
   display: none;
 }
 
 @media (min-width: 700px) {
-
-  footer>a:first-child,
-  footer>img:first-child {
+  footer > a:first-child,
+  footer > img:first-child {
     display: block;
   }
 
-  footer>a:last-child,
-  footer>img:last-child {
+  footer > a:last-child,
+  footer > img:last-child {
     display: none;
   }
 
@@ -879,7 +875,7 @@ footer>img:first-child {
 /* TABLET FOOTER */
 
 @media (min-width: 1080px) {
-  .home+footer {
+  .home + footer {
     margin-bottom: 116px !important;
   }
 
@@ -900,7 +896,7 @@ nav {
   width: 100%;
   position: fixed;
   font-weight: bold;
-  max-width: 1187px;
+  max-width: 1184px;
   margin: 0 auto;
   bottom: 16px;
   width: calc(100% - 32px);
@@ -935,7 +931,7 @@ nav a:active {
   padding: 21px 0;
 }
 
-nav a:active+a {
+nav a:active + a {
   border-left: 2px solid var(--white);
 }
 
@@ -945,6 +941,9 @@ nav a:active+a {
 nav a:first-child {
   border-radius: 6px 0 0 6px;
   /* Top-right and bottom-right border-radius */
+}
+nav a.mobile-approach-button {
+  border-radius: 6px 0 0 6px;
 }
 
 nav a:last-child {
@@ -978,12 +977,19 @@ nav a.disabled:first-child:active {
   border-right: 0;
 }
 
-nav a.disabled:first-child+a {
+nav a.disabled:first-child + a {
   border-left: 1px solid var(--nearwhite);
 }
 
-nav a.disabled:first-child+a:active {
+nav a.disabled:first-child + a:active {
   border-left: 2px solid var(--white);
+}
+
+.mobile-approach-button {
+  display: block;
+}
+.default-approach-button {
+  display: none;
 }
 
 @media (min-width: 700px) {
@@ -993,7 +999,14 @@ nav a.disabled:first-child+a:active {
   }
 
   nav div {
-    width: 364px;
+    /* width: 364px; */
+    width: 500px;
+  }
+  .mobile-approach-button {
+    display: none;
+  }
+  .default-approach-button {
+    display: block;
   }
 
   /*nav a {width: 182px;}*/
@@ -1009,7 +1022,13 @@ nav a.disabled:first-child+a:active {
 
   nav div {
     /* width: 279px; */
-    width: 417px;
+    width: 580px;
+  }
+  .mobile-approach-button {
+    display: none;
+  }
+  .default-approach-button {
+    display: block;
   }
 
   /*nav a { width: 140px;}*/
@@ -1113,11 +1132,11 @@ main.internal h4 {
   padding: 4px 0 6px 0;
 }
 
-main.internal .intro+.container p {
+main.internal .intro + .container p {
   padding-bottom: 9px;
 }
 
-main.internal .intro+.container p.pages {
+main.internal .intro + .container p.pages {
   padding-bottom: 18px;
 }
 
@@ -1154,53 +1173,165 @@ main.internal .container::after {
   z-index: -2;
 }
 
-main.internal .container+.container::before,
-main.internal .container+.container::after {
+main.internal .container + .container::before,
+main.internal .container + .container::after {
   content: "01.";
 }
 
-main.internal .container+.container+.container::before,
-main.internal .container+.container+.container::after {
+main.internal .container + .container + .container::before,
+main.internal .container + .container + .container::after {
   content: "02.";
 }
 
-main.internal .container+.container+.container+.container::before,
-main.internal .container+.container+.container+.container::after {
+main.internal .container + .container + .container + .container::before,
+main.internal .container + .container + .container + .container::after {
   content: "03.";
 }
 
-main.internal .container+.container+.container+.container+.container::before,
-main.internal .container+.container+.container+.container+.container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "04.";
 }
 
-main.internal .container+.container+.container+.container+.container+.container::before,
-main.internal .container+.container+.container+.container+.container+.container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "05.";
 }
 
-main.internal .container+.container+.container+.container+.container+.container+.container::before,
-main.internal .container+.container+.container+.container+.container+.container+.container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "06.";
 }
 
-main.internal .container+.container+.container+.container+.container+.container+.container+.container::before,
-main.internal .container+.container+.container+.container+.container+.container+.container+.container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "07.";
 }
 
-main.internal .container+.container+.container+.container+.container+.container+.container+.container+.container::before,
-main.internal .container+.container+.container+.container+.container+.container+.container+.container+.container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "08.";
 }
 
-main.internal .container+.container+.container+.container+.container+.container+.container+.container+.container+.container::before,
-main.internal .container+.container+.container+.container+.container+.container+.container+.container+.container+.container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "09.";
 }
 
-main.internal .container+.container+.container+.container+.container+.container+.container+.container+.container+.container+.container::before,
-main.internal .container+.container+.container+.container+.container+.container+.container+.container+.container+.container+.container::after {
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::before,
+main.internal
+  .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container
+  + .container::after {
   content: "10.";
 }
 
@@ -1209,15 +1340,15 @@ main.internal .container+.container+.container+.container+.container+.container+
   content: none !important;
 }
 
-main.internal .intro+.container {
+main.internal .intro + .container {
   padding: 19px 0 24px 0;
 }
 
-main.internal.news .intro+.container {
+main.internal.news .intro + .container {
   padding: 23px 0 24px 0;
 }
 
-main.internal .intro+.container.no-border {
+main.internal .intro + .container.no-border {
   padding: 23px 0 24px 0;
 }
 
@@ -1233,31 +1364,31 @@ main.internal.lead .container {
 
 /* Handle the general case where the last child should have 53px bottom padding */
 main.internal.lead .container:last-child,
-main.internal.lead .intro+.container.no-border {
+main.internal.lead .intro + .container.no-border {
   padding-bottom: 54px;
 }
 
 /* Ensure that when there is only one block, it retains the 53px bottom padding */
 main.internal.lead .container:only-child,
-main.internal.lead .intro+.container.no-border {
+main.internal.lead .intro + .container.no-border {
   padding-bottom: 54px;
 }
 
 /* Apply padding only when there are multiple blocks */
 main.internal.lead .container:first-child,
-main.internal.lead .intro+.container.no-border:not(:last-child) {
+main.internal.lead .intro + .container.no-border:not(:last-child) {
   padding-top: 23px;
   padding-bottom: 19px;
 }
 
 /* news-1.4.2 */
 main.internal.news .container:first-child,
-main.internal.news .intro+.container.no-border {
+main.internal.news .intro + .container.no-border {
   padding-top: 55px;
 }
 
 main.internal.news .container:last-child,
-main.internal.news .intro+.container.no-border {
+main.internal.news .intro + .container.no-border {
   padding-bottom: 36px;
 }
 
@@ -1267,36 +1398,36 @@ main.internal.news .intro+.container.no-border {
   }
 
   /* Apply 33px padding only when there are multiple blocks */
-  main.internal.lead .intro+.container.no-border:not(:last-child) {
+  main.internal.lead .intro + .container.no-border:not(:last-child) {
     padding-top: 30px;
     padding-bottom: 8px !important;
   }
 
   /* Ensure that when there is only one block, it retains the 53px bottom padding */
   main.internal.lead .container:only-child,
-  main.internal .intro+.container.no-border {
+  main.internal .intro + .container.no-border {
     padding-bottom: 43px !important;
   }
 
   /* Handle the general case where the last child should have 43px bottom padding */
   main.internal.lead .container:last-child,
-  main.internal .intro+.container.no-border {
+  main.internal .intro + .container.no-border {
     padding-bottom: 43px !important;
   }
 
-  main.internal .intro+.container {
+  main.internal .intro + .container {
     padding: 24px 0 24px 0;
   }
 
-  main.internal.news .intro+.container {
+  main.internal.news .intro + .container {
     padding: 28px 0 24px 0;
   }
 
-  main.internal .intro+.container.no-border {
+  main.internal .intro + .container.no-border {
     padding-top: 30px;
   }
 
-  main.internal .intro+.container p.pages {
+  main.internal .intro + .container p.pages {
     padding-bottom: 0;
   }
 
@@ -1353,7 +1484,7 @@ main.internal.news .intro+.container.no-border {
     border: 0;
     padding-bottom: 30px;
   }*/
-  main.internal.news .intro+.container p {
+  main.internal.news .intro + .container p {
     padding-bottom: 9px;
   }
 }
@@ -1375,20 +1506,20 @@ main.internal.news .intro+.container.no-border {
   }
 
   /* .Apply padding only when there are multiple blocks */
-  main.internal.lead .intro+.container.no-border:not(:last-child) {
+  main.internal.lead .intro + .container.no-border:not(:last-child) {
     padding-top: 55px;
     padding-bottom: 22px !important;
   }
 
   /* Ensure that when there is only one block, it retains the 38px bottom padding */
   main.internal.lead .container:only-child,
-  main.internal .intro+.container.no-border {
+  main.internal .intro + .container.no-border {
     padding-bottom: 38px;
   }
 
   /* Handle the general case where the last child should have 38px bottom padding */
   main.internal.lead .container:last-child,
-  main.internal .intro+.container.no-border {
+  main.internal .intro + .container.no-border {
     padding-top: 39px;
     padding-bottom: 44px !important;
   }
@@ -1398,19 +1529,19 @@ main.internal.news .intro+.container.no-border {
     padding-bottom: 22px;
   }
 
-  main.internal.lead .intro+.container.no-border {
+  main.internal.lead .intro + .container.no-border {
     padding-top: 55px;
   }
 
-  main.internal .intro+.container.no-border {
+  main.internal .intro + .container.no-border {
     padding-top: 55px;
   }
 
-  main.internal .intro+.container {
+  main.internal .intro + .container {
     padding: 55px 0 33px 0;
   }
 
-  main.internal.news .intro+.container {
+  main.internal.news .intro + .container {
     padding: 57px 0 33px 0;
   }
 
@@ -1440,17 +1571,14 @@ main.internal.news .intro+.container.no-border {
     padding-bottom: 31px;
   }
 
-  main.internal.news .intro+.container p {
+  main.internal.news .intro + .container p {
     padding-bottom: 18px !important;
   }
 
-  main.internal.news .intro+.container p.musing,
-  main.internal.news .intro+.container p.letter {
+  main.internal.news .intro + .container p.musing,
+  main.internal.news .intro + .container p.letter {
     padding-bottom: 9px !important;
   }
-
-
-
 }
 
 /* MAIN STYLES FOR DESKTOP */
@@ -1569,20 +1697,20 @@ h3.text-l.name {
   padding-bottom: 8px;
 }
 
-.desktop-col-7-left h4+.headshot {
+.desktop-col-7-left h4 + .headshot {
   margin: 11px 0 19px 0;
 }
 
-.container>.desktop-col-7-left p+h4 {
+.container > .desktop-col-7-left p + h4 {
   font-weight: normal;
   padding: 13px 0 17px 0 !important;
 }
 
-main.internal>.no-border h4 {
+main.internal > .no-border h4 {
   padding-bottom: 3px;
 }
 
-main.internal.lead>.no-border h4 {
+main.internal.lead > .no-border h4 {
   padding-bottom: 12px;
 }
 
@@ -1607,19 +1735,19 @@ main.internal.lead>.no-border h4 {
     /* height: auto; Adjust this as needed */
   }
 
-  main.internal .intro+.container .desktop-col-7-left p {
+  main.internal .intro + .container .desktop-col-7-left p {
     padding-bottom: 23px;
   }
 
-  main.internal .intro+.container .desktop-col-7-left h2 {
+  main.internal .intro + .container .desktop-col-7-left h2 {
     padding-bottom: 10px;
   }
 
-  main.internal>.no-border h4 {
+  main.internal > .no-border h4 {
     padding: 0 0 18px 0;
   }
 
-  .container>.desktop-col-7-left p+h4 {
+  .container > .desktop-col-7-left p + h4 {
     padding: 0 0 6px 0 !important;
   }
 
@@ -1632,11 +1760,11 @@ main.internal.lead>.no-border h4 {
     padding-top: 0px;
   }
 
-  .desktop-col-7-left h4+.headshot {
+  .desktop-col-7-left h4 + .headshot {
     display: none;
   }
 
-  main.internal.lead>.no-border h4 {
+  main.internal.lead > .no-border h4 {
     padding-bottom: 18px;
   }
 }
@@ -1646,31 +1774,30 @@ main.internal.lead>.no-border h4 {
     padding-top: 28px;
   }
 
-  .container>.desktop-col-7-left h4 {
+  .container > .desktop-col-7-left h4 {
     padding: 0 0 17px 0;
   }
 
-  .container>.desktop-col-7-left P {
+  .container > .desktop-col-7-left P {
     padding-right: 15%;
     /* height: 219px; */
   }
 
-  .container>.desktop-col-7-left p+h4 {
+  .container > .desktop-col-7-left p + h4 {
     padding-bottom: 7px !important;
   }
 
-  main.internal .intro+.container .desktop-col-7-left p {
+  main.internal .intro + .container .desktop-col-7-left p {
     padding-bottom: 31px;
   }
 
-  main.internal.lead>.no-border h4 {
+  main.internal.lead > .no-border h4 {
     padding-bottom: 18px;
   }
 }
 
 /* ANIMATIONS */
 @keyframes flicker {
-
   0%,
   19.999%,
   22%,
@@ -1753,8 +1880,8 @@ main.internal.lead>.no-border h4 {
   }
 }
 
-.text-jumbo+.text-jumbo.short,
-.text-jumbo+.text-jumbo.long {
+.text-jumbo + .text-jumbo.short,
+.text-jumbo + .text-jumbo.long {
   /*-webkit-text-stroke: 3px var(--nearwhite);
 	animation-name: flicker;
 	animation-duration:250ms;
@@ -1775,7 +1902,7 @@ main.internal.lead>.no-border h4 {
   animation-duration: 600ms;
 }
 
-.desktop-col-6+.desktop-col-6.animation-container {
+.desktop-col-6 + .desktop-col-6.animation-container {
   min-height: 126px;
 }
 
@@ -1786,7 +1913,7 @@ main.internal.lead>.no-border h4 {
     animation-duration: 0.25s;
   }
 
-  .desktop-col-6+.desktop-col-6.animation-container {
+  .desktop-col-6 + .desktop-col-6.animation-container {
     min-height: 213.03px;
   }
 }
@@ -1852,7 +1979,8 @@ nav.fadeInUp {
   text-shadow: 1px 0 0 var(--darkgrey),
     -1px 0 0 var(--darkgrey) 0 1px 0 var(--darkgrey),
     0 -1px 0 var(--darkgrey) 1px 1px 0 var(--darkgrey),
-    -1px -1px 0 var(--darkgrey) -1px 1px 0 var(--darkgrey) 1px -1px 0 var(--darkgrey);
+    -1px -1px 0 var(--darkgrey) -1px 1px 0 var(--darkgrey) 1px -1px 0
+      var(--darkgrey);
   -webkit-text-stroke: 0;
 }
 
@@ -1947,7 +2075,7 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top:6px;
+  padding-top: 6px;
   padding-bottom: 16px;
   width: 100%;
 }
@@ -1956,7 +2084,7 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top:6px;
+  padding-top: 6px;
   padding-bottom: 16px;
   width: 61%;
   height: auto;
@@ -2092,7 +2220,7 @@ aside.sidebar-bottom h4.text-s {
   padding-bottom: 8px;
 }
 
-aside.sidebar-bottom h4.text-s+p.text-s {
+aside.sidebar-bottom h4.text-s + p.text-s {
   padding-bottom: 25px;
   color: var(--darkgrey);
 }
@@ -2153,7 +2281,7 @@ cite bold {
   font-weight: 700;
 }
 
-#news_page_main>div.desktop-col-7.tablet-col-7.img-contain>img {
+#news_page_main > div.desktop-col-7.tablet-col-7.img-contain > img {
   max-width: 375px;
 }
 
@@ -2187,7 +2315,7 @@ cite bold {
     color: var(--nearwhite);
   }
 
-  #news_page_main>div.desktop-col-7.tablet-col-7.img-contain>img {
+  #news_page_main > div.desktop-col-7.tablet-col-7.img-contain > img {
     max-width: 400px;
   }
 }
@@ -2275,7 +2403,7 @@ cite bold {
     padding-bottom: 27px;
   }
 
-  #news_page_main>div.desktop-col-7.tablet-col-7.img-contain>img {
+  #news_page_main > div.desktop-col-7.tablet-col-7.img-contain > img {
     max-width: 100%;
   }
 }
@@ -2326,8 +2454,6 @@ aside.sidebar-bottom h4.sidebar-bottom-title.text-s {
   aside.sidebar-bottom h4.sidebar-bottom-title.text-s {
     padding-bottom: 5px;
   }
-
- 
 }
 
 .subheader {
@@ -2440,7 +2566,6 @@ ol.article-list li {
   padding-bottom: 0px;
 }
 
-
 .spinning-logo {
   padding-bottom: 17px;
 }
@@ -2453,7 +2578,7 @@ em {
   padding-top: 13px;
 }
 
-main.internal .intro+.container p.sign-off {
+main.internal .intro + .container p.sign-off {
   padding-bottom: 16px;
 }
 
@@ -2461,7 +2586,6 @@ ul.article-list.musing {
   margin-top: 4px;
   margin-bottom: 2px;
 }
-
 
 @media screen and (min-width: 700px) {
   ol.article-list li {
@@ -2499,7 +2623,7 @@ ul.article-list.musing {
     margin-bottom: 3px;
   }
 
-  main.internal .intro+.container p.sign-off {
+  main.internal .intro + .container p.sign-off {
     padding-bottom: 22px;
   }
 }
@@ -2508,7 +2632,7 @@ ul.article-list.musing {
   .quote {
     font-size: 34px;
     line-height: 34px;
-  } 
+  }
   ul.article-list.bny li:last-child {
     margin-bottom: 11px;
   }
@@ -2521,17 +2645,14 @@ ul.article-list.musing {
   ul.article-list {
     padding-left: 32px;
     margin-bottom: 18px;
+  }
+  ol.article-list.letter {
+    margin-bottom: 27px;
+  }
+  main.internal .intro + .container p.sign-off {
+    padding-bottom: 24px !important;
+  }
 }
-ol.article-list.letter {
-  margin-bottom: 27px;
-}
-main.internal .intro+.container p.sign-off {
-  padding-bottom: 24px !important;
-}
-
-
-}
-
 
 /* h3.desktop-col-10.tablet-col-6.text-l.title {
   padding-bottom: 15px;
