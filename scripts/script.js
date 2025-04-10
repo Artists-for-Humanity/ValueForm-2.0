@@ -1,4 +1,5 @@
 import { handleNavigation } from "./navigation.js";
+// console.log("running main script")
 
 // ============================
 // Reusable isInViewport functions
@@ -266,25 +267,25 @@ document.addEventListener("DOMContentLoaded", function () {
   localStorage.setItem("add_fade", true);
 });
 
-// ========================
-// Additional fade APIs
-// ========================
-function addFadeInUp() {
-  const block = document.querySelectorAll(".above_read_full");
-  block.forEach(function (item) {
-    if (item) {
-      item.classList.add("fadeInUp", "animated");
-    }
-  });
-}
-function addFadeInUpToArticle() {
-  const newsPageMain = document.getElementById("news_page_main");
+// // ========================
+// // Additional fade APIs
+// // ========================
+// function addFadeInUp() {
+//   const block = document.querySelectorAll(".above_read_full");
+//   block.forEach(function (item) {
+//     if (item) {
+//       item.classList.add("fadeInUp", "animated");
+//     }
+//   });
+// }
+// function addFadeInUpToArticle() {
+//   const newsPageMain = document.getElementById("news_page_main");
 
-  // Add fadeInUp class to the news_page_main element
-  if (newsPageMain) {
-    newsPageMain.classList.add("fadeInUp", "animated");
-  }
-}
+//   // Add fadeInUp class to the news_page_main element
+//   if (newsPageMain) {
+//     newsPageMain.classList.add("fadeInUp", "animated");
+//   }
+// }
 
 export function staticTitle() {
 
