@@ -208,9 +208,9 @@ export function handleNavigation(fadeInUpElements) {
           targetUrl !== "./articles/" + pinnedFilePath &&
           (targetUrl === "../leadership.html" ||
             targetUrl === "../../index.html" ||
-            targetUrl === "../outcomes.html")) ||
-        targetUrl.startsWith("../our-approach.html")
-      ) {
+            targetUrl === "../outcomes.html" ||
+        targetUrl.startsWith("../our-approach.html"))
+      )) {
 
         const hasTopBannerInList = containsElementWithId(
           fadeInUpElements,
