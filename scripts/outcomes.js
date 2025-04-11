@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   const svgs = document.querySelectorAll(".svg-metric");
-  console.log(svgs);
+  // console.log(svgs);
 
   svgs.forEach((svg) => {
     // const pathsWithFill = svg.querySelectorAll("path[fill]");
