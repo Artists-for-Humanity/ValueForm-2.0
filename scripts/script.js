@@ -177,6 +177,7 @@ function restoreScrollPosition() {
 
     // If scroll position is too deep for this page, clear it early
     if (scrollY + viewportHeight > pageHeight) {
+      console.log("scroll position is too deep for this page");
       topBannerMain?.classList.add("fadeInUp", "animated");
       clearScrollPosition();
       sessionStorage.removeItem("dontAnimateBanner");

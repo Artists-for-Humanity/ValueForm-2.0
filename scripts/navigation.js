@@ -255,6 +255,7 @@ export function handleNavigation(fadeInUpElements) {
           targetUrl === "../../news.html"
         )
       ) {
+        console.log('from article page to news page 1.0');
         if (containsElementWithId(fadeInUpElements, "top_banner_main")) {
           delayCounter--;
         }
