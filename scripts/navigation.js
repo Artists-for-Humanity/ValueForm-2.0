@@ -235,7 +235,8 @@ export function handleNavigation(fadeInUpElements) {
         currentPage === "/pages/news.html" &&
         targetUrl === "./articles/" + pinnedFilePath
       ) {
-
+        console.log('from news page to pinned article page 1.1');
+        console.log(`fadeInUpElements = ${fadeInUpElements.length}`);
         delayCounter = fadeInUpElements.length;
         if (
           containsElementWithId(fadeInUpElements, "news_page_main") &&
@@ -255,7 +256,8 @@ export function handleNavigation(fadeInUpElements) {
           targetUrl === "../../news.html"
         )
       ) {
-        console.log('from article page to news page 1.0');
+        console.log('from article page to news page 1.1');
+        console.log(`fadeInUpElements = ${fadeInUpElements.length}`);
         if (containsElementWithId(fadeInUpElements, "top_banner_main")) {
           delayCounter--;
         }

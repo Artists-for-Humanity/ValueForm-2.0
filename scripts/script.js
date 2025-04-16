@@ -177,12 +177,17 @@ function restoreScrollPosition() {
 
     // If scroll position is too deep for this page, clear it early
     if (scrollY + viewportHeight > pageHeight) {
-      console.log("scroll position is too deep for this page");
+      console.log("scroll position is too deep for this page 1.3");
+      console.log("adding fadeInUp to topBannerMain A");
+      // setTimeout(() => {
+        newsPageMain.classList.add("fadeOutDown");
+      // }, 0);
       topBannerMain?.classList.add("fadeInUp", "animated");
       clearScrollPosition();
       sessionStorage.removeItem("dontAnimateBanner");
 
       setTimeout(() => {
+      console.log("removing fadeInUp to topBannerMain A");
         topBannerMain?.classList.remove("fadeInUp", "animated");
       }, 1000);
       document.body.classList.remove("preload");
@@ -205,12 +210,14 @@ function restoreScrollPosition() {
       window.scrollTo(0, scrollY);
       sessionStorage.setItem("dontAnimateBanner", "true");
     } else {
+      console.log("adding fadeInUp to topBannerMain B");
       topBannerMain?.classList.add("fadeInUp", "animated");
       clearScrollPosition();
       sessionStorage.removeItem("dontAnimateBanner");
     }
 
     setTimeout(() => {
+      console.log("removing fadeInUp to topBannerMain B");
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
   }
@@ -305,6 +312,8 @@ document.addEventListener("DOMContentLoaded", function () {
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
+  const topBannerMain = document.getElementById("top_banner_main");
+
   // Get the referring page URL
   const previousPage = document.referrer;
 
@@ -315,14 +324,19 @@ document.addEventListener("DOMContentLoaded", function () {
       // Remove fadeInUp for both elements
       elementsForFade.forEach(({ element }) => {
         if (element) {
+      console.log("removing fadeInUp to topBannerMain C1.0");
+
           element.classList.remove("fadeInUp", "animated");
+      topBannerMain.classList.remove("fadeInUp", "animated");
+
         }
       });
     }
   } else {
     // For other pages, only remove fadeInUp from #top_banner_main
-    const topBannerMain = document.getElementById("top_banner_main");
     if (topBannerMain && localStorage.getItem("add_fade") === "false") {
+      console.log("removing fadeInUp to topBannerMain D");
+
       topBannerMain.classList.remove("fadeInUp", "animated");
     }
   }
@@ -355,6 +369,7 @@ export function staticTitle() {
 
   const item = document.querySelector("#top_banner_main.above_read_full");
   if (item) {
+    console.log("removing fadeInUp to topBannerMain E");
     item.classList.remove("fadeInUp", "animated");
   } else {
     console.log(
@@ -365,6 +380,7 @@ export function staticTitle() {
 function staticPreview() {
   const item = document.querySelector("#news_page_main.above_read_full");
   if (item) {
+    console.log("removing fadeInUp to topBannerMain F");
     item.classList.remove("fadeInUp", "animated");
   } else {
     console.log(
