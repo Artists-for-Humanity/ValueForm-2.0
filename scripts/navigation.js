@@ -138,6 +138,25 @@ export function handleNavigation(fadeInUpElements) {
           delayAdjustment++; // Final adjustment when newsPageMain is visible
 
           delayCounter += delayAdjustment;
+          // If the target article is marked as "short", fade the banner with the same stagger
+          // Determine if this is a tagged “short” article
+          const isShortArticle = anchor.dataset.short === "true";
+          if (isShortArticle && isTopBannerMainInViewport) {
+            // Optional edge‑case height (in px) declared on the link
+            const threshold = parseInt(anchor.dataset.shortHeight || "0", 10);
+
+            // Trigger fade only when the current scroll depth exceeds that threshold
+            const scrolledPastThreshold =
+              threshold && window.scrollY + window.innerHeight > threshold;
+
+            if (scrolledPastThreshold) {
+              // Bring the banner delay in line with the outgoing stagger, but start 200 ms sooner
+              const bannerDelay = Math.max(delayCounter * 600 - 200, 0);
+              topBannerMain.style.animationDelay = `${bannerDelay}ms`;
+              topBannerMain.classList.add("fadeOutDown");
+              delayCounter++; // account for the banner in the overall delay
+            }
+          }
 
           setTimeout(() => {
             newsPageMain.classList.add("fadeOutDown");

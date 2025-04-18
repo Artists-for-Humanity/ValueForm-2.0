@@ -58,17 +58,17 @@ function getPinnedPage() {
 
 function getArticles() {
   if (window.location.pathname.includes("news.html")) {
-  let articles = localStorage.getItem("articles");
+    let articles = localStorage.getItem("articles");
     const articleLinks = document.querySelectorAll('a[href^="./articles/"]');
     articles = [];
 
-    articleLinks.forEach(link => {
+    articleLinks.forEach((link) => {
       const href = link.getAttribute("href");
       const fileName = href.split("/").pop();
       articles.push(fileName);
     });
     localStorage.setItem("articles", JSON.stringify(articles));
-  return articles;
+    return articles;
   }
 }
 
@@ -157,67 +157,134 @@ function animateHeader(elementId) {
 // ================================
 // Scroll position mgmt
 // ================================
+
 function storeScrollPosition() {
   sessionStorage.setItem("scrollPosition", window.scrollY);
 }
 
 function restoreScrollPosition() {
-  const storedScrollPosition = sessionStorage.getItem("scrollPosition");
-  const topBannerMain = document.getElementById("top_banner_main");
-  const newsPageMain = document.getElementById("news_page_main");
-
-  const currentPath = window.location.pathname;
-  const pinnedFilePath = localStorage.getItem("pinnedFilePath");
-  const pinnedPath = "/pages/articles/" + pinnedFilePath;
-
-  if (storedScrollPosition !== null) {
-    const scrollY = parseInt(storedScrollPosition, 10);
-    const viewportHeight = window.innerHeight;
-    const pageHeight = document.documentElement.scrollHeight;
-
-    // If scroll position is too deep for this page, clear it early
-    if (scrollY + viewportHeight > pageHeight) {
-      topBannerMain?.classList.add("fadeInUp", "animated");
-      clearScrollPosition();
-      sessionStorage.removeItem("dontAnimateBanner");
-
-      setTimeout(() => {
-        topBannerMain?.classList.remove("fadeInUp", "animated");
-      }, 1000);
-      document.body.classList.remove("preload");
-      return;
-    }
-
-    // Check if elements would be visible
-    const bannerTop = topBannerMain?.offsetTop || Infinity;
-    const bannerBottom = bannerTop + (topBannerMain?.offsetHeight || 0);
-
-    const articleTop = newsPageMain?.offsetTop || Infinity;
-    const articleBottom = articleTop + (newsPageMain?.offsetHeight || 0);
-
-    const bannerWouldBeVisible =
-      bannerBottom > scrollY && bannerTop < scrollY + viewportHeight;
-    const articleWouldBeVisible =
-      articleBottom > scrollY && articleTop < scrollY + viewportHeight;
-
-    if (bannerWouldBeVisible || articleWouldBeVisible) {
-      window.scrollTo(0, scrollY);
-      sessionStorage.setItem("dontAnimateBanner", "true");
-    } else {
-      topBannerMain?.classList.add("fadeInUp", "animated");
-      clearScrollPosition();
-      sessionStorage.removeItem("dontAnimateBanner");
-    }
-
-    setTimeout(() => {
-      topBannerMain?.classList.remove("fadeInUp", "animated");
-    }, 1000);
+  // Retrieve last saved scroll position
+  const stored = sessionStorage.getItem("scrollPosition");
+  if (!stored) {
+    document.body.classList.remove("preload");
+    return;
   }
 
-  document.body.classList.remove("preload");
+  const scrollY = parseInt(stored, 10);
+  const viewportHeight = window.innerHeight;
+  const pageHeight = document.documentElement.scrollHeight;
+
+  // Guard – saved position is deeper than the current page length
+  if (scrollY + viewportHeight > pageHeight) {
+    console.log("saved position is deeper than the current page length");
+    // Force a fresh intro animation for the banner
+    const topBannerMain = document.getElementById("top_banner_main");
+    if (topBannerMain) {
+      console.log("Force a fresh intro animation for the banner");
+
+      topBannerMain.classList.add("fadeInUp", "animated");
+      console.log("Banner classes →", [...topBannerMain.classList]);
+      setTimeout(() => {
+        topBannerMain.classList.remove("fadeInUp", "animated");
+      }, 1000); // let the 1 s animation complete
+    }
+
+    clearScrollPosition(); // wipe the invalid value
+    document.body.classList.remove("preload"); // reveal the page
+    return;
+  }
+
+  // 1️⃣ Jump to the stored position first
+  window.scrollTo(0, scrollY);
+
+  // 2️⃣ Measure visibility after layout
+  requestAnimationFrame(() => {
+    const topBannerMain = document.getElementById("top_banner_main");
+    const newsPageMain = document.getElementById("news_page_main");
+
+    const bannerVisible = topBannerMain && isInViewport(topBannerMain);
+    const articleVisible = newsPageMain && isInViewport(newsPageMain);
+    console.log({ scrollY, bannerVisible, articleVisible });
+
+    if (bannerVisible || articleVisible) {
+      // Elements are already on‑screen – skip intro animation
+      sessionStorage.setItem("dontAnimateBanner", "true");
+    } else {
+      // Elements off‑screen – trigger intro and reset scroll state
+      if (topBannerMain) {
+        topBannerMain.classList.add("fadeInUp", "animated");
+        setTimeout(
+          () => topBannerMain.classList.remove("fadeInUp", "animated"),
+          1000
+        );
+      }
+      clearScrollPosition();
+      sessionStorage.removeItem("dontAnimateBanner");
+    }
+
+    // Reveal the page
+    document.body.classList.remove("preload");
+  });
 }
 
+// function restoreScrollPosition() {
+//   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
+//   const topBannerMain = document.getElementById("top_banner_main");
+//   const newsPageMain = document.getElementById("news_page_main");
 
+//   const currentPath = window.location.pathname;
+//   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
+//   const pinnedPath = "/pages/articles/" + pinnedFilePath;
+
+//   if (storedScrollPosition !== null) {
+//     const scrollY = parseInt(storedScrollPosition, 10);
+//     const viewportHeight = window.innerHeight;
+//     const pageHeight = document.documentElement.scrollHeight;
+
+//     // If scroll position is too deep for this page, clear it early
+//     if (scrollY + viewportHeight > pageHeight) {
+//       topBannerMain?.classList.add("fadeInUp", "animated");
+//       console.log("clearing scroll position A");
+//       clearScrollPosition();
+//       sessionStorage.removeItem("dontAnimateBanner");
+
+//       setTimeout(() => {
+//         topBannerMain?.classList.remove("fadeInUp", "animated");
+//       }, 1000);
+//       document.body.classList.remove("preload");
+//       return;
+//     }
+
+//     // Check if elements would be visible
+//     const bannerTop = topBannerMain?.offsetTop || Infinity;
+//     const bannerBottom = bannerTop + (topBannerMain?.offsetHeight || 0);
+
+//     const articleTop = newsPageMain?.offsetTop || Infinity;
+//     const articleBottom = articleTop + (newsPageMain?.offsetHeight || 0);
+
+//     const bannerWouldBeVisible =
+//       bannerBottom > scrollY && bannerTop < scrollY + viewportHeight;
+//     const articleWouldBeVisible =
+//       articleBottom > scrollY && articleTop < scrollY + viewportHeight;
+
+//     if (bannerWouldBeVisible || articleWouldBeVisible) {
+//       window.scrollTo(0, scrollY);
+//       sessionStorage.setItem("dontAnimateBanner", "true");
+//     } else {
+//       topBannerMain?.classList.add("fadeInUp", "animated");
+//       console.log("clearing scroll position B1");
+//       console.log({scrollY, bannerWouldBeVisible, articleWouldBeVisible});
+//       clearScrollPosition();
+//       sessionStorage.removeItem("dontAnimateBanner");
+//     }
+
+//     setTimeout(() => {
+//       topBannerMain?.classList.remove("fadeInUp", "animated");
+//     }, 1000);
+//   }
+
+//   document.body.classList.remove("preload");
+// }
 
 // function restoreScrollPosition() {
 //   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
@@ -255,7 +322,7 @@ function restoreScrollPosition() {
 //   setTimeout(() => {
 //     topBannerMain.classList.remove("fadeInUp", "animated");
 //   }, 1000); // 3000ms = 3 seconds
-    
+
 //   }
 
 //   // Show the page content after restoring scroll
@@ -288,7 +355,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // manageTopBannerAnimation();
     window.addEventListener("scroll", storeScrollPosition);
   } else {
-  console.log("isTarget page = false");
+    console.log("isTarget page = false");
+    console.log("clearing scroll position C");
     clearScrollPosition();
   }
 });
@@ -300,7 +368,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Define elements with their fade-in delay
   let elementsForFade = [
     { element: document.getElementById("news_page_main"), delay: "600ms" },
-    
+
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
@@ -351,14 +419,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // }
 
 export function staticTitle() {
-
-  const item = document.querySelector("#top_banner_main.above_read_full");
-  if (item) {
-    item.classList.remove("fadeInUp", "animated");
-  } else {
-    console.log(
-      "Element #top_banner_main with class above_read_full not found."
-    );
+  const banner = document.getElementById("top_banner_main");
+  if (banner) {
+    banner.classList.remove("fadeInUp", "animated");
   }
 }
 function staticPreview() {
