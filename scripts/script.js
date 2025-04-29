@@ -1,6 +1,7 @@
 //script.js
 
 import { handleNavigation } from "./navigation.js";
+import { storeScrollPosition, restoreScrollPosition, clearScrollPosition } from "./scrollPosition.js";
 // console.log("running main script")
 
 // ============================
@@ -58,17 +59,17 @@ function getPinnedPage() {
 
 function getArticles() {
   if (window.location.pathname.includes("news.html")) {
-  let articles = localStorage.getItem("articles");
+    let articles = localStorage.getItem("articles");
     const articleLinks = document.querySelectorAll('a[href^="./articles/"]');
     articles = [];
 
-    articleLinks.forEach(link => {
+    articleLinks.forEach((link) => {
       const href = link.getAttribute("href");
       const fileName = href.split("/").pop();
       articles.push(fileName);
     });
     localStorage.setItem("articles", JSON.stringify(articles));
-  return articles;
+    return articles;
   }
 }
 
@@ -154,114 +155,6 @@ function animateHeader(elementId) {
   }
 }
 
-// ================================
-// Scroll position mgmt
-// ================================
-function storeScrollPosition() {
-  sessionStorage.setItem("scrollPosition", window.scrollY);
-}
-
-function restoreScrollPosition() {
-  const storedScrollPosition = sessionStorage.getItem("scrollPosition");
-  const topBannerMain = document.getElementById("top_banner_main");
-  const newsPageMain = document.getElementById("news_page_main");
-
-  const currentPath = window.location.pathname;
-  const pinnedFilePath = localStorage.getItem("pinnedFilePath");
-  const pinnedPath = "/pages/articles/" + pinnedFilePath;
-
-  if (storedScrollPosition !== null) {
-    const scrollY = parseInt(storedScrollPosition, 10);
-    const viewportHeight = window.innerHeight;
-    const pageHeight = document.documentElement.scrollHeight;
-
-    // If scroll position is too deep for this page, clear it early
-    if (scrollY + viewportHeight > pageHeight) {
-      topBannerMain?.classList.add("fadeInUp", "animated");
-      clearScrollPosition();
-      sessionStorage.removeItem("dontAnimateBanner");
-
-      setTimeout(() => {
-        topBannerMain?.classList.remove("fadeInUp", "animated");
-      }, 1000);
-      document.body.classList.remove("preload");
-      return;
-    }
-
-    // Check if elements would be visible
-    const bannerTop = topBannerMain?.offsetTop || Infinity;
-    const bannerBottom = bannerTop + (topBannerMain?.offsetHeight || 0);
-
-    const articleTop = newsPageMain?.offsetTop || Infinity;
-    const articleBottom = articleTop + (newsPageMain?.offsetHeight || 0);
-
-    const bannerWouldBeVisible =
-      bannerBottom > scrollY && bannerTop < scrollY + viewportHeight;
-    const articleWouldBeVisible =
-      articleBottom > scrollY && articleTop < scrollY + viewportHeight;
-
-    if (bannerWouldBeVisible || articleWouldBeVisible) {
-      window.scrollTo(0, scrollY);
-      sessionStorage.setItem("dontAnimateBanner", "true");
-    } else {
-      topBannerMain?.classList.add("fadeInUp", "animated");
-      clearScrollPosition();
-      sessionStorage.removeItem("dontAnimateBanner");
-    }
-
-    setTimeout(() => {
-      topBannerMain?.classList.remove("fadeInUp", "animated");
-    }, 1000);
-  }
-
-  document.body.classList.remove("preload");
-}
-
-
-
-// function restoreScrollPosition() {
-//   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
-//   const topBannerMain = document.getElementById("top_banner_main");
-
-//   // Define the pinned article path based on the current URL
-//   const currentPath = window.location.pathname;
-//   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
-//   const pinnedPath = "/pages/articles/" + pinnedFilePath;
-
-//   if (storedScrollPosition !== null) {
-//     window.scrollTo(0, parseInt(storedScrollPosition, 10));
-
-//     // Check if "top_banner_main" is in viewport after restoring scroll position
-//     if (
-//       isInViewport(topBannerMain) &&
-//       !(
-//         storedScrollPosition > 340 &&
-//         currentPath === "/pages/articles/musings.html"
-//       )
-//     ) {
-//       // Prevent animation if visible
-//       sessionStorage.setItem("dontAnimateBanner", "true");
-//     } else if (
-//       currentPath !== pinnedPath ||
-//       currentPath === "/pages/articles/musings.html"
-//     ) {
-//       // Only clear scroll position if the current page is NOT the pinned article
-//       topBannerMain.classList.add("fadeInUp", "animated");
-// console.log("isInViewport(topBannerMain) = false");
-//       clearScrollPosition();
-//       sessionStorage.removeItem("dontAnimateBanner");
-//     }
-//   // Add a 3-second delay before removing the animation classes
-//   setTimeout(() => {
-//     topBannerMain.classList.remove("fadeInUp", "animated");
-//   }, 1000); // 3000ms = 3 seconds
-    
-//   }
-
-//   // Show the page content after restoring scroll
-//   document.body.classList.remove("preload");
-// }
-
 function isTargetPage() {
   const pinnedFileName = localStorage.getItem("pinnedFileName");
   const currentPage = window.location.pathname.split("/").pop();
@@ -275,11 +168,11 @@ function isTargetPage() {
     currentPage === `${pinnedFileName}`
   );
 }
-function clearScrollPosition() {
-  // console.log("clearing scroll position");
-  sessionStorage.removeItem("scrollPosition");
-  window.scrollTo(0, 0);
-}
+// function clearScrollPosition() {
+//   console.log("clearing scroll position V1.0");
+//   sessionStorage.removeItem("scrollPosition");
+//   window.scrollTo(0, 0);
+// }
 document.addEventListener("DOMContentLoaded", () => {
   const topBannerMain = document.getElementById("top_banner_main");
 
@@ -288,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // manageTopBannerAnimation();
     window.addEventListener("scroll", storeScrollPosition);
   } else {
-  console.log("isTarget page = false");
+    console.log("isTarget page = false");
     clearScrollPosition();
   }
 });
@@ -300,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Define elements with their fade-in delay
   let elementsForFade = [
     { element: document.getElementById("news_page_main"), delay: "600ms" },
-    
+
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
@@ -330,28 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
   localStorage.setItem("add_fade", true);
 });
 
-// // ========================
-// // Additional fade APIs
-// // ========================
-// function addFadeInUp() {
-//   const block = document.querySelectorAll(".above_read_full");
-//   block.forEach(function (item) {
-//     if (item) {
-//       item.classList.add("fadeInUp", "animated");
-//     }
-//   });
-// }
-// function addFadeInUpToArticle() {
-//   const newsPageMain = document.getElementById("news_page_main");
-
-//   // Add fadeInUp class to the news_page_main element
-//   if (newsPageMain) {
-//     newsPageMain.classList.add("fadeInUp", "animated");
-//   }
-// }
-
 export function staticTitle() {
-
   const item = document.querySelector("#top_banner_main.above_read_full");
   if (item) {
     item.classList.remove("fadeInUp", "animated");
