@@ -168,11 +168,7 @@ function isTargetPage() {
     currentPage === `${pinnedFileName}`
   );
 }
-// function clearScrollPosition() {
-//   console.log("clearing scroll position V1.0");
-//   sessionStorage.removeItem("scrollPosition");
-//   window.scrollTo(0, 0);
-// }
+
 document.addEventListener("DOMContentLoaded", () => {
   const topBannerMain = document.getElementById("top_banner_main");
 

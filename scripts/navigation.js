@@ -52,6 +52,9 @@ export function handleNavigation(fadeInUpElements) {
         return;
       }
 
+      // sessionStorage.setItem("nextTargetPath", anchor.getAttribute("href"));
+      sessionStorage.setItem("currentPagePath", window.location.pathname);
+
       e.preventDefault();
       const targetUrl = anchor.getAttribute("href");
       let delayCounter = 0;
@@ -205,7 +208,6 @@ export function handleNavigation(fadeInUpElements) {
             targetUrl === "../../index.html")) ||
         targetUrl.startsWith("../our-approach.html")
       ) {
-
         const hasTopBannerInList = containsElementWithId(
           fadeInUpElements,
           "top_banner_main"
@@ -235,7 +237,6 @@ export function handleNavigation(fadeInUpElements) {
         currentPage === "/pages/news.html" &&
         targetUrl === "./articles/" + pinnedFilePath
       ) {
-
         delayCounter = fadeInUpElements.length;
         if (
           containsElementWithId(fadeInUpElements, "news_page_main") &&
@@ -251,26 +252,19 @@ export function handleNavigation(fadeInUpElements) {
       // from article page to news page
       if (
         currentPage.startsWith("/pages/articles/") &&
-        (targetUrl === "../news.html" ||
-          targetUrl === "../../news.html"
-        )
+        (targetUrl === "../news.html" || targetUrl === "../../news.html")
       ) {
-
-        console.log(fadeInUpElements.length);
         if (!containsElementWithId(fadeInUpElements, "top_banner_main")) {
-          console.log('reachme A');
           delayCounter--;
         }
-        console.log("delayCounter = " + delayCounter);
-
       }
 
       setTimeout(() => {
-        console.log(
-          `Redirecting to ${targetUrl} after a delay of ${
-            delayCounter * 600 + 800
-          } ms`
-        );
+        // console.log(
+        //   `Redirecting to ${targetUrl} after a delay of ${
+        //     delayCounter * 600 + 800
+        //   } ms`
+        // );
         window.location.href = targetUrl;
       }, delayCounter * 600 + 800);
     });
