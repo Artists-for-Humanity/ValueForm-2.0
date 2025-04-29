@@ -255,17 +255,22 @@ export function handleNavigation(fadeInUpElements) {
           targetUrl === "../../news.html"
         )
       ) {
-        if (containsElementWithId(fadeInUpElements, "top_banner_main")) {
+
+        console.log(fadeInUpElements.length);
+        if (!containsElementWithId(fadeInUpElements, "top_banner_main")) {
+          console.log('reachme A');
           delayCounter--;
         }
+        console.log("delayCounter = " + delayCounter);
+
       }
 
       setTimeout(() => {
-        // console.log(
-        //   `Redirecting to ${targetUrl} after a delay of ${
-        //     delayCounter * 600 + 800
-        //   } ms`
-        // );
+        console.log(
+          `Redirecting to ${targetUrl} after a delay of ${
+            delayCounter * 600 + 800
+          } ms`
+        );
         window.location.href = targetUrl;
       }, delayCounter * 600 + 800);
     });
