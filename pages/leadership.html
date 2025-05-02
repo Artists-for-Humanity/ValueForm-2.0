@@ -26,9 +26,15 @@ careers@valueform.io
 </head>
 
 <body>
-	<!-- <script type="module">
-		import { addFadeInUp } from "../scripts/script.js";
-	</script> -->
+	<script type="module">
+		import { armBannerFadeForNextPage } from "../scripts/script.js";
+	  
+		// run once, attach to every normal link
+		document.querySelectorAll("a").forEach(a =>
+		  a.addEventListener("click", armBannerFadeForNextPage)
+		);
+	  </script>
+	  
 	<script>
 		const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
 		if (dontAnimate === 'true') {

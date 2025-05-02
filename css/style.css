@@ -2532,6 +2532,13 @@ main.internal .intro+.container p.sign-off {
 
 }
 
+/* styles.css (or wherever your utils live) */
+#top_banner_main.fade‑prep {
+  opacity: 0;                /* hide it */
+  transform: translateY(30px);/* same offset your fadeInUp starts from */
+}
+
+
 
 /* h3.desktop-col-10.tablet-col-6.text-l.title {
   padding-bottom: 15px;

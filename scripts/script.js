@@ -1,7 +1,15 @@
 //script.js
 
+// script.js  (very first lines)
+const needsBannerFade = sessionStorage.getItem("needsBannerFade") === "true";
+const banner = document.getElementById("top_banner_main");
+if (needsBannerFade && banner) {
+  banner.classList.add("fade-prep");   // hide immediately
+}
+
+
 import { handleNavigation } from "./navigation.js";
-import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, fadeBannerIfFromLeadership } from "./scrollPosition.js";
+import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, } from "./scrollPosition.js";
 // console.log("running main script")
 
 // ============================
@@ -320,7 +328,17 @@ window.addEventListener("pageshow", (event) => {
   initializePage();
 });
 function initializePage() {
-  fadeBannerIfFromLeadership(); 
+
+  /* banner that arrived from leadership.html */
+  if (needsBannerFade && banner) {
+    sessionStorage.removeItem("needsBannerFade");
+
+    banner.classList.remove("fade-prep"); // un‑hide
+    banner.classList.add("fadeInUp");     // but NOT .animated yet ❗
+    // (animateOnLoad will add .animated + the correct stagger)
+  }
+
+  // fadeBannerIfFromLeadership();
   animateOnLoad();
   animateHeader("animatedHeader");
   animateOncePerSession("animatedNav", "animated-nav");
@@ -336,3 +354,9 @@ function handleCacheRestore() {
     el.classList.replace("fadeOutDown", "fadeInUp");
   });
 }
+
+export function armBannerFadeForNextPage() {
+  sessionStorage.setItem("needsBannerFade", "true");
+}
+
+

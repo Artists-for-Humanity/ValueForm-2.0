@@ -1,7 +1,7 @@
 import { isInViewport } from "./script.js";
 
 const topBannerMain = document.getElementById("top_banner_main");
-const newsPageMain = document.getElementById("news_page_main");
+// const newsPageMain = document.getElementById("news_page_main");
 
 
 // -- shared util ------------------------------------------------------------
@@ -27,26 +27,26 @@ export function wasPreviousPagePinnedArticle() {
 /**
  * Returns true if the page the user just came from was “…/leadership.html”
  */
-export function wasPreviousPageLeadership() {
-  const prevPath = sessionStorage.getItem("currentPagePath") || "";
-  return filePart(prevPath) === "leadership.html";
-}
+// export function wasPreviousPageLeadership() {
+//   const prevPath = sessionStorage.getItem("currentPagePath") || "";
+//   return filePart(prevPath) === "leadership.html";
+// }
 
 /**
  * Adds the Fade‑In‑Up animation to #top_banner_main if the user
  * navigated here from leadership.html.  Call this once after the DOM
  * is ready (e.g. inside a DOMContentLoaded or useEffect hook).
  */
-export function fadeBannerIfFromLeadership() {
-  if (wasPreviousPageLeadership()) {
-    topBannerMain?.classList.add("fadeInUp", "animated");
+// export function fadeBannerIfFromLeadership() {
+//   if (wasPreviousPageLeadership()) {
+//     topBannerMain?.classList.add("fadeInUp", "animated");
 
-    // // Optional: strip the classes after the CSS animation finishes
-    // setTimeout(() => {
-    //   topBannerMain?.classList.remove("fadeInUp", "animated");
-    // }, 1000); // match your CSS animation‑duration
-  }
-}
+//     // Optional: strip the classes after the CSS animation finishes
+//     setTimeout(() => {
+//       topBannerMain?.classList.remove("fadeInUp", "animated");
+//     }, 1000); // match your CSS animation‑duration
+//   }
+// }
 
 
 export function clearScrollPosition() {
