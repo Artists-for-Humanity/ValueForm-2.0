@@ -249,7 +249,13 @@ function staticPreview() {
 // When user clicks "read all articles" => fade & go
 // =======================================================
 let exitFadeTimeout; // Store timeout globally
+
+
+
 export function handleFadeAndRedirect() {
+  /* prevent scheduling twice if the user double‑clicks  */
+if (exitFadeTimeout) return;
+
   // Get pinned file path from localStorage
   let pinnedFilePath = localStorage.getItem("pinnedFilePath");
 
@@ -278,18 +284,19 @@ export function handleFadeAndRedirect() {
   });
 
   // Redirect after animations
-  setTimeout(() => {
+  // setTimeout(() => {
+  exitFadeTimeout = setTimeout(() => {           // ① SAVE THE ID
     window.location = `../pages/articles/${pinnedFilePath}`;
   }, elements.length * 600 + 800);
 }
 // Clear timeouts on page unload or restore
 window.addEventListener("beforeunload", () => {
-  clearTimeout(exitFadeTimeout);
+  clearTimeout(exitFadeTimeout);                 // ② actually clears it
 });
 // Handle bfcache and back button navigation
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
-    clearTimeout(exitFadeTimeout);
+    clearTimeout(exitFadeTimeout);               // ③ clears after restore
   }
 });
 window.addEventListener("popstate", () => {
@@ -315,6 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // =======================================
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
+    console.log('reacheme A');
     handleCacheRestore(); // Handle cache-specific logic
   }
   initializePage();
@@ -326,6 +334,7 @@ function initializePage() {
   watchHeaderInView();
 }
 function handleCacheRestore() {
+  console.log('reacheme B');
   const currentPage = window.location.pathname;
   if (currentPage === "/pages/news.html") {
   }
