@@ -91,7 +91,6 @@ export function restoreScrollPosition() {
     // If scroll position is too deep for this page, clear it early
     const isTooDeep = scrollY + viewportHeight > pageHeight;
     if (isTooDeep) {
-      console.log("adding FadeInUp A")
       topBannerMain?.classList.add("fadeInUp", "animated");
 
       clearScrollPosition();
@@ -112,7 +111,6 @@ export function restoreScrollPosition() {
       window.scrollTo(0, scrollY);
       sessionStorage.setItem("dontAnimateBanner", "true");
     } else {
-      console.log("adding FadeInUp A")
       topBannerMain?.classList.add("fadeInUp", "animated");
       clearScrollPosition();
       sessionStorage.removeItem("dontAnimateBanner");
