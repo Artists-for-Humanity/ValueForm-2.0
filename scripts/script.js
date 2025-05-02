@@ -1,7 +1,7 @@
 //script.js
 
 import { handleNavigation } from "./navigation.js";
-import { storeScrollPosition, restoreScrollPosition, clearScrollPosition } from "./scrollPosition.js";
+import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, fadeBannerIfFromLeadership } from "./scrollPosition.js";
 // console.log("running main script")
 
 // ============================
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // manageTopBannerAnimation();
     window.addEventListener("scroll", storeScrollPosition);
   } else {
-    console.log("isTarget page = false");
+    // console.log("isTarget page = false");
     clearScrollPosition();
   }
 });
@@ -218,6 +218,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Reset fade status in localStorage for subsequent visits
   localStorage.setItem("add_fade", true);
 });
+
+export function addFadeInUp() {
+  const topBannerMain = document.getElementById("top_banner_main");
+  topBannerMain?.classList.add("fadeInUp", "animated");
+}
 
 export function staticTitle() {
   const item = document.querySelector("#top_banner_main.above_read_full");
@@ -315,6 +320,7 @@ window.addEventListener("pageshow", (event) => {
   initializePage();
 });
 function initializePage() {
+  fadeBannerIfFromLeadership(); 
   animateOnLoad();
   animateHeader("animatedHeader");
   animateOncePerSession("animatedNav", "animated-nav");
