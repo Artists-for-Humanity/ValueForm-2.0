@@ -41,10 +41,10 @@ export function fadeBannerIfFromLeadership() {
   if (wasPreviousPageLeadership()) {
     topBannerMain?.classList.add("fadeInUp", "animated");
 
-    // Optional: strip the classes after the CSS animation finishes
-    setTimeout(() => {
-      topBannerMain?.classList.remove("fadeInUp", "animated");
-    }, 1000); // match your CSS animation‑duration
+    // // Optional: strip the classes after the CSS animation finishes
+    // setTimeout(() => {
+    //   topBannerMain?.classList.remove("fadeInUp", "animated");
+    // }, 1000); // match your CSS animation‑duration
   }
 }
 
