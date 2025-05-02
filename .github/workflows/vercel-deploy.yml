@@ -7,7 +7,7 @@ env:
 on:
   push:
     branches:
-      - static-leadership-1.0  # Specify branch to trigger preview deployment
+      - news-front-end-1.2  # Specify branch to trigger preview deployment
 
 jobs:
   Deploy-Preview:

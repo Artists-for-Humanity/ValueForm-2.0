@@ -1,4 +1,12 @@
-function isInViewport(element) {
+//script.js
+
+import { handleNavigation } from "./navigation.js";
+import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, } from "./scrollPosition.js";
+
+// ============================
+// Reusable isInViewport functions
+// ============================
+export function isInViewport(element) {
   const rect = element.getBoundingClientRect();
   return (
     rect.bottom > 0 &&
@@ -8,62 +16,77 @@ function isInViewport(element) {
   );
 }
 
-function handleNavigation(fadeInUpElements) {
-  const navLinks = document.querySelectorAll("nav a");
-  const logoLinks = document.querySelectorAll("header a img");
-  const footerLinks = document.querySelectorAll("footer a img");
-  const headerLinks = document.querySelectorAll("header a");
-
-  [...navLinks, ...logoLinks, ...footerLinks, ...headerLinks].forEach((img) => {
-    const anchor = img.closest("a");
-
-    if (anchor.classList.contains("disabled")) return;
-
-    anchor.addEventListener("click", (e) => {
-
-      const isPureAnchor = anchor.getAttribute('href').startsWith('#') && anchor.host === window.location.host && anchor.pathname === window.location.pathname;
-
-      if (isPureAnchor) {
-        return;
+// ========================================
+//  Logic to handle fade for news
+// ========================================
+export function handleMainNewsFade() {
+  const elements = document.querySelectorAll(".title_fade");
+  if (elements.length > 0) {
+    elements.forEach((element) => {
+      if (isInViewport(element)) {
+        localStorage.setItem("add_fade", false);
       } else {
-
-      e.preventDefault();
-      const targetUrl = anchor.href;
-      let delayCounter = 0;
-
-      fadeInUpElements
-        .filter(isInViewport)
-        .reverse()
-        .forEach((element, index) => {
-          element.classList.replace("fadeInUp", "fadeOutDown");
-          element.style.animationDelay = `${index * 600}ms`;
-          delayCounter++;
-        });
-
-      setTimeout(
-        () => (window.location.href = targetUrl),
-        delayCounter * 600 + 800
-      );
-    }
+        localStorage.setItem("add_fade", true);
+      }
     });
-  });
+  }
+  return false;
 }
 
+function getPinnedPage() {
+  if (window.location.pathname.includes("news.html")) {
+    const pinnedLink = document.getElementById("pinned-article-link");
+    let pinnedFilePath = localStorage.getItem("pinnedFilePath");
+
+    if (pinnedLink) {
+      const href = pinnedLink.getAttribute("href");
+      if (href) {
+        const fileName = href.split("/").pop(); // Get the last part after '/'
+        localStorage.setItem("pinnedFileName", fileName);
+        pinnedFilePath = `pinned/${fileName}`;
+      }
+    }
+
+    if (pinnedFilePath) {
+      localStorage.setItem("pinnedFilePath", pinnedFilePath);
+    } else {
+      console.warn("No pinned article link found.");
+      localStorage.removeItem("pinnedFilePath");
+    }
+  }
+}
+
+function getArticles() {
+  if (window.location.pathname.includes("news.html")) {
+    let articles = localStorage.getItem("articles");
+    const articleLinks = document.querySelectorAll('a[href^="./articles/"]');
+    articles = [];
+
+    articleLinks.forEach((link) => {
+      const href = link.getAttribute("href");
+      const fileName = href.split("/").pop();
+      articles.push(fileName);
+    });
+    localStorage.setItem("articles", JSON.stringify(articles));
+    return articles;
+  }
+}
+
+// ============================
+// Standard page load anims
+// ============================
 function animateOnLoad() {
   const fadeInUpElements = Array.from(
     document.querySelectorAll(".fadeInUp:not(nav)")
   );
 
   setTimeout(() => {
-    let viewportIndex = 0; 
-
+    let viewportIndex = 0;
     fadeInUpElements.forEach((element) => {
       if (isInViewport(element)) {
-
         element.style.animationDelay = `${viewportIndex * 600}ms`;
         element.classList.add("animated");
-        viewportIndex++;  
-
+        viewportIndex++;
       } else {
         element.style.visibility = "visible";
       }
@@ -78,6 +101,9 @@ function animateOnLoad() {
   }, 1000);
 }
 
+// ============================
+// Animate once per session
+// ============================
 function animateOncePerSession(elementId, animationClass) {
   const element = document.getElementById(elementId);
   if (element && !sessionStorage.getItem(`${elementId}Animated`)) {
@@ -86,6 +112,36 @@ function animateOncePerSession(elementId, animationClass) {
   }
 }
 
+// ============================
+// Manage header animation
+// ============================
+const header = document.getElementById("animatedHeader");
+let wasInViewport = isInViewport(header);
+let headerChecked = false;
+function checkHeaderInView() {
+  const header = document.getElementById("animatedHeader");
+  const isInViewNow = isInViewport(header);
+
+  if ((!isInViewNow && wasInViewport) || (!isInViewNow && !headerChecked)) {
+    sessionStorage.removeItem("dontAnimateHeader");
+    wasInViewport = false;
+    headerChecked = true;
+  } else if (
+    (isInViewNow && !wasInViewport) ||
+    (isInViewNow && !headerChecked)
+  ) {
+    sessionStorage.setItem("dontAnimateHeader", "true");
+    wasInViewport = true;
+    headerChecked = true;
+  }
+}
+function watchHeaderInView() {
+  checkHeaderInView();
+
+  window.addEventListener("scroll", () => {
+    checkHeaderInView();
+  });
+}
 function animateHeader(elementId) {
   const element = document.getElementById(elementId);
   const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
@@ -98,72 +154,196 @@ function animateHeader(elementId) {
   }
 }
 
-function watchHeaderInView() {
-  checkHeaderInView();
+function isTargetPage() {
+  const pinnedFileName = localStorage.getItem("pinnedFileName");
+  const currentPage = window.location.pathname.split("/").pop();
 
-  window.addEventListener("scroll", () => {
-    checkHeaderInView();
-  });
-}
+  const articles = localStorage.getItem("articles");
 
-const header = document.getElementById("animatedHeader");
-let wasInViewport = isInViewport(header);
-let headerChecked = false; // boolean that's false so we can hit one of the conditions in checkHeaderInView
-
-function checkHeaderInView() {
-  const header = document.getElementById("animatedHeader");
-  const isInViewNow = isInViewport(header);
-  
-  if ((!isInViewNow && wasInViewport) || (!isInViewNow && !headerChecked)) {
-    sessionStorage.removeItem("dontAnimateHeader");
-    wasInViewport = false;
-    headerChecked = true;
-  } else if ((isInViewNow && !wasInViewport)||(isInViewNow && !headerChecked)) {
-    sessionStorage.setItem("dontAnimateHeader", "true");
-    wasInViewport = true;
-    headerChecked = true;
-  }
+  return (
+    currentPage === "news.html" ||
+    currentPage === "pinned.html" ||
+    articles.includes(currentPage) ||
+    currentPage === `${pinnedFileName}`
+  );
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  animateOnLoad();
-  animateHeader("animatedHeader");
-  animateOncePerSession("animatedNav", "animated-nav");
-  watchHeaderInView();
-});
+  const topBannerMain = document.getElementById("top_banner_main");
 
-window.addEventListener("pageshow", (event) => {
-  if (event.persisted) {
-    ("Page was loaded from the cache");
-    // re-initialize animations or reset styles here
-    document.querySelectorAll(".fadeOutDown").forEach(el => {
-      el.classList.replace("fadeOutDown", "fadeInUp");
-    });
+  if (isTargetPage()) {
+    restoreScrollPosition();
+    // manageTopBannerAnimation();
+    window.addEventListener("scroll", storeScrollPosition);
+  } else {
+    // console.log("isTarget page = false");
+    clearScrollPosition();
   }
-  // always call initialization functions
-  animateOnLoad();
-  animateHeader("animatedHeader");
-  animateOncePerSession("animatedNav", "animated-nav");
-  watchHeaderInView();
 });
 
+// ======================================================
+// Remove fadeInUp based on the referring page
+// ======================================================
+document.addEventListener("DOMContentLoaded", function () {
+  // Define elements with their fade-in delay
+  let elementsForFade = [
+    { element: document.getElementById("news_page_main"), delay: "600ms" },
 
+    { element: document.getElementById("top_banner_main"), delay: "1200ms" },
+  ];
 
+  // Get the referring page URL
+  const previousPage = document.referrer;
 
-function isMacOS() {
-  return window.navigator.platform.includes('Mac');
+  // Logic for pinned article
+  const pinnedFilePath = localStorage.getItem("pinnedFilePath");
+  if (previousPage.includes(`/pages/articles/${pinnedFilePath}`)) {
+    if (localStorage.getItem("add_fade") === "false") {
+      // Remove fadeInUp for both elements
+      elementsForFade.forEach(({ element }) => {
+        if (element) {
+          element.classList.remove("fadeInUp", "animated");
+        }
+      });
+    }
+  } else {
+    // For other pages, only remove fadeInUp from #top_banner_main
+    const topBannerMain = document.getElementById("top_banner_main");
+    if (topBannerMain && localStorage.getItem("add_fade") === "false") {
+      topBannerMain.classList.remove("fadeInUp", "animated");
+    }
+  }
+
+  // Reset fade status in localStorage for subsequent visits
+  localStorage.setItem("add_fade", true);
+});
+
+export function addFadeInUp() {
+  const topBannerMain = document.getElementById("top_banner_main");
+  topBannerMain?.classList.add("fadeInUp", "animated");
 }
 
-// function applyWhiteTextShadow() {
-//   if (isMacOS()) {
-//       var elements = document.querySelectorAll('.text-jumbo');
-//       elements.forEach(function(element) {
-//           element.classList.add('white-text-shadow');
-//       });
-//   }
-// }
+export function staticTitle() {
+  const item = document.querySelector("#top_banner_main.above_read_full");
+  if (item) {
+    item.classList.remove("fadeInUp", "animated");
+  } else {
+    console.log(
+      "Element #top_banner_main with class above_read_full not found."
+    );
+  }
+}
+function staticPreview() {
+  const item = document.querySelector("#news_page_main.above_read_full");
+  if (item) {
+    item.classList.remove("fadeInUp", "animated");
+  } else {
+    console.log(
+      "Element #news_page_main with class above_read_full not found."
+    );
+  }
+}
+
+// =======================================================
+// When user clicks "read all articles" => fade & go
+// =======================================================
+let exitFadeTimeout; // Store timeout globally
 
 
-// document.addEventListener('DOMContentLoaded', applyWhiteTextShadow);
+
+export function handleFadeAndRedirect() {
+  /* prevent scheduling twice if the user double‑clicks  */
+if (exitFadeTimeout) return;
+
+  // Get pinned file path from localStorage
+  let pinnedFilePath = localStorage.getItem("pinnedFilePath");
+
+  if (!pinnedFilePath) {
+    console.warn("pinnedFilePath is not set in localStorage.");
+    return;
+  }
+
+  // Check if already on the target page
+  if (window.location.pathname === `/pages/articles/${pinnedFilePath}`) {
+    return;
+  }
+
+  // Remove "fadeInUp" and "animated" classes
+  staticTitle();
+  staticPreview();
+
+  // Set localStorage for "newsFade"
+  localStorage.setItem("newsFade", true);
+
+  // Fade out elements with class "fade_link" and redirect after transition
+  const elements = document.querySelectorAll(".fade_link");
+  elements.forEach((div, index) => {
+    div.classList.replace("fadeInUp", "fadeOutDown");
+    div.style.animationDelay = `${index * 600}ms`;
+  });
+
+  // Redirect after animations
+  // setTimeout(() => {
+  exitFadeTimeout = setTimeout(() => {           // ① SAVE THE ID
+    window.location = `../pages/articles/${pinnedFilePath}`;
+  }, elements.length * 600 + 800);
+}
+// Clear timeouts on page unload or restore
+window.addEventListener("beforeunload", () => {
+  clearTimeout(exitFadeTimeout);                 // ② actually clears it
+});
+// Handle bfcache and back button navigation
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    clearTimeout(exitFadeTimeout);               // ③ clears after restore
+  }
+});
+window.addEventListener("popstate", () => {
+  clearTimeout(exitFadeTimeout);
+});
+const readAllButton = document.querySelector(".read-all-articles");
+if (readAllButton && !readAllButton._hasListener) {
+  readAllButton._hasListener = true; // Flag to prevent duplicate listeners
+  readAllButton.addEventListener("click", handleFadeAndRedirect);
+}
+let isInitialized = false;
+
+// =======================================
+// Load pinned file on DOMContentLoaded
+// =======================================
+document.addEventListener("DOMContentLoaded", () => {
+  getPinnedPage();
+  getArticles();
+});
+
+// =======================================
+// Page cache/back button logic
+// =======================================
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    handleCacheRestore(); // Handle cache-specific logic
+  }
+  initializePage();
+});
+function initializePage() {
+  animateOnLoad();
+  animateHeader("animatedHeader");
+  animateOncePerSession("animatedNav", "animated-nav");
+  watchHeaderInView();
+}
+function handleCacheRestore() {
+  const currentPage = window.location.pathname;
+  if (currentPage === "/pages/news.html") {
+  }
+
+  // Reverse fade-out animations to fade-in
+  document.querySelectorAll(".fadeOutDown").forEach((el) => {
+    el.classList.replace("fadeOutDown", "fadeInUp");
+  });
+}
+
+export function armBannerFadeForNextPage() {
+  sessionStorage.setItem("needsBannerFade", "true");
+}
 
 
