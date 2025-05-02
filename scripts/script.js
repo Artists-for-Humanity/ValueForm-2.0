@@ -2,7 +2,6 @@
 
 import { handleNavigation } from "./navigation.js";
 import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, } from "./scrollPosition.js";
-// console.log("running main script")
 
 // ============================
 // Reusable isInViewport functions
@@ -322,7 +321,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // =======================================
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
-    console.log('reacheme A');
     handleCacheRestore(); // Handle cache-specific logic
   }
   initializePage();
@@ -334,7 +332,6 @@ function initializePage() {
   watchHeaderInView();
 }
 function handleCacheRestore() {
-  console.log('reacheme B');
   const currentPage = window.location.pathname;
   if (currentPage === "/pages/news.html") {
   }
