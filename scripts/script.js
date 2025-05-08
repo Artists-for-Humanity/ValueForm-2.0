@@ -55,7 +55,7 @@ function getPinnedPage() {
       localStorage.removeItem("pinnedFilePath");
     }
   }
-  else if (window.location.pathname.includes("/pages/articles/pinned/")) {
+  else if (!window.location.pathname.includes("news.html")) {
     // Direct load of a pinned article: derive and store its filename/path
     const fileName = window.location.pathname.split("/").pop();
     localStorage.setItem("pinnedFileName", fileName);
@@ -150,6 +150,7 @@ function watchHeaderInView() {
   });
 }
 function animateHeader(elementId) {
+
   const element = document.getElementById(elementId);
   const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
 
@@ -162,9 +163,10 @@ function animateHeader(elementId) {
 }
 
 function isTargetPage() {
-  const pinnedFileName = localStorage.getItem("pinnedFileName");
+  const pinnedFileNameRaw = localStorage.getItem("pinnedFileName");
+  const pinnedFileName = pinnedFileNameRaw !== null ? pinnedFileNameRaw : "";
+  // const pinnedFileName = localStorage.getItem("pinnedFileName");
   const currentPage = window.location.pathname.split("/").pop();
-
 
   // const articles = localStorage.getItem("articles");
   const rawArticles = localStorage.getItem("articles");

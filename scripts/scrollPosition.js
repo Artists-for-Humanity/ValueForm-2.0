@@ -47,7 +47,6 @@ export function storeScrollPosition() {
 export function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
   if (storedScrollPosition === null) {
-    console.log('reachme B');
     // Direct load: trigger banner/header animation
     topBannerMain?.classList.add("fadeInUp", "animated");
     setTimeout(() => {
