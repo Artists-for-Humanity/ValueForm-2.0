@@ -629,11 +629,13 @@ MOBILE GRID -- NOT USED */
     justify-self: center;
     padding-bottom: 25px;
   }
+
   .desktop-col-7.img-contain.img-goof {
     grid-column: 6 / span 5;
     justify-self: center;
     padding-bottom: 25px;
   }
+
   .desktop-col-7.img-contain-goof {
     grid-column: 2 / span 5;
     justify-self: center;
@@ -1947,7 +1949,7 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top:6px;
+  padding-top: 6px;
   padding-bottom: 16px;
   width: 100%;
 }
@@ -1956,7 +1958,7 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top:6px;
+  padding-top: 6px;
   padding-bottom: 16px;
   width: 61%;
   height: auto;
@@ -2327,7 +2329,7 @@ aside.sidebar-bottom h4.sidebar-bottom-title.text-s {
     padding-bottom: 5px;
   }
 
- 
+
 }
 
 .subheader {
@@ -2508,7 +2510,8 @@ ul.article-list.musing {
   .quote {
     font-size: 34px;
     line-height: 34px;
-  } 
+  }
+
   ul.article-list.bny li:last-child {
     margin-bottom: 11px;
   }
@@ -2521,22 +2524,24 @@ ul.article-list.musing {
   ul.article-list {
     padding-left: 32px;
     margin-bottom: 18px;
-}
-ol.article-list.letter {
-  margin-bottom: 27px;
-}
-main.internal .intro+.container p.sign-off {
-  padding-bottom: 24px !important;
-}
+  }
+
+  ol.article-list.letter {
+    margin-bottom: 27px;
+  }
+
+  main.internal .intro+.container p.sign-off {
+    padding-bottom: 24px !important;
+  }
 
 
 }
 
 /* styles.css (or wherever your utils live) */
-#top_banner_main.fade‑prep {
-  opacity: 0;                /* hide it */
-  transform: translateY(30px);/* same offset your fadeInUp starts from */
-}
+/* #top_banner_main.fade‑prep {
+  opacity: 0;
+  transform: translateY(30px);
+} */
 
 
 

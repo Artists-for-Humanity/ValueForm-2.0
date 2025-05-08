@@ -1,7 +1,7 @@
 //script.js
 
 import { handleNavigation } from "./navigation.js";
-import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, } from "./scrollPosition.js";
+import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, isCurrentPagePinnedArticle } from "./scrollPosition.js";
 
 // ============================
 // Reusable isInViewport functions
@@ -44,6 +44,7 @@ function getPinnedPage() {
         const fileName = href.split("/").pop(); // Get the last part after '/'
         localStorage.setItem("pinnedFileName", fileName);
         pinnedFilePath = `pinned/${fileName}`;
+
       }
     }
 
@@ -53,6 +54,12 @@ function getPinnedPage() {
       console.warn("No pinned article link found.");
       localStorage.removeItem("pinnedFilePath");
     }
+  }
+  else if (window.location.pathname.includes("/pages/articles/pinned/")) {
+    // Direct load of a pinned article: derive and store its filename/path
+    const fileName = window.location.pathname.split("/").pop();
+    localStorage.setItem("pinnedFileName", fileName);
+    localStorage.setItem("pinnedFilePath", `pinned/${fileName}`);
   }
 }
 
@@ -158,7 +165,10 @@ function isTargetPage() {
   const pinnedFileName = localStorage.getItem("pinnedFileName");
   const currentPage = window.location.pathname.split("/").pop();
 
-  const articles = localStorage.getItem("articles");
+
+  // const articles = localStorage.getItem("articles");
+  const rawArticles = localStorage.getItem("articles");
+  const articles = rawArticles ? JSON.parse(rawArticles) : [];
 
   return (
     currentPage === "news.html" ||
@@ -169,9 +179,12 @@ function isTargetPage() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  getPinnedPage();
+  getArticles();
   const topBannerMain = document.getElementById("top_banner_main");
 
   if (isTargetPage()) {
+
     restoreScrollPosition();
     // manageTopBannerAnimation();
     window.addEventListener("scroll", storeScrollPosition);
@@ -253,7 +266,7 @@ let exitFadeTimeout; // Store timeout globally
 
 export function handleFadeAndRedirect() {
   /* prevent scheduling twice if the user double‑clicks  */
-if (exitFadeTimeout) return;
+  if (exitFadeTimeout) return;
 
   // Get pinned file path from localStorage
   let pinnedFilePath = localStorage.getItem("pinnedFilePath");
@@ -309,14 +322,6 @@ if (readAllButton && !readAllButton._hasListener) {
 let isInitialized = false;
 
 // =======================================
-// Load pinned file on DOMContentLoaded
-// =======================================
-document.addEventListener("DOMContentLoaded", () => {
-  getPinnedPage();
-  getArticles();
-});
-
-// =======================================
 // Page cache/back button logic
 // =======================================
 window.addEventListener("pageshow", (event) => {
@@ -345,5 +350,3 @@ function handleCacheRestore() {
 export function armBannerFadeForNextPage() {
   sessionStorage.setItem("needsBannerFade", "true");
 }
-
-

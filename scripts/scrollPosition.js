@@ -46,6 +46,16 @@ export function storeScrollPosition() {
 
 export function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
+  if (storedScrollPosition === null) {
+    console.log('reachme B');
+    // Direct load: trigger banner/header animation
+    topBannerMain?.classList.add("fadeInUp", "animated");
+    setTimeout(() => {
+      topBannerMain?.classList.remove("fadeInUp", "animated");
+    }, 1000);
+    document.body.classList.remove("preload");
+    return;
+  }
   const storedBannerVisibility = sessionStorage.getItem("bannerWasVisible");
   const storedArticleVisibility = sessionStorage.getItem("articleWasVisible");
   const articleWasVisible = storedArticleVisibility === "true";
