@@ -48,6 +48,7 @@ export function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
   if (storedScrollPosition === null) {
     // Direct load: trigger banner/header animation
+    console.log('reachme A');
     topBannerMain?.classList.add("fadeInUp", "animated");
     setTimeout(() => {
       topBannerMain?.classList.remove("fadeInUp", "animated");
@@ -74,6 +75,8 @@ export function restoreScrollPosition() {
     // If scroll position is too deep for this page, clear it early
     const isTooDeep = scrollY + viewportHeight > pageHeight;
     if (isTooDeep) {
+    console.log('reachme B');
+
       topBannerMain?.classList.add("fadeInUp", "animated");
 
       clearScrollPosition();
@@ -96,6 +99,8 @@ export function restoreScrollPosition() {
       window.scrollTo(0, scrollY);
       sessionStorage.setItem("dontAnimateBanner", "true");
     } else {
+    console.log('reachme B');
+
       topBannerMain?.classList.add("fadeInUp", "animated");
       clearScrollPosition();
       sessionStorage.removeItem("dontAnimateBanner");
