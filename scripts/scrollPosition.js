@@ -23,6 +23,12 @@ export function wasPreviousPagePinnedArticle() {
   return looksPinned(prevPath); // re-use the same helper
 }
 
+// NEW: detect if the last‑loaded page was /news.html
+export function wasPreviousPageNews() {
+  const prev = sessionStorage.getItem("currentPagePath") || "";
+  return prev.endsWith("/news.html");
+}
+
 export function clearScrollPosition() {
   sessionStorage.removeItem("scrollPosition");
   window.scrollTo(0, 0);
@@ -58,17 +64,29 @@ export function storeScrollPosition() {
 export function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
   if (storedScrollPosition === null) {
-    // Direct load: trigger banner/header animation
+    // Direct load: trigger banner + article animation if we did *not* just come from news.html
     topBannerMain?.classList.add("fadeInUp", "animated");
     setTimeout(() => {
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
+
+    // only animate the article on direct‐load *and* if previous page wasn’t news.html
+    const newsArticle = document.getElementById("news_page_main");
+    if (newsArticle && !wasPreviousPageNews()) {
+      newsArticle.classList.add("fadeInUp", "animated");
+      setTimeout(() => {
+        newsArticle.classList.remove("fadeInUp", "animated");
+      }, 1000);
+    }
     document.body.classList.remove("preload");
 
     // **Set a default value so this branch only runs once**
     sessionStorage.setItem("scrollPosition", "0");
     sessionStorage.setItem("bannerWasVisible", "true");   // or "false", whichever default you prefer
     sessionStorage.setItem("articleWasVisible", "false"); // adjust as needed
+
+    // record this page as “previous” for next load
+    sessionStorage.setItem("currentPagePath", window.location.pathname);
 
     return;
   }
@@ -125,4 +143,7 @@ export function restoreScrollPosition() {
 
   document.body.classList.remove("preload");
   //   sessionStorage.removeItem("nextTargetPath");
+
+  // at the very end, always record this page as “previous”
+  sessionStorage.setItem("currentPagePath", window.location.pathname);
 }
