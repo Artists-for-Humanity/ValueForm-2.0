@@ -29,19 +29,30 @@ export function clearScrollPosition() {
 }
 
 export function storeScrollPosition() {
-  sessionStorage.setItem("scrollPosition", window.scrollY);
+  // Always store the scroll position
+  sessionStorage.setItem("scrollPosition", window.scrollY.toString());
 
-  // true | false (as a string) so it survives sessionStorage
-  sessionStorage.setItem(
-    "bannerWasVisible",
-    isInViewport(topBannerMain) ? "true" : "false"
-  );
+  // Check that topBannerMain exists before testing visibility
+  if (typeof topBannerMain !== "undefined" && topBannerMain) {
+    sessionStorage.setItem(
+      "bannerWasVisible",
+      isInViewport(topBannerMain) ? "true" : "false"
+    );
+  } else {
+    // If it’s missing, you may choose a default:
+    sessionStorage.setItem("bannerWasVisible", "false");
+  }
 
+  // Grab the news page element, if it exists
   const newsPageMain = document.getElementById("news_page_main");
-  sessionStorage.setItem(
-    "articleWasVisible",
-    newsPageMain && isInViewport(newsPageMain) ? "true" : "false"
-  );
+  if (newsPageMain) {
+    sessionStorage.setItem(
+      "articleWasVisible",
+      isInViewport(newsPageMain) ? "true" : "false"
+    );
+  } else {
+    sessionStorage.setItem("articleWasVisible", "false");
+  }
 }
 
 export function restoreScrollPosition() {
@@ -53,6 +64,12 @@ export function restoreScrollPosition() {
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
     document.body.classList.remove("preload");
+
+    // **Set a default value so this branch only runs once**
+    sessionStorage.setItem("scrollPosition", "0");
+    sessionStorage.setItem("bannerWasVisible", "true");   // or "false", whichever default you prefer
+    sessionStorage.setItem("articleWasVisible", "false"); // adjust as needed
+
     return;
   }
   const storedBannerVisibility = sessionStorage.getItem("bannerWasVisible");
