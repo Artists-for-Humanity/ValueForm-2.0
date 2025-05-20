@@ -31,12 +31,15 @@ export function wasPreviousPageNews() {
 
 export function clearScrollPosition() {
   sessionStorage.removeItem("scrollPosition");
+  // sessionStorage.setItem("scrollPosition", "0");
   window.scrollTo(0, 0);
 }
 
 export function storeScrollPosition() {
   // Always store the scroll position
   sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+  // console.log('reachme B ' + sessionStorage.getItem("scrollPosition"));
+
 
   // Check that topBannerMain exists before testing visibility
   if (typeof topBannerMain !== "undefined" && topBannerMain) {
@@ -63,9 +66,13 @@ export function storeScrollPosition() {
 
 export function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
-  if (storedScrollPosition === null) {
+  // console.log('reachme A ' + storedScrollPosition);
+  // console.log('reachme C ' + sessionStorage.getItem("currentPagePath") || "");
+  if ((storedScrollPosition === null || storedScrollPosition === "0") && (!(sessionStorage.getItem("currentPagePath") === "/pages/news.html"))) {
+    // console.log("reachme D");
     // Direct load: trigger banner + article animation if we did *not* just come from news.html
     topBannerMain?.classList.add("fadeInUp", "animated");
+ 
     setTimeout(() => {
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
