@@ -83,7 +83,7 @@ export function restoreScrollPosition() {
       newsArticle.classList.add("fadeInUp", "animated");
       setTimeout(() => {
         newsArticle.classList.remove("fadeInUp", "animated");
-      }, 1000);
+      }, 0);
     }
     document.body.classList.remove("preload");
 
