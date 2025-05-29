@@ -81,10 +81,17 @@ export function restoreScrollPosition() {
     const newsArticle = document.getElementById("news_page_main");
     if (newsArticle && !wasPreviousPageNews()) {
       newsArticle.classList.add("fadeInUp", "animated");
-      setTimeout(() => {
-        newsArticle.classList.remove("fadeInUp", "animated");
-      }, 1000);
+        console.log('reachme A');
+
+      // setTimeout(() => {
+      //   console.log('reachme B');
+      //   newsArticle.classList.remove("fadeInUp", "animated");
+      // }, 10000);
+        console.log('reachme C');
+
     }
+        console.log('reachme D');
+
     document.body.classList.remove("preload");
 
     // **Set a default value so this branch only runs once**
