@@ -184,16 +184,10 @@ careers@valueform.io
                 </blockquote>
                 <div class="fadeInUp desktop-col-7 tablet-col-7 article text grid-inherit">
 
-                    <!-- <video controls autoplay muted loop playsinline preload="none" 
+                    <video controls autoplay muted loop playsinline preload="none" 
                     class="article-vid subgrid-col-3-5 desktop-col-7 tablet-col-7 img-contain-goof"
                     style="width:100%">
                         <source src="../../images/news/VFxGoof.mp4" type="video/mp4">
-                    </video> -->
-                    <video id="goof-video" controls autoplay muted loop playsinline preload="none"
-                        class="article-vid subgrid-col-3-5 desktop-col-7 tablet-col-7 img-contain-goof"
-                        style="width:100%">
-                        <!-- no <source> yet—just a placeholder attribute -->
-                        <source data-src="../../images/news/VFxGoof.mp4" type="video/mp4">
                     </video>
 
                     <aside class="sidebar-bottom subgrid-col-1-7">
@@ -252,24 +246,6 @@ careers@valueform.io
     </footer>
 
 </body>
-<!-- …your existing fadeInUp scripts, DOM content, etc.… -->
-
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Wait a tick (e.g. 200 ms) so your fade‑ins/fade‑outs start first
-        setTimeout(() => {
-            const vid = document.getElementById('goof-video');
-            if (!vid) return;
-
-            const sourceEl = vid.querySelector('source[data-src]');
-            if (!sourceEl) return;
-
-            // Move data-src into the actual src, then reload the video
-            sourceEl.src = sourceEl.getAttribute('data-src');
-            vid.load();
-        }, 200);
-    });
-</script> -->
 
 
 </html>
