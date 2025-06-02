@@ -352,3 +352,19 @@ function handleCacheRestore() {
 export function armBannerFadeForNextPage() {
   sessionStorage.setItem("needsBannerFade", "true");
 }
+
+
+// Lazy-load Goof video after initial animations
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const vid = document.getElementById('goof-video');
+    if (!vid) return;
+
+    const sourceEl = vid.querySelector('source[data-src]');
+    if (!sourceEl) return;
+
+    // Move data-src into the actual src, then reload the video
+    sourceEl.src = sourceEl.getAttribute('data-src');
+    vid.load();
+  }, 200);
+});
