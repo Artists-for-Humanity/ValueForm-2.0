@@ -25,6 +25,8 @@ export function handleNavigation(fadeInUpElements) {
   const articleTitle = document.getElementById("article_title");
   const articleTitleBlock = document.getElementById("article_title_block");
   const articleTop = document.getElementById("article_top");
+  const outcomesLinks = document.querySelectorAll(".outcomes.landing block");
+
 
   const allLinks = [
     ...clickMe,
@@ -35,6 +37,7 @@ export function handleNavigation(fadeInUpElements) {
     ...asideLinks,
     ...linkBack,
     ...linkBackNews,
+    ...outcomesLinks,
   ];
 
   allLinks.forEach((element) => {
@@ -156,7 +159,9 @@ export function handleNavigation(fadeInUpElements) {
         currentPage === "/pages/news.html" &&
         (targetUrl.startsWith("./our-approach.html") ||
           targetUrl === "./leadership.html" ||
-          targetUrl === "../index.html")
+          targetUrl === "../index.html" ||
+          targetUrl === "../outcomes.html"
+        )
       ) {
         if (!isNewsPageMainInViewport) return;
         // Adjust delay if "news_page_main" is not part of fadeInUpElements
@@ -205,9 +210,11 @@ export function handleNavigation(fadeInUpElements) {
         (currentPage.startsWith("/pages/articles/") &&
           targetUrl !== "./articles/" + pinnedFilePath &&
           (targetUrl === "../leadership.html" ||
-            targetUrl === "../../index.html")) ||
-        targetUrl.startsWith("../our-approach.html")
-      ) {
+            targetUrl === "../../index.html" ||
+            targetUrl === "../outcomes.html" ||
+        targetUrl.startsWith("../our-approach.html"))
+      )) {
+
         const hasTopBannerInList = containsElementWithId(
           fadeInUpElements,
           "top_banner_main"

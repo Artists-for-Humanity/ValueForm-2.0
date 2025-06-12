@@ -44,7 +44,6 @@ function getPinnedPage() {
         const fileName = href.split("/").pop(); // Get the last part after '/'
         localStorage.setItem("pinnedFileName", fileName);
         pinnedFilePath = `pinned/${fileName}`;
-
       }
     }
 
