@@ -948,6 +948,9 @@ nav a:first-child {
   border-radius: 6px 0 0 6px;
   /* Top-right and bottom-right border-radius */
 }
+nav a.mobile-approach-button{
+  border-radius: 6px 0 0 6px; 
+}
 
 nav a:last-child {
   border-radius: 0 6px 6px 0;
@@ -988,6 +991,13 @@ nav a.disabled:first-child+a:active {
   border-left: 2px solid var(--white);
 }
 
+.mobile-approach-button {
+  display: block;
+}
+.default-approach-button {
+  display: none;
+}
+
 @media (min-width: 700px) {
   nav {
     bottom: 30px;
@@ -996,6 +1006,13 @@ nav a.disabled:first-child+a:active {
 
   nav div {
     width: 364px;
+  }
+
+    .mobile-approach-button {
+    display: none;
+  }
+  .default-approach-button {
+    display: block;
   }
 
   /*nav a {width: 182px;}*/
@@ -1012,6 +1029,13 @@ nav a.disabled:first-child+a:active {
   nav div {
     /* width: 279px; */
     width: 417px;
+  }
+
+   .mobile-approach-button {
+    display: none;
+  }
+  .default-approach-button {
+    display: block;
   }
 
   /*nav a { width: 140px;}*/
