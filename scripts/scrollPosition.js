@@ -66,10 +66,7 @@ export function storeScrollPosition() {
 
 export function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
-  // console.log('reachme A ' + storedScrollPosition);
-  // console.log('reachme C ' + sessionStorage.getItem("currentPagePath") || "");
   if ((storedScrollPosition === null || storedScrollPosition === "0") && (!(sessionStorage.getItem("currentPagePath") === "/pages/news.html"))) {
-    // console.log("reachme D");
     // Direct load: trigger banner + article animation if we did *not* just come from news.html
     topBannerMain?.classList.add("fadeInUp", "animated");
  
@@ -81,16 +78,7 @@ export function restoreScrollPosition() {
     const newsArticle = document.getElementById("news_page_main");
     if (newsArticle && !wasPreviousPageNews()) {
       newsArticle.classList.add("fadeInUp", "animated");
-        console.log('reachme A');
-
-      // setTimeout(() => {
-      //   console.log('reachme B');
-      //   newsArticle.classList.remove("fadeInUp", "animated");
-      // }, 10000);
-        console.log('reachme C');
-
     }
-        console.log('reachme D');
 
     document.body.classList.remove("preload");
 
