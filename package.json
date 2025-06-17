@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf dist && mkdir -p dist && cp -r pages dist/pages && cp -r index.html dist && cp -r css dist/css && cp -r images dist/images && cp -r scripts dist/scripts",
+    "build": "rm -rf public && mkdir -p public && cp -r pages public/pages && cp -r index.html dist && cp -r css public/css && cp -r images public/images && cp -r scripts public/scripts",
     "vercel-build": "npm run build",
     "check-node": "node -v"
   },
