@@ -18,7 +18,7 @@ const port = process.env.PORT || 3000;
 // app.use('/sanity-studio', express.static(path.join(__dirname, 'sanity-studio')));
 
 // Serve other static files from the root directory
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Endpoint to fetch files in the pinned folder
 app.get('/files', (req, res) => {
