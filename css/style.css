@@ -584,6 +584,14 @@ MOBILE GRID -- NOT USED */
     margin: 0 auto;
   }
 
+  .article-block {
+  display: grid;
+  grid-template-columns: inherit;
+  /* grid-template-columns: repeat(12, minmax(0, 1fr)); */
+  text-decoration: none;
+  column-gap: 25px;
+}
+
   .desktop-col-3 {
     grid-column: 3 / span 3;
   }
@@ -2246,6 +2254,7 @@ cite bold {
     padding-top: 36px;
     padding-bottom: 34px;
     margin-top: 0px;
+    column-gap: 25px;
   }
 
   .link {

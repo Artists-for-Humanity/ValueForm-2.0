@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+__      __   _            ______                   
+\ \    / /  | |          |  ____|                  
+ \ \  / /_ _| |_   _  ___| |__ ___  _ __ _ __ ___  
+  \ \/ / _` | | | | |/ _ \  __/ _ \| '__| '_ ` _ \ 
+   \  / (_| | | |_| |  __/ | | (_) | |  | | | | | |
+	\/ \__,_|_|\__,_|\___|_|  \___/|_|  |_| |_| |_|
+careers@valueform.io	
+-->
+
+<head>
+    <html lang="en">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title> Goof Sports | ValueForm</title>
+        <meta name="description"
+            content="ValueForm's approach is designed to deliver outcomes. We create conviction in your outcomes by directly tying our compensation to them. We design experiences that organizations can handle operationally, making execution inevitable.">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon/favicon.ico">
+        <link href="../images/favicon/android-chrome-192x192.png" rel="apple-touch-icon" sizes="180x180">
+        <link href="../images/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+        <link href="../images/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+
+        <link rel="stylesheet" href="../css/style.css" type="text/css" />
+        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+            type="module"></script>
+
+        <script defer>
+            document.addEventListener("DOMContentLoaded", function () {
+                setTimeout(function () {
+                    document.documentElement.classList.add('smooth-scroll');
+                }, 10);
+            });
+        </script>
+
+</head>
+
+<body>
+    <script>
+        const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
+        if (dontAnimate === 'true') {
+            document.body.style.setProperty('--header-opacity', "1");
+        }
+    </script>
+    <section class="wrapper">
+        <header class="container text-s internal" id="animatedHeader">
+        </header>
+        <main class="internal news">
+            <div class="container fadeInUp">
+                <div class=" fadeInUp desktop-col-12 tablet-col-8 ">
+                    <video controls autoplay muted loop playsinline preload="none"  class="article-vid" style="width: 100%">
+                        <source src="../images/VFxGoof-Reel.mp4">
+                    </video>
+                </div>
+            </div>
+        </main>
+    </section>
+</body>
+<script type="module" src="../scripts/script.js"></script>
+
+</html>
