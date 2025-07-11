@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     svg.addEventListener("mouseenter", () => {
       pathsWithFill.forEach((path) => {
-        path.setAttribute("fill", "#00ffcc");
+        path.setAttribute("fill", "#ff0000ff");
       });
     });
 
