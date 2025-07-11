@@ -93,6 +93,19 @@ video {
   justify-content: center;
 }
 
+#video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
 article,
 aside,
 details,
@@ -1013,7 +1026,8 @@ nav a.disabled:first-child+a:active {
   }
 
   nav div {
-    width: 364px;
+    /* width: 364px; */
+    width: 500px;
   }
 
     .mobile-approach-button {
@@ -1036,7 +1050,8 @@ nav a.disabled:first-child+a:active {
 
   nav div {
     /* width: 279px; */
-    width: 417px;
+    /* width: 417px; */
+    width: 580px;
   }
 
    .mobile-approach-button {
