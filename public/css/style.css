@@ -2621,7 +2621,7 @@ ul.article-list.musing {
   .internal.outcomes{
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
-    column-gap: 9px;
+    column-gap: 20px;
     margin: 0 auto;
   }
   .internal.outcomes .grid-column-full{

@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!isTouchDevice) {
     // Only apply hover functionality on non-touch devices
     blocks.forEach((block) => {
-      const targets = block.querySelectorAll("h3, h4, img, percent, number");
+      // const targets = block.querySelectorAll("h3, h4, img, percent, number");
+      const targets = block.querySelectorAll("#outcomes-hover, .svg-metric");
 
       targets.forEach((target) => {
         target.addEventListener("mouseenter", function () {
@@ -42,6 +43,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const svgs = document.querySelectorAll(".svg-metric");
 
   svgs.forEach((svg) => {
+    // Make SVG responsive by adjusting width and height attributes
+    svg.removeAttribute("width");
+    svg.removeAttribute("height");
+    svg.setAttribute("width", "100%");
+    // svg.setAttribute("height", "auto");
+
     // Select elements that have a fill attribute but exclude those that only have stroke attribute
     const pathsWithFill = Array.from(svg.querySelectorAll("path, ellipse, rect, circle")).filter(el => el.hasAttribute("fill"));
 
@@ -57,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     svg.addEventListener("mouseenter", () => {
-      console.log("Mouse entered SVG:", svg);
+      // console.log("Mouse entered SVG:", svg);
       // pathsWithFill.forEach((path) => {
       //   path.setAttribute("fill", "#ff0000ff");
       // });
@@ -79,7 +86,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    const associatedHeaders = document.querySelectorAll("#outcomes-hover");
+    const block = svg.closest("block");
+    const associatedHeaders = block ? block.querySelectorAll("#outcomes-hover") : [];
 
     associatedHeaders.forEach((header) => {
       header.addEventListener("mouseenter", () => {
