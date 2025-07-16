@@ -38,31 +38,64 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// /won't work because the svg is made with masking ( creates a hole)
-
 document.addEventListener("DOMContentLoaded", function () {
   const svgs = document.querySelectorAll(".svg-metric");
-  // console.log(svgs);
 
   svgs.forEach((svg) => {
-    // const pathsWithFill = svg.querySelectorAll("path[fill]");
-    const pathsWithFill = svg.querySelectorAll(
-      "path[fill], ellipse[fill], rect[fill], circle[fill]"
-    );
+    // Select elements that have a fill attribute but exclude those that only have stroke attribute
+    const pathsWithFill = Array.from(svg.querySelectorAll("path, ellipse, rect, circle")).filter(el => el.hasAttribute("fill"));
 
-    const originalFills = Array.from(pathsWithFill).map((path) =>
+    const originalFills = pathsWithFill.map((path) =>
       path.getAttribute("fill")
     );
 
+    pathsWithFill.forEach((path) => {
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke-opacity", "1");
+      path.setAttribute("stroke", "#404040");
+      path.setAttribute("stroke-width", "1");
+    });
+
     svg.addEventListener("mouseenter", () => {
-      pathsWithFill.forEach((path) => {
-        path.setAttribute("fill", "#ff0000ff");
+      console.log("Mouse entered SVG:", svg);
+      // pathsWithFill.forEach((path) => {
+      //   path.setAttribute("fill", "#ff0000ff");
+      // });
+      pathsWithFill.forEach((path, index) => {
+        path.setAttribute("fill", originalFills[index]);
+        path.setAttribute("stroke", "none");
       });
     });
 
     svg.addEventListener("mouseleave", () => {
+      // pathsWithFill.forEach((path, index) => {
+      //   path.setAttribute("fill", originalFills[index]);
+      // });
       pathsWithFill.forEach((path, index) => {
-        path.setAttribute("fill", originalFills[index]);
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke-opacity", "1");
+        path.setAttribute("stroke", "#404040");
+        path.setAttribute("stroke-width", "1");
+      });
+    });
+
+    const associatedHeaders = document.querySelectorAll("#outcomes-hover");
+
+    associatedHeaders.forEach((header) => {
+      header.addEventListener("mouseenter", () => {
+        pathsWithFill.forEach((path, index) => {
+          path.setAttribute("fill", originalFills[index]);
+          path.setAttribute("stroke", "none");
+        });
+      });
+
+      header.addEventListener("mouseleave", () => {
+        pathsWithFill.forEach((path) => {
+          path.setAttribute("fill", "none");
+          path.setAttribute("stroke-opacity", "1");
+          path.setAttribute("stroke", "#404040");
+          path.setAttribute("stroke-width", "1");
+        });
       });
     });
   });
