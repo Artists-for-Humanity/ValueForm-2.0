@@ -2005,6 +2005,16 @@ table {
   width: 100%;
 }
 
+.img-contain.img-square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 6px;
+  padding-bottom: 16px;
+  width: auto;
+  height: 60px;
+}
+
 .img-contain.img-goof {
   display: flex;
   justify-content: center;
