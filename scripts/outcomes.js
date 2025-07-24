@@ -1,3 +1,6 @@
+import { handleOutcomesNavigation } from "./outcomes-navigation.js";
+console.log("running outcomes script");
+
 // =======================================
 // Outcomes page hover effects
 // =======================================
@@ -107,4 +110,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fadeInUpElements = document.querySelectorAll(".fadeInUp");
+  handleOutcomesNavigation(fadeInUpElements);
 });

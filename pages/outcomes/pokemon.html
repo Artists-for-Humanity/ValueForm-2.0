@@ -24,6 +24,17 @@ careers@valueform.io
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" />
 	<!-- <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> -->
 	<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+	  <script type="module">
+        import { handleMainNewsFade, staticTitle } from "../../scripts/script.js";
+        window.handleMainNewsFade = handleMainNewsFade;
+        window.staticTitle = staticTitle;
+    </script>
+
+	<script type="module">
+  import { handleOutcomesNavigation } from "../scripts/outcomes-navigation.js";
+  const fadeInUpElements = document.querySelectorAll(".fadeInUp");
+  handleOutcomesNavigation(fadeInUpElements);
+</script>
 
 	<script defer>
 		document.addEventListener("DOMContentLoaded", function () {
@@ -71,13 +82,15 @@ careers@valueform.io
                     <a href="./../our-approach.html" class="mobile-approach-button"> Approach </a>
 					<a href="./../leadership.html"> Leadership </a>
 					<a href="./../news.html"> News </a>
-					<a href="./../outcomes.html"> Outcomes  </a>
+					<a href="./../outcomes.html" onclick=" staticTitle(); handleMainNewsFade()"> Outcomes  </a>
 
 				</div>
 			</nav>
 
 			<main class="internal outcomes subpage">
-				<div class="intro fadeInUp grid-column-full">
+				<!-- <div class="intro fadeInUp grid-column-full"> -->
+            <div id="top_banner_main" class="intro fadeInUp above_read_full title_fade grid-column-full">
+
 					<h1 class="text-m">C. Outcomes.</h1>
 					<div>
 						<h2 class="text-xl">Value Formed.</h2>
@@ -237,7 +250,7 @@ careers@valueform.io
 		</footer>
 
 	</body>
-	<script type="module" src="../../scripts/script.js"></script>
+	<!-- <script type="module" src="../../scripts/script.js"></script> -->
 
 
 </html>
