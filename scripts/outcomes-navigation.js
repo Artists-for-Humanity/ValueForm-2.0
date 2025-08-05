@@ -1,5 +1,4 @@
 import { isInViewport } from "./script.js";
-console.log("running outcomes-navigation script");
 
 export function handleOutcomesNavigation(fadeInUpElements) {
   const navLinks = document.querySelectorAll("nav a");
@@ -41,7 +40,8 @@ export function handleOutcomesNavigation(fadeInUpElements) {
       const targetUrl = anchor.getAttribute("href");
       let delayCounter = 0;
 
-      fadeInUpElements
+      const safeFadeInUpElements = Array.from(fadeInUpElements || []);
+      safeFadeInUpElements
         .filter(isInViewport)
         .reverse()
         .forEach((element, index) => {
@@ -56,16 +56,39 @@ export function handleOutcomesNavigation(fadeInUpElements) {
       const footer = document.querySelector("footer");
       const footerInViewport = isInViewport(footer);
 
+          console.log("delayCounter A = ", delayCounter);
+
+
       // From outcomes.html to subpage
       if (
         currentPage === "/pages/outcomes.html" &&
         targetUrl.startsWith("./outcomes/")
       ) {
         if (isTopBannerInViewport) {
+          // console.log("reachme A");
           delayCounter++;
           setTimeout(() => {
             topBannerMain.classList.add("fadeOutDown");
           }, (delayCounter - 1) * 600);
+        }
+      }
+
+      // From outcomes.html to non-outcomes pages
+      if (
+        currentPage === "/pages/outcomes.html" &&
+        (targetUrl === "./our-approach.html" ||
+          targetUrl === "./leadership.html" ||
+          targetUrl === "../index.html" ||
+          targetUrl === "./news.html"
+        )
+      ) {
+        if (isTopBannerInViewport) {
+          // console.log("reachme B");
+
+          // console.log("delayCounter B = ", delayCounter);
+          delayCounter++;
+          topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
+          topBannerMain.classList.add("fadeOutDown");
         }
       }
 
@@ -74,6 +97,7 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         currentPage.startsWith("/pages/outcomes/") &&
         targetUrl === "../outcomes.html"
       ) {
+        // console.log("reachme C");
         if (!fadeInUpElements.some(el => el.id === "top_banner_main")) {
           delayCounter--;
         }

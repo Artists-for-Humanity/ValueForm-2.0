@@ -1,5 +1,4 @@
 import { handleOutcomesNavigation } from "./outcomes-navigation.js";
-console.log("running outcomes script");
 
 // =======================================
 // Outcomes page hover effects

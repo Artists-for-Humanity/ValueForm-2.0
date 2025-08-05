@@ -160,7 +160,7 @@ export function handleNavigation(fadeInUpElements) {
         (targetUrl.startsWith("./our-approach.html") ||
           targetUrl === "./leadership.html" ||
           targetUrl === "../index.html" ||
-          targetUrl === "../outcomes.html"
+          targetUrl === "./outcomes.html"
         )
       ) {
         if (!isNewsPageMainInViewport) return;

@@ -1,6 +1,7 @@
 //script.js
 
 import { handleNavigation } from "./navigation.js";
+import { handleOutcomesNavigation } from "./outcomes-navigation.js";
 import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, isCurrentPagePinnedArticle } from "./scrollPosition.js";
 
 // ============================
@@ -99,7 +100,13 @@ function animateOnLoad() {
     });
   }, 10);
 
-  handleNavigation(fadeInUpElements);
+  // handleNavigation(fadeInUpElements);
+  const pathname = window.location.pathname;
+  if (pathname.includes("outcomes")) {
+    handleOutcomesNavigation(fadeInUpElements);
+  } else {
+    handleNavigation(fadeInUpElements);
+  }
 
   setTimeout(() => {
     const player = document.getElementById("lottieAnimation");
