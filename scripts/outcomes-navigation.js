@@ -11,6 +11,7 @@ export function handleOutcomesNavigation(fadeInUpElements) {
 
   const topBannerMain = document.getElementById("top_banner_main");
 
+  // Build and dedupe the anchor list
   const allLinks = [
     ...clickMe,
     ...navLinks,
@@ -21,51 +22,55 @@ export function handleOutcomesNavigation(fadeInUpElements) {
     ...linkBack,
   ];
 
-  allLinks.forEach((element) => {
-    const isAnchor = element.tagName.toLowerCase() === "a";
-    const anchor = isAnchor ? element : element.closest("a") || element;
+  // Turn everything into its closest <a>, dedupe via Set, and filter nulls
+  const anchors = Array.from(
+    new Set(
+      allLinks.map(el =>
+        el.tagName.toLowerCase() === "a" ? el : el.closest("a")
+      )
+    )
+  ).filter(Boolean);
 
+  let navigating = false; // debounce multi-clicks
+
+  anchors.forEach(anchor => {
     if (anchor.classList.contains("disabled")) return;
+    if (anchor._vfBound) return;       // <- guard against rebinding
+    anchor._vfBound = true;
 
     anchor.addEventListener("click", (e) => {
+      if (navigating) return;          // <- debounce stacked clicks
       const isPureAnchor =
         anchor.host === window.location.host &&
         anchor.pathname === window.location.pathname;
-
       if (isPureAnchor) return;
 
+      navigating = true;
       sessionStorage.setItem("currentPagePath", window.location.pathname);
 
       e.preventDefault();
       const targetUrl = anchor.getAttribute("href");
       let delayCounter = 0;
 
-      const safeFadeInUpElements = Array.from(fadeInUpElements || []);
-      safeFadeInUpElements
+      // Recompute the fade set at click-time so it reflects the live DOM
+      const fadeSet = Array.from(
+        document.querySelectorAll(".fadeInUp:not(nav)")
+      )
         .filter(isInViewport)
-        .reverse()
-        .forEach((element, index) => {
-          element.classList.replace("fadeInUp", "fadeOutDown");
-          element.style.animationDelay = `${index * 600}ms`;
-          delayCounter++;
-        });
+        .reverse();
+
+      fadeSet.forEach((el, index) => {
+        el.classList.replace("fadeInUp", "fadeOutDown");
+        el.style.animationDelay = `${index * 600}ms`;
+        delayCounter++;
+      });
 
       const currentPage = window.location.pathname;
-      const isTopBannerInViewport =
-        topBannerMain && isInViewport(topBannerMain);
-      const footer = document.querySelector("footer");
-      const footerInViewport = isInViewport(footer);
-
-          console.log("delayCounter A = ", delayCounter);
-
+      const isTopBannerInViewport = topBannerMain && isInViewport(topBannerMain);
 
       // From outcomes.html to subpage
-      if (
-        currentPage === "/pages/outcomes.html" &&
-        targetUrl.startsWith("./outcomes/")
-      ) {
+      if (currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) {
         if (isTopBannerInViewport) {
-          // console.log("reachme A");
           delayCounter++;
           setTimeout(() => {
             topBannerMain.classList.add("fadeOutDown");
@@ -79,13 +84,11 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         (targetUrl === "./our-approach.html" ||
           targetUrl === "./leadership.html" ||
           targetUrl === "../index.html" ||
-          targetUrl === "./news.html"
-        )
+          targetUrl === "./news.html")
       ) {
         if (isTopBannerInViewport) {
-          // console.log("reachme B");
-
-          // console.log("delayCounter B = ", delayCounter);
+          console.log("reachme B");
+          console.log("delayCounter B = ", delayCounter);
           delayCounter++;
           topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
           topBannerMain.classList.add("fadeOutDown");
@@ -93,12 +96,8 @@ export function handleOutcomesNavigation(fadeInUpElements) {
       }
 
       // From subpage back to outcomes.html
-      if (
-        currentPage.startsWith("/pages/outcomes/") &&
-        targetUrl === "../outcomes.html"
-      ) {
-        // console.log("reachme C");
-        if (!fadeInUpElements.some(el => el.id === "top_banner_main")) {
+      if (currentPage.startsWith("/pages/outcomes/") && targetUrl === "../outcomes.html") {
+        if (!fadeSet.some(el => el.id === "top_banner_main")) {
           delayCounter--;
         }
       }
