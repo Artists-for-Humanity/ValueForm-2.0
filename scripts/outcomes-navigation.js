@@ -53,11 +53,23 @@ export function handleOutcomesNavigation(fadeInUpElements) {
       const targetUrl = anchor.getAttribute("href");
       let delayCounter = 0;
 
+      // Outcomes route context & static banner flag
+      const currentPage = window.location.pathname;
+      const keepStaticBetweenOutcomes = (
+        (currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) ||
+        (currentPage.startsWith("/pages/outcomes/") && targetUrl === "../outcomes.html")
+      );
+      if (keepStaticBetweenOutcomes) {
+        sessionStorage.setItem("keepOutcomesBannerStatic", "true");
+      }
+      if (keepStaticBetweenOutcomes && topBannerMain) {
+        // Remove fadeInUp and animated classes so the static banner flows into next page
+        topBannerMain.classList.remove("fadeInUp", "animated");
+      }
+
       // Recompute the fade set at click-time so it reflects the live DOM
-      const fadeSet = Array.from(
-        document.querySelectorAll(".fadeInUp:not(nav)")
-      )
-        .filter(isInViewport)
+      const fadeSet = Array.from(document.querySelectorAll(".fadeInUp:not(nav)"))
+        .filter(el => isInViewport(el) && (!keepStaticBetweenOutcomes || el.id !== "top_banner_main"))
         .reverse();
 
       fadeSet.forEach((el, index) => {
@@ -66,12 +78,11 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         delayCounter++;
       });
 
-      const currentPage = window.location.pathname;
       const isTopBannerInViewport = topBannerMain && isInViewport(topBannerMain);
 
-      // From outcomes.html to subpage
+      // From outcomes.html to subpage — keep banner static if requested
       if (currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) {
-        if (isTopBannerInViewport) {
+        if (!keepStaticBetweenOutcomes && isTopBannerInViewport) {
           delayCounter++;
           setTimeout(() => {
             topBannerMain.classList.add("fadeOutDown");
@@ -96,8 +107,9 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         }
       }
 
-      // From subpage back to outcomes.html
+      // From subpage back to outcomes.html — keep banner static via flag, preserve delay tweak
       if (currentPage.startsWith("/pages/outcomes/") && targetUrl === "../outcomes.html") {
+        // flag already set above; keep pre-existing delay behavior
         if (!fadeSet.some(el => el.id === "top_banner_main")) {
           delayCounter--;
         }
