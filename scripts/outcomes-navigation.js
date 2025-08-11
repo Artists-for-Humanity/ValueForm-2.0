@@ -35,7 +35,8 @@ export function handleOutcomesNavigation(fadeInUpElements) {
 
   anchors.forEach(anchor => {
     if (anchor.classList.contains("disabled")) return;
-    if (anchor._vfBound) return;       // <- guard against rebinding
+    if (anchor.dataset && anchor.dataset.vfHandled === "true") return;
+    if (anchor._vfBound) return;
     anchor._vfBound = true;
 
     anchor.addEventListener("click", (e) => {

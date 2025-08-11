@@ -1,4 +1,5 @@
 import { handleOutcomesNavigation } from "./outcomes-navigation.js";
+import { staticTitle } from "./script.js";
 
 // =======================================
 // Outcomes page hover effects
@@ -111,6 +112,71 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// =======================================
+// Outcomes: fade then navigate (like News pinned)
+// =======================================
+let outcomesExitFadeTimeout; // Store timeout for Outcomes clicks
+
+function handleOutcomesFadeAndRedirect(targetUrl = "./outcomes/pokemon.html") {
+  if (outcomesExitFadeTimeout) return; // prevent double scheduling
+
+  // Keep the title static like on News
+  try { staticTitle(); } catch (_) {}
+
+  // Fade out all elements that participate in exits
+  const elements = document.querySelectorAll(".fade_link");
+  elements.forEach((el, index) => {
+    if (el.classList.contains("fadeInUp")) {
+      el.classList.replace("fadeInUp", "fadeOutDown");
+    } else {
+      el.classList.add("fadeOutDown");
+    }
+    el.style.animationDelay = `${index * 600}ms`;
+  });
+
+  outcomesExitFadeTimeout = setTimeout(() => {
+    window.location.href = targetUrl;
+  }, elements.length * 600 + 800);
+}
+
+// Clear on unload/restore
+window.addEventListener("beforeunload", () => { clearTimeout(outcomesExitFadeTimeout); });
+window.addEventListener("pageshow", (e) => { if (e.persisted) clearTimeout(outcomesExitFadeTimeout); });
+window.addEventListener("popstate", () => { clearTimeout(outcomesExitFadeTimeout); });
+
+// Attach click/keyboard handlers to Outcomes blocks only on the landing page
+document.addEventListener("DOMContentLoaded", function () {
+  const outcomeBlocks = document.querySelectorAll(".outcomes.landing block");
+
+  outcomeBlocks.forEach((block) => {
+    // mark so other scripts can skip default handling
+    block.dataset.vfHandled = "true";
+
+    if (block._hasVFListener) return; // avoid duplicates on bfcache
+    block._hasVFListener = true;
+
+    const go = () => {
+      const href = block.getAttribute("href") || "./outcomes/pokemon.html";
+      handleOutcomesFadeAndRedirect(href);
+    };
+
+    block.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      go();
+    });
+
+    block.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        go();
+      }
+    });
+  });
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   const fadeInUpElements = document.querySelectorAll(".fadeInUp");
