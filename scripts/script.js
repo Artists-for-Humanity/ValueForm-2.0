@@ -206,25 +206,23 @@ document.addEventListener("DOMContentLoaded", () => {
 // Remove fadeInUp based on the referring page
 // ======================================================
 document.addEventListener("DOMContentLoaded", function () {
+  const isNewsPage = window.location.pathname.endsWith("/news.html");
+  if (!isNewsPage) return;  // <-- prevents touching #top_banner_main on outcomes
+
   // Define elements with their fade-in delay
   let elementsForFade = [
     { element: document.getElementById("news_page_main"), delay: "600ms" },
-
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
   ];
 
-  // Get the referring page URL
   const previousPage = document.referrer;
 
   // Logic for pinned article
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
   if (previousPage.includes(`/pages/articles/${pinnedFilePath}`)) {
     if (localStorage.getItem("add_fade") === "false") {
-      // Remove fadeInUp for both elements
       elementsForFade.forEach(({ element }) => {
-        if (element) {
-          element.classList.remove("fadeInUp", "animated");
-        }
+        if (element) element.classList.remove("fadeInUp", "animated");
       });
     }
   } else {
@@ -235,8 +233,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Reset fade status in localStorage for subsequent visits
+// Reset for subsequent visits
   localStorage.setItem("add_fade", true);
+});
+
+// ======================================================
+// Safety net: ensure Outcomes banner can re-animate when coming from News
+// ======================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const isOutcomes = window.location.pathname.endsWith("/outcomes.html");
+  const cameFromNews = /\/pages\/news\.html$/.test(document.referrer || "");
+  if (!isOutcomes || !cameFromNews) return;
+
+  const tb = document.getElementById("top_banner_main");
+  if (!tb) return;
+
+  // If anything stripped the classes during the News → Outcomes hop, restore them
+  if (!tb.classList.contains("fadeInUp")) tb.classList.add("fadeInUp");
+  tb.classList.remove("fadeOutDown");
 });
 
 export function addFadeInUp() {
