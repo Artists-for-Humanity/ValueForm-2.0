@@ -60,11 +60,15 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         (currentPage.startsWith("/pages/outcomes/") && targetUrl === "../outcomes.html")
       );
       if (keepStaticBetweenOutcomes) {
+        // Persist a flag so the banner doesn’t re‑animate on the destination page
         sessionStorage.setItem("keepOutcomesBannerStatic", "true");
-      }
-      if (keepStaticBetweenOutcomes && topBannerMain) {
-        // Remove fadeInUp and animated classes so the static banner flows into next page
-        topBannerMain.classList.remove("fadeInUp", "animated");
+        if (topBannerMain) {
+          // Remove fade‑in classes so the static banner flows into next page
+          topBannerMain.classList.remove("fadeInUp", "animated");
+        }
+      } else {
+        // Clear the flag when navigating away from outcomes
+        sessionStorage.removeItem("keepOutcomesBannerStatic");
       }
 
       // Recompute the fade set at click-time so it reflects the live DOM

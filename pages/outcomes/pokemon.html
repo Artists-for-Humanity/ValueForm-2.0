@@ -25,9 +25,7 @@ careers@valueform.io
 	<!-- <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> -->
 	<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 	  <script type="module">
-        import { handleMainNewsFade, staticTitle } from "../../scripts/script.js";
-        window.handleMainNewsFade = handleMainNewsFade;
-        window.staticTitle = staticTitle;
+        // window.handleMainNewsFade = handleMainNewsFade;
     </script>
 
 	<script type="module">
@@ -82,7 +80,7 @@ careers@valueform.io
                     <a href="./../our-approach.html" class="mobile-approach-button"> Approach </a>
 					<a href="./../leadership.html"> Leadership </a>
 					<a href="./../news.html"> News </a>
-					<a href="./../outcomes.html" onclick=" staticTitle(); handleMainNewsFade()"> Outcomes  </a>
+					<a href="./../outcomes.html"> Outcomes  </a>
 
 				</div>
 			</nav>
@@ -250,7 +248,8 @@ careers@valueform.io
 		</footer>
 
 	</body>
-	<!-- <script type="module" src="../../scripts/script.js"></script> -->
+    <!-- Include the shared animation & scroll logic -->
+    <script type="module" src="../../scripts/script.js"></script>
 
 
 </html>

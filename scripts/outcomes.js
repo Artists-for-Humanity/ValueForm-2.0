@@ -1,5 +1,4 @@
 import { handleOutcomesNavigation } from "./outcomes-navigation.js";
-import { staticTitle } from "./script.js";
 
 // =======================================
 // Outcomes page hover effects

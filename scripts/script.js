@@ -1,5 +1,5 @@
 //script.js
-
+console.log("script.js loaded v2.1");
 import { handleNavigation } from "./navigation.js";
 import { handleOutcomesNavigation } from "./outcomes-navigation.js";
 import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, isCurrentPagePinnedArticle } from "./scrollPosition.js";
@@ -83,10 +83,34 @@ function getArticles() {
 // Standard page load anims
 // ============================
 function animateOnLoad() {
+  // Collect all elements slated to fade in except nav items
   const fadeInUpElements = Array.from(
     document.querySelectorAll(".fadeInUp:not(nav)")
   );
 
+  // Check if we just navigated between Outcomes pages
+  const topBanner = document.getElementById("top_banner_main");
+  const keepStatic = sessionStorage.getItem("keepOutcomesBannerStatic");
+  if (keepStatic === "true" && topBanner) {
+    // Consume the flag so it doesn’t persist beyond this load
+    sessionStorage.removeItem("keepOutcomesBannerStatic");
+    // Ensure the banner is visible if it was faded out on the previous page
+    topBanner.classList.remove("fadeOutDown");
+    /*
+     * In Outcomes → subpage navigations, leaving the banner with the
+     * `fadeInUp` class can cause it to animate on the next page load even
+     * without the `animated` class. To truly keep it static, strip both
+     * the entrance and animation classes here before we process the fade
+     * list. The markup will provide `fadeInUp` again on the next load
+     * when we navigate from non-outcomes pages.
+     */
+    topBanner.classList.remove("fadeInUp", "animated");
+    // Remove the banner from the fade list so it isn’t animated again
+    const idx = fadeInUpElements.indexOf(topBanner);
+    if (idx !== -1) fadeInUpElements.splice(idx, 1);
+  }
+
+  // Stagger fade‑in for elements that are currently in view
   setTimeout(() => {
     let viewportIndex = 0;
     fadeInUpElements.forEach((element) => {
@@ -100,7 +124,7 @@ function animateOnLoad() {
     });
   }, 10);
 
-  // handleNavigation(fadeInUpElements);
+  // Delegate navigation handling based on the current path
   const pathname = window.location.pathname;
   if (pathname.includes("outcomes")) {
     handleOutcomesNavigation(fadeInUpElements);
@@ -108,6 +132,7 @@ function animateOnLoad() {
     handleNavigation(fadeInUpElements);
   }
 
+  // Kick off any Lottie animations after initial page anims
   setTimeout(() => {
     const player = document.getElementById("lottieAnimation");
     if (player) player.play();

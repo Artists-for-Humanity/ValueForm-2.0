@@ -1,3 +1,4 @@
+console.log("scrollPosition.js loaded v2.0");
 import { isInViewport } from "./script.js";
 
 const topBannerMain = document.getElementById("top_banner_main");
@@ -38,7 +39,7 @@ export function clearScrollPosition() {
 export function storeScrollPosition() {
   // Always store the scroll position
   sessionStorage.setItem("scrollPosition", window.scrollY.toString());
-  // console.log('reachme B ' + sessionStorage.getItem("scrollPosition"));
+  console.log('reachme B ' + sessionStorage.getItem("scrollPosition"));
 
 
   // Check that topBannerMain exists before testing visibility
