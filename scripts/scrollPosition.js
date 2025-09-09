@@ -1,59 +1,73 @@
-console.log("scrollPosition.js loaded v2.0");
+// scrollPosition.js  • v2.2
+// Keeps the Outcomes banner static when navigating within the Outcomes route,
+// while preserving pinned/news behaviors and scroll restoration.
+// Requires: isInViewport from ./script.js
+
 import { isInViewport } from "./script.js";
 
 const topBannerMain = document.getElementById("top_banner_main");
-// const newsPageMain = document.getElementById("news_page_main");
 
-
-// -- shared util ------------------------------------------------------------
-const pinnedFileName = () => localStorage.getItem("pinnedFileName"); // "bny.html"
-const filePart = (p = "") => p.split("/").pop(); // "bny.html"
+// --------------------- Shared utils ---------------------
+const pinnedFileName = () => localStorage.getItem("pinnedFileName"); // e.g., "bny.html"
+const filePart = (p = "") => p.split("/").pop();
 const looksPinned = (path = "") =>
-  !!pinnedFileName() &&
-  filePart(path) === pinnedFileName() &&
-  path.includes("/pinned/"); // keeps the “/pinned/” safety guard
+  !!pinnedFileName() && filePart(path) === pinnedFileName() && path.includes("/pinned/");
 
-// -- new helpers ------------------------------------------------------------
+// --------------------- Outcomes route helpers ---------------------
+const looksOutcomesLanding = (path = "") => path === "/pages/outcomes.html";
+const looksOutcomesSubpage = (path = "") =>
+  path.startsWith("/pages/outcomes/") && path.endsWith(".html");
+
+export function isCurrentPageOutcomesSubpage() {
+  return looksOutcomesSubpage(window.location.pathname);
+}
+export function wasPreviousPageOutcomesLanding() {
+  const prev = sessionStorage.getItem("currentPagePath") || "";
+  return looksOutcomesLanding(prev);
+}
+export function wasPreviousPageOutcomesRoute() {
+  const prev = sessionStorage.getItem("currentPagePath") || "";
+  return looksOutcomesLanding(prev) || looksOutcomesSubpage(prev);
+}
+
+// --------------------- Existing helpers ---------------------
 export function isCurrentPagePinnedArticle() {
   return looksPinned(window.location.pathname);
 }
 
 export function wasPreviousPagePinnedArticle() {
   const prevPath = sessionStorage.getItem("currentPagePath") || "";
-  if (!prevPath) return false; // nothing recorded yet
-  return looksPinned(prevPath); // re-use the same helper
+  if (!prevPath) return false;
+  return looksPinned(prevPath);
 }
 
-// NEW: detect if the last‑loaded page was /news.html
+// Was the previous page /news.html ?
 export function wasPreviousPageNews() {
   const prev = sessionStorage.getItem("currentPagePath") || "";
   return prev.endsWith("/news.html");
 }
 
+// --------------------- Scroll position API ---------------------
 export function clearScrollPosition() {
   sessionStorage.removeItem("scrollPosition");
-  // sessionStorage.setItem("scrollPosition", "0");
   window.scrollTo(0, 0);
 }
 
 export function storeScrollPosition() {
   // Always store the scroll position
-  sessionStorage.setItem("scrollPosition", window.scrollY.toString());
-  console.log('reachme B ' + sessionStorage.getItem("scrollPosition"));
+  sessionStorage.setItem("scrollPosition", String(window.scrollY));
 
-
-  // Check that topBannerMain exists before testing visibility
-  if (typeof topBannerMain !== "undefined" && topBannerMain) {
+  // Track current banner visibility (if present)
+  if (topBannerMain) {
     sessionStorage.setItem(
       "bannerWasVisible",
       isInViewport(topBannerMain) ? "true" : "false"
     );
   } else {
-    // If it’s missing, you may choose a default:
     sessionStorage.setItem("bannerWasVisible", "false");
   }
 
-  // Grab the news page element, if it exists
+  // Track news article visibility (if present)
   const newsPageMain = document.getElementById("news_page_main");
   if (newsPageMain) {
     sessionStorage.setItem(
@@ -67,15 +81,34 @@ export function storeScrollPosition() {
 
 export function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
-  if ((storedScrollPosition === null || storedScrollPosition === "0") && (!(sessionStorage.getItem("currentPagePath") === "/pages/news.html"))) {
-    // Direct load: trigger banner + article animation if we did *not* just come from news.html
-    topBannerMain?.classList.add("fadeInUp", "animated");
- 
+
+  // ---------- Outcomes guard (EARLY) ----------
+  // If we are on an Outcomes subpage or came from any Outcomes page,
+  // and the banner is in view, strip any entrance classes up front so
+  // later branches cannot re-add them.
+  const onOutcomesSubpage = isCurrentPageOutcomesSubpage();
+  const prevWasOutcomesRoute = wasPreviousPageOutcomesRoute();
+  if (topBannerMain && (onOutcomesSubpage || prevWasOutcomesRoute)) {
+    const bannerInViewNow = isInViewport(topBannerMain);
+    if (bannerInViewNow) {
+      topBannerMain.classList.remove("fadeInUp", "animated");
+      sessionStorage.setItem("dontAnimateBanner", "true");
+    }
+  }
+  // -------------------------------------------
+
+  // Direct load (not from /news.html): animate once, then strip
+  if (
+    (storedScrollPosition === null || storedScrollPosition === "0") &&
+    sessionStorage.getItem("currentPagePath") !== "/pages/news.html"
+  ) {
+    // Let the first paint do a brief intro (if markup provides it), then remove
     setTimeout(() => {
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
 
-    // only animate the article on direct‐load *and* if previous page wasn’t news.html
+    // If this page has a news article container and we didn’t come from news,
+    // allow it a one-time entrance on direct loads.
     const newsArticle = document.getElementById("news_page_main");
     if (newsArticle && !wasPreviousPageNews()) {
       newsArticle.classList.add("fadeInUp", "animated");
@@ -83,33 +116,30 @@ export function restoreScrollPosition() {
 
     document.body.classList.remove("preload");
 
-    // **Set a default value so this branch only runs once**
+    // Seed defaults so this branch only runs once
     sessionStorage.setItem("scrollPosition", "0");
-    sessionStorage.setItem("bannerWasVisible", "true");   // or "false", whichever default you prefer
-    sessionStorage.setItem("articleWasVisible", "false"); // adjust as needed
-
-    // record this page as “previous” for next load
+    sessionStorage.setItem("bannerWasVisible", "true");
+    sessionStorage.setItem("articleWasVisible", "false");
     sessionStorage.setItem("currentPagePath", window.location.pathname);
-
     return;
   }
+
+  // Read prior visibility state
   const storedBannerVisibility = sessionStorage.getItem("bannerWasVisible");
   const storedArticleVisibility = sessionStorage.getItem("articleWasVisible");
-  const articleWasVisible = storedArticleVisibility === "true";
   const bannerWasVisible = storedBannerVisibility === "true";
-  const onPinnedArticle =
-    isCurrentPagePinnedArticle() || wasPreviousPagePinnedArticle(); // the page you’re on now
+  const articleWasVisible = storedArticleVisibility === "true";
 
-  //   const currentPath = window.location.pathname;
-  const pinnedFilePath = localStorage.getItem("pinnedFilePath");
-  //   const pinnedPath = "/pages/articles/" + pinnedFilePath;
+  // Where are we?
+  const onPinnedArticle =
+    isCurrentPagePinnedArticle() || wasPreviousPagePinnedArticle();
 
   if (storedScrollPosition !== null) {
-    const scrollY = parseInt(storedScrollPosition, 10);
+    const scrollY = parseInt(storedScrollPosition, 10) || 0;
     const viewportHeight = window.innerHeight;
     const pageHeight = document.documentElement.scrollHeight;
 
-    // If scroll position is too deep for this page, clear it early
+    // If the stored position is too deep for this page, clear & do a quick intro
     const isTooDeep = scrollY + viewportHeight > pageHeight;
     if (isTooDeep) {
       topBannerMain?.classList.add("fadeInUp", "animated");
@@ -122,9 +152,12 @@ export function restoreScrollPosition() {
       }, 1000);
 
       document.body.classList.remove("preload");
+      sessionStorage.setItem("currentPagePath", window.location.pathname);
       return;
     }
 
+    // If the banner was visible previously (or we’re returning to a pinned article),
+    // keep it static and restore the scroll position.
     if (onPinnedArticle && (bannerWasVisible || articleWasVisible)) {
       topBannerMain?.classList.remove("fadeInUp", "animated");
       window.scrollTo(0, scrollY);
@@ -134,19 +167,18 @@ export function restoreScrollPosition() {
       window.scrollTo(0, scrollY);
       sessionStorage.setItem("dontAnimateBanner", "true");
     } else {
+      // Banner wasn’t visible last time; allow a one-time entrance
       topBannerMain?.classList.add("fadeInUp", "animated");
       clearScrollPosition();
       sessionStorage.removeItem("dontAnimateBanner");
     }
 
+    // Always strip classes after the brief intro
     setTimeout(() => {
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
   }
 
   document.body.classList.remove("preload");
-  //   sessionStorage.removeItem("nextTargetPath");
-
-  // at the very end, always record this page as “previous”
   sessionStorage.setItem("currentPagePath", window.location.pathname);
 }

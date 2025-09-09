@@ -1,5 +1,5 @@
 //script.js
-console.log("script.js loaded v2.1");
+// console.log("script.js loaded v2.1");
 import { handleNavigation } from "./navigation.js";
 import { handleOutcomesNavigation } from "./outcomes-navigation.js";
 import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, isCurrentPagePinnedArticle } from "./scrollPosition.js";
