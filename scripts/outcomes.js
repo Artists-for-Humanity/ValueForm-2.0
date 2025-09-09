@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Only apply hover functionality on non-touch devices
     blocks.forEach((block) => {
       // const targets = block.querySelectorAll("h3, h4, img, percent, number");
-      const targets = block.querySelectorAll("#outcomes-hover, .svg-metric");
+      const targets = block.querySelectorAll(".outcomes-hover, .svg-metric");
 
       targets.forEach((target) => {
         target.addEventListener("mouseenter", function () {
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const block = svg.closest("block");
-    const associatedHeaders = block ? block.querySelectorAll("#outcomes-hover") : [];
+    const associatedHeaders = block ? block.querySelectorAll(".outcomes-hover") : [];
 
     associatedHeaders.forEach((header) => {
       header.addEventListener("mouseenter", () => {
