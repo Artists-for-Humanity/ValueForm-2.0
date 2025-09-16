@@ -979,8 +979,12 @@ nav a:last-child {
   /* Top-right and bottom-right border-radius */
 }
 
-nav a:first-child {
+/* nav a:first-child { */
   /*left: 2px;*/
+  /* border-right: 0px; */
+/* } */
+
+nav a:not(:last-child) {
   border-right: 0px;
 }
 
