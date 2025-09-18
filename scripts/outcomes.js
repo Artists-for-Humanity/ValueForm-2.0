@@ -122,14 +122,29 @@ function handleOutcomesFadeAndRedirect(targetUrl = "./outcomes/pokemon.html") {
   // Keep the title static like on News
   try { staticTitle(); } catch (_) {}
 
-  // Fade out all elements that participate in exits
-  const elements = document.querySelectorAll(".fade_link");
+  // Fade out all elements that participate in exits — strict bottom-up like News
+  const elements = Array.from(document.querySelectorAll(".fade_link"));
+
+  // Sort by vertical position (bottom-most first); tie-break by left (right-most first)
+  elements.sort((a, b) => {
+    const ar = a.getBoundingClientRect();
+    const br = b.getBoundingClientRect();
+    const aTop = ar.top + window.scrollY;
+    const bTop = br.top + window.scrollY;
+    if (aTop !== bTop) return bTop - aTop; // bottom-up
+    const aLeft = ar.left + window.scrollX;
+    const bLeft = br.left + window.scrollX;
+    if (aLeft !== bLeft) return bLeft - aLeft; // right to left when on same row
+    return 0;
+  });
+
   elements.forEach((el, index) => {
     if (el.classList.contains("fadeInUp")) {
       el.classList.replace("fadeInUp", "fadeOutDown");
     } else {
       el.classList.add("fadeOutDown");
     }
+    // Stagger so bottom elements go first (footer should lead naturally)
     el.style.animationDelay = `${index * 600}ms`;
   });
 
