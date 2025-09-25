@@ -103,8 +103,8 @@ export function handleOutcomesNavigation(fadeInUpElements) {
           targetUrl === "./news.html")
       ) {
         if (isTopBannerInViewport) {
-          console.log("reachme B");
-          console.log("delayCounter B = ", delayCounter);
+          // console.log("reachme B");
+          // console.log("delayCounter B = ", delayCounter);
           delayCounter++;
           topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
           topBannerMain.classList.add("fadeOutDown");

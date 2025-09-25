@@ -1998,6 +1998,17 @@ table {
     padding-bottom: 7px;
     padding-top: 15px;
   }
+
+  .article-title {
+  color: #404040;
+  font-family: Helvetica;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 34px;
+  /* 100% */
+  letter-spacing: -0.9px;
+}
 }
 
 .img-contain {

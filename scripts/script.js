@@ -104,6 +104,7 @@ function animateOnLoad() {
      * list. The markup will provide `fadeInUp` again on the next load
      * when we navigate from non-outcomes pages.
      */
+    // console.log("Keeping Outcomes banner static");
     topBanner.classList.remove("fadeInUp", "animated");
     // Remove the banner from the fade list so it isn’t animated again
     const idx = fadeInUpElements.indexOf(topBanner);
@@ -247,6 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (previousPage.includes(`/pages/articles/${pinnedFilePath}`)) {
     if (localStorage.getItem("add_fade") === "false") {
       elementsForFade.forEach(({ element }) => {
+        // console.log("Removing fadeInUp from", element?.id);
         if (element) element.classList.remove("fadeInUp", "animated");
       });
     }
@@ -254,6 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // For other pages, only remove fadeInUp from #top_banner_main
     const topBannerMain = document.getElementById("top_banner_main");
     if (topBannerMain && localStorage.getItem("add_fade") === "false") {
+      // console.log("Removing fadeInUp from #top_banner_main");
       topBannerMain.classList.remove("fadeInUp", "animated");
     }
   }
@@ -274,18 +277,42 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!tb) return;
 
   // If anything stripped the classes during the News → Outcomes hop, restore them
+  // console.log("Restoring fadeInUp to #top_banner_main from News");
   if (!tb.classList.contains("fadeInUp")) tb.classList.add("fadeInUp");
   tb.classList.remove("fadeOutDown");
+    clearScrollPosition();
+
+});
+
+// ======================================================
+// Safety net: ensure News banner can re-animate when coming from Outcomes
+// ======================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const isNews = window.location.pathname.endsWith("/news.html");
+  const cameFromOutcomes = /\/pages\/outcomes\.html$/.test(document.referrer || "");
+  if (!isNews || !cameFromOutcomes) return;
+
+  const tb = document.getElementById("top_banner_main");
+  if (!tb) return;
+
+  // If anything stripped the classes during the Outcomes → News hop, restore them
+  // console.log("Restoring fadeInUp to #top_banner_main from Outcomes");
+  if (!tb.classList.contains("fadeInUp")) tb.classList.add("fadeInUp");
+  tb.classList.remove("fadeOutDown");
+    clearScrollPosition();
+
 });
 
 export function addFadeInUp() {
   const topBannerMain = document.getElementById("top_banner_main");
+  // console.log("Adding fadeInUp to #top_banner_main");
   topBannerMain?.classList.add("fadeInUp", "animated");
 }
 
 export function staticTitle() {
   const item = document.querySelector("#top_banner_main.above_read_full");
   if (item) {
+    // console.log("Removing fadeInUp from #top_banner_main");
     item.classList.remove("fadeInUp", "animated");
   } else {
     console.log(
@@ -296,6 +323,7 @@ export function staticTitle() {
 function staticPreview() {
   const item = document.querySelector("#news_page_main.above_read_full");
   if (item) {
+    // console.log("Removing fadeInUp from #news_page_main");
     item.classList.remove("fadeInUp", "animated");
   } else {
     console.log(
@@ -338,6 +366,7 @@ export function handleFadeAndRedirect() {
   // Fade out elements with class "fade_link" and redirect after transition
   const elements = document.querySelectorAll(".fade_link");
   elements.forEach((div, index) => {
+    // console.log("Fading out", div.id);
     div.classList.replace("fadeInUp", "fadeOutDown");
     div.style.animationDelay = `${index * 600}ms`;
   });
@@ -390,6 +419,7 @@ function handleCacheRestore() {
 
   // Reverse fade-out animations to fade-in
   document.querySelectorAll(".fadeOutDown").forEach((el) => {
+    // console.log("Reversing fadeOutDown to fadeInUp for", el.id);
     el.classList.replace("fadeOutDown", "fadeInUp");
   });
 }
