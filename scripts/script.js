@@ -116,6 +116,7 @@ function animateOnLoad() {
     let viewportIndex = 0;
     fadeInUpElements.forEach((element) => {
       if (isInViewport(element)) {
+        console.log("Element in viewport:", element.id || element.className);
         element.style.animationDelay = `${viewportIndex * 600}ms`;
         element.classList.add("animated");
         viewportIndex++;
@@ -236,6 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!isNewsPage) return;  // <-- prevents touching #top_banner_main on outcomes
 
   // Define elements with their fade-in delay
+  console.log("News page loaded, checking referrer for fadeInUp removal");
   let elementsForFade = [
     { element: document.getElementById("news_page_main"), delay: "600ms" },
     { element: document.getElementById("top_banner_main"), delay: "1200ms" },
@@ -368,6 +370,7 @@ export function handleFadeAndRedirect() {
   elements.forEach((div, index) => {
     // console.log("Fading out", div.id);
     div.classList.replace("fadeInUp", "fadeOutDown");
+    console.log("Setting animationDelay for", div.id, "to", `${index * 600}ms`);
     div.style.animationDelay = `${index * 600}ms`;
   });
 

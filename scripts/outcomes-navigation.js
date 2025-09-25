@@ -64,6 +64,7 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         sessionStorage.setItem("keepOutcomesBannerStatic", "true");
         if (topBannerMain) {
           // Remove fade‑in classes so the static banner flows into next page
+          // console.log("Removing fadeInUp from #top_banner_main for static transition");
           topBannerMain.classList.remove("fadeInUp", "animated");
         }
       } else {
