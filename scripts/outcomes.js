@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     svg.addEventListener("mouseenter", () => {
-      // console.log("Mouse entered SVG:", svg);
       // pathsWithFill.forEach((path) => {
       //   path.setAttribute("fill", "#ff0000ff");
       // });
@@ -122,7 +121,6 @@ function handleOutcomesFadeAndRedirect(targetUrl = "./outcomes/pokemon.html") {
   if (outcomesExitFadeTimeout) return; // prevent double scheduling
 
   // Keep the title static like on News
-  console.log("Calling staticTitle from handleOutcomesFadeAndRedirect");
   try { staticTitle(); } catch (_) {}
 
   // Fade out all elements that participate in exits — strict bottom-up like News

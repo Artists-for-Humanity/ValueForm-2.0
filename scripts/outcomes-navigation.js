@@ -10,8 +10,6 @@ export function handleOutcomesNavigation(fadeInUpElements) {
   const clickMe = document.querySelectorAll(".click-me");
   const topBannerMain = document.getElementById("top_banner_main");
 
-  // console.log("handleOutcomesNavigation called");
-
   // Build and dedupe the anchor list
   const allLinks = [
     ...clickMe,
@@ -58,7 +56,6 @@ export function handleOutcomesNavigation(fadeInUpElements) {
 
       // Outcomes route context & static banner flag
       const currentPage = window.location.pathname;
-      // console.log(currentPage, targetUrl);
 
       const keepStaticBetweenOutcomes = (
         (currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) ||
@@ -69,7 +66,6 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         sessionStorage.setItem("keepOutcomesBannerStatic", "true");
         if (topBannerMain) {
           // Remove fade‑in classes so the static banner flows into next page
-          // console.log("Removing fadeInUp from #top_banner_main for static transition");
           topBannerMain.classList.remove("fadeInUp", "animated");
         }
       } else {
@@ -91,9 +87,7 @@ export function handleOutcomesNavigation(fadeInUpElements) {
       const isTopBannerInViewport = topBannerMain && isInViewport(topBannerMain);
 
       // From outcomes.html to subpage — keep banner static if requested
-      // console.log(currentPage, targetUrl);
       if (currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) {
-        console.log("Navigating from outcomes.html to subpage");
         if (!keepStaticBetweenOutcomes && isTopBannerInViewport) {
           delayCounter++;
           setTimeout(() => {
@@ -111,8 +105,6 @@ export function handleOutcomesNavigation(fadeInUpElements) {
           targetUrl === "./news.html")
       ) {
         if (isTopBannerInViewport) {
-          // console.log("reachme B");
-          // console.log("delayCounter B = ", delayCounter);
           delayCounter++;
           topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
           topBannerMain.classList.add("fadeOutDown");
@@ -126,9 +118,7 @@ export function handleOutcomesNavigation(fadeInUpElements) {
           delayCounter--;
         }
       }
-      // console.log("delayCounter final = ", delayCounter);
-      // console.log("targetUrl = ", targetUrl);
-      // console.log("currentPage = ", currentPage);
+
       // From articles to non-news pages
       if (
         (currentPage.startsWith("/pages/outcomes/") &&
@@ -138,7 +128,6 @@ export function handleOutcomesNavigation(fadeInUpElements) {
             targetUrl === "./../news.html" ||
             targetUrl.startsWith("./../our-approach.html"))
         )) {
-        console.log("Navigating from outcomes subpage to non-outcomes");
 
         setTimeout(() => {
           topBannerMain.classList.add("fadeOutDown");

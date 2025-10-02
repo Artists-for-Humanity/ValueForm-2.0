@@ -1,5 +1,4 @@
 import { isInViewport } from "./script.js";
-// console.log("running navigation script")
 function containsElementWithId(elements, id) {
   if (Array.isArray(elements) || NodeList.prototype.isPrototypeOf(elements)) {
     return Array.from(elements).some((el) => el.id === id);
@@ -26,8 +25,6 @@ export function handleNavigation(fadeInUpElements) {
   const articleTitleBlock = document.getElementById("article_title_block");
   const articleTop = document.getElementById("article_top");
   const outcomesLinks = document.querySelectorAll(".outcomes.landing block");
-
-  // console.log("handleNavigation called");
 
   const allLinks = [
     ...clickMe,
@@ -74,7 +71,6 @@ export function handleNavigation(fadeInUpElements) {
         });
 
       const currentPage = window.location.pathname;
-      // console.log(currentPage, targetUrl);
 
       const isNewsPageMainInViewport =
         newsPageMain && isInViewport(newsPageMain);
@@ -118,8 +114,6 @@ export function handleNavigation(fadeInUpElements) {
         targetUrl.startsWith("./articles/") &&
         targetUrl !== "./articles/" + pinnedFilePath
       ) {
-        // console.log(currentPage, targetUrl);
-        // console.log("Navigating from news to non-pinned article");
         const hasTopBannerInList = containsElementWithId(
           fadeInUpElements,
           "top_banner_main"
@@ -270,15 +264,10 @@ export function handleNavigation(fadeInUpElements) {
       }
 
       setTimeout(() => {
-        // console.log(
-        //   `Redirecting to ${targetUrl} after a delay of ${
-        //     delayCounter * 600 + 800
-        //   } ms`
-        // );
+      
         window.location.href = targetUrl;
       }, delayCounter * 600 + 800);
     });
   });
 
-  // console.log("Navigation handlers attached to links.");
 }

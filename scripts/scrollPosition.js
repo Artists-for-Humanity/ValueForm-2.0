@@ -80,7 +80,6 @@ export function storeScrollPosition() {
 }
 
 export function restoreScrollPosition() {
-  // console.log("restoreScrollPosition called");
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
 
   // ---------- Outcomes guard (EARLY) ----------
@@ -92,8 +91,6 @@ export function restoreScrollPosition() {
   if (topBannerMain && (onOutcomesSubpage || prevWasOutcomesRoute) && window.location.pathname !== "/pages/news.html") {
     const bannerInViewNow = isInViewport(topBannerMain);
     if (bannerInViewNow) {
-      console.log(window.location.pathname);
-      console.log("Removing fadeInUp from #top_banner_main for Outcomes route");
       topBannerMain.classList.remove("fadeInUp", "animated");
       sessionStorage.setItem("dontAnimateBanner", "true");
     }
@@ -107,7 +104,6 @@ export function restoreScrollPosition() {
   ) {
     // Let the first paint do a brief intro (if markup provides it), then remove
     setTimeout(() => {
-      console.log("Removing fadeInUp from #top_banner_main on direct load");
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
 
@@ -152,7 +148,6 @@ export function restoreScrollPosition() {
       sessionStorage.removeItem("dontAnimateBanner");
 
       setTimeout(() => {
-        console.log("Removing fadeInUp from #top_banner_main for too-deep scroll");
         topBannerMain?.classList.remove("fadeInUp", "animated");
       }, 1000);
 
@@ -164,12 +159,10 @@ export function restoreScrollPosition() {
     // If the banner was visible previously (or we’re returning to a pinned article),
     // keep it static and restore the scroll position.
     if (onPinnedArticle && (bannerWasVisible || articleWasVisible)) {
-      console.log("Removing fadeInUp from #top_banner_main for pinned article");
       topBannerMain?.classList.remove("fadeInUp", "animated");
       window.scrollTo(0, scrollY);
       sessionStorage.setItem("dontAnimateBanner", "true");
     } else if (bannerWasVisible) {
-      console.log("Removing fadeInUp from #top_banner_main for visible banner");
       topBannerMain?.classList.remove("fadeInUp", "animated");
       window.scrollTo(0, scrollY);
       sessionStorage.setItem("dontAnimateBanner", "true");
@@ -182,7 +175,6 @@ export function restoreScrollPosition() {
 
     // Always strip classes after the brief intro
     setTimeout(() => {
-      console.log("Removing fadeInUp from #top_banner_main after scroll restore");
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
   }
@@ -190,7 +182,6 @@ export function restoreScrollPosition() {
   document.body.classList.remove("preload");
   sessionStorage.setItem("currentPagePath", window.location.pathname);
   setTimeout(() => {
-      console.log("Removing fadeInUp from #top_banner_main after scroll restore");
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
 }
