@@ -126,6 +126,24 @@ export function handleOutcomesNavigation(fadeInUpElements) {
           delayCounter--;
         }
       }
+      // console.log("delayCounter final = ", delayCounter);
+      // console.log("targetUrl = ", targetUrl);
+      // console.log("currentPage = ", currentPage);
+      // From articles to non-news pages
+      if (
+        (currentPage.startsWith("/pages/outcomes/") &&
+          targetUrl !== "./../outcomes.html" &&
+          (targetUrl === "./../leadership.html" ||
+            targetUrl === "../../index.html" ||
+            targetUrl === "./../news.html" ||
+            targetUrl.startsWith("./../our-approach.html"))
+        )) {
+        console.log("Navigating from outcomes subpage to non-outcomes");
+
+        setTimeout(() => {
+          topBannerMain.classList.add("fadeOutDown");
+        }, delayCounter++ * 600);
+      }
 
       setTimeout(() => {
         window.location.href = targetUrl;

@@ -4,6 +4,7 @@ import { handleNavigation } from "./navigation.js";
 import { handleOutcomesNavigation } from "./outcomes-navigation.js";
 import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, isCurrentPagePinnedArticle } from "./scrollPosition.js";
 
+
 // ============================
 // Reusable isInViewport functions
 // ============================
