@@ -24,14 +24,12 @@ careers@valueform.io
 <link rel="stylesheet" href="../../css/style.css" type="text/css" />
 <!-- <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> -->
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-<script type="module">
-	// window.handleMainNewsFade = handleMainNewsFade;
-</script>
 
 <script type="module">
-	import { handleOutcomesNavigation } from "../../scripts/outcomes-navigation.js";
-	const fadeInUpElements = document.querySelectorAll(".fadeInUp");
-	handleOutcomesNavigation(fadeInUpElements);
+	import { handleMainNewsFade, staticTitle } from "../../scripts/script.js";
+	window.staticTitle = staticTitle;
+	window.handleMainNewsFade = handleMainNewsFade;
+	// const fadeInUpElements = document.querySelectorAll(".fadeInUp");
 </script>
 
 <script defer>
@@ -80,7 +78,7 @@ careers@valueform.io
 				<a href="./../our-approach.html" class="mobile-approach-button"> Approach </a>
 				<a href="./../leadership.html"> Leadership </a>
 				<a href="./../news.html"> News </a>
-				<a href="./../outcomes.html"> Outcomes </a>
+				<a href="./../outcomes.html" onclick=" staticTitle(); handleMainNewsFade()"> Outcomes </a>
 
 			</div>
 		</nav>

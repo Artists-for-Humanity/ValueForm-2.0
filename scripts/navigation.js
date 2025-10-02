@@ -27,6 +27,7 @@ export function handleNavigation(fadeInUpElements) {
   const articleTop = document.getElementById("article_top");
   const outcomesLinks = document.querySelectorAll(".outcomes.landing block");
 
+  // console.log("handleNavigation called");
 
   const allLinks = [
     ...clickMe,
@@ -47,6 +48,7 @@ export function handleNavigation(fadeInUpElements) {
     if (anchor.classList.contains("disabled")) return;
 
     anchor.addEventListener("click", (e) => {
+
       const isPureAnchor =
         anchor.host === window.location.host &&
         anchor.pathname === window.location.pathname;
@@ -72,6 +74,8 @@ export function handleNavigation(fadeInUpElements) {
         });
 
       const currentPage = window.location.pathname;
+      // console.log(currentPage, targetUrl);
+
       const isNewsPageMainInViewport =
         newsPageMain && isInViewport(newsPageMain);
       const isTopBannerMainInViewport =
@@ -114,6 +118,8 @@ export function handleNavigation(fadeInUpElements) {
         targetUrl.startsWith("./articles/") &&
         targetUrl !== "./articles/" + pinnedFilePath
       ) {
+        // console.log(currentPage, targetUrl);
+        // console.log("Navigating from news to non-pinned article");
         const hasTopBannerInList = containsElementWithId(
           fadeInUpElements,
           "top_banner_main"
@@ -184,12 +190,10 @@ export function handleNavigation(fadeInUpElements) {
         if (footerInViewport) {
           setTimeout(() => {
             if (!isTopBannerMainInViewport) {
-              newsPageMain.style.animationDelay = `${
-                (delayCounter - 1) * 600
-              }ms`;
-              articleTitleBlock.style.animationDelay = `${
-                (delayCounter - 2) * 600
-              }ms`;
+              newsPageMain.style.animationDelay = `${(delayCounter - 1) * 600
+                }ms`;
+              articleTitleBlock.style.animationDelay = `${(delayCounter - 2) * 600
+                }ms`;
             }
             topBannerMain.classList.add("fadeOutDown");
           }, 0);
@@ -197,9 +201,8 @@ export function handleNavigation(fadeInUpElements) {
           // No footer: fire immediately but with correct delay
           setTimeout(() => {
             newsPageMain.style.animationDelay = `${(delayCounter - 2) * 600}ms`;
-            topBannerMain.style.animationDelay = `${
-              (delayCounter - 1) * 600
-            }ms`;
+            topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600
+              }ms`;
             topBannerMain.classList.add("fadeOutDown");
           }, 0);
         }
@@ -212,8 +215,8 @@ export function handleNavigation(fadeInUpElements) {
           (targetUrl === "../leadership.html" ||
             targetUrl === "../../index.html" ||
             targetUrl === "../outcomes.html" ||
-        targetUrl.startsWith("../our-approach.html"))
-      )) {
+            targetUrl.startsWith("../our-approach.html"))
+        )) {
 
         const hasTopBannerInList = containsElementWithId(
           fadeInUpElements,
@@ -276,4 +279,6 @@ export function handleNavigation(fadeInUpElements) {
       }, delayCounter * 600 + 800);
     });
   });
+
+  // console.log("Navigation handlers attached to links.");
 }

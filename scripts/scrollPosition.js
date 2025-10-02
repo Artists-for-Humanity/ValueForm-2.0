@@ -80,6 +80,7 @@ export function storeScrollPosition() {
 }
 
 export function restoreScrollPosition() {
+  // console.log("restoreScrollPosition called");
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
 
   // ---------- Outcomes guard (EARLY) ----------

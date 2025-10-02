@@ -1,4 +1,6 @@
-import { handleOutcomesNavigation } from "./outcomes-navigation.js";
+// at the top of outcomes.js
+import { staticTitle } from "./script.js";
+
 
 // =======================================
 // Outcomes page hover effects
@@ -120,6 +122,7 @@ function handleOutcomesFadeAndRedirect(targetUrl = "./outcomes/pokemon.html") {
   if (outcomesExitFadeTimeout) return; // prevent double scheduling
 
   // Keep the title static like on News
+  console.log("Calling staticTitle from handleOutcomesFadeAndRedirect");
   try { staticTitle(); } catch (_) {}
 
   // Fade out all elements that participate in exits — strict bottom-up like News
@@ -190,9 +193,4 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const fadeInUpElements = document.querySelectorAll(".fadeInUp");
-  handleOutcomesNavigation(fadeInUpElements);
 });

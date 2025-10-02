@@ -8,8 +8,9 @@ export function handleOutcomesNavigation(fadeInUpElements) {
   const asideLinks = document.querySelectorAll("aside a");
   const linkBack = document.querySelectorAll(".link-back");
   const clickMe = document.querySelectorAll(".click-me");
-
   const topBannerMain = document.getElementById("top_banner_main");
+
+  // console.log("handleOutcomesNavigation called");
 
   // Build and dedupe the anchor list
   const allLinks = [
@@ -34,10 +35,12 @@ export function handleOutcomesNavigation(fadeInUpElements) {
   let navigating = false; // debounce multi-clicks
 
   anchors.forEach(anchor => {
+    // if (!(anchor instanceof HTMLAnchorElement)) return;
     if (anchor.classList.contains("disabled")) return;
     if (anchor.dataset && anchor.dataset.vfHandled === "true") return;
     if (anchor._vfBound) return;
     anchor._vfBound = true;
+
 
     anchor.addEventListener("click", (e) => {
       if (navigating) return;          // <- debounce stacked clicks
@@ -55,6 +58,8 @@ export function handleOutcomesNavigation(fadeInUpElements) {
 
       // Outcomes route context & static banner flag
       const currentPage = window.location.pathname;
+      // console.log(currentPage, targetUrl);
+
       const keepStaticBetweenOutcomes = (
         (currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) ||
         (currentPage.startsWith("/pages/outcomes/") && targetUrl === "../outcomes.html")
@@ -86,7 +91,9 @@ export function handleOutcomesNavigation(fadeInUpElements) {
       const isTopBannerInViewport = topBannerMain && isInViewport(topBannerMain);
 
       // From outcomes.html to subpage — keep banner static if requested
+      // console.log(currentPage, targetUrl);
       if (currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) {
+        console.log("Navigating from outcomes.html to subpage");
         if (!keepStaticBetweenOutcomes && isTopBannerInViewport) {
           delayCounter++;
           setTimeout(() => {
