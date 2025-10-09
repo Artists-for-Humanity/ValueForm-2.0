@@ -295,6 +295,27 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ======================================================
+// Early: keep Outcomes banner static if we set the flag
+// ======================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname;
+  const isOutcomesRoute =
+    path.endsWith("/outcomes.html") || path.includes("/pages/outcomes/");
+  if (!isOutcomesRoute) return;
+
+  const keepStatic = sessionStorage.getItem("keepOutcomesBannerStatic") === "true";
+  if (!keepStatic) return;
+
+  const tb = document.getElementById("top_banner_main");
+  if (!tb) return;
+
+  // Strip entrance classes ASAP so no flash occurs
+  tb.classList.remove("fadeInUp", "animated");
+  // Also ensure it won't be in any entrance fade list that might have been queued
+  // (animateOnLoad() already splices it, but removing here prevents any frame-1 flash)
+});
+
+// ======================================================
 // Safety net: ensure Outcomes banner can re-animate when coming from News
 // ======================================================
 document.addEventListener("DOMContentLoaded", () => {
