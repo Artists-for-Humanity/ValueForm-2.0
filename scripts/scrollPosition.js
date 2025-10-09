@@ -49,6 +49,7 @@ export function wasPreviousPageNews() {
 
 // --------------------- Scroll position API ---------------------
 export function clearScrollPosition() {
+  console.log("Clearing stored scroll position");
   sessionStorage.removeItem("scrollPosition");
   window.scrollTo(0, 0);
 }

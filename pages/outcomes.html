@@ -8,9 +8,9 @@ __      __   _            ______
 	\/ \__,_|_|\__,_|\___|_|  \___/|_|  |_| |_| |_|
 careers@valueform.io	
 -->
+<html lang="en">
 
 <head>
-	<html lang="en">
 	<!-- <html lang="en" class="smooth-scroll"> -->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -24,6 +24,37 @@ careers@valueform.io
 	<link href="../images/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
 
 	<link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+	<!-- <script>
+		(function () {
+			// Outcomes routes only
+			var p = location.pathname;
+			var isOutcomes = p.endsWith('/outcomes.html') || p.indexOf('/pages/outcomes/') !== -1;
+			if (!isOutcomes) return;
+
+			// Stop the browser from auto-restoring scroll *before* our modules run
+			if ('scrollRestoration' in history) {
+				history.scrollRestoration = 'manual';
+			}
+
+			// Decide if we should force top on arrival
+			var prev = sessionStorage.getItem('currentPagePath') || '';
+			var fromNews = prev.endsWith('/news.html');
+			var fromArticle = prev.indexOf('/pages/articles/') !== -1;
+
+			function resetTop() { window.scrollTo(0, 0); }
+
+			if (fromNews || fromArticle) {
+				// Do it ASAP and for all load paths (normal + bfcache)
+				resetTop();                                 // very early
+				window.addEventListener('DOMContentLoaded', resetTop, { once: true });
+				window.addEventListener('pageshow', function (e) {
+					// bfcache restores scroll *after* DOMContentLoaded
+					resetTop();
+				}, { once: true });
+			}
+		})();
+	</script> -->
 	<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 	<script type="module">
 		import { staticTitle } from "../scripts/script.js";

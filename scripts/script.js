@@ -225,6 +225,59 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
+// ======================================================
+// If we just came from a News article and are landing on
+// Outcomes / Home / Our Approach / Leadership,
+// force scroll to top and fade the banner in once.
+// ======================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const force = sessionStorage.getItem("forceTopAndFadeIn") === "true";
+  if (!force) return;
+
+  // Only act on these top-level pages
+  const p = window.location.pathname;
+  const isTopTarget =
+    p.endsWith("/outcomes.html") ||
+    p.endsWith("/index.html") ||
+    p.endsWith("/our-approach.html") ||
+    p.endsWith("/leadership.html");
+
+  if (!isTopTarget) return;
+
+  // Prevent browser auto-restoring scroll (happens before modules sometimes)
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  const apply = () => {
+    // hard reset scroll
+    window.scrollTo(0, 0);
+
+    // clear our own stored position so other logic won't try to restore
+    sessionStorage.removeItem("scrollPosition");
+    sessionStorage.setItem("bannerWasVisible", "true");
+    sessionStorage.setItem("articleWasVisible", "false");
+
+    // fade the page banner in once
+    const tb = document.getElementById("top_banner_main");
+    if (tb) {
+      tb.classList.add("fadeInUp", "animated");
+      setTimeout(() => tb.classList.remove("fadeInUp", "animated"), 1000);
+    }
+  };
+
+  // Apply now…
+  apply();
+  // …and also on bfcache restores (Safari/WebKit edge cases)
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted) apply();
+  }, { once: true });
+
+  // one-shot flag consumed
+  sessionStorage.removeItem("forceTopAndFadeIn");
+});
+
 // ======================================================
 // Remove fadeInUp based on the referring page
 // ======================================================

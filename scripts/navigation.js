@@ -46,6 +46,7 @@ export function handleNavigation(fadeInUpElements) {
 
     anchor.addEventListener("click", (e) => {
 
+
       const isPureAnchor =
         anchor.host === window.location.host &&
         anchor.pathname === window.location.pathname;
@@ -263,8 +264,29 @@ export function handleNavigation(fadeInUpElements) {
         }
       }
 
+      // ---- NEW: mark that next page should reset scroll + fade banner in
+      const isArticlePage = currentPage.startsWith("/pages/articles/");
+
+      // URLs that should reset when coming from a news article
+      const resetTargets = new Set([
+        // Outcomes
+        "./outcomes.html", "../outcomes.html", "../../outcomes.html", "/pages/outcomes.html",
+        // Home
+        "./index.html", "../index.html", "../../index.html", "/index.html", "/pages/index.html",
+        // Our Approach
+        "./our-approach.html", "../our-approach.html", "../../our-approach.html", "/pages/our-approach.html",
+        // Leadership
+        "./leadership.html", "../leadership.html", "../../leadership.html", "/pages/leadership.html",
+      ]);
+
+      if (isArticlePage && resetTargets.has(targetUrl)) {
+        sessionStorage.setItem("forceTopAndFadeIn", "true");
+        // make absolutely sure we don't carry a "keep static" flag into Outcomes
+        sessionStorage.removeItem("keepOutcomesBannerStatic");
+      }
+
       setTimeout(() => {
-      
+
         window.location.href = targetUrl;
       }, delayCounter * 600 + 800);
     });
