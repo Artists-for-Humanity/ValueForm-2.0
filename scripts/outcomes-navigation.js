@@ -86,6 +86,8 @@ export function handleOutcomesNavigation(fadeInUpElements) {
 
       const isTopBannerInViewport = topBannerMain && isInViewport(topBannerMain);
 
+
+
       // From outcomes.html to subpage — keep banner static if requested
       if (currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) {
         if (!keepStaticBetweenOutcomes && isTopBannerInViewport) {
@@ -96,15 +98,26 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         }
       }
 
-      // From outcomes.html to non-outcomes pages
-      if (
-        currentPage === "/pages/outcomes.html" &&
-        (targetUrl === "./our-approach.html" ||
-          targetUrl === "./leadership.html" ||
-          targetUrl === "../index.html" ||
-          targetUrl === "./news.html")
-      ) {
-        if (isTopBannerInViewport) {
+      // --- Normalize destination (handles ../, ./, and #hash) ---
+      const dest = new URL(targetUrl, window.location.href);
+      const destPath = dest.pathname; // e.g. "/pages/our-approach.html"
+
+      // Are we leaving any Outcomes route? (landing or a subpage)
+      const isLeavingOutcomes =
+        currentPage === "/pages/outcomes.html" ||
+        currentPage.startsWith("/pages/outcomes/");
+
+      // Non-Outcomes top-level targets where the banner should fade out
+      const isNonOutcomesTarget = (
+        destPath === "/pages/our-approach.html" ||
+        destPath === "/pages/leadership.html" ||
+        destPath === "/pages/news.html" ||
+        destPath === "/index.html"
+      );
+
+      // Force-fade the banner even if it wasn't in the .fadeInUp fadeSet
+      if (isLeavingOutcomes && isNonOutcomesTarget && topBannerMain && isTopBannerInViewport) {
+        if (!topBannerMain.classList.contains("fadeOutDown")) {
           delayCounter++;
           topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600}ms`;
           topBannerMain.classList.add("fadeOutDown");
@@ -119,7 +132,7 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         }
       }
 
-      // From articles to non-news pages
+      // From outcomes subpages to non-outcomes pages
       if (
         (currentPage.startsWith("/pages/outcomes/") &&
           targetUrl !== "./../outcomes.html" &&
