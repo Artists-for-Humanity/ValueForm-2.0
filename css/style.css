@@ -1419,7 +1419,7 @@ main.internal.news .intro+.container.no-border {
 
 @media (min-width: 1080px) {
   main.internal .container {
-    padding-top: 35px;
+    padding-top: 28px;
     padding-bottom: 22px;
   }
 
@@ -1464,7 +1464,7 @@ main.internal.news .intro+.container.no-border {
   }
 
   main.internal .intro+.container {
-    padding: 55px 0 33px 0;
+    padding: 55px 0 53px 0;
   }
 
   main.internal.news .intro+.container {
@@ -2316,12 +2316,12 @@ cite bold {
   }
 
   .blockQuote {
-    margin-top: 15px;
+    margin-top: 0px;
     /* padding-top: 15px;
     padding-bottom: 13px; */
     padding-top: 34px;
     padding-bottom: 28px;
-    margin-bottom: 25px;
+    margin-bottom: 0px;
 
     font-size: 34px;
     font-style: normal;
@@ -3046,7 +3046,7 @@ ul.article-list.musing {
 /* *****************************/
 .outcomes.subpage img {
   width: 100%;
-  padding: 5px;
+  padding: 2px 5px 5px 5px;
 }
 
 .outcomes.subpage .center-img {
@@ -3055,8 +3055,30 @@ ul.article-list.musing {
 }
 
 .outcomes.subpage block {
+  padding-top: 0.5px;
+  padding-bottom: 0.5px;
+}
+
+.outcomes.subpage block:first-of-type {
   padding-top: 20px;
+}
+
+.outcomes.subpage block:nth-of-type(2) {
   padding-bottom: 20px;
+}
+
+.outcomes.subpage block:last-of-type {
+  padding-bottom: 20px;
+}
+
+@media screen and (min-width: 1080px) {
+  .outcomes.subpage block:nth-of-type(2) {
+    padding-bottom: 20px;
+  }
+
+  .outcomes.subpage block:last-of-type {
+    padding-bottom: 20px;
+  }
 }
 
 .outcomes .company-info {
@@ -3082,6 +3104,15 @@ ul.article-list.musing {
 .company-stat {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.company-stat:first-of-type {
+  padding-bottom: 39px;
+  border-bottom: 1px solid var(--darkgrey);
+}
+
+.company-stat:nth-of-type(2) {
+  padding-top: 39px;
 }
 
 .outcomes .figure {
@@ -3115,7 +3146,7 @@ ul.article-list.musing {
   color: var(--darkgrey);
   font-weight: 700;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 13px;
 }
 
 .outcomes.subpage p {
