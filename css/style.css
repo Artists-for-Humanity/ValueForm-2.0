@@ -3050,13 +3050,24 @@ ul.article-list.musing {
 }
 
 .outcomes.subpage .center-img {
-  padding-top: 10px;
+  padding-top: 3px;
   padding-bottom: 40px;
 }
 
 .outcomes.subpage block {
   padding-top: 0.5px;
   padding-bottom: 0.5px;
+}
+
+.outcomes block.img-block-c {
+  padding-top: 27px;
+  padding-bottom: 12px;
+
+}
+
+.outcomes block.img-text-block-A {
+  padding-top: 3px;
+  padding-bottom: 0px;
 }
 
 .outcomes.subpage block:first-of-type {
