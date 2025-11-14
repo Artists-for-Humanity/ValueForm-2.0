@@ -3044,7 +3044,8 @@ ul.article-list.musing {
 /* *****************************/
 /* OUTCOMES SUBPAGE STYLES */
 /* *****************************/
-.outcomes.subpage img {
+.outcomes.subpage img,
+.outcomes.subpage video {
   width: 100%;
   padding: 2px 5px 5px 5px;
 }
@@ -3089,6 +3090,10 @@ ul.article-list.musing {
 
   .outcomes.subpage block:last-of-type {
     padding-bottom: 20px;
+  }
+
+  .outcomes block.img-text-block-A {
+    padding-bottom: 39px;
   }
 }
 
@@ -3185,7 +3190,8 @@ ul.article-list.musing {
   display: none;
 }
 
-.outcomes.subpage .mobile-carousel img {
+.outcomes.subpage .mobile-carousel img,
+.outcomes.subpage .mobile-carousel video {
   flex: 0 0 auto;
   width: 83%;
   scroll-snap-align: start;
@@ -3194,7 +3200,8 @@ ul.article-list.musing {
   max-width: 400px;
 }
 
-.outcomes.subpage .mobile-carousel img:last-child {
+.outcomes.subpage .mobile-carousel img:last-child,
+.outcomes.subpage .mobile-carousel video:last-child {
   scroll-snap-align: end;
   scroll-snap-stop: always;
 
@@ -3245,6 +3252,24 @@ ul.article-list.musing {
     display: block;
   }
 
+}
+
+.svg-metric {
+  max-width: 150px;
+  height: auto;
+  display: block;
+}
+
+@media screen and (min-width: 700px) {
+  .svg-metric {
+    max-width: 250px;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .svg-metric {
+    max-width: 280px;
+  }
 }
 
 .svg-metric-B {
