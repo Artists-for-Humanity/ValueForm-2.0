@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // =======================================
 let outcomesExitFadeTimeout; // Store timeout for Outcomes clicks
 
-function handleOutcomesFadeAndRedirect(targetUrl = "./outcomes/pokemon.html") {
+function handleOutcomesFadeAndRedirect(targetUrl = "./outcomes/case-study-A.html") {
   if (outcomesExitFadeTimeout) return; // prevent double scheduling
 
   // Keep the title static like on News
@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     block._hasVFListener = true;
 
     const go = () => {
-      const href = block.getAttribute("href") || "./outcomes/pokemon.html";
+      const href = block.getAttribute("href") || "./outcomes/case-study-A.html";
       handleOutcomesFadeAndRedirect(href);
     };
 
