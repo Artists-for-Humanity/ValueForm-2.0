@@ -42,6 +42,83 @@ careers@valueform.io
 		.company-info th {
 			padding-top: 5px !important;
 		}
+
+		.company-info tr:first-child th {
+			padding-top: 0 !important;
+		}
+
+		main.internal .intro+.container.company-info {
+			padding-bottom: 16px !important;
+		}
+
+		.company-stat-container {
+			padding-top: 16px !important;
+			padding-bottom: 5px !important;
+		}
+
+		.company-stat-container .figure {
+			padding-bottom: 7px !important;
+		}
+
+		/* @media (max-width: 700px) {
+			.company-stat-container .company-stat:first-of-type {
+				border-bottom: none !important;
+			}
+		} */
+
+		.company-stat-container + .container {
+			padding-top: 5px !important;
+			padding-bottom: 4px !important;
+			border-bottom: none !important;
+		}
+
+		.company-stat-container + .container + block {
+			padding-top: 4px !important;
+		}
+
+		block video.tablet-col-1-4.desktop-col-1-6 {
+			padding-bottom: 13px !important;
+		}
+
+		block video.tablet-col-5-8.desktop-col-7-12 {
+			padding-top: 13px !important;
+		}
+
+		.blockQuote {
+			margin: 0 !important;
+		}
+
+		.img-text-block-A img.tablet-col-1-4.desktop-col-1-6 {
+			padding-bottom: 15px !important;
+		}
+
+		/* Block with text div first, video second */
+		.img-text-block-A:has(> div:first-child) {
+			padding-top: 0 !important;
+		}
+
+		.img-text-block-A:has(> div:first-child) h3 {
+			padding-top: 0 !important;
+			margin-top: 3px !important;
+		}
+
+		.img-text-block-A:has(> div:first-child) video {
+			padding-bottom: 13px !important;
+		}
+
+		/* Block with video first, text div second */
+		.img-text-block-A > video:first-child {
+			padding-top: 13px !important;
+		}
+
+		/* Img after div in img-text-block-A */
+		.img-text-block-A:has(> div:first-child) img {
+			padding-bottom: 13px !important;
+		}
+
+		video.center-img {
+			padding-top: 13px !important;
+		}
 	</style>
 	<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 

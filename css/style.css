@@ -3047,7 +3047,7 @@ ul.article-list.musing {
 .outcomes.subpage img,
 .outcomes.subpage video {
   width: 100%;
-  padding: 2px 5px 5px 5px;
+  padding: 5px 5px 5px 5px;
 }
 
 .outcomes.subpage .center-img {
@@ -3118,17 +3118,17 @@ ul.article-list.musing {
 }
 
 .company-stat {
-  padding-top: 10px;
+  padding-top: 2px;
   padding-bottom: 10px;
 }
 
 .company-stat:first-of-type {
-  padding-bottom: 39px;
+  padding-bottom: 21px;
   border-bottom: 1px solid var(--darkgrey);
 }
 
 .company-stat:nth-of-type(2) {
-  padding-top: 39px;
+  padding-top: 21px;
 }
 
 .outcomes .figure {
@@ -3155,7 +3155,7 @@ ul.article-list.musing {
 
 .outcomes.subpage h2.subhead {
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 2px;
 }
 
 .outcomes.subpage h3 {
