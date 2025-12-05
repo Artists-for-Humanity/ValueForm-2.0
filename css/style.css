@@ -3198,6 +3198,7 @@ ul.article-list.musing {
   font-weight: 700;
   padding-top: 10px;
   padding-bottom: 2px;
+  line-height: 24px;
 }
 
 .outcomes.subpage h3 {
@@ -3328,6 +3329,7 @@ ul.article-list.musing {
 
   .outcomes.subpage h2.subhead.second {
     line-height: 34px;
+    padding-top: 15px;
   }
 
   .outcomes.subpage .article-vid,
@@ -3410,6 +3412,7 @@ ul.article-list.musing {
 
   .outcomes.subpage h2.subhead.second {
     line-height: 34px;
+    padding-top: 15px;
   }
 
   .outcomes.subpage .company-info tr:nth-child(1) th {
