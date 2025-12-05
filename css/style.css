@@ -3353,10 +3353,24 @@ ul.article-list.musing {
     padding-bottom: 0 !important;
   }
 
+  /* First block after company-stat-container has different padding */
+  .outcomes.subpage .company-stat-container + block,
+  .outcomes.subpage .company-stat-container + blockquote {
+    padding-top: 17px !important;
+  }
+
   /* Remove padding from all img and video elements */
   .outcomes.subpage img,
   .outcomes.subpage video {
     padding: 0 !important;
+  }
+
+  /* Blockquote spacing - overrides all block rules */
+  .outcomes.subpage .company-stat-container ~ blockquote,
+  .outcomes.subpage blockquote {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+    margin-top: 15px !important;
   }
 
   .outcomes.subpage h2.subhead {
@@ -3462,10 +3476,24 @@ ul.article-list.musing {
     padding-bottom: 0 !important;
   }
 
+  /* First block after company-stat-container has different padding */
+  .outcomes.subpage .company-stat-container + block,
+  .outcomes.subpage .company-stat-container + blockquote {
+    padding-top: 26px !important;
+  }
+
   /* Remove padding from all img and video elements */
   .outcomes.subpage img,
   .outcomes.subpage video {
     padding: 0 !important;
+  }
+
+  /* Blockquote spacing - overrides all block rules */
+  .outcomes.subpage .company-stat-container ~ blockquote,
+  .outcomes.subpage blockquote {
+    padding-top: 37px !important;
+    padding-bottom: 37px !important;
+    margin-top: 24px !important;
   }
 
   .outcomes.subpage .company-info tr:nth-child(1) th {
@@ -3523,12 +3551,12 @@ ul.article-list.musing {
 }
 
 /* QA Testing styles - TEMPORARY */
-/* main video,
+main video,
 main img {
   outline: 1px solid red !important;
   outline-offset: -1px !important;
   background: rgba(255, 0, 0, 0.2) !important;
-} */
+}
 
 .company-info td {
   padding: 5px 0 5px 0 !important;
