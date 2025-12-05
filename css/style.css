@@ -3281,6 +3281,32 @@ ul.article-list.musing {
   display: table-cell;
 }
 
+.outcomes.subpage .company-info table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.outcomes.subpage .company-info tbody {
+  border-bottom: none;
+}
+
+.outcomes.subpage .company-info tr {
+  border-bottom: none;
+}
+
+.outcomes.subpage .company-info th,
+.outcomes.subpage .company-info td {
+  border: none;
+}
+
+.outcomes .company-stat:nth-of-type(2) .figure {
+  transform: translateX(-.3em);
+}
+
+.outcomes .company-stat:nth-of-type(2) .figure .percent {
+  left: 0.4em;
+}
+
 @media screen and (min-width: 700px) {
   .outcomes .company-info .field {
     display: flex;
@@ -3438,6 +3464,93 @@ ul.article-list.musing {
     margin-right: -50vw;
   }
 
+}
+
+/* QA Testing styles - TEMPORARY */
+main video,
+main img {
+  outline: 1px solid red !important;
+  outline-offset: -1px !important;
+  background: rgba(255, 0, 0, 0.2) !important;
+}
+
+.company-info td {
+  padding: 5px 0 5px 0 !important;
+}
+
+.company-info th {
+  padding-top: 5px !important;
+}
+
+.company-info tr:first-child th {
+  padding-top: 0 !important;
+}
+
+main.internal .intro+.container.company-info {
+  padding-bottom: 16px !important;
+}
+
+.company-stat-container {
+  padding-top: 16px !important;
+  padding-bottom: 5px !important;
+}
+
+.company-stat-container .figure {
+  padding-bottom: 7px !important;
+}
+
+.company-stat-container + .container {
+  padding-top: 5px !important;
+  padding-bottom: 4px !important;
+  border-bottom: none !important;
+}
+
+.company-stat-container + .container + block {
+  padding-top: 4px !important;
+}
+
+block video.tablet-col-1-4.desktop-col-1-6 {
+  padding-bottom: 13px !important;
+}
+
+block video.tablet-col-5-8.desktop-col-7-12 {
+  padding-top: 13px !important;
+}
+
+.blockQuote {
+  margin: 0 !important;
+}
+
+.img-text-block-A img.tablet-col-1-4.desktop-col-1-6 {
+  padding-bottom: 15px !important;
+}
+
+/* Block with text div first, video second */
+.img-text-block-A:has(> div:first-child) {
+  padding-top: 0 !important;
+}
+
+.img-text-block-A:has(> div:first-child) h3 {
+  padding-top: 0 !important;
+  margin-top: 3px !important;
+}
+
+.img-text-block-A:has(> div:first-child) video {
+  padding-bottom: 13px !important;
+}
+
+/* Block with video first, text div second */
+.img-text-block-A > video:first-child {
+  padding-top: 13px !important;
+}
+
+/* Img after div in img-text-block-A */
+.img-text-block-A:has(> div:first-child) img {
+  padding-bottom: 13px !important;
+}
+
+video.center-img {
+  padding-top: 13px !important;
 }
 
 .svg-metric {
