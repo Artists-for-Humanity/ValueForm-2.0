@@ -3264,6 +3264,23 @@ ul.article-list.musing {
   display: none;
 }
 
+.outcomes.subpage .company-info table {
+  display: table;
+}
+
+.outcomes.subpage .company-info tbody {
+  display: table-row-group;
+}
+
+.outcomes.subpage .company-info tr {
+  display: table-row;
+}
+
+.outcomes.subpage .company-info th,
+.outcomes.subpage .company-info td {
+  display: table-cell;
+}
+
 @media screen and (min-width: 700px) {
   .outcomes .company-info .field {
     display: flex;
@@ -3297,6 +3314,51 @@ ul.article-list.musing {
     margin-left: -50vw;
     margin-right: -50vw;
   }
+
+  .outcomes.subpage .company-info table {
+    display: grid;
+    grid-template-columns: subgrid;
+  }
+
+  .outcomes.subpage .company-info tbody {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+  }
+
+  .outcomes.subpage .company-info tr {
+    display: contents;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(1) th {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(2) td {
+    grid-column: 1 / span 3;
+    grid-row: 2;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(3) th {
+    grid-column: 4;
+    grid-row: 1;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(4) td {
+    grid-column: 4 / span 3;
+    grid-row: 2;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(5) th {
+    grid-column: 7;
+    grid-row: 1;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(6) td {
+    grid-column: 7 / span 2;
+    grid-row: 2;
+  }
 }
 
 @media screen and (min-width:1080px) {
@@ -3322,6 +3384,36 @@ ul.article-list.musing {
 
   .outcomes.subpage h2.subhead.second {
     line-height: 34px;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(1) th {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(2) td {
+    grid-column: 1 / span 4;
+    grid-row: 2;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(3) th {
+    grid-column: 5;
+    grid-row: 1;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(4) td {
+    grid-column: 5 / span 4;
+    grid-row: 2;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(5) th {
+    grid-column: 9;
+    grid-row: 1;
+  }
+
+  .outcomes.subpage .company-info tr:nth-child(6) td {
+    grid-column: 9 / span 4;
+    grid-row: 2;
   }
 
   .outcomes.subpage h3 {
