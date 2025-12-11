@@ -502,7 +502,7 @@ th {
   }
 
   td {
-    padding: 11px 0;
+    padding: 0 0 11px 0;
   }
 
   th,
@@ -3560,6 +3560,13 @@ main img {
 
 .company-info td {
   padding: 5px 0 5px 0 !important;
+}
+
+/* Tablet-only override for company-info td top padding */
+@media (min-width: 700px) and (max-width: 1079px) {
+  .company-info td {
+    padding: 0 0 5px 0 !important;
+  }
 }
 
 .company-info th {
