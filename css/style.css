@@ -1347,7 +1347,7 @@ main.internal.news .intro+.container.no-border {
   }
 
   main.internal .intro+.container {
-    padding: 24px 0 24px 0;
+    padding: 20px 0 24px 0;
   }
 
   main.internal.news .intro+.container {
@@ -3342,7 +3342,7 @@ ul.article-list.musing {
   }
 
   .outcomes.subpage .company-stat-container {
-    padding-top: 28px !important;
+    padding-top: 24px !important;
     padding-bottom: 0 !important;
   }
 
@@ -3376,7 +3376,7 @@ ul.article-list.musing {
   .outcomes.subpage h2.subhead {
     font-size: 16px;
     font-weight: 700;
-    padding-top: 0px;
+    padding-top: 3px;
     padding-bottom: 2px;
     line-height: 24px;
 }
@@ -3462,6 +3462,10 @@ ul.article-list.musing {
 
   .outcomes .company-stat-container .subhead {
     line-height: 34px;
+  }
+
+  .outcomes.subpage h2.subhead {
+    padding-top: 0px;
   }
 
   .outcomes.subpage h2.subhead.second {
