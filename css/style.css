@@ -1200,6 +1200,10 @@ main.internal .container.no-border {
   border-bottom: 0;
 }
 
+main.internal .container.no-before-after {
+  border-bottom: 0;
+}
+
 main.internal .container::before,
 .container::after {
   display: none;
