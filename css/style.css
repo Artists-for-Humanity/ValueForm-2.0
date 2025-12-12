@@ -3008,7 +3008,7 @@ ul.article-list.musing {
   }
 
   .outcomes .company-stat-container .company-stat:first-of-type .figure-description {
-    grid-column: 2 / span 5;
+    grid-column: 3 / span 4;
   }
 
   .outcomes .company-stat-container .company-stat:nth-of-type(2) .figure {
@@ -3368,18 +3368,18 @@ main.outcomes.subpage .company-info {
     padding-top: 17px !important;
   }
 
-  /* Text-only blocks (no images/videos) have 12px top padding */
-  .outcomes.subpage .company-stat-container ~ block:not(:has(img)):not(:has(video)) {
+  /* Text-only blocks (no images/videos) have 12px top padding (except first block and those after text blocks) */
+  .outcomes.subpage .company-stat-container ~ block:not(:has(img)):not(:has(video)):not(.company-stat-container + block):not(block:has(h1, h2, h3, h4, h5, h6, p) + block) {
     padding-top: 12px !important;
   }
 
-  /* Blocks with multiple images or videos have 8px top padding */
-  .outcomes.subpage .company-stat-container ~ block.img-block-c,
-  .outcomes.subpage .company-stat-container ~ block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ block:has(> video:nth-of-type(2)),
-  .outcomes.subpage .company-stat-container ~ block:has(> img:nth-of-type(2)),
-  .outcomes.subpage .company-stat-container ~ block:has(> video + img),
-  .outcomes.subpage .company-stat-container ~ block:has(> img + video) {
+  /* Blocks with multiple images or videos have 8px top padding (except first block, after blockquote, img-text-block-A after no-text blocks, and multi-media after img-text-block-A) */
+  .outcomes.subpage .company-stat-container ~ block.img-block-c:not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container ~ block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block):not(block:not(:has(h1, h2, h3, h4, h5, h6, p)) + block),
+  .outcomes.subpage .company-stat-container ~ block:has(> video:nth-of-type(2)):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container ~ block:has(> img:nth-of-type(2)):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container ~ block:has(> video + img):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container ~ block:has(> img + video):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block) {
     padding-top: 8px !important;
   }
 
@@ -3391,6 +3391,39 @@ main.outcomes.subpage .company-info {
   .outcomes.subpage .company-stat-container ~ blockquote + block:has(> video + img),
   .outcomes.subpage .company-stat-container ~ blockquote + block:has(> img + video) {
     padding-top: 30px !important;
+  }
+
+  /* Image/video + text blocks after multi-image/video blocks have 30px top padding */
+  .outcomes.subpage .company-stat-container ~ block.img-block-c + block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ block:has(> video:nth-of-type(2)) + block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ block:has(> img:nth-of-type(2)) + block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ block:has(> video + img) + block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ block:has(> img + video) + block.img-text-block-A {
+    padding-top: 30px !important;
+  }
+
+  /* Multi-image/video blocks after image/video + text blocks have 30px top padding */
+  .outcomes.subpage .company-stat-container ~ block.img-text-block-A + block.img-block-c,
+  .outcomes.subpage .company-stat-container ~ block.img-text-block-A + block:has(> video:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container ~ block.img-text-block-A + block:has(> img:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container ~ block.img-text-block-A + block:has(> video + img),
+  .outcomes.subpage .company-stat-container ~ block.img-text-block-A + block:has(> img + video) {
+    padding-top: 30px !important;
+  }
+
+  /* Image/video + text blocks after blockquote have 30px top padding */
+  .outcomes.subpage .company-stat-container ~ blockquote + block.img-text-block-A {
+    padding-top: 30px !important;
+  }
+
+  /* Image/video + text blocks after blocks with no text have 30px top padding */
+  .outcomes.subpage .company-stat-container ~ block:not(:has(h1, h2, h3, h4, h5, h6, p)) + block.img-text-block-A {
+    padding-top: 30px !important;
+  }
+
+  /* Blocks with full-width images/videos after text blocks have 6px top padding */
+  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + block:has(.article-img-full, .article-vid) {
+    padding-top: 6px !important;
   }
 
   /* Remove padding from all img and video elements */
@@ -3416,12 +3449,37 @@ main.outcomes.subpage .company-info {
     padding-bottom: 60px !important;
   }
 
+  /* Last block with text has 35px bottom padding */
+  .outcomes.subpage block:last-of-type:has(h1, h2, h3, h4, h5, h6, p) {
+    padding-bottom: 35px !important;
+  }
+
+  /* Text-only blocks after any text-containing block have 0px top padding */
+  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + block:not(:has(img)):not(:has(video)) {
+    padding-top: 0px !important;
+  }
+
+  /* h3 headers in text-only blocks after text-containing blocks have 0px top padding */
+  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + block:not(:has(img)):not(:has(video)) h3 {
+    padding-top: 0px !important;
+  }
+
   /* Blockquote spacing - overrides all block rules */
   .outcomes.subpage .company-stat-container ~ blockquote,
   .outcomes.subpage blockquote {
     padding-top: 28px !important;
     padding-bottom: 28px !important;
     margin-top: 30px !important;
+  }
+
+  /* First blockquote after company-stat-container has 15px top margin */
+  .outcomes.subpage .company-stat-container + blockquote {
+    margin-top: 15px !important;
+  }
+
+  /* Blockquotes after text blocks have 6px top margin */
+  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + blockquote {
+    margin-top: 6px !important;
   }
 
   .outcomes.subpage h2.subhead {
