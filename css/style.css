@@ -3399,6 +3399,23 @@ main.outcomes.subpage .company-info {
     padding: 0 !important;
   }
 
+  /* Single image/video in block with no text spans full 8 columns on tablet */
+  .outcomes.subpage block:has(> img:only-of-type):not(:has(> video)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div)) > img:not(.article-img-full),
+  .outcomes.subpage block:has(> video:only-of-type):not(:has(> img)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div)) > video:not(.article-vid) {
+    grid-column: 1 / span 8 !important;
+  }
+
+  /* Single image/video blocks after text blocks have 6px top padding */
+  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + block:has(> img:only-of-type):not(:has(> video)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div)),
+  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + block:has(> video:only-of-type):not(:has(> img)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div)) {
+    padding-top: 6px !important;
+  }
+
+  /* Last block on case study pages has 60px bottom padding */
+  .outcomes.subpage block:last-of-type {
+    padding-bottom: 60px !important;
+  }
+
   /* Blockquote spacing - overrides all block rules */
   .outcomes.subpage .company-stat-container ~ blockquote,
   .outcomes.subpage blockquote {
