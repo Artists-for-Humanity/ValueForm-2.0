@@ -3151,6 +3151,7 @@ ul.article-list.musing {
   font-size: 13px;
   font-weight: 400;
   line-height: 25px;
+  border-bottom: 1px solid var(--darkgrey);
 }
 
 .outcomes .company-info .label {
@@ -3158,7 +3159,7 @@ ul.article-list.musing {
 }
 
 .outcomes.subpage .company-stat-container {
-  border-bottom: 0px;
+  border-bottom: 1px solid var(--darkgrey);
 }
 
 .outcomes .company-stat-container .subhead {
@@ -3296,6 +3297,10 @@ ul.article-list.musing {
   width: 100%;
 }
 
+main.outcomes.subpage .company-info {
+  border-bottom: 1px solid var(--darkgrey) !important;
+}
+
 .outcomes.subpage .company-info tbody {
   border-bottom: none;
 }
@@ -3363,6 +3368,31 @@ ul.article-list.musing {
     padding-top: 17px !important;
   }
 
+  /* Text-only blocks (no images/videos) have 12px top padding */
+  .outcomes.subpage .company-stat-container ~ block:not(:has(img)):not(:has(video)) {
+    padding-top: 12px !important;
+  }
+
+  /* Blocks with multiple images or videos have 8px top padding */
+  .outcomes.subpage .company-stat-container ~ block.img-block-c,
+  .outcomes.subpage .company-stat-container ~ block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ block:has(> video:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container ~ block:has(> img:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container ~ block:has(> video + img),
+  .outcomes.subpage .company-stat-container ~ block:has(> img + video) {
+    padding-top: 8px !important;
+  }
+
+  /* Blocks with multiple images/videos after blockquote have 30px top padding */
+  .outcomes.subpage .company-stat-container ~ blockquote + block.img-block-c,
+  .outcomes.subpage .company-stat-container ~ blockquote + block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ blockquote + block:has(> video:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container ~ blockquote + block:has(> img:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container ~ blockquote + block:has(> video + img),
+  .outcomes.subpage .company-stat-container ~ blockquote + block:has(> img + video) {
+    padding-top: 30px !important;
+  }
+
   /* Remove padding from all img and video elements */
   .outcomes.subpage img,
   .outcomes.subpage video {
@@ -3374,7 +3404,7 @@ ul.article-list.musing {
   .outcomes.subpage blockquote {
     padding-top: 28px !important;
     padding-bottom: 28px !important;
-    margin-top: 15px !important;
+    margin-top: 30px !important;
   }
 
   .outcomes.subpage h2.subhead {
