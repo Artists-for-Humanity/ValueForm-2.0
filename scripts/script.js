@@ -4,6 +4,7 @@ import { handleOutcomesNavigation } from "./outcomes-navigation.js";
 import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, isCurrentPagePinnedArticle } from "./scrollPosition.js";
 
 
+
 // ============================
 // Reusable isInViewport functions
 // ============================
@@ -90,8 +91,9 @@ function animateOnLoad() {
   // Check if we just navigated between Outcomes pages
   const topBanner = document.getElementById("top_banner_main");
   const keepStatic = sessionStorage.getItem("keepOutcomesBannerStatic");
+
   if (keepStatic === "true" && topBanner) {
-    // Consume the flag so it doesn’t persist beyond this load
+    // Consume the flag so it doesn't persist beyond this load
     sessionStorage.removeItem("keepOutcomesBannerStatic");
     // Ensure the banner is visible if it was faded out on the previous page
     topBanner.classList.remove("fadeOutDown");
@@ -104,10 +106,11 @@ function animateOnLoad() {
      * when we navigate from non-outcomes pages.
      */
     topBanner.classList.remove("fadeInUp", "animated");
-    // Remove the banner from the fade list so it isn’t animated again
+    // Remove the banner from the fade list so it isn't animated again
     const idx = fadeInUpElements.indexOf(topBanner);
     if (idx !== -1) fadeInUpElements.splice(idx, 1);
   }
+  // For direct loads, the banner will animate naturally via the fadeInUpElements array
 
   // Stagger fade‑in for elements that are currently in view
   setTimeout(() => {
@@ -286,7 +289,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const isNewsPage = path.endsWith("/news.html");
   const isOutcomesPage = path.endsWith("/outcomes.html");
   // if (!isNewsPage) return;  // <-- prevents touching #top_banner_main on outcomes
-  if (!isNewsPage && !isOutcomesPage) return;
+  if (!isNewsPage && !isOutcomesPage) {
+    return;
+  }
 
 
   // Define elements with their fade-in delay
@@ -356,10 +361,20 @@ document.addEventListener("DOMContentLoaded", () => {
     path.endsWith("/outcomes.html") || path.includes("/pages/outcomes/");
   if (!isOutcomesRoute) return;
 
+  const tb = document.getElementById("top_banner_main");
   const keepStatic = sessionStorage.getItem("keepOutcomesBannerStatic") === "true";
+
+  // Clear the flag if this is a direct load or page refresh (referrer is same page or empty)
+  const currentUrl = window.location.href;
+  const referrer = document.referrer;
+  const isDirectLoad = !referrer || referrer === currentUrl || !referrer.includes("/pages/outcomes/");
+  if (isDirectLoad) {
+    sessionStorage.removeItem("keepOutcomesBannerStatic");
+    return;
+  }
+
   if (!keepStatic) return;
 
-  const tb = document.getElementById("top_banner_main");
   if (!tb) return;
 
   // Strip entrance classes ASAP so no flash occurs
@@ -411,6 +426,8 @@ export function staticTitle() {
   const item = document.querySelector("#top_banner_main.above_read_full");
   if (item) {
     item.classList.remove("fadeInUp", "animated");
+    // Set flag so the banner stays static on the next Outcomes page
+    sessionStorage.setItem("keepOutcomesBannerStatic", "true");
   } else {
     console.log(
       "Element #top_banner_main with class above_read_full not found."

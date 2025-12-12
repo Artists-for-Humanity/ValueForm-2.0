@@ -89,7 +89,14 @@ export function restoreScrollPosition() {
   // later branches cannot re-add them.
   const onOutcomesSubpage = isCurrentPageOutcomesSubpage();
   const prevWasOutcomesRoute = wasPreviousPageOutcomesRoute();
-  if (topBannerMain && (onOutcomesSubpage || prevWasOutcomesRoute) && window.location.pathname !== "/pages/news.html") {
+
+  // Check if this is a direct load (no referrer or self-referral)
+  const referrer = document.referrer;
+  const currentUrl = window.location.href;
+  const isDirectLoad = !referrer || referrer === currentUrl || !referrer.includes("/pages/outcomes/");
+
+  // Only strip classes if NOT a direct load
+  if (topBannerMain && (onOutcomesSubpage || prevWasOutcomesRoute) && window.location.pathname !== "/pages/news.html" && !isDirectLoad) {
     const bannerInViewNow = isInViewport(topBannerMain);
     if (bannerInViewNow) {
       topBannerMain.classList.remove("fadeInUp", "animated");
@@ -99,9 +106,11 @@ export function restoreScrollPosition() {
   // -------------------------------------------
 
   // Direct load (not from /news.html): animate once, then strip
+  // BUT: Don't strip on outcomes subpages if it's a direct load - let them animate
   if (
     (storedScrollPosition === null || storedScrollPosition === "0") &&
-    sessionStorage.getItem("currentPagePath") !== "/pages/news.html"
+    sessionStorage.getItem("currentPagePath") !== "/pages/news.html" &&
+    !(onOutcomesSubpage && isDirectLoad)
   ) {
     // Let the first paint do a brief intro (if markup provides it), then remove
     setTimeout(() => {
