@@ -365,9 +365,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const keepStatic = sessionStorage.getItem("keepOutcomesBannerStatic") === "true";
 
   // Clear the flag if this is a direct load or page refresh (referrer is same page or empty)
-  const currentUrl = window.location.href;
+  const currentPath = window.location.pathname;
   const referrer = document.referrer;
-  const isDirectLoad = !referrer || referrer === currentUrl || !referrer.includes("/pages/outcomes/");
+  const referrerPath = referrer ? new URL(referrer, window.location.origin).pathname : '';
+  const isDirectLoad = !referrer || referrerPath === currentPath || !referrer.includes("/pages/outcomes/");
   if (isDirectLoad) {
     sessionStorage.removeItem("keepOutcomesBannerStatic");
     return;
