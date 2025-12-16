@@ -3107,6 +3107,7 @@ ul.article-list.musing {
 .outcomes.subpage block {
   padding-top: 0.5px;
   padding-bottom: 0.5px;
+  cursor: default;
 }
 
 .outcomes block.img-block-c {
