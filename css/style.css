@@ -985,8 +985,8 @@ nav a:last-child {
 }
 
 /* nav a:first-child { */
-  /*left: 2px;*/
-  /* border-right: 0px; */
+/*left: 2px;*/
+/* border-right: 0px; */
 /* } */
 
 nav a:not(:last-child) {
@@ -2009,15 +2009,15 @@ table {
   }
 
   .article-title {
-  color: #404040;
-  font-family: Helvetica;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 34px;
-  /* 100% */
-  letter-spacing: -0.9px;
-}
+    color: #404040;
+    font-family: Helvetica;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 34px;
+    /* 100% */
+    letter-spacing: -0.9px;
+  }
 }
 
 .img-contain {
@@ -2875,11 +2875,11 @@ ul.article-list.musing {
   }
 
   .outcomes block {
-  padding-top: 7px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--darkgrey);
-  cursor: pointer;
-}
+    padding-top: 7px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--darkgrey);
+    cursor: pointer;
+  }
 
 }
 
@@ -3070,7 +3070,7 @@ ul.article-list.musing {
   }
 
   .outcomes .company-stat-container .company-stat:first-of-type .figure-description {
-    grid-column: 2 / span 9;
+    grid-column: 3 / span 8;
   }
 
   .outcomes .company-stat-container .company-stat:nth-of-type(2) .figure {
@@ -3325,13 +3325,15 @@ main.outcomes.subpage .company-info {
 
 @media screen and (min-width: 700px) {
   .company-stat:first-of-type {
-  padding-bottom: 27px;
-  border-bottom: 1px solid var(--darkgrey);
-}
+    padding-bottom: 27px;
+    border-bottom: 1px solid var(--darkgrey);
+  }
 
-.company-stat:nth-of-type(2) {
-  padding-top: 27px;
-}
+
+
+  .company-stat:nth-of-type(2) {
+    padding-top: 27px;
+  }
 
   .outcomes .company-info .field {
     display: flex;
@@ -3357,73 +3359,73 @@ main.outcomes.subpage .company-info {
   }
 
   /* Consistent 30px spacing between all blocks below company-stat-container */
-  .outcomes.subpage .company-stat-container ~ block,
-  .outcomes.subpage .company-stat-container ~ blockquote {
+  .outcomes.subpage .company-stat-container~block,
+  .outcomes.subpage .company-stat-container~blockquote {
     padding-top: 30px !important;
     padding-bottom: 0 !important;
   }
 
   /* First block after company-stat-container has different padding */
-  .outcomes.subpage .company-stat-container + block,
-  .outcomes.subpage .company-stat-container + blockquote {
+  .outcomes.subpage .company-stat-container+block,
+  .outcomes.subpage .company-stat-container+blockquote {
     padding-top: 17px !important;
   }
 
   /* Text-only blocks (no images/videos) have 12px top padding (except first block and those after text blocks) */
-  .outcomes.subpage .company-stat-container ~ block:not(:has(img)):not(:has(video)):not(.company-stat-container + block):not(block:has(h1, h2, h3, h4, h5, h6, p) + block) {
+  .outcomes.subpage .company-stat-container~block:not(:has(img)):not(:has(video)):not(.company-stat-container + block):not(block:has(h1, h2, h3, h4, h5, h6, p) + block) {
     padding-top: 12px !important;
   }
 
   /* Blocks with multiple images or videos have 8px top padding (except first block, after blockquote, img-text-block-A after no-text blocks, and multi-media after img-text-block-A) */
-  .outcomes.subpage .company-stat-container ~ block.img-block-c:not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
-  .outcomes.subpage .company-stat-container ~ block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block):not(block:not(:has(h1, h2, h3, h4, h5, h6, p)) + block),
-  .outcomes.subpage .company-stat-container ~ block:has(> video:nth-of-type(2)):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
-  .outcomes.subpage .company-stat-container ~ block:has(> img:nth-of-type(2)):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
-  .outcomes.subpage .company-stat-container ~ block:has(> video + img):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
-  .outcomes.subpage .company-stat-container ~ block:has(> img + video):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block) {
+  .outcomes.subpage .company-stat-container~block.img-block-c:not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block):not(block:not(:has(h1, h2, h3, h4, h5, h6, p)) + block),
+  .outcomes.subpage .company-stat-container~block:has(> video:nth-of-type(2)):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container~block:has(> img:nth-of-type(2)):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container~block:has(> video + img):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container~block:has(> img + video):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block) {
     padding-top: 8px !important;
   }
 
   /* Blocks with multiple images/videos after blockquote have 30px top padding */
-  .outcomes.subpage .company-stat-container ~ blockquote + block.img-block-c,
-  .outcomes.subpage .company-stat-container ~ blockquote + block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ blockquote + block:has(> video:nth-of-type(2)),
-  .outcomes.subpage .company-stat-container ~ blockquote + block:has(> img:nth-of-type(2)),
-  .outcomes.subpage .company-stat-container ~ blockquote + block:has(> video + img),
-  .outcomes.subpage .company-stat-container ~ blockquote + block:has(> img + video) {
+  .outcomes.subpage .company-stat-container~blockquote+block.img-block-c,
+  .outcomes.subpage .company-stat-container~blockquote+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> video:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> img:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> video + img),
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> img + video) {
     padding-top: 30px !important;
   }
 
   /* Image/video + text blocks after multi-image/video blocks have 30px top padding */
-  .outcomes.subpage .company-stat-container ~ block.img-block-c + block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ block:has(> video:nth-of-type(2)) + block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ block:has(> img:nth-of-type(2)) + block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ block:has(> video + img) + block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ block:has(> img + video) + block.img-text-block-A {
+  .outcomes.subpage .company-stat-container~block.img-block-c+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> video:nth-of-type(2))+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> img:nth-of-type(2))+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> video + img)+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> img + video)+block.img-text-block-A {
     padding-top: 30px !important;
   }
 
   /* Multi-image/video blocks after image/video + text blocks have 30px top padding */
-  .outcomes.subpage .company-stat-container ~ block.img-text-block-A + block.img-block-c,
-  .outcomes.subpage .company-stat-container ~ block.img-text-block-A + block:has(> video:nth-of-type(2)),
-  .outcomes.subpage .company-stat-container ~ block.img-text-block-A + block:has(> img:nth-of-type(2)),
-  .outcomes.subpage .company-stat-container ~ block.img-text-block-A + block:has(> video + img),
-  .outcomes.subpage .company-stat-container ~ block.img-text-block-A + block:has(> img + video) {
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block.img-block-c,
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> video:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> img:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> video + img),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> img + video) {
     padding-top: 30px !important;
   }
 
   /* Image/video + text blocks after blockquote have 30px top padding */
-  .outcomes.subpage .company-stat-container ~ blockquote + block.img-text-block-A {
+  .outcomes.subpage .company-stat-container~blockquote+block.img-text-block-A {
     padding-top: 30px !important;
   }
 
   /* Image/video + text blocks after blocks with no text have 30px top padding */
-  .outcomes.subpage .company-stat-container ~ block:not(:has(h1, h2, h3, h4, h5, h6, p)) + block.img-text-block-A {
+  .outcomes.subpage .company-stat-container~block:not(:has(h1, h2, h3, h4, h5, h6, p))+block.img-text-block-A {
     padding-top: 30px !important;
   }
 
   /* Blocks with full-width images/videos after text blocks have 6px top padding */
-  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + block:has(.article-img-full, .article-vid) {
+  .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+block:has(.article-img-full, .article-vid) {
     padding-top: 6px !important;
   }
 
@@ -3434,14 +3436,14 @@ main.outcomes.subpage .company-info {
   }
 
   /* Single image/video in block with no text spans full 8 columns on tablet */
-  .outcomes.subpage block:has(> img:only-of-type):not(:has(> video)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div)) > img:not(.article-img-full),
-  .outcomes.subpage block:has(> video:only-of-type):not(:has(> img)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div)) > video:not(.article-vid) {
+  .outcomes.subpage block:has(> img:only-of-type):not(:has(> video)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div))>img:not(.article-img-full),
+  .outcomes.subpage block:has(> video:only-of-type):not(:has(> img)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div))>video:not(.article-vid) {
     grid-column: 1 / span 8 !important;
   }
 
   /* Single image/video blocks after text blocks have 6px top padding */
-  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + block:has(> img:only-of-type):not(:has(> video)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div)),
-  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + block:has(> video:only-of-type):not(:has(> img)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div)) {
+  .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+block:has(> img:only-of-type):not(:has(> video)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div)),
+  .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+block:has(> video:only-of-type):not(:has(> img)):not(:has(h1)):not(:has(h2)):not(:has(h3)):not(:has(h4)):not(:has(h5)):not(:has(h6)):not(:has(p)):not(:has(div)) {
     padding-top: 6px !important;
   }
 
@@ -3456,17 +3458,17 @@ main.outcomes.subpage .company-info {
   }
 
   /* Text-only blocks after any text-containing block have 0px top padding */
-  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + block:not(:has(img)):not(:has(video)) {
+  .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+block:not(:has(img)):not(:has(video)) {
     padding-top: 0px !important;
   }
 
   /* h3 headers in text-only blocks after text-containing blocks have 0px top padding */
-  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + block:not(:has(img)):not(:has(video)) h3 {
+  .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+block:not(:has(img)):not(:has(video)) h3 {
     padding-top: 0px !important;
   }
 
   /* Blockquote spacing - overrides all block rules */
-  .outcomes.subpage .company-stat-container ~ blockquote,
+  .outcomes.subpage .company-stat-container~blockquote,
   .outcomes.subpage blockquote {
     padding-top: 28px !important;
     padding-bottom: 28px !important;
@@ -3474,12 +3476,12 @@ main.outcomes.subpage .company-info {
   }
 
   /* First blockquote after company-stat-container has 15px top margin */
-  .outcomes.subpage .company-stat-container + blockquote {
+  .outcomes.subpage .company-stat-container+blockquote {
     margin-top: 15px !important;
   }
 
   /* Blockquotes after text blocks have 6px top margin */
-  .outcomes.subpage .company-stat-container ~ block:has(h1, h2, h3, h4, h5, h6, p) + blockquote {
+  .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+blockquote {
     margin-top: 6px !important;
   }
 
@@ -3489,7 +3491,7 @@ main.outcomes.subpage .company-info {
     padding-top: 3px;
     padding-bottom: 2px;
     line-height: 24px;
-}
+  }
 
   .outcomes.subpage h2.subhead.second {
     line-height: 34px;
@@ -3554,6 +3556,36 @@ main.outcomes.subpage .company-info {
 }
 
 @media screen and (min-width:1080px) {
+
+      .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+block:not(:has(img)):not(:has(video)) {
+        padding-top: 34px !important;
+    }
+
+      .outcomes.subpage block:last-of-type:has(h1, h2, h3, h4, h5, h6, p) {
+        padding-bottom: 25px !important;
+    }
+
+  .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+blockquote {
+        margin-top: 39px !important;
+    }
+
+      .outcomes.subpage .company-stat-container~blockquote+block.img-block-c, .outcomes.subpage .company-stat-container~blockquote+block.img-text-block-A, .outcomes.subpage .company-stat-container~blockquote+block:has(> video:nth-of-type(2)), .outcomes.subpage .company-stat-container~blockquote+block:has(> img:nth-of-type(2)), .outcomes.subpage .company-stat-container~blockquote+block:has(> video + img), .outcomes.subpage .company-stat-container~blockquote+block:has(> img + video) {
+        padding-top: 39px !important;
+    }
+
+  .outcomes.subpage .company-stat-container~block:not(:has(img)):not(:has(video)):not(.company-stat-container + block):not(block:has(h1, h2, h3, h4, h5, h6, p) + block) {
+        padding-top: 20px !important;
+    }
+
+  .company-stat:nth-of-type(2) {
+        padding-top: 30px;
+    }
+
+  .company-stat:first-of-type {
+    padding-bottom: 34px;
+    border-bottom: 1px solid var(--darkgrey);
+  }
+
   .outcomes .figure {
     font-size: 70px;
     letter-spacing: -2.67px;
@@ -3575,7 +3607,7 @@ main.outcomes.subpage .company-info {
   }
 
   .outcomes.subpage h2.subhead {
-    padding-top: 0px;
+    padding-top: 13px;
   }
 
   .outcomes.subpage h2.subhead.second {
@@ -3584,15 +3616,15 @@ main.outcomes.subpage .company-info {
   }
 
   /* Consistent 39px spacing between all blocks below company-stat-container */
-  .outcomes.subpage .company-stat-container ~ block,
-  .outcomes.subpage .company-stat-container ~ blockquote {
+  .outcomes.subpage .company-stat-container~block,
+  .outcomes.subpage .company-stat-container~blockquote {
     padding-top: 39px !important;
     padding-bottom: 0 !important;
   }
 
   /* First block after company-stat-container has different padding */
-  .outcomes.subpage .company-stat-container + block,
-  .outcomes.subpage .company-stat-container + blockquote {
+  .outcomes.subpage .company-stat-container+block,
+  .outcomes.subpage .company-stat-container+blockquote {
     padding-top: 26px !important;
   }
 
@@ -3603,11 +3635,11 @@ main.outcomes.subpage .company-info {
   }
 
   /* Blockquote spacing - overrides all block rules */
-  .outcomes.subpage .company-stat-container ~ blockquote,
+  .outcomes.subpage .company-stat-container~blockquote,
   .outcomes.subpage blockquote {
-    padding-top: 37px !important;
-    padding-bottom: 37px !important;
-    margin-top: 24px !important;
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+    margin-top: 38px !important;
   }
 
   .outcomes.subpage .company-info tr:nth-child(1) th {
@@ -3691,6 +3723,50 @@ main img {
   padding-top: 0 !important;
 }
 
+/* Desktop-only: Remove top padding from all th elements in company-info on case study pages */
+@media screen and (min-width: 1080px) {
+  .outcomes.subpage .company-info th {
+    padding-top: 0 !important;
+  }
+
+  main.internal.outcomes.subpage .intro+.container.company-info {
+    padding-bottom: 49px !important;
+  }
+
+  .outcomes.subpage .company-stat-container {
+    padding-top: 30px !important;
+  }
+
+  .outcomes.subpage .company-stat-container ~ block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block) + block.img-text-block-A {
+    padding-top: 39px !important;
+  }
+
+  .outcomes.subpage .company-stat-container ~ block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block) + block {
+    padding-top: 39px !important;
+  }
+
+  .outcomes.subpage .company-stat-container ~ block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block) + block:has(h3, p):not(:has(img)):not(:has(video)) {
+    padding-top: 33px !important;
+  }
+
+  .outcomes.subpage .company-stat-container ~ block.img-block-c + block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ block:has(> video:nth-of-type(2)) + block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ block:has(> img:nth-of-type(2)) + block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ block:has(> video + img) + block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ block:has(> img + video) + block.img-text-block-A,
+  .outcomes.subpage .company-stat-container ~ block:has(img, video):not(:has(h1, h2, h3, h4, h5, h6, p)) + block.img-text-block-A {
+    padding-top: 39px !important;
+  }
+
+  .outcomes.subpage .company-stat-container + blockquote {
+    margin-top: 24px !important;
+  }
+
+  .outcomes.subpage block:last-of-type {
+    padding-bottom: 60px !important;
+  }
+}
+
 main.internal .intro+.container.company-info {
   padding-bottom: 16px !important;
 }
@@ -3704,13 +3780,13 @@ main.internal .intro+.container.company-info {
   padding-bottom: 7px !important;
 }
 
-.company-stat-container + .container {
+.company-stat-container+.container {
   padding-top: 5px !important;
   padding-bottom: 4px !important;
   border-bottom: none !important;
 }
 
-.company-stat-container + .container + block {
+.company-stat-container+.container+block {
   padding-top: 4px !important;
 }
 
@@ -3745,7 +3821,7 @@ block video.tablet-col-5-8.desktop-col-7-12 {
 }
 
 /* Block with video first, text div second */
-.img-text-block-A > video:first-child {
+.img-text-block-A>video:first-child {
   padding: 0 !important;
 }
 
