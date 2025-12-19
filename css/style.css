@@ -3104,6 +3104,27 @@ ul.article-list.musing {
   padding-bottom: 40px;
 }
 
+/* Mobile only: Remove padding from center-img video/img elements */
+.outcomes.subpage video.center-img,
+.outcomes.subpage img.center-img {
+  padding: 0px !important;
+}
+
+@media (min-width: 700px) {
+  .outcomes.subpage video.center-img,
+  .outcomes.subpage img.center-img {
+    padding-top: 3px;
+    padding-bottom: 40px;
+  }
+}
+
+@media (min-width: 1080px) {
+  .outcomes.subpage video.center-img,
+  .outcomes.subpage img.center-img {
+    grid-column: 1 / span 12;
+  }
+}
+
 .outcomes.subpage block {
   padding-top: 0.5px;
   padding-bottom: 0.5px;
@@ -3112,7 +3133,7 @@ ul.article-list.musing {
 
 .outcomes block.img-block-c {
   padding-top: 27px;
-  padding-bottom: 12px;
+  padding-bottom: 15px;
 
 }
 
@@ -3145,15 +3166,32 @@ ul.article-list.musing {
   padding-bottom: 0px;
 }
 
-/* Mobile only: Case study pages - add bottom padding to img in img-text-block-A */
+/* Mobile only: Case study pages - add bottom margin to img in img-text-block-A */
 .outcomes.subpage block.img-text-block-A img {
-  /* padding-bottom: 12px !important; */
-  margin-bottom: 12px !important;
+  margin-bottom: 18px !important;
+}
+
+/* Mobile only: If img comes after div (text first layout), use 9px bottom margin */
+.outcomes.subpage block.img-text-block-A div + img {
+  margin-bottom: 18px !important;
+}
+
+/* Mobile only: Video that comes before div (video first layout) has 18px bottom margin */
+.outcomes.subpage block.img-text-block-A video:has(+ div) {
+  margin-bottom: 18px !important;
 }
 
 @media (min-width: 700px) {
   .outcomes.subpage block.img-text-block-A img {
-    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .outcomes.subpage block.img-text-block-A div + img {
+    margin-bottom: 0px !important;
+  }
+
+  .outcomes.subpage block.img-text-block-A video:has(+ div) {
+    margin-bottom: 0px !important;
   }
 }
 
@@ -3165,8 +3203,16 @@ ul.article-list.musing {
   padding-bottom: 5px;
 }
 
+/* Mobile only: Last block has 60px bottom padding and 0 bottom margin */
 .outcomes.subpage block:last-of-type {
-  padding-bottom: 20px;
+  padding-bottom: 60px;
+  margin-bottom: 0px;
+}
+
+/* Mobile only: Remove bottom margin from all elements inside the last block */
+.outcomes.subpage block:last-of-type video,
+.outcomes.subpage block:last-of-type img {
+  margin-bottom: 0px !important;
 }
 
 @media screen and (min-width: 1080px) {
@@ -3263,8 +3309,37 @@ ul.article-list.musing {
   padding-bottom: 9px;
 }
 
+/* Mobile only: If there are multiple p elements, all except the last have 17px bottom padding */
+.outcomes.subpage p:not(:last-of-type) {
+  padding-bottom: 17px;
+}
+
+/* Mobile only: Last p element always has 9px bottom padding */
+.outcomes.subpage p:last-of-type {
+  padding-bottom: 9px;
+}
+
+/* Mobile only: Last p in div when followed by img/video in img-text-block-A has 19px bottom padding */
+.outcomes.subpage block.img-text-block-A div:has(+ img) p:last-of-type,
+.outcomes.subpage block.img-text-block-A div:has(+ video) p:last-of-type {
+  padding-bottom: 19px;
+}
+
 @media (min-width: 700px) {
   .outcomes.subpage p {
+    padding-bottom: 16px;
+  }
+
+  .outcomes.subpage p:not(:last-of-type) {
+    padding-bottom: 16px;
+  }
+
+  .outcomes.subpage p:last-of-type {
+    padding-bottom: 16px;
+  }
+
+  .outcomes.subpage block.img-text-block-A div:has(+ img) p:last-of-type,
+  .outcomes.subpage block.img-text-block-A div:has(+ video) p:last-of-type {
     padding-bottom: 16px;
   }
 }
@@ -3336,11 +3411,30 @@ ul.article-list.musing {
   .outcomes.subpage block > div:has(.article-img-full) {
     line-height: normal;
     font-size: inherit;
+    margin: 0;
+    width: auto;
+    max-width: none;
+    position: static;
+    left: auto;
+    right: auto;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .outcomes.subpage block > div:has(.article-vid) .article-vid {
     padding-top: 15px;
     padding-bottom: 26px;
+  }
+
+  .outcomes.subpage .article-vid,
+  .outcomes.subpage .article-img-full {
+    width: auto;
+    max-width: none;
+    position: static;
+    left: auto;
+    right: auto;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -3901,9 +3995,16 @@ block video.tablet-col-1-4.desktop-col-1-6 {
   padding-bottom: 0px !important;
 }
 
+/* Mobile only: Add spacing for video in block */
 block video.tablet-col-5-8.desktop-col-7-12 {
   padding-top: 0px !important;
-  margin-bottom: 25px !important;
+  margin-bottom: 18px !important;
+}
+
+@media (min-width: 1080px) {
+  block video.tablet-col-5-8.desktop-col-7-12 {
+    margin-bottom: 0px !important;
+  }
 }
 
 .blockQuote {
