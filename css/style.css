@@ -1276,7 +1276,7 @@ main.internal .container+.container+.container+.container+.container+.container+
 }
 
 main.internal .intro+.container {
-  padding: 19px 0 24px 0;
+  padding: 20px 0 24px 0;
 }
 
 main.internal.news .intro+.container {
@@ -3294,6 +3294,11 @@ ul.article-list.musing {
   line-height: 24px;
 }
 
+/* Mobile only: Consistent bottom spacing for blocks before h2.subhead sections */
+.outcomes.subpage block:has(+ block h2.subhead) {
+  padding-bottom: 8px !important;
+}
+
 .outcomes.subpage h3 {
   color: var(--darkgrey);
   font-weight: 700;
@@ -3316,7 +3321,7 @@ ul.article-list.musing {
 
 /* Mobile only: Last p element always has 9px bottom padding */
 .outcomes.subpage p:last-of-type {
-  padding-bottom: 9px;
+  padding-bottom: 15px;
 }
 
 /* Mobile only: Last p in div when followed by img/video in img-text-block-A has 19px bottom padding */
@@ -3906,6 +3911,10 @@ main img {
 }
 
 .company-info td {
+  padding: 5px 0 8px 0 !important;
+}
+
+.company-info tr:last-child td {
   padding: 5px 0 5px 0 !important;
 }
 
@@ -3973,7 +3982,7 @@ main.internal .intro+.container.company-info {
 }
 
 .company-stat-container {
-  padding-top: 6px !important;
+  padding-top: 10px !important;
   padding-bottom: 5px !important;
 }
 
@@ -3983,7 +3992,7 @@ main.internal .intro+.container.company-info {
 
 .company-stat-container+.container {
   padding-top: 5px !important;
-  padding-bottom: 18px !important;
+  padding-bottom: 20px !important;
   border-bottom: none !important;
 }
 
@@ -3992,12 +4001,12 @@ main.internal .intro+.container.company-info {
 }
 
 block video.tablet-col-1-4.desktop-col-1-6 {
-  padding-bottom: 0px !important;
+  padding: 0px !important;
 }
 
 /* Mobile only: Add spacing for video in block */
 block video.tablet-col-5-8.desktop-col-7-12 {
-  padding-top: 0px !important;
+  padding: 0px !important;
   margin-bottom: 18px !important;
 }
 
