@@ -3004,19 +3004,19 @@ ul.article-list.musing {
   }
 
   .outcomes .company-stat-container .company-stat:first-of-type .figure {
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 1 !important;
   }
 
   .outcomes .company-stat-container .company-stat:first-of-type .figure-description {
-    grid-column: 3 / span 4;
+    grid-column: 3 / span 4 !important;
   }
 
   .outcomes .company-stat-container .company-stat:nth-of-type(2) .figure {
-    grid-column: 1 / span 2;
+    grid-column: 1 / span 2 !important;
   }
 
   .outcomes .company-stat-container .company-stat:nth-of-type(2) .figure-description {
-    grid-column: 3 / span 4;
+    grid-column: 3 / span 4 !important;
   }
 }
 
@@ -3066,19 +3066,19 @@ ul.article-list.musing {
   }
 
   .outcomes .company-stat-container .company-stat:first-of-type .figure {
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 1 !important;
   }
 
   .outcomes .company-stat-container .company-stat:first-of-type .figure-description {
-    grid-column: 3 / span 8;
+    grid-column: 3 / span 8 !important;
   }
 
   .outcomes .company-stat-container .company-stat:nth-of-type(2) .figure {
-    grid-column: 1 / span 2;
+    grid-column: 1 / span 2 !important;
   }
 
   .outcomes .company-stat-container .company-stat:nth-of-type(2) .figure-description {
-    grid-column: 3 / span 8;
+    grid-column: 3 / span 8 !important;
   }
 
   .internal.outcomes.subpage .grid-inherit.no-border p.desktop-col-3-12 {
@@ -3541,6 +3541,17 @@ main.outcomes.subpage .company-info {
     padding-top: 27px;
   }
 
+  /* Tablet and above: Restore transform on second figure */
+  .outcomes .company-stat:nth-of-type(2) .figure {
+    transform: translateX(-.3em) !important;
+    word-spacing: normal !important;
+  }
+
+  /* Tablet and above: Restore offset on $ symbol */
+  .outcomes .company-stat:nth-of-type(2) .figure .percent {
+    left: 0.4em !important;
+  }
+
   .outcomes .company-info .field {
     display: flex;
   }
@@ -3990,6 +4001,26 @@ main.internal .intro+.container.company-info {
   padding-bottom: 8px !important;
 }
 
+/* Mobile default: Ensure all figures start at column 1 and span full width */
+.internal.outcomes .company-stat-container .company-stat .figure {
+  grid-column: 1 / -1;
+}
+
+/* Mobile default: Remove transform on second figure */
+.outcomes .company-stat:nth-of-type(2) .figure {
+  transform: none;
+}
+
+/* Mobile default: Left align the $ symbol */
+.outcomes .company-stat:nth-of-type(2) .figure .percent {
+  left: 0;
+}
+
+/* Mobile default: Remove spacing between $ and number */
+.outcomes .company-stat:nth-of-type(2) .figure {
+  word-spacing: -0.25em;
+}
+
 .company-stat-container+.container {
   padding-top: 5px !important;
   padding-bottom: 20px !important;
@@ -4008,6 +4039,11 @@ block video.tablet-col-1-4.desktop-col-1-6 {
 block video.tablet-col-5-8.desktop-col-7-12 {
   padding: 0px !important;
   margin-bottom: 18px !important;
+}
+
+/* Case Study D specific: Remove bottom margin on mobile for video block */
+.case-study-d block video.tablet-col-5-8.desktop-col-7-12 {
+  margin-bottom: 0px !important;
 }
 
 @media (min-width: 1080px) {
