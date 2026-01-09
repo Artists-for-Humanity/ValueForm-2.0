@@ -3324,6 +3324,10 @@ ul.article-list.musing {
   padding-bottom: 15px;
 }
 
+.case-study-d .outcomes.subpage p:last-of-type {
+  padding-bottom: 25px;
+}
+
 /* Mobile only: Last p in div when followed by img/video in img-text-block-A has 19px bottom padding */
 .outcomes.subpage block.img-text-block-A div:has(+ img) p:last-of-type,
 .outcomes.subpage block.img-text-block-A div:has(+ video) p:last-of-type {
@@ -3550,6 +3554,47 @@ main.outcomes.subpage .company-info {
   /* Tablet and above: Restore offset on $ symbol */
   .outcomes .company-stat:nth-of-type(2) .figure .percent {
     left: 0.4em !important;
+  }
+
+  /* Tablet and above: Reset Case Study B video bottom margin */
+  .case-study-b block video.tablet-col-5-8.desktop-col-7-12 {
+    margin-bottom: 18px !important;
+  }
+
+  /* Tablet and above: Reset Case Study B blockquote bottom margin */
+  .case-study-b .blockQuote {
+    margin-bottom: 16px !important;
+  }
+
+  /* Tablet and above: Reset Case Study C company-stat-container bottom padding */
+  .case-study-c .company-stat-container {
+    padding-bottom: 5px !important;
+  }
+
+  /* Tablet and above: Reset Case Study C and D blockquote bottom margin */
+  .case-study-c .blockQuote,
+  .case-study-d .blockQuote {
+    margin-bottom: 16px !important;
+  }
+
+  /* Tablet and above: Reset Case Study D "The Problem:" p element bottom padding */
+  .case-study-d block:has(h2.subhead.second) p {
+    padding-bottom: 16px !important;
+  }
+
+  /* Tablet and above: Reset Case Study D "Security & Compliance" last p element bottom padding */
+  .case-study-d block.tablet-col-3-8.desktop-col-3-10:has(h3.header) p:last-of-type {
+    padding-bottom: 16px !important;
+  }
+
+  /* Tablet and above: Reset Case Study D img-text-block-A last p element bottom padding */
+  .case-study-d block.img-text-block-A div p:last-of-type {
+    padding-bottom: 16px !important;
+  }
+
+  /* Tablet and above: Reset Case Study D Patient Portal (video + div structure) last p element bottom padding */
+  .case-study-d block.img-text-block-A:has(video + div) div p:last-of-type {
+    padding-bottom: 16px !important;
   }
 
   .outcomes .company-info .field {
@@ -4019,6 +4064,47 @@ main.internal .intro+.container.company-info {
 /* Mobile default: Remove spacing between $ and number */
 .outcomes .company-stat:nth-of-type(2) .figure {
   word-spacing: -0.25em;
+}
+
+/* Case Study B mobile only: Increase video bottom margin before blockquote */
+.case-study-b block video.tablet-col-5-8.desktop-col-7-12 {
+  margin-bottom: 25px !important;
+}
+
+/* Case Study B mobile only: Add bottom margin to blockquote before "The Challenge:" */
+.case-study-b .blockQuote {
+  margin-bottom: 10px !important;
+}
+
+/* Case Study C mobile only: Increase company-stat-container bottom padding */
+.case-study-c .company-stat-container {
+  padding-bottom: 10px !important;
+}
+
+/* Case Study C and D mobile only: Add bottom margin to blockquote */
+.case-study-c .blockQuote,
+.case-study-d .blockQuote {
+  margin-bottom: 20px !important;
+}
+
+/* Case Study D mobile only: Change bottom padding for p element under "The Problem:" */
+.case-study-d block:has(h2.subhead.second) p {
+  padding-bottom: 12px !important;
+}
+
+/* Case Study D mobile only: Change bottom padding for last p element under "Security & Compliance" */
+.case-study-d block.tablet-col-3-8.desktop-col-3-10:has(h3.header) p:last-of-type {
+  padding-bottom: 19px !important;
+}
+
+/* Case Study D mobile only: Change bottom padding for last p in img-text-block-A divs */
+.case-study-d block.img-text-block-A div p:last-of-type {
+  padding-bottom: 25px !important;
+}
+
+/* Case Study D mobile only: Override Patient Portal (video + div structure) last p element to 18px */
+.case-study-d block.img-text-block-A:has(video + div) div p:last-of-type {
+  padding-bottom: 18px !important;
 }
 
 .company-stat-container+.container {
