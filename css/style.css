@@ -3137,10 +3137,25 @@ ul.article-list.musing {
 
 }
 
+.case-study-a .outcomes block.img-block-c {
+    padding-top: 27px;
+    padding-bottom: 19px;
+}
+
 /* Mobile only: Case study pages - update img-block-c top padding and margin */
 .outcomes.subpage block.img-block-c {
   padding-top: 22px;
   margin: 0px;
+}
+
+.case-study-a .outcomes.subpage block.img-block-c {
+    padding-top: 25px;
+    margin: 0px;
+}
+
+.case-study-b .outcomes.subpage block.img-block-c {
+    padding-top: 10px;
+    margin: 0px;
 }
 
 /* Mobile only: Override margin-bottom for video/img in img-block-c */
@@ -3181,6 +3196,40 @@ ul.article-list.musing {
   margin-bottom: 18px !important;
 }
 
+/* Mobile only: All case study pages - last p element has 15px bottom padding when media comes before text (no media between p and next block) */
+.outcomes.subpage block.img-text-block-A img + div p:last-of-type,
+.outcomes.subpage block.img-text-block-A video + div p:last-of-type {
+  padding-bottom: 15px;
+}
+
+/* Mobile only: Case study A - last p element has 25px bottom padding when text comes before media (media between p and next block) */
+.case-study-a .outcomes.subpage block.img-text-block-A div:has(+ img) p:last-of-type,
+.case-study-a .outcomes.subpage block.img-text-block-A div:has(+ video) p:last-of-type {
+  padding-bottom: 25px;
+}
+
+/* Mobile only: Case study A - video in block directly above blockquote has 25px bottom margin */
+.case-study-a .outcomes.subpage block:has(+ blockquote) video {
+  margin-bottom: 25px !important;
+}
+
+/* Mobile only: Case study B - video in block directly above last block has 0px bottom margin */
+.case-study-b .outcomes.subpage block:has(+ block:last-of-type) video {
+  margin-bottom: 0px !important;
+}
+
+/* Mobile only: Case study B - video in block directly above blockquote has 25px bottom margin */
+.case-study-b .outcomes.subpage block:has(+ blockquote) video {
+  margin-bottom: 25px !important;
+  margin-top: 5px;
+}
+
+/* Mobile only: Case study C - last p element has 25px bottom padding when text comes before media (media between p and next block) */
+.case-study-c .outcomes.subpage block.img-text-block-A div:has(+ img) p:last-of-type,
+.case-study-c .outcomes.subpage block.img-text-block-A div:has(+ video) p:last-of-type {
+  padding-bottom: 25px;
+}
+
 @media (min-width: 700px) {
   .outcomes.subpage block.img-text-block-A img {
     margin-bottom: 0px !important;
@@ -3193,6 +3242,33 @@ ul.article-list.musing {
   .outcomes.subpage block.img-text-block-A video:has(+ div) {
     margin-bottom: 0px !important;
   }
+
+  .outcomes.subpage block.img-text-block-A img + div p:last-of-type,
+  .outcomes.subpage block.img-text-block-A video + div p:last-of-type {
+    padding-bottom: 0px;
+  }
+
+  .case-study-a .outcomes.subpage block.img-text-block-A div:has(+ img) p:last-of-type,
+  .case-study-a .outcomes.subpage block.img-text-block-A div:has(+ video) p:last-of-type {
+    padding-bottom: 0px;
+  }
+
+  .case-study-a .outcomes.subpage block:has(+ blockquote) video {
+    margin-bottom: 0px !important;
+  }
+
+  .case-study-b .outcomes.subpage block:has(+ block:last-of-type) video {
+    margin-bottom: initial;
+  }
+
+  .case-study-b .outcomes.subpage block:has(+ blockquote) video {
+    margin-bottom: 0px !important;
+  }
+
+  .case-study-c .outcomes.subpage block.img-text-block-A div:has(+ img) p:last-of-type,
+  .case-study-c .outcomes.subpage block.img-text-block-A div:has(+ video) p:last-of-type {
+    padding-bottom: 0px;
+  }
 }
 
 .outcomes.subpage block:first-of-type {
@@ -3203,10 +3279,19 @@ ul.article-list.musing {
   padding-bottom: 5px;
 }
 
+.case-study-b .outcomes.subpage block:nth-of-type(2) {
+  padding-bottom: 0px;
+}
+
 /* Mobile only: Last block has 60px bottom padding and 0 bottom margin */
 .outcomes.subpage block:last-of-type {
   padding-bottom: 60px;
   margin-bottom: 0px;
+}
+
+/* Mobile only: Last block with text has 40px bottom padding */
+.outcomes.subpage block:last-of-type:has(h1, h2, h3, h4, h5, h6, p) {
+  padding-bottom: 40px;
 }
 
 /* Mobile only: Remove bottom margin from all elements inside the last block */
@@ -3303,8 +3388,9 @@ ul.article-list.musing {
   color: var(--darkgrey);
   font-weight: 700;
   padding-top: 3px;
-  padding-bottom: 13px;
+  padding-bottom: 15px;
 }
+
 
 .outcomes.subpage p {
   color: var(--nearwhite);
@@ -4068,7 +4154,7 @@ main.internal .intro+.container.company-info {
 
 /* Case Study B mobile only: Increase video bottom margin before blockquote */
 .case-study-b block video.tablet-col-5-8.desktop-col-7-12 {
-  margin-bottom: 25px !important;
+  margin-bottom: 15px !important;
 }
 
 /* Case Study B mobile only: Add bottom margin to blockquote before "The Challenge:" */
@@ -4084,7 +4170,7 @@ main.internal .intro+.container.company-info {
 /* Case Study C and D mobile only: Add bottom margin to blockquote */
 .case-study-c .blockQuote,
 .case-study-d .blockQuote {
-  margin-bottom: 20px !important;
+  margin-bottom: 15px !important;
 }
 
 /* Case Study D mobile only: Change bottom padding for p element under "The Problem:" */
@@ -4094,7 +4180,7 @@ main.internal .intro+.container.company-info {
 
 /* Case Study D mobile only: Change bottom padding for last p element under "Security & Compliance" */
 .case-study-d block.tablet-col-3-8.desktop-col-3-10:has(h3.header) p:last-of-type {
-  padding-bottom: 19px !important;
+  padding-bottom: 19thipx !important;
 }
 
 /* Case Study D mobile only: Change bottom padding for last p in img-text-block-A divs */
@@ -4153,7 +4239,12 @@ block video.tablet-col-5-8.desktop-col-7-12 {
 
 .img-text-block-A:has(> div:first-child) h3 {
   padding-top: 0 !important;
-  margin-top: 3px !important;
+  margin-top: 8px !important;
+}
+
+.case-study-b .img-text-block-A:has(> div:first-child) h3 {
+    padding-top: 0 !important;
+    margin-top: 3px !important;
 }
 
 .img-text-block-A:has(> div:first-child) video {
