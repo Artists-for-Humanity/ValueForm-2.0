@@ -3111,6 +3111,7 @@ ul.article-list.musing {
 }
 
 @media (min-width: 700px) {
+
   .outcomes.subpage video.center-img,
   .outcomes.subpage img.center-img {
     padding-top: 3px;
@@ -3119,6 +3120,7 @@ ul.article-list.musing {
 }
 
 @media (min-width: 1080px) {
+
   .outcomes.subpage video.center-img,
   .outcomes.subpage img.center-img {
     grid-column: 1 / span 12;
@@ -3138,8 +3140,8 @@ ul.article-list.musing {
 }
 
 .case-study-a .outcomes block.img-block-c {
-    padding-top: 27px;
-    padding-bottom: 19px;
+  padding-top: 27px;
+  padding-bottom: 19px;
 }
 
 /* Mobile only: Case study pages - update img-block-c top padding and margin */
@@ -3148,14 +3150,19 @@ ul.article-list.musing {
   margin: 0px;
 }
 
+.case-study-c .outcomes.subpage block.img-block-c {
+  padding-top: 5px;
+  margin: 0px;
+}
+
 .case-study-a .outcomes.subpage block.img-block-c {
-    padding-top: 25px;
-    margin: 0px;
+  padding-top: 25px;
+  margin: 0px;
 }
 
 .case-study-b .outcomes.subpage block.img-block-c {
-    padding-top: 10px;
-    margin: 0px;
+  padding-top: 10px;
+  margin: 0px;
 }
 
 /* Mobile only: Override margin-bottom for video/img in img-block-c */
@@ -3187,7 +3194,7 @@ ul.article-list.musing {
 }
 
 /* Mobile only: If img comes after div (text first layout), use 9px bottom margin */
-.outcomes.subpage block.img-text-block-A div + img {
+.outcomes.subpage block.img-text-block-A div+img {
   margin-bottom: 18px !important;
 }
 
@@ -3197,8 +3204,8 @@ ul.article-list.musing {
 }
 
 /* Mobile only: All case study pages - last p element has 15px bottom padding when media comes before text (no media between p and next block) */
-.outcomes.subpage block.img-text-block-A img + div p:last-of-type,
-.outcomes.subpage block.img-text-block-A video + div p:last-of-type {
+.outcomes.subpage block.img-text-block-A img+div p:last-of-type,
+.outcomes.subpage block.img-text-block-A video+div p:last-of-type {
   padding-bottom: 15px;
 }
 
@@ -3230,12 +3237,22 @@ ul.article-list.musing {
   padding-bottom: 25px;
 }
 
+/* Mobile only: Case study D - Security & Compliance section last p element has 12px bottom padding */
+.case-study-d .outcomes.subpage block.tablet-col-3-8.desktop-col-3-10:has(h3.header) p:last-of-type {
+  padding-bottom: 12px;
+}
+
+/* Mobile only: Case study D - Patient Portal section (video + div structure) last p element has 12px bottom padding */
+.case-study-d .outcomes.subpage block.img-text-block-A:has(video + div) div p:last-of-type {
+  padding-bottom: 12px !important;
+}
+
 @media (min-width: 700px) {
   .outcomes.subpage block.img-text-block-A img {
     margin-bottom: 0px !important;
   }
 
-  .outcomes.subpage block.img-text-block-A div + img {
+  .outcomes.subpage block.img-text-block-A div+img {
     margin-bottom: 0px !important;
   }
 
@@ -3243,9 +3260,9 @@ ul.article-list.musing {
     margin-bottom: 0px !important;
   }
 
-  .outcomes.subpage block.img-text-block-A img + div p:last-of-type,
-  .outcomes.subpage block.img-text-block-A video + div p:last-of-type {
-    padding-bottom: 0px;
+  .outcomes.subpage block.img-text-block-A img+div p:last-of-type,
+  .outcomes.subpage block.img-text-block-A video+div p:last-of-type {
+    padding-bottom: 18px;
   }
 
   .case-study-a .outcomes.subpage block.img-text-block-A div:has(+ img) p:last-of-type,
@@ -3269,10 +3286,22 @@ ul.article-list.musing {
   .case-study-c .outcomes.subpage block.img-text-block-A div:has(+ video) p:last-of-type {
     padding-bottom: 0px;
   }
+
+  .case-study-d .outcomes.subpage block.tablet-col-3-8.desktop-col-3-10:has(h3.header) p:last-of-type {
+    padding-bottom: 0px;
+  }
+
+  .case-study-d .outcomes.subpage block.img-text-block-A:has(video + div) div p:last-of-type {
+    padding-bottom: 18px !important;
+  }
 }
 
 .outcomes.subpage block:first-of-type {
   padding-top: 20px;
+}
+
+.case-study-d .outcomes.subpage block:first-of-type {
+  padding-top: 5px;
 }
 
 .outcomes.subpage block:nth-of-type(2) {
@@ -3473,8 +3502,8 @@ ul.article-list.musing {
 }
 
 /* Mobile only: Remove extra height from div containing article-vid and article-img-full */
-.outcomes.subpage block > div:has(.article-vid),
-.outcomes.subpage block > div:has(.article-img-full) {
+.outcomes.subpage block>div:has(.article-vid),
+.outcomes.subpage block>div:has(.article-img-full) {
   line-height: 0;
   font-size: 0;
   display: block;
@@ -3489,8 +3518,8 @@ ul.article-list.musing {
   margin-right: -50vw;
 }
 
-.outcomes.subpage block > div:has(.article-vid) .article-vid,
-.outcomes.subpage block > div:has(.article-img-full) .article-img-full {
+.outcomes.subpage block>div:has(.article-vid) .article-vid,
+.outcomes.subpage block>div:has(.article-img-full) .article-img-full {
   display: block;
   margin: 0;
   padding: 0;
@@ -3502,8 +3531,9 @@ ul.article-list.musing {
 }
 
 @media (min-width: 700px) {
-  .outcomes.subpage block > div:has(.article-vid),
-  .outcomes.subpage block > div:has(.article-img-full) {
+
+  .outcomes.subpage block>div:has(.article-vid),
+  .outcomes.subpage block>div:has(.article-img-full) {
     line-height: normal;
     font-size: inherit;
     margin: 0;
@@ -3516,7 +3546,7 @@ ul.article-list.musing {
     margin-right: 0;
   }
 
-  .outcomes.subpage block > div:has(.article-vid) .article-vid {
+  .outcomes.subpage block>div:has(.article-vid) .article-vid {
     padding-top: 15px;
     padding-bottom: 26px;
   }
@@ -3762,6 +3792,15 @@ main.outcomes.subpage .company-info {
     padding-top: 30px !important;
   }
 
+  /* Multi-image/video blocks after image/video + text blocks have 30px top padding */
+  .case-study-d .outcomes.subpage .company-stat-container~block.img-text-block-A+block.img-block-c,
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> video:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> img:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> video + img),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> img + video) {
+    padding-top: 21px !important;
+  }
+
   /* Image/video + text blocks after blockquote have 30px top padding */
   .outcomes.subpage .company-stat-container~blockquote+block.img-text-block-A {
     padding-top: 30px !important;
@@ -3843,7 +3882,7 @@ main.outcomes.subpage .company-info {
 
   .outcomes.subpage h2.subhead.second {
     line-height: 34px;
-    padding-top: 15px;
+    padding-top: 7px;
   }
 
   .outcomes.subpage .article-vid,
@@ -3905,29 +3944,34 @@ main.outcomes.subpage .company-info {
 
 @media screen and (min-width:1080px) {
 
-      .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+block:not(:has(img)):not(:has(video)) {
-        padding-top: 34px !important;
-    }
+  .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+block:not(:has(img)):not(:has(video)) {
+    padding-top: 34px !important;
+  }
 
-      .outcomes.subpage block:last-of-type:has(h1, h2, h3, h4, h5, h6, p) {
-        padding-bottom: 25px !important;
-    }
+  .outcomes.subpage block:last-of-type:has(h1, h2, h3, h4, h5, h6, p) {
+    padding-bottom: 25px !important;
+  }
 
   .outcomes.subpage .company-stat-container~block:has(h1, h2, h3, h4, h5, h6, p)+blockquote {
-        margin-top: 39px !important;
-    }
+    margin-top: 39px !important;
+  }
 
-      .outcomes.subpage .company-stat-container~blockquote+block.img-block-c, .outcomes.subpage .company-stat-container~blockquote+block.img-text-block-A, .outcomes.subpage .company-stat-container~blockquote+block:has(> video:nth-of-type(2)), .outcomes.subpage .company-stat-container~blockquote+block:has(> img:nth-of-type(2)), .outcomes.subpage .company-stat-container~blockquote+block:has(> video + img), .outcomes.subpage .company-stat-container~blockquote+block:has(> img + video) {
-        padding-top: 39px !important;
-    }
+  .outcomes.subpage .company-stat-container~blockquote+block.img-block-c,
+  .outcomes.subpage .company-stat-container~blockquote+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> video:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> img:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> video + img),
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> img + video) {
+    padding-top: 39px !important;
+  }
 
   .outcomes.subpage .company-stat-container~block:not(:has(img)):not(:has(video)):not(.company-stat-container + block):not(block:has(h1, h2, h3, h4, h5, h6, p) + block) {
-        padding-top: 20px !important;
-    }
+    padding-top: 20px !important;
+  }
 
   .company-stat:nth-of-type(2) {
-        padding-top: 30px;
-    }
+    padding-top: 30px;
+  }
 
   .company-stat:first-of-type {
     padding-bottom: 34px;
@@ -4060,15 +4104,24 @@ main img {
   padding: 5px 0 5px 0 !important;
 }
 
+/* Mobile default: company-info th has 5px top padding */
+.company-info th {
+  padding-top: 5px !important;
+}
+
 /* Tablet-only override for company-info td top padding */
 @media (min-width: 700px) and (max-width: 1079px) {
   .company-info td {
-    padding: 0 0 5px 0 !important;
+    padding: 5px 0 5px 0 !important;
   }
-}
 
-.company-info th {
-  padding-top: 5px !important;
+  .company-info th {
+    padding-top: 0px !important;
+  }
+
+  /* .company-info td {
+    padding: 5px 0 5px 0 !important;
+} */
 }
 
 .company-info tr:first-child th {
@@ -4089,28 +4142,28 @@ main img {
     padding-top: 30px !important;
   }
 
-  .outcomes.subpage .company-stat-container ~ block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block) + block.img-text-block-A {
+  .outcomes.subpage .company-stat-container~block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block)+block.img-text-block-A {
     padding-top: 39px !important;
   }
 
-  .outcomes.subpage .company-stat-container ~ block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block) + block {
+  .outcomes.subpage .company-stat-container~block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block)+block {
     padding-top: 39px !important;
   }
 
-  .outcomes.subpage .company-stat-container ~ block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block) + block:has(h3, p):not(:has(img)):not(:has(video)) {
+  .outcomes.subpage .company-stat-container~block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block)+block:has(h3, p):not(:has(img)):not(:has(video)) {
     padding-top: 33px !important;
   }
 
-  .outcomes.subpage .company-stat-container ~ block.img-block-c + block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ block:has(> video:nth-of-type(2)) + block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ block:has(> img:nth-of-type(2)) + block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ block:has(> video + img) + block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ block:has(> img + video) + block.img-text-block-A,
-  .outcomes.subpage .company-stat-container ~ block:has(img, video):not(:has(h1, h2, h3, h4, h5, h6, p)) + block.img-text-block-A {
+  .outcomes.subpage .company-stat-container~block.img-block-c+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> video:nth-of-type(2))+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> img:nth-of-type(2))+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> video + img)+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> img + video)+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(img, video):not(:has(h1, h2, h3, h4, h5, h6, p))+block.img-text-block-A {
     padding-top: 39px !important;
   }
 
-  .outcomes.subpage .company-stat-container + blockquote {
+  .outcomes.subpage .company-stat-container+blockquote {
     margin-top: 24px !important;
   }
 
@@ -4129,7 +4182,7 @@ main.internal .intro+.container.company-info {
 }
 
 .company-stat-container .figure {
-  padding-bottom: 8px !important;
+  padding-bottom: 10px !important;
 }
 
 /* Mobile default: Ensure all figures start at column 1 and span full width */
@@ -4168,9 +4221,12 @@ main.internal .intro+.container.company-info {
 }
 
 /* Case Study C and D mobile only: Add bottom margin to blockquote */
-.case-study-c .blockQuote,
-.case-study-d .blockQuote {
+.case-study-c .blockQuote {
   margin-bottom: 15px !important;
+}
+
+.case-study-d .blockQuote {
+  margin-bottom: 20px !important;
 }
 
 /* Case Study D mobile only: Change bottom padding for p element under "The Problem:" */
@@ -4243,8 +4299,8 @@ block video.tablet-col-5-8.desktop-col-7-12 {
 }
 
 .case-study-b .img-text-block-A:has(> div:first-child) h3 {
-    padding-top: 0 !important;
-    margin-top: 3px !important;
+  padding-top: 0 !important;
+  margin-top: 3px !important;
 }
 
 .img-text-block-A:has(> div:first-child) video {
@@ -4286,6 +4342,20 @@ video.center-img {
 @media screen and (min-width: 700px) {
   .svg-metric {
     max-width: 250px;
+  }
+
+  /* Case Study D tablet only: Change bottom padding for p element under "The Problem:" */
+  .case-study-d block:has(h2.subhead.second) p {
+    padding-bottom: 16px !important;
+  }
+
+  /* Case Study D tablet only: Change bottom padding for last p in img-text-block-A divs */
+  .case-study-d block.img-text-block-A div p:last-of-type {
+    padding-bottom: 17px !important;
+  }
+
+  .case-study-d .blockQuote {
+    margin-bottom: 10px !important;
   }
 }
 
