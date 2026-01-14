@@ -4172,6 +4172,18 @@ main img {
   }
 }
 
+/* Desktop only: Our Approach page - first container with animation has 33px bottom padding */
+@media (min-width: 1080px) {
+  main.internal .container:has(.animation-container) {
+    padding-bottom: 33px;
+  }
+
+  /* Desktop only: Our Approach page - "We put skin in the game" container has 35px top padding */
+  main.internal .container:has(h3.title) {
+    padding-top: 35px;
+  }
+}
+
 .company-info tr:first-child th {
   padding-top: 0 !important;
 }
