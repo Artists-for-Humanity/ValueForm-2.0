@@ -1276,7 +1276,7 @@ main.internal .container+.container+.container+.container+.container+.container+
 }
 
 main.internal .intro+.container {
-  padding: 20px 0 24px 0;
+  padding: 19px 0 24px 0;
 }
 
 main.internal.news .intro+.container {
@@ -2325,12 +2325,12 @@ cite bold {
   }
 
   .blockQuote {
-    margin-top: 0px;
+    margin-top: 15px;
     /* padding-top: 15px;
     padding-bottom: 13px; */
     padding-top: 34px;
     padding-bottom: 28px;
-    margin-bottom: 0px;
+    margin-bottom: 25px;
 
     font-size: 34px;
     font-style: normal;
@@ -4340,7 +4340,8 @@ block video.tablet-col-5-8.desktop-col-7-12 {
   }
 }
 
-.blockQuote {
+/* Outcomes pages only: Reset blockquote margins */
+.outcomes .blockQuote {
   margin: 0 !important;
 }
 
