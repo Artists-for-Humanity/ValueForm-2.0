@@ -734,6 +734,10 @@ MOBILE GRID -- NOT USED */
   img.subgrid-col-3-5 {
     max-width: 100%;
   }
+
+  .subgrid-col-2-6 {
+    grid-column: 2 / span 3;
+  }
 }
 
 @media (min-width: 1080px) {
@@ -751,6 +755,10 @@ MOBILE GRID -- NOT USED */
 
   .subgrid-col-3-5 {
     grid-column: 3 / span 3;
+  }
+
+  .subgrid-col-2-6 {
+    grid-column: 2 / span 5;
   }
 }
 
