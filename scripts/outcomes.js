@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (newVideoSrc) {
             videoSource.src = newVideoSrc;
             videoElement.load();
-            videoElement.style.opacity = "0.2";
+            videoElement.style.opacity = "0.3";
           }
         });
 

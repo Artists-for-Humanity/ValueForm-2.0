@@ -3834,7 +3834,7 @@ main.outcomes.subpage .company-info {
     padding-top: 21px !important;
   }
 
-    .case-study-b .outcomes.subpage .company-stat-container~block.img-text-block-A+block.img-block-c,
+  .case-study-b .outcomes.subpage .company-stat-container~block.img-text-block-A+block.img-block-c,
   .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> video:nth-of-type(2)),
   .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> img:nth-of-type(2)),
   .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> video + img),
@@ -3885,7 +3885,7 @@ main.outcomes.subpage .company-info {
     padding-bottom: 35px !important;
   }
 
-  .case-study-b   .outcomes.subpage block:last-of-type:has(h1, h2, h3, h4, h5, h6, p) {
+  .case-study-b .outcomes.subpage block:last-of-type:has(h1, h2, h3, h4, h5, h6, p) {
     padding-bottom: 40px !important;
   }
 
@@ -3989,7 +3989,7 @@ main.outcomes.subpage .company-info {
 
 @media screen and (min-width:1080px) {
 
-    .outcomes.subpage p:last-of-type {
+  .outcomes.subpage p:last-of-type {
     padding-bottom: 25px;
   }
 
@@ -4014,12 +4014,50 @@ main.outcomes.subpage .company-info {
     padding-top: 39px !important;
   }
 
+  .case-study-c .outcomes.subpage .company-stat-container~blockquote+block.img-block-c,
+  .outcomes.subpage .company-stat-container~blockquote+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> video:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> img:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> video + img),
+  .outcomes.subpage .company-stat-container~blockquote+block:has(> img + video) {
+    padding-top: 29px !important;
+    padding-bottom: 2px !important;
+  }
+
+  .outcomes.subpage .company-stat-container~block.img-block-c:not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A:not(.company-stat-container + block):not(blockquote + block):not(block:not(:has(h1, h2, h3, h4, h5, h6, p)) + block),
+  .outcomes.subpage .company-stat-container~block:has(> video:nth-of-type(2)):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container~block:has(> img:nth-of-type(2)):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container~block:has(> video + img):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block),
+  .outcomes.subpage .company-stat-container~block:has(> img + video):not(.company-stat-container + block):not(blockquote + block):not(block.img-text-block-A + block) {
+    padding-top: 18px !important;
+  }
+
+  .case-study-d .outcomes.subpage .company-stat-container~block.img-text-block-A+block.img-block-c,
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> video:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> img:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> video + img),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> img + video) {
+    padding-top: 39px !important;
+  }
+
   .outcomes.subpage .company-stat-container~block:not(:has(img)):not(:has(video)):not(.company-stat-container + block):not(block:has(h1, h2, h3, h4, h5, h6, p) + block) {
     padding-top: 20px !important;
   }
 
   .company-stat:nth-of-type(2) {
     padding-top: 30px;
+  }
+
+  /* Desktop only: Remove transform on second figure */
+  .outcomes .company-stat:nth-of-type(2) .figure {
+    transform: translateX(0) !important;
+    word-spacing: -0.25em !important;
+  }
+
+  /* Desktop only: Remove left offset on $ symbol */
+  .outcomes .company-stat:nth-of-type(2) .figure .percent {
+    left: 0 !important;
   }
 
   .company-stat:first-of-type {
@@ -4081,6 +4119,14 @@ main.outcomes.subpage .company-info {
     padding-top: 35px !important;
     padding-bottom: 28px !important;
     margin-top: 38px !important;
+  }
+
+  .case-study-a .outcomes.subpage .company-stat-container~blockquote,
+  .outcomes.subpage blockquote {
+    padding-top: 35px !important;
+    padding-bottom: 28px !important;
+    margin-top: 38px !important;
+    margin-bottom: 12px !important;
   }
 
   .outcomes.subpage .company-info tr:nth-child(1) th {
@@ -4223,6 +4269,36 @@ main img {
   }
 
   .outcomes.subpage .company-stat-container~block.img-block-c+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> video:nth-of-type(2))+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> img:nth-of-type(2))+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> video + img)+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> img + video)+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(img, video):not(:has(h1, h2, h3, h4, h5, h6, p))+block.img-text-block-A {
+    padding-top: 39px !important;
+  }
+
+  .case-study-b .outcomes.subpage .company-stat-container~block.img-block-c+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> video:nth-of-type(2))+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> img:nth-of-type(2))+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> video + img)+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(> img + video)+block.img-text-block-A,
+  .outcomes.subpage .company-stat-container~block:has(img, video):not(:has(h1, h2, h3, h4, h5, h6, p))+block.img-text-block-A {
+    padding-top: 25px !important;
+  }
+
+  .case-study-b .outcomes.subpage .company-stat-container~block.img-text-block-A+block.img-block-c,
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> video:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> img:nth-of-type(2)),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> video + img),
+  .outcomes.subpage .company-stat-container~block.img-text-block-A+block:has(> img + video) {
+    padding-top: 39px !important;
+  }
+
+  .case-study-b .outcomes.subpage block:last-of-type:has(h1, h2, h3, h4, h5, h6, p) {
+    padding-bottom: 30px !important;
+  }
+
+  .case-study-c .outcomes.subpage .company-stat-container~block.img-block-c+block.img-text-block-A,
   .outcomes.subpage .company-stat-container~block:has(> video:nth-of-type(2))+block.img-text-block-A,
   .outcomes.subpage .company-stat-container~block:has(> img:nth-of-type(2))+block.img-text-block-A,
   .outcomes.subpage .company-stat-container~block:has(> video + img)+block.img-text-block-A,
@@ -4443,7 +4519,7 @@ video.center-img {
     max-width: 280px;
   }
 
-   .outcomes.subpage p:not(:last-of-type) {
+  .outcomes.subpage p:not(:last-of-type) {
     padding-bottom: 26px;
   }
 }
