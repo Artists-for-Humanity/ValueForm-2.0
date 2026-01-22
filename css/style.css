@@ -1045,8 +1045,8 @@ nav a.disabled:first-child+a:active {
   }
 
   nav div {
-    /* width: 364px; */
-    width: 500px;
+    /* When restoring Outcomes nav: change width to 500px for 5 nav items */
+    width: 364px;
   }
 
   .mobile-approach-button {
@@ -1070,8 +1070,8 @@ nav a.disabled:first-child+a:active {
 
   nav div {
     /* width: 279px; */
-    /* width: 417px; */
-    width: 580px;
+    /* When restoring Outcomes nav: change width to 580px for 5 nav items */
+    width: 417px;
   }
 
   .mobile-approach-button {
