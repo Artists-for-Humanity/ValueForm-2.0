@@ -1045,8 +1045,16 @@ nav a.disabled:first-child+a:active {
   }
 
   nav div {
-    /* When restoring Outcomes nav: change width to 500px for 5 nav items */
     width: 364px;
+  }
+
+  .wrapper.outcomes nav div,
+  .case-study-a nav div,
+  .case-study-b nav div,
+  .case-study-c nav div,
+  .case-study-d nav div,
+  nav div:has(a:nth-child(5)) {
+    width: 500px;
   }
 
   .mobile-approach-button {
@@ -1069,9 +1077,16 @@ nav a.disabled:first-child+a:active {
   }
 
   nav div {
-    /* width: 279px; */
-    /* When restoring Outcomes nav: change width to 580px for 5 nav items */
     width: 417px;
+  }
+
+  .wrapper.outcomes nav div,
+  .case-study-a nav div,
+  .case-study-b nav div,
+  .case-study-c nav div,
+  .case-study-d nav div,
+  nav div:has(a:nth-child(5)) {
+    width: 580px;
   }
 
   .mobile-approach-button {
