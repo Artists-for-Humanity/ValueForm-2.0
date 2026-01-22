@@ -91,8 +91,10 @@ function animateOnLoad() {
   // Check if we just navigated between Outcomes pages
   const topBanner = document.getElementById("top_banner_main");
   const keepStatic = sessionStorage.getItem("keepOutcomesBannerStatic");
+  const isOutcomesRoute = window.location.pathname.includes("/outcomes");
 
-  if (keepStatic === "true" && topBanner) {
+  // ONLY apply keepStatic logic on Outcomes routes, not on news/article pages
+  if (keepStatic === "true" && topBanner && isOutcomesRoute) {
     // Consume the flag so it doesn't persist beyond this load
     sessionStorage.removeItem("keepOutcomesBannerStatic");
     // Ensure the banner is visible if it was faded out on the previous page
@@ -288,19 +290,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const path = window.location.pathname;
   const isNewsPage = path.endsWith("/news.html");
   const isOutcomesPage = path.endsWith("/outcomes.html");
-  // if (!isNewsPage) return;  // <-- prevents touching #top_banner_main on outcomes
-  if (!isNewsPage && !isOutcomesPage) {
-    return;
-  }
 
-
-  // Define elements with their fade-in delay
-  // let elementsForFade = [
-  //   { element: document.getElementById("news_page_main"), delay: "600ms" },
-  //   { element: document.getElementById("top_banner_main"), delay: "1200ms" },
-  // ];
-
-  // Definde fade targets based on page type
+  // Define fade targets based on page type (only used for news/outcomes pages)
   let elementsForFade = [];
   if (isNewsPage) {
     elementsForFade = [
@@ -327,26 +318,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   } else {
-    // For other pages, only remove fadeInUp from #top_banner_main
+    // For other pages (including article pages), only remove fadeInUp from #top_banner_main
     const topBannerMain = document.getElementById("top_banner_main");
     if (topBannerMain && localStorage.getItem("add_fade") === "false") {
       topBannerMain.classList.remove("fadeInUp", "animated");
     }
   }
-
-  // if (previousPage.includes(`/pages/articles/${pinnedFilePath}`)) {
-  //   if (localStorage.getItem("add_fade") === "false") {
-  //     elementsForFade.forEach(({ element }) => {
-  //       if (element) element.classList.remove("fadeInUp", "animated");
-  //     });
-  //   }
-  // } else {
-  //   // For other pages, only remove fadeInUp from #top_banner_main
-  //   const topBannerMain = document.getElementById("top_banner_main");
-  //   if (topBannerMain && localStorage.getItem("add_fade") === "false") {
-  //     topBannerMain.classList.remove("fadeInUp", "animated");
-  //   }
-  // }
 
   // Reset for subsequent visits
   localStorage.setItem("add_fade", true);

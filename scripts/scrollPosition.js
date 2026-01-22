@@ -95,8 +95,12 @@ export function restoreScrollPosition() {
   const currentUrl = window.location.href;
   const isDirectLoad = !referrer || referrer === currentUrl || !referrer.includes("/pages/outcomes/");
 
-  // Only strip classes if NOT a direct load
-  if (topBannerMain && (onOutcomesSubpage || prevWasOutcomesRoute) && window.location.pathname !== "/pages/news.html" && !isDirectLoad) {
+  // Check if current page is news-related (news.html or articles)
+  const isNewsRelated = window.location.pathname.includes("/pages/news.html") ||
+                        window.location.pathname.includes("/pages/articles/");
+
+  // Only strip classes if NOT a direct load AND NOT on news-related pages
+  if (topBannerMain && (onOutcomesSubpage || prevWasOutcomesRoute) && !isNewsRelated && !isDirectLoad) {
     const bannerInViewNow = isInViewport(topBannerMain);
     if (bannerInViewNow) {
       topBannerMain.classList.remove("fadeInUp", "animated");
@@ -107,17 +111,19 @@ export function restoreScrollPosition() {
 
   // Direct load (not from /news.html): animate once, then strip
   // BUT: Don't strip on outcomes subpages if it's a direct load - let them animate
+  // AND: Don't strip on news-related pages - they have their own animation logic
   if (
     (storedScrollPosition === null || storedScrollPosition === "0") &&
     sessionStorage.getItem("currentPagePath") !== "/pages/news.html" &&
-    !(onOutcomesSubpage && isDirectLoad)
+    !(onOutcomesSubpage && isDirectLoad) &&
+    !isNewsRelated
   ) {
     // Let the first paint do a brief intro (if markup provides it), then remove
     setTimeout(() => {
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
 
-    // If this page has a news article container and we didn’t come from news,
+    // If this page has a news article container and we didn't come from news,
     // allow it a one-time entrance on direct loads.
     const newsArticle = document.getElementById("news_page_main");
     if (newsArticle && !wasPreviousPageNews()) {
@@ -166,7 +172,7 @@ export function restoreScrollPosition() {
       return;
     }
 
-    // If the banner was visible previously (or we’re returning to a pinned article),
+    // If the banner was visible previously (or we're returning to a pinned article),
     // keep it static and restore the scroll position.
     if (onPinnedArticle && (bannerWasVisible || articleWasVisible)) {
       topBannerMain?.classList.remove("fadeInUp", "animated");
@@ -177,13 +183,12 @@ export function restoreScrollPosition() {
       window.scrollTo(0, scrollY);
       sessionStorage.setItem("dontAnimateBanner", "true");
     } else {
-      // Banner wasn’t visible last time; allow a one-time entrance
+      // Banner wasn't visible last time; allow a one-time entrance
       topBannerMain?.classList.add("fadeInUp", "animated");
       clearScrollPosition();
       sessionStorage.removeItem("dontAnimateBanner");
     }
 
-    // Always strip classes after the brief intro
     setTimeout(() => {
       topBannerMain?.classList.remove("fadeInUp", "animated");
     }, 1000);
@@ -191,7 +196,4 @@ export function restoreScrollPosition() {
 
   document.body.classList.remove("preload");
   sessionStorage.setItem("currentPagePath", window.location.pathname);
-  setTimeout(() => {
-      topBannerMain?.classList.remove("fadeInUp", "animated");
-    }, 1000);
 }

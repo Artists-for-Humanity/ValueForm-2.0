@@ -115,6 +115,11 @@ export function handleNavigation(fadeInUpElements) {
         targetUrl.startsWith("./articles/") &&
         targetUrl !== "./articles/" + pinnedFilePath
       ) {
+        // Check if banner is in viewport and set the add_fade flag
+        if (topBannerMain) {
+          localStorage.setItem("add_fade", isTopBannerMainInViewport ? "false" : "true");
+        }
+
         const hasTopBannerInList = containsElementWithId(
           fadeInUpElements,
           "top_banner_main"
@@ -242,6 +247,11 @@ export function handleNavigation(fadeInUpElements) {
         currentPage === "/pages/news.html" &&
         targetUrl === "./articles/" + pinnedFilePath
       ) {
+        // Check if banner is in viewport and set the add_fade flag
+        if (topBannerMain) {
+          localStorage.setItem("add_fade", isTopBannerMainInViewport ? "false" : "true");
+        }
+
         delayCounter = fadeInUpElements.length;
         if (
           containsElementWithId(fadeInUpElements, "news_page_main") &&
