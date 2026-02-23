@@ -147,6 +147,27 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         }, delayCounter++ * 600);
       }
 
+      // ---- NEW: mark that next page should reset scroll + fade banner in
+      const isOutcomesSubpage = currentPage.startsWith("/pages/outcomes/");
+
+      // URLs that should reset when coming from an outcomes page
+      const resetTargets = new Set([
+        // News
+        "./news.html", "../news.html", "./../news.html", "/pages/news.html",
+        // Home
+        "./index.html", "../index.html", "../../index.html", "/index.html", "/pages/index.html",
+        // Our Approach
+        "./our-approach.html", "../our-approach.html", "./../our-approach.html", "/pages/our-approach.html",
+        // Leadership
+        "./leadership.html", "../leadership.html", "./../leadership.html", "/pages/leadership.html",
+      ]);
+
+      if (isOutcomesSubpage && resetTargets.has(targetUrl)) {
+        sessionStorage.setItem("forceTopAndFadeIn", "true");
+        // make absolutely sure we don't carry a "keep static" flag
+        sessionStorage.removeItem("keepOutcomesBannerStatic");
+      }
+
       setTimeout(() => {
         window.location.href = targetUrl;
       }, delayCounter * 600 + 800);

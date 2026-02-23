@@ -232,8 +232,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ======================================================
-// If we just came from a News article and are landing on
-// Outcomes / Home / Our Approach / Leadership,
+// If we just came from a News article or Outcomes page and are landing on
+// Outcomes / Home / Our Approach / Leadership / News,
 // force scroll to top and fade the banner in once.
 // ======================================================
 document.addEventListener("DOMContentLoaded", () => {
@@ -246,7 +246,8 @@ document.addEventListener("DOMContentLoaded", () => {
     p.endsWith("/outcomes.html") ||
     p.endsWith("/index.html") ||
     p.endsWith("/our-approach.html") ||
-    p.endsWith("/leadership.html");
+    p.endsWith("/leadership.html") ||
+    p.endsWith("/news.html");
 
   if (!isTopTarget) return;
 
@@ -383,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // ======================================================
 document.addEventListener("DOMContentLoaded", () => {
   const isNews = window.location.pathname.endsWith("/news.html");
-  const cameFromOutcomes = /\/pages\/outcomes\.html$/.test(document.referrer || "");
+  const cameFromOutcomes = /\/pages\/outcomes(\.html|\/)/.test(document.referrer || "");
   if (!isNews || !cameFromOutcomes) return;
 
   const tb = document.getElementById("top_banner_main");
