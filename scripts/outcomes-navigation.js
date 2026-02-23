@@ -57,12 +57,16 @@ export function handleOutcomesNavigation(fadeInUpElements) {
       // Outcomes route context & static banner flag
       const currentPage = window.location.pathname;
 
+      // Check if banner is in viewport BEFORE setting the flag
+      const isTopBannerInViewport = topBannerMain && isInViewport(topBannerMain);
+
       const keepStaticBetweenOutcomes = (
-        (currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) ||
-        (currentPage.startsWith("/pages/outcomes/") && targetUrl === "../outcomes.html")
+        ((currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) ||
+        (currentPage.startsWith("/pages/outcomes/") && targetUrl === "../outcomes.html")) &&
+        isTopBannerInViewport  // Only keep static if banner is visible
       );
       if (keepStaticBetweenOutcomes) {
-        // Persist a flag so the banner doesn’t re‑animate on the destination page
+        // Persist a flag so the banner doesn't re‑animate on the destination page
         sessionStorage.setItem("keepOutcomesBannerStatic", "true");
         if (topBannerMain) {
           // Remove fade‑in classes so the static banner flows into next page
@@ -83,8 +87,6 @@ export function handleOutcomesNavigation(fadeInUpElements) {
         el.style.animationDelay = `${index * 600}ms`;
         delayCounter++;
       });
-
-      const isTopBannerInViewport = topBannerMain && isInViewport(topBannerMain);
 
 
 
