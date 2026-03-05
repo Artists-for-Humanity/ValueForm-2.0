@@ -83,10 +83,14 @@ export function storeScrollPosition() {
 export function restoreScrollPosition() {
   const storedScrollPosition = sessionStorage.getItem("scrollPosition");
 
+  // Read stored visibility states early (used throughout this function)
+  const storedBannerVisibility = sessionStorage.getItem("bannerWasVisible");
+  const storedArticleVisibility = sessionStorage.getItem("articleWasVisible");
+
   // ---------- Outcomes guard (EARLY) ----------
   // If we are on an Outcomes subpage or came from any Outcomes page,
-  // and the banner is in view, strip any entrance classes up front so
-  // later branches cannot re-add them.
+  // check if the banner WAS visible on the PREVIOUS page to decide whether to animate.
+  // This must check the stored visibility state, not the current viewport.
   const onOutcomesSubpage = isCurrentPageOutcomesSubpage();
   const prevWasOutcomesRoute = wasPreviousPageOutcomesRoute();
 
@@ -99,10 +103,12 @@ export function restoreScrollPosition() {
   const isNewsRelated = window.location.pathname.includes("/pages/news.html") ||
                         window.location.pathname.includes("/pages/articles/");
 
+  const bannerWasVisibleOnPrevPage = storedBannerVisibility === "true";
+
   // Only strip classes if NOT a direct load AND NOT on news-related pages
+  // AND the banner WAS visible on the previous page (not currently visible)
   if (topBannerMain && (onOutcomesSubpage || prevWasOutcomesRoute) && !isNewsRelated && !isDirectLoad) {
-    const bannerInViewNow = isInViewport(topBannerMain);
-    if (bannerInViewNow) {
+    if (bannerWasVisibleOnPrevPage) {
       topBannerMain.classList.remove("fadeInUp", "animated");
       sessionStorage.setItem("dontAnimateBanner", "true");
     }
@@ -140,9 +146,7 @@ export function restoreScrollPosition() {
     return;
   }
 
-  // Read prior visibility state
-  const storedBannerVisibility = sessionStorage.getItem("bannerWasVisible");
-  const storedArticleVisibility = sessionStorage.getItem("articleWasVisible");
+  // Parse prior visibility state (already read at top of function)
   const bannerWasVisible = storedBannerVisibility === "true";
   const articleWasVisible = storedArticleVisibility === "true";
 
@@ -178,20 +182,48 @@ export function restoreScrollPosition() {
       topBannerMain?.classList.remove("fadeInUp", "animated");
       window.scrollTo(0, scrollY);
       sessionStorage.setItem("dontAnimateBanner", "true");
+
+      // Clean up animation classes after a delay (for static banner case)
+      setTimeout(() => {
+        topBannerMain?.classList.remove("fadeInUp", "animated");
+      }, 1000);
     } else if (bannerWasVisible) {
       topBannerMain?.classList.remove("fadeInUp", "animated");
       window.scrollTo(0, scrollY);
       sessionStorage.setItem("dontAnimateBanner", "true");
+
+      // Clean up animation classes after a delay (for static banner case)
+      setTimeout(() => {
+        topBannerMain?.classList.remove("fadeInUp", "animated");
+      }, 1000);
     } else {
       // Banner wasn't visible last time; allow a one-time entrance
-      topBannerMain?.classList.add("fadeInUp", "animated");
+      console.log(`[RESTORE - ADD FADEINUP] Banner was NOT visible on prev page - adding fadeInUp`);
+      console.log(`[RESTORE - ADD FADEINUP] Before adding:`, {
+        elementExists: !!topBannerMain,
+        classesBefore: topBannerMain?.className,
+        hasFadeInUp: topBannerMain?.classList.contains('fadeInUp'),
+        timestamp: Date.now()
+      });
+
+      // Only add fadeInUp class here - let animateOnLoad() handle adding "animated"
+      // This ensures the banner animates in sync with the header
+      topBannerMain?.classList.add("fadeInUp");
+
+      console.log(`[RESTORE - ADD FADEINUP] After adding:`, {
+        classesAfter: topBannerMain?.className,
+        hasFadeInUp: topBannerMain?.classList.contains('fadeInUp'),
+        hasAnimated: topBannerMain?.classList.contains('animated')
+      });
+
+      // Do NOT add "animated" class here - it will be added by animateOnLoad()
       clearScrollPosition();
       sessionStorage.removeItem("dontAnimateBanner");
-    }
 
-    setTimeout(() => {
-      topBannerMain?.classList.remove("fadeInUp", "animated");
-    }, 1000);
+      // DON'T set a setTimeout here - animateOnLoad() will handle the animation
+      // and cleanup. The previous unconditional setTimeout was removing fadeInUp
+      // before animateOnLoad() could process it!
+    }
   }
 
   document.body.classList.remove("preload");

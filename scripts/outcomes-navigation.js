@@ -92,6 +92,19 @@ export function handleOutcomesNavigation(fadeInUpElements) {
 
       // From outcomes.html to subpage — keep banner static if requested
       if (currentPage === "/pages/outcomes.html" && targetUrl.startsWith("./outcomes/")) {
+        console.log(`[OUTCOMES NAV] Navigating to case study. Banner in viewport: ${isTopBannerInViewport}, keepStatic: ${keepStaticBetweenOutcomes}`);
+
+        // Clear header animation flag when topbanner is NOT visible (similar to news pages)
+        // This ensures the header will animate on the destination page
+        if (!isTopBannerInViewport) {
+          console.log(`[OUTCOMES NAV] Banner NOT visible - clearing dontAnimateHeader flag`);
+          console.log(`[OUTCOMES NAV] Before removal: ${sessionStorage.getItem("dontAnimateHeader")}`);
+          sessionStorage.removeItem("dontAnimateHeader");
+          console.log(`[OUTCOMES NAV] After removal: ${sessionStorage.getItem("dontAnimateHeader")}`);
+        } else {
+          console.log(`[OUTCOMES NAV] Banner IS visible - keeping dontAnimateHeader as is`);
+        }
+
         if (!keepStaticBetweenOutcomes && isTopBannerInViewport) {
           delayCounter++;
           setTimeout(() => {
