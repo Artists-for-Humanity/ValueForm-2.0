@@ -181,6 +181,8 @@ function handleOutcomesFadeAndRedirect(targetUrl = "./outcomes/case-study-A.html
 window.addEventListener("beforeunload", () => {
   console.log('[OUTCOMES BEFOREUNLOAD] Clearing timeout, ID:', outcomesExitFadeTimeout);
   clearTimeout(outcomesExitFadeTimeout);
+  outcomesExitFadeTimeout = null;  // ✅ Reset to null
+  console.log('[OUTCOMES BEFOREUNLOAD] Timeout cleared and reset to null');
 });
 
 window.addEventListener("pageshow", (e) => {
@@ -194,14 +196,17 @@ window.addEventListener("pageshow", (e) => {
     console.log('[OUTCOMES PAGESHOW] Page restored from BFCache - clearing timeout');
     console.log('[OUTCOMES PAGESHOW] Timeout ID BEFORE clearTimeout:', outcomesExitFadeTimeout);
     clearTimeout(outcomesExitFadeTimeout);
+    outcomesExitFadeTimeout = null;  // ✅ FIX: Reset to null
     console.log('[OUTCOMES PAGESHOW] Timeout ID AFTER clearTimeout:', outcomesExitFadeTimeout);
-    console.log('[OUTCOMES PAGESHOW] ⚠️ BUG: Timeout variable NOT reset to null!');
+    console.log('[OUTCOMES PAGESHOW] ✅ FIX APPLIED: Timeout variable reset to null');
   }
 });
 
 window.addEventListener("popstate", () => {
   console.log('[OUTCOMES POPSTATE] Clearing timeout, ID:', outcomesExitFadeTimeout);
   clearTimeout(outcomesExitFadeTimeout);
+  outcomesExitFadeTimeout = null;  // ✅ Reset to null
+  console.log('[OUTCOMES POPSTATE] Timeout cleared and reset to null');
 });
 
 // Attach click/keyboard handlers to Outcomes blocks only on the landing page
