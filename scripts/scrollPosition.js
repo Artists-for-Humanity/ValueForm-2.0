@@ -49,7 +49,7 @@ export function wasPreviousPageNews() {
 
 // --------------------- Scroll position API ---------------------
 export function clearScrollPosition() {
-  console.log("Clearing stored scroll position");
+  // console.log("Clearing stored scroll position");
   sessionStorage.removeItem("scrollPosition");
   window.scrollTo(0, 0);
 }
@@ -198,23 +198,9 @@ export function restoreScrollPosition() {
       }, 1000);
     } else {
       // Banner wasn't visible last time; allow a one-time entrance
-      console.log(`[RESTORE - ADD FADEINUP] Banner was NOT visible on prev page - adding fadeInUp`);
-      console.log(`[RESTORE - ADD FADEINUP] Before adding:`, {
-        elementExists: !!topBannerMain,
-        classesBefore: topBannerMain?.className,
-        hasFadeInUp: topBannerMain?.classList.contains('fadeInUp'),
-        timestamp: Date.now()
-      });
-
       // Only add fadeInUp class here - let animateOnLoad() handle adding "animated"
       // This ensures the banner animates in sync with the header
       topBannerMain?.classList.add("fadeInUp");
-
-      console.log(`[RESTORE - ADD FADEINUP] After adding:`, {
-        classesAfter: topBannerMain?.className,
-        hasFadeInUp: topBannerMain?.classList.contains('fadeInUp'),
-        hasAnimated: topBannerMain?.classList.contains('animated')
-      });
 
       // Do NOT add "animated" class here - it will be added by animateOnLoad()
       clearScrollPosition();

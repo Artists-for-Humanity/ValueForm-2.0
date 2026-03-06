@@ -83,65 +83,18 @@ function getArticles() {
 // Standard page load anims
 // ============================
 function animateOnLoad() {
-  console.log(`[ANIMATE ON LOAD] 🔍 Starting function at ${Date.now()}`);
-
-  // EXPLICIT CHECK: Does top_banner_main exist BEFORE querySelectorAll?
-  const topBannerDirect = document.getElementById("top_banner_main");
-  console.log(`[ANIMATE ON LOAD] 📍 Direct getElementById check BEFORE querySelectorAll:`, {
-    exists: !!topBannerDirect,
-    classList: topBannerDirect?.classList.toString(),
-    hasFadeInUp: topBannerDirect?.classList.contains('fadeInUp'),
-    parentElement: topBannerDirect?.parentElement?.tagName,
-    offsetParent: topBannerDirect?.offsetParent?.tagName,
-    offsetHeight: topBannerDirect?.offsetHeight,
-    isVisible: topBannerDirect && topBannerDirect.offsetHeight > 0,
-    timestamp: Date.now()
-  });
-
-  // Check computed styles
-  if (topBannerDirect) {
-    const styles = window.getComputedStyle(topBannerDirect);
-    console.log(`[ANIMATE ON LOAD] 🎨 top_banner_main computed styles:`, {
-      display: styles.display,
-      visibility: styles.visibility,
-      opacity: styles.opacity,
-      height: styles.height,
-      position: styles.position,
-      zIndex: styles.zIndex
-    });
-  }
-
   // Collect all elements slated to fade in except nav items
-  console.log(`[ANIMATE ON LOAD] 🔎 Running querySelectorAll(".fadeInUp:not(nav)") at ${Date.now()}`);
   const fadeInUpElements = Array.from(
     document.querySelectorAll(".fadeInUp:not(nav)")
   );
-
-  // CHECK: Does querySelectorAll find top_banner_main?
-  const foundById = fadeInUpElements.find(el => el.id === "top_banner_main");
-  console.log(`[ANIMATE ON LOAD] ✅ querySelectorAll results:`, {
-    totalCount: fadeInUpElements.length,
-    foundTopBanner: !!foundById,
-    topBannerIndex: fadeInUpElements.indexOf(foundById),
-    allElementIds: fadeInUpElements.map(el => el.id || el.className.split(' ')[0]).join(', '),
-    timestamp: Date.now()
-  });
 
   // Check if we just navigated between Outcomes pages
   const topBanner = document.getElementById("top_banner_main");
   const keepStatic = sessionStorage.getItem("keepOutcomesBannerStatic");
   const isOutcomesRoute = window.location.pathname.includes("/outcomes");
 
-  console.log(`[ANIMATE ON LOAD] 🏁 keepStatic logic check:`, {
-    keepStatic,
-    topBannerExists: !!topBanner,
-    isOutcomesRoute,
-    willApplyKeepStatic: keepStatic === "true" && topBanner && isOutcomesRoute
-  });
-
   // ONLY apply keepStatic logic on Outcomes routes, not on news/article pages
   if (keepStatic === "true" && topBanner && isOutcomesRoute) {
-    console.log(`[ANIMATE ON LOAD] ⚠️ Applying keepStatic logic - REMOVING fadeInUp from banner`);
     // Consume the flag so it doesn't persist beyond this load
     sessionStorage.removeItem("keepOutcomesBannerStatic");
     // Ensure the banner is visible if it was faded out on the previous page
@@ -157,73 +110,32 @@ function animateOnLoad() {
     topBanner.classList.remove("fadeInUp", "animated");
     // Remove the banner from the fade list so it isn't animated again
     const idx = fadeInUpElements.indexOf(topBanner);
-    console.log(`[ANIMATE ON LOAD] 🗑️ Removing banner from fadeInUpElements array at index: ${idx}`);
     if (idx !== -1) fadeInUpElements.splice(idx, 1);
-    console.log(`[ANIMATE ON LOAD] 📊 After removal, fadeInUpElements count: ${fadeInUpElements.length}`);
   }
   // For direct loads, the banner will animate naturally via the fadeInUpElements array
 
   // Stagger fade‑in for elements that are currently in view
   // Also trigger header animation at the same time for perfect sync
   setTimeout(() => {
-    console.log(`[ANIMATE ON LOAD] Starting animations at ${Date.now()}, elements count: ${fadeInUpElements.length}`);
-
     // Trigger header animation FIRST, at the same moment
     const header = document.getElementById("animatedHeader");
     const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
-    console.log(`[HEADER ANIMATION] Time: ${Date.now()}, dontAnimate: ${dontAnimate}, element exists: ${!!header}`);
 
     if (header && dontAnimate != "true") {
-      console.log(`[HEADER ANIMATION] Adding animated-header class at ${Date.now()}`);
       header.classList.add("animated-header");
-    } else if (header) {
-      console.log(`[HEADER ANIMATION] Skipping animation (dontAnimate=true)`);
     }
 
     // Now trigger banner/content animations at the SAME TIME
     let viewportIndex = 0;
 
-    // Log all elements before processing
-    fadeInUpElements.forEach((el) => {
-      console.log(`[ANIMATE ON LOAD] Found element: ${el.id || el.className}, has fadeInUp: ${el.classList.contains('fadeInUp')}, has animated: ${el.classList.contains('animated')}`);
-    });
-
     fadeInUpElements.forEach((element) => {
-      const isTopBanner = element.id === 'top_banner_main';
-
-      if (isTopBanner) {
-        console.log(`[ANIMATE ON LOAD] ⭐ Processing top_banner_main:`, {
-          hasFadeInUp: element.classList.contains('fadeInUp'),
-          hasAnimated: element.classList.contains('animated'),
-          allClasses: element.className,
-          isInViewport: isInViewport(element),
-          willAnimate: element.classList.contains('fadeInUp') && isInViewport(element),
-          timestamp: Date.now()
-        });
-      }
-
       if (isInViewport(element)) {
         const delay = viewportIndex * 600;
         element.style.animationDelay = `${delay}ms`;
         element.classList.add("animated");
-
-        if (isTopBanner) {
-          console.log(`[ANIMATE ON LOAD] ⭐ TOP_BANNER_MAIN - ADDING animated class:`, {
-            delay: `${delay}ms`,
-            classesAfter: element.className,
-            hasFadeInUp: element.classList.contains('fadeInUp'),
-            hasAnimated: element.classList.contains('animated'),
-            time: Date.now()
-          });
-        } else {
-          console.log(`[ANIMATE ON LOAD] Element ${element.id || element.className} - delay: ${delay}ms, time: ${Date.now()}`);
-        }
         viewportIndex++;
       } else {
         element.style.visibility = "visible";
-        if (isTopBanner) {
-          console.log(`[ANIMATE ON LOAD] ⭐ TOP_BANNER_MAIN NOT in viewport - making visible only`);
-        }
       }
     });
   }, 10);
@@ -264,10 +176,7 @@ function checkHeaderInView() {
   const header = document.getElementById("animatedHeader");
   const isInViewNow = isInViewport(header);
 
-  console.log(`[CHECK HEADER] Time: ${Date.now()}, isInViewNow: ${isInViewNow}, wasInViewport: ${wasInViewport}, headerChecked: ${headerChecked}`);
-
   if ((!isInViewNow && wasInViewport) || (!isInViewNow && !headerChecked)) {
-    console.log(`[CHECK HEADER] ✅ Removing dontAnimateHeader flag (header not in view)`);
     sessionStorage.removeItem("dontAnimateHeader");
     wasInViewport = false;
     headerChecked = true;
@@ -275,13 +184,10 @@ function checkHeaderInView() {
     (isInViewNow && !wasInViewport) ||
     (isInViewNow && !headerChecked)
   ) {
-    console.log(`[CHECK HEADER] ⚠️ Setting dontAnimateHeader=true (header in view)`);
     sessionStorage.setItem("dontAnimateHeader", "true");
     wasInViewport = true;
     headerChecked = true;
   }
-
-  console.log(`[CHECK HEADER] Final flag value: ${sessionStorage.getItem("dontAnimateHeader")}`);
 }
 function watchHeaderInView() {
   checkHeaderInView();
@@ -291,19 +197,13 @@ function watchHeaderInView() {
   });
 }
 function animateHeader(elementId) {
-
   const element = document.getElementById(elementId);
   const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
-
-  console.log(`[HEADER ANIMATION] Time: ${Date.now()}, dontAnimate: ${dontAnimate}, element exists: ${!!element}`);
 
   if (element) {
     // First load
     if (dontAnimate != "true") {
-      console.log(`[HEADER ANIMATION] Adding animated-header class at ${Date.now()}`);
       element.classList.add("animated-header");
-    } else {
-      console.log(`[HEADER ANIMATION] Skipping animation (dontAnimate=true)`);
     }
   }
 }
@@ -335,31 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
   getPinnedPage();
   getArticles();
   const topBannerMain = document.getElementById("top_banner_main");
-
-  // Add MutationObserver to track class changes on top_banner_main
-  if (topBannerMain) {
-    console.log(`[MUTATION OBSERVER] 👀 Starting to watch top_banner_main for class changes`);
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-          console.log(`[MUTATION] 🔄 top_banner_main class changed:`, {
-            oldValue: mutation.oldValue,
-            newValue: topBannerMain.className,
-            hasFadeInUp: topBannerMain.classList.contains('fadeInUp'),
-            hasAnimated: topBannerMain.classList.contains('animated'),
-            timestamp: Date.now(),
-            stack: new Error().stack.split('\n').slice(2, 5).join('\n')
-          });
-        }
-      });
-    });
-
-    observer.observe(topBannerMain, {
-      attributes: true,
-      attributeOldValue: true,
-      attributeFilter: ['class']
-    });
-  }
 
   if (isTargetPage()) {
 
@@ -639,9 +514,6 @@ window.addEventListener("pageshow", (event) => {
   initializePage();
 });
 function initializePage() {
-  console.log(`[INIT PAGE] Starting initialization at ${Date.now()}`);
-  console.log(`[INIT PAGE] dontAnimateHeader flag BEFORE animations: ${sessionStorage.getItem("dontAnimateHeader")}`);
-
   // Call animateOnLoad() which now handles BOTH header and banner animations
   // plus navigation setup - everything synchronized in one setTimeout
   animateOnLoad();
@@ -651,7 +523,6 @@ function initializePage() {
 
   // Delay watchHeaderInView() so it doesn't interfere with initial animations
   setTimeout(() => {
-    console.log(`[INIT PAGE] Now calling watchHeaderInView() at ${Date.now()}`);
     watchHeaderInView();
   }, 100);
 }
