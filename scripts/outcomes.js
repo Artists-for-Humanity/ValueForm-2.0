@@ -118,26 +118,15 @@ document.addEventListener("DOMContentLoaded", function () {
 let outcomesExitFadeTimeout; // Store timeout for Outcomes clicks
 
 function handleOutcomesFadeAndRedirect(targetUrl = "./outcomes/case-study-A.html") {
-  console.log('[OUTCOMES FADE] Function called with:', {
-    targetUrl,
-    outcomesExitFadeTimeout,
-    willReturn: !!outcomesExitFadeTimeout,
-    timestamp: Date.now()
-  });
-
   if (outcomesExitFadeTimeout) {
-    console.log('[OUTCOMES FADE] ❌ EARLY RETURN - timeout already exists:', outcomesExitFadeTimeout);
     return; // prevent double scheduling
   }
-
-  console.log('[OUTCOMES FADE] Proceeding with navigation');
 
   // Keep the title static like on News
   try { staticTitle(); } catch (_) {}
 
   // Fade out all elements that participate in exits — strict bottom-up like News
   const elements = Array.from(document.querySelectorAll(".fade_link"));
-  console.log('[OUTCOMES FADE] Found elements to fade:', elements.length);
 
   // Sort by vertical position (bottom-most first); tie-break by left (right-most first)
   elements.sort((a, b) => {
@@ -163,89 +152,50 @@ function handleOutcomesFadeAndRedirect(targetUrl = "./outcomes/case-study-A.html
   });
 
   const delay = elements.length * 600 + 800;
-  console.log('[OUTCOMES FADE] Setting timeout for navigation:', {
-    delay,
-    targetUrl,
-    timestamp: Date.now()
-  });
 
   outcomesExitFadeTimeout = setTimeout(() => {
-    console.log('[OUTCOMES FADE] Timeout fired, navigating to:', targetUrl);
     window.location.href = targetUrl;
   }, delay);
-
-  console.log('[OUTCOMES FADE] Timeout set, ID:', outcomesExitFadeTimeout);
 }
 
 // Clear on unload/restore
 window.addEventListener("beforeunload", () => {
-  console.log('[OUTCOMES BEFOREUNLOAD] Clearing timeout, ID:', outcomesExitFadeTimeout);
   clearTimeout(outcomesExitFadeTimeout);
-  outcomesExitFadeTimeout = null;  // ✅ Reset to null
-  console.log('[OUTCOMES BEFOREUNLOAD] Timeout cleared and reset to null');
+  outcomesExitFadeTimeout = null;
 });
 
 window.addEventListener("pageshow", (e) => {
-  console.log('[OUTCOMES PAGESHOW] Event fired:', {
-    persisted: e.persisted,
-    timestamp: Date.now(),
-    url: window.location.pathname,
-    timeoutBeforeClear: outcomesExitFadeTimeout
-  });
   if (e.persisted) {
-    console.log('[OUTCOMES PAGESHOW] Page restored from BFCache - clearing timeout');
-    console.log('[OUTCOMES PAGESHOW] Timeout ID BEFORE clearTimeout:', outcomesExitFadeTimeout);
     clearTimeout(outcomesExitFadeTimeout);
-    outcomesExitFadeTimeout = null;  // ✅ FIX: Reset to null
-    console.log('[OUTCOMES PAGESHOW] Timeout ID AFTER clearTimeout:', outcomesExitFadeTimeout);
-    console.log('[OUTCOMES PAGESHOW] ✅ FIX APPLIED: Timeout variable reset to null');
+    outcomesExitFadeTimeout = null;
   }
 });
 
 window.addEventListener("popstate", () => {
-  console.log('[OUTCOMES POPSTATE] Clearing timeout, ID:', outcomesExitFadeTimeout);
   clearTimeout(outcomesExitFadeTimeout);
-  outcomesExitFadeTimeout = null;  // ✅ Reset to null
-  console.log('[OUTCOMES POPSTATE] Timeout cleared and reset to null');
+  outcomesExitFadeTimeout = null;
 });
 
 // Attach click/keyboard handlers to Outcomes blocks only on the landing page
 function initializeOutcomesCardListeners() {
-  console.log('[OUTCOMES INIT] Starting to attach card listeners at', Date.now());
-
   const outcomeBlocks = document.querySelectorAll(".outcomes.landing block");
 
-  console.log('[OUTCOMES INIT] Found outcome blocks:', {
-    count: outcomeBlocks.length,
-    timestamp: Date.now()
-  });
-
-  outcomeBlocks.forEach((block, index) => {
-    console.log(`[OUTCOMES INIT] Processing block ${index}:`, {
-      hasListener: block._hasVFListener,
-      hasDatasetFlag: block.dataset.vfHandled,
-      href: block.getAttribute('href')
-    });
-
+  outcomeBlocks.forEach((block) => {
     // mark so other scripts can skip default handling
     block.dataset.vfHandled = "true";
 
     if (block._hasVFListener) {
-      console.log(`[OUTCOMES INIT] Block ${index} already has listener - skipping`);
       return; // avoid duplicates on bfcache
     }
 
     block._hasVFListener = true;
-    console.log(`[OUTCOMES INIT] Attaching listeners to block ${index}`);
 
     const go = () => {
-      console.log('[OUTCOMES CLICK] Card clicked, navigating to:', block.getAttribute("href"));
       const href = block.getAttribute("href") || "./outcomes/case-study-A.html";
       handleOutcomesFadeAndRedirect(href);
     };
 
     block.addEventListener("click", (e) => {
-      console.log('[OUTCOMES CLICK] Click event fired on block');
       e.preventDefault();
       e.stopPropagation();
       e.stopImmediatePropagation();
@@ -254,7 +204,6 @@ function initializeOutcomesCardListeners() {
 
     block.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
-        console.log('[OUTCOMES KEYDOWN] Keydown event fired on block');
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
@@ -262,24 +211,8 @@ function initializeOutcomesCardListeners() {
       }
     });
   });
-
-  console.log('[OUTCOMES INIT] Finished attaching card listeners');
-
-  // Add global click test to verify clicks are being received
-  document.addEventListener('click', function globalClickTest(e) {
-    const clickedBlock = e.target.closest('.outcomes.landing block');
-    if (clickedBlock) {
-      console.log('[OUTCOMES GLOBAL CLICK] Click detected on outcomes block:', {
-        href: clickedBlock.getAttribute('href'),
-        hasListener: clickedBlock._hasVFListener,
-        hasDataset: clickedBlock.dataset.vfHandled,
-        timestamp: Date.now()
-      });
-    }
-  }, true); // Use capture phase to ensure we catch it first
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log('[OUTCOMES DOM] DOMContentLoaded fired at', Date.now());
   initializeOutcomesCardListeners();
 });

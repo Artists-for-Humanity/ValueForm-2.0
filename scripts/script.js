@@ -4,19 +4,6 @@ import { handleOutcomesNavigation } from "./outcomes-navigation.js";
 import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, isCurrentPagePinnedArticle } from "./scrollPosition.js";
 
 // ============================
-// Page Lifecycle Event Tracking
-// ============================
-console.log('[PAGE LIFECYCLE] Script.js loaded at', Date.now());
-
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('[PAGE LIFECYCLE] DOMContentLoaded fired at', Date.now(), 'on', window.location.pathname);
-});
-
-window.addEventListener('load', () => {
-  console.log('[PAGE LIFECYCLE] Window load fired at', Date.now(), 'on', window.location.pathname);
-});
-
-// ============================
 // Reusable isInViewport functions
 // ============================
 export function isInViewport(element) {
@@ -501,19 +488,11 @@ window.addEventListener("beforeunload", () => {
 });
 // Handle bfcache and back button navigation
 window.addEventListener("pageshow", (event) => {
-  console.log('[SCRIPT PAGESHOW] Event fired:', {
-    persisted: event.persisted,
-    timestamp: Date.now(),
-    url: window.location.pathname,
-    referrer: document.referrer
-  });
   if (event.persisted) {
-    console.log('[SCRIPT PAGESHOW] Page restored from BFCache - clearing timeout');
-    clearTimeout(exitFadeTimeout);               // ③ clears after restore
+    clearTimeout(exitFadeTimeout);
   }
 });
 window.addEventListener("popstate", () => {
-  console.log('[SCRIPT POPSTATE] Event fired at', Date.now());
   clearTimeout(exitFadeTimeout);
 });
 const readAllButton = document.querySelector(".read-all-articles");
