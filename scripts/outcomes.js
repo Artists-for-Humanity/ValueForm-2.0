@@ -156,26 +156,56 @@ function handleOutcomesFadeAndRedirect(targetUrl = "./outcomes/case-study-A.html
 
 // Clear on unload/restore
 window.addEventListener("beforeunload", () => { clearTimeout(outcomesExitFadeTimeout); });
-window.addEventListener("pageshow", (e) => { if (e.persisted) clearTimeout(outcomesExitFadeTimeout); });
+window.addEventListener("pageshow", (e) => {
+  console.log('[OUTCOMES PAGESHOW] Event fired:', {
+    persisted: e.persisted,
+    timestamp: Date.now(),
+    url: window.location.pathname
+  });
+  if (e.persisted) {
+    console.log('[OUTCOMES PAGESHOW] Page restored from BFCache');
+    clearTimeout(outcomesExitFadeTimeout);
+  }
+});
 window.addEventListener("popstate", () => { clearTimeout(outcomesExitFadeTimeout); });
 
 // Attach click/keyboard handlers to Outcomes blocks only on the landing page
-document.addEventListener("DOMContentLoaded", function () {
+function initializeOutcomesCardListeners() {
+  console.log('[OUTCOMES INIT] Starting to attach card listeners at', Date.now());
+
   const outcomeBlocks = document.querySelectorAll(".outcomes.landing block");
 
-  outcomeBlocks.forEach((block) => {
+  console.log('[OUTCOMES INIT] Found outcome blocks:', {
+    count: outcomeBlocks.length,
+    timestamp: Date.now()
+  });
+
+  outcomeBlocks.forEach((block, index) => {
+    console.log(`[OUTCOMES INIT] Processing block ${index}:`, {
+      hasListener: block._hasVFListener,
+      hasDatasetFlag: block.dataset.vfHandled,
+      href: block.getAttribute('href')
+    });
+
     // mark so other scripts can skip default handling
     block.dataset.vfHandled = "true";
 
-    if (block._hasVFListener) return; // avoid duplicates on bfcache
+    if (block._hasVFListener) {
+      console.log(`[OUTCOMES INIT] Block ${index} already has listener - skipping`);
+      return; // avoid duplicates on bfcache
+    }
+
     block._hasVFListener = true;
+    console.log(`[OUTCOMES INIT] Attaching listeners to block ${index}`);
 
     const go = () => {
+      console.log('[OUTCOMES CLICK] Card clicked, navigating to:', block.getAttribute("href"));
       const href = block.getAttribute("href") || "./outcomes/case-study-A.html";
       handleOutcomesFadeAndRedirect(href);
     };
 
     block.addEventListener("click", (e) => {
+      console.log('[OUTCOMES CLICK] Click event fired on block');
       e.preventDefault();
       e.stopPropagation();
       e.stopImmediatePropagation();
@@ -184,6 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     block.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
+        console.log('[OUTCOMES KEYDOWN] Keydown event fired on block');
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
@@ -191,4 +222,24 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  console.log('[OUTCOMES INIT] Finished attaching card listeners');
+
+  // Add global click test to verify clicks are being received
+  document.addEventListener('click', function globalClickTest(e) {
+    const clickedBlock = e.target.closest('.outcomes.landing block');
+    if (clickedBlock) {
+      console.log('[OUTCOMES GLOBAL CLICK] Click detected on outcomes block:', {
+        href: clickedBlock.getAttribute('href'),
+        hasListener: clickedBlock._hasVFListener,
+        hasDataset: clickedBlock.dataset.vfHandled,
+        timestamp: Date.now()
+      });
+    }
+  }, true); // Use capture phase to ensure we catch it first
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  console.log('[OUTCOMES DOM] DOMContentLoaded fired at', Date.now());
+  initializeOutcomesCardListeners();
 });
