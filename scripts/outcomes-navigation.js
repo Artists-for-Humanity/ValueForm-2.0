@@ -54,6 +54,20 @@ export function handleOutcomesNavigation(fadeInUpElements) {
       const targetUrl = anchor.getAttribute("href");
       let delayCounter = 0;
 
+      // DIAGNOSTIC ONLY - Track navigation count
+      const navCount = parseInt(sessionStorage.getItem('outcomesNavCount') || '0') + 1;
+      sessionStorage.setItem('outcomesNavCount', navCount.toString());
+
+      console.log('[DIAGNOSTIC - OUTCOMES NAV]', {
+        navigationNumber: navCount,
+        isFirstNav: navCount === 1,
+        isSecondNav: navCount === 2,
+        targetUrl: targetUrl,
+        headerVisible: topBannerMain ? isInViewport(topBannerMain) : false,
+        currentDontAnimateFlag: sessionStorage.getItem('dontAnimateHeader'),
+        timestamp: Date.now()
+      });
+
       // Outcomes route context & static banner flag
       const currentPage = window.location.pathname;
 

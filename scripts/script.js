@@ -4,6 +4,24 @@ import { handleOutcomesNavigation } from "./outcomes-navigation.js";
 import { storeScrollPosition, restoreScrollPosition, clearScrollPosition, isCurrentPagePinnedArticle } from "./scrollPosition.js";
 
 // ============================
+// DIAGNOSTIC ONLY - Track if page was restored from BFCache
+// ============================
+let pageWasRestoredFromBFCache = false;
+
+window.addEventListener('pageshow', (event) => {
+  pageWasRestoredFromBFCache = event.persisted;
+
+  console.log('[DIAGNOSTIC - PAGESHOW]', {
+    persisted: event.persisted,
+    url: window.location.pathname,
+    dontAnimateHeader: sessionStorage.getItem('dontAnimateHeader'),
+    headerChecked: sessionStorage.getItem('headerChecked'),
+    headerWasInViewport: sessionStorage.getItem('headerWasInViewport'),
+    timestamp: Date.now()
+  });
+});
+
+// ============================
 // Reusable isInViewport functions
 // ============================
 export function isInViewport(element) {
@@ -119,6 +137,17 @@ function animateOnLoad() {
     const header = document.getElementById("animatedHeader");
     const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
 
+    // DIAGNOSTIC LOGGING - Added for debugging, does not change behavior
+    console.log('[DIAGNOSTIC - HEADER ANIMATION]', {
+      called: true,
+      dontAnimateFlag: dontAnimate,
+      wasRestoredFromBFCache: typeof pageWasRestoredFromBFCache !== 'undefined' ? pageWasRestoredFromBFCache : 'unknown',
+      headerExists: !!header,
+      headerClasses: header?.className,
+      willAnimate: !!(header && dontAnimate != "true"),
+      timestamp: Date.now()
+    });
+
     if (header && dontAnimate != "true") {
       header.classList.add("animated-header");
     }
@@ -171,6 +200,18 @@ const header = document.getElementById("animatedHeader");
 let wasInViewport = isInViewport(header);
 let headerChecked = false;
 function checkHeaderInView() {
+  // DIAGNOSTIC LOGGING - Added at start
+  console.log('[DIAGNOSTIC - CHECK HEADER START]', {
+    called: true,
+    wasRestoredFromBFCache: typeof pageWasRestoredFromBFCache !== 'undefined' ? pageWasRestoredFromBFCache : 'unknown',
+    currentDontAnimateFlag: sessionStorage.getItem('dontAnimateHeader'),
+    currentHeaderChecked: sessionStorage.getItem('headerChecked'),
+    wasInViewport: wasInViewport,
+    headerChecked: headerChecked,
+    timestamp: Date.now(),
+    callStack: new Error().stack.split('\n').slice(1, 3).join(' | ')
+  });
+
   const header = document.getElementById("animatedHeader");
   const isInViewNow = isInViewport(header);
 
@@ -186,6 +227,15 @@ function checkHeaderInView() {
     wasInViewport = true;
     headerChecked = true;
   }
+
+  // DIAGNOSTIC LOGGING - Added at end (just before function closes)
+  console.log('[DIAGNOSTIC - CHECK HEADER END]', {
+    finalDontAnimateFlag: sessionStorage.getItem('dontAnimateHeader'),
+    finalHeaderChecked: sessionStorage.getItem('headerChecked'),
+    finalWasInViewport: wasInViewport,
+    finalHeaderCheckedVar: headerChecked,
+    timestamp: Date.now()
+  });
 }
 function watchHeaderInView() {
   checkHeaderInView();
@@ -519,6 +569,15 @@ window.addEventListener("pageshow", (event) => {
   initializePage();
 });
 function initializePage() {
+  // DIAGNOSTIC LOGGING ONLY
+  console.log('[DIAGNOSTIC - INIT PAGE]', {
+    called: true,
+    wasRestoredFromBFCache: typeof pageWasRestoredFromBFCache !== 'undefined' ? pageWasRestoredFromBFCache : 'unknown',
+    dontAnimateHeader: sessionStorage.getItem('dontAnimateHeader'),
+    headerChecked: sessionStorage.getItem('headerChecked'),
+    timestamp: Date.now()
+  });
+
   // Call animateOnLoad() which now handles BOTH header and banner animations
   // plus navigation setup - everything synchronized in one setTimeout
   animateOnLoad();
