@@ -3169,6 +3169,14 @@ ul.article-list.musing {
   padding-bottom: 19px;
 }
 
+@media (min-width: 1080px) {
+  .case-study-a .outcomes block.img-block-c,
+  .case-study-c .outcomes block.img-block-c,
+  .case-study-d .outcomes block.img-block-c {
+    padding-bottom: 6px;
+  }
+}
+
 /* Mobile only: Case study pages - update img-block-c top padding and margin */
 .outcomes.subpage block.img-block-c {
   padding-top: 22px;
@@ -3443,6 +3451,10 @@ ul.article-list.musing {
 /* Mobile only: Consistent bottom spacing for blocks before h2.subhead sections */
 .outcomes.subpage block:has(+ block h2.subhead) {
   padding-bottom: 8px !important;
+}
+
+.case-study-c .outcomes.subpage block:has(+ block h2.subhead) {
+  padding-bottom: 6px !important;
 }
 
 .outcomes.subpage h3 {
@@ -4062,6 +4074,11 @@ main.outcomes.subpage .company-info {
     padding-top: 20px !important;
   }
 
+  /* Desktop only: Override padding-bottom for img-block-c following a blockquote (case-study-a only) */
+  .case-study-a .outcomes.subpage .company-stat-container~blockquote+block.img-block-c {
+    padding-bottom: 6px !important;
+  }
+
   .company-stat:nth-of-type(2) {
     padding-top: 30px;
   }
@@ -4096,6 +4113,7 @@ main.outcomes.subpage .company-info {
   .outcomes.subpage h3 {
     font-size: 34px;
     letter-spacing: -1.02px;
+    padding-bottom: 10px;
   }
 
   .outcomes .company-stat-container .subhead {
