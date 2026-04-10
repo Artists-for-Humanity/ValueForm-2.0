@@ -4229,12 +4229,12 @@ main.outcomes.subpage .company-info {
 }
 
 /* QA Testing styles - TEMPORARY */
-/* main video,
-main img {
+.outcomes.subpage video,
+.outcomes.subpage img {
   outline: 1px solid red !important;
   outline-offset: -1px !important;
   background: rgba(255, 0, 0, 0.2) !important;
-} */
+}
 
 .company-info td {
   padding: 5px 0 8px 0 !important;
