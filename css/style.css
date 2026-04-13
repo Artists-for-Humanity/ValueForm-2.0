@@ -2821,7 +2821,7 @@ ul.article-list.musing {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  padding-top: 4px;
+  padding-top: 1px;
   padding-bottom: 12px;
 }
 
@@ -2969,6 +2969,7 @@ ul.article-list.musing {
     font-weight: 400;
     line-height: 24px;
     /* 150% */
+    padding-top: 1px;
     padding-bottom: 26px;
   }
 
@@ -3245,7 +3246,7 @@ ul.article-list.musing {
 /* Mobile only: Case study A - last p element has 25px bottom padding when text comes before media (media between p and next block) */
 .case-study-a .outcomes.subpage block.img-text-block-A div:has(+ img) p:last-of-type,
 .case-study-a .outcomes.subpage block.img-text-block-A div:has(+ video) p:last-of-type {
-  padding-bottom: 25px;
+  padding-bottom: 20px;
 }
 
 /* Mobile only: Case study A - video in block directly above blockquote has 25px bottom margin */
@@ -3415,7 +3416,7 @@ ul.article-list.musing {
 }
 
 .company-stat:nth-of-type(2) {
-  padding-top: 16px;
+  padding-top: 24px;
 }
 
 .outcomes .figure {
@@ -3461,7 +3462,7 @@ ul.article-list.musing {
   color: var(--darkgrey);
   font-weight: 700;
   padding-top: 3px;
-  padding-bottom: 15px;
+  padding-bottom: 13px;
 }
 
 
@@ -3480,7 +3481,7 @@ ul.article-list.musing {
 
 /* Mobile only: Last p element always has 9px bottom padding */
 .outcomes.subpage p:last-of-type {
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 
 .case-study-d .outcomes.subpage p:last-of-type {
@@ -4133,6 +4134,12 @@ main.outcomes.subpage .company-info {
     padding-bottom: 10px;
   }
 
+  /* Desktop only: Reset top padding and margin for h3 in img-text-block-A blocks */
+  .outcomes.subpage block.img-text-block-A h3 {
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+  }
+
   .outcomes .company-stat-container .subhead {
     line-height: 34px;
   }
@@ -4504,14 +4511,30 @@ block video.tablet-col-5-8.desktop-col-7-12 {
   padding-top: 0 !important;
 }
 
-.img-text-block-A:has(> div:first-child) h3 {
-  padding-top: 0 !important;
-  margin-top: 8px !important;
+/* Mobile only: h3 margin-top 1px */
+@media screen and (max-width: 699px) {
+  .img-text-block-A:has(> div:first-child) h3 {
+    padding-top: 0 !important;
+    margin-top: 1px !important;
+  }
+
+  .case-study-b .img-text-block-A:has(> div:first-child) h3 {
+    padding-top: 0 !important;
+    margin-top: 1px !important;
+  }
 }
 
-.case-study-b .img-text-block-A:has(> div:first-child) h3 {
-  padding-top: 0 !important;
-  margin-top: 3px !important;
+/* Tablet only: h3 margin-top 8px */
+@media screen and (min-width: 700px) and (max-width: 1079px) {
+  .img-text-block-A:has(> div:first-child) h3 {
+    padding-top: 0 !important;
+    margin-top: 8px !important;
+  }
+
+  .case-study-b .img-text-block-A:has(> div:first-child) h3 {
+    padding-top: 0 !important;
+    margin-top: 3px !important;
+  }
 }
 
 .img-text-block-A:has(> div:first-child) video {
