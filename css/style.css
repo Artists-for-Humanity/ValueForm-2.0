@@ -3429,7 +3429,7 @@ ul.article-list.musing {
 }
 
 .outcomes .figure sup {
-  font-size: 40px;
+  font-size: 35px;
   bottom: 0.5em;
   vertical-align: baseline;
   position: relative;
@@ -3694,6 +3694,11 @@ main.outcomes.subpage .company-info {
 
 .outcomes .company-stat:nth-of-type(2) .figure .percent {
   left: 0.4em;
+}
+
+.outcomes .figure .percent {
+  font-size: 40px;
+  vertical-align: top;
 }
 
 @media screen and (min-width: 700px) {
@@ -4124,6 +4129,10 @@ main.outcomes.subpage .company-info {
     letter-spacing: -2.67px;
   }
 
+  .outcomes .figure sup {
+    font-size: 40px;
+  }
+
   .outcomes .figure-description {
     font-size: 34px;
     line-height: 34px;
@@ -4249,13 +4258,6 @@ main.outcomes.subpage .company-info {
 
 }
 
-/* QA Testing styles - TEMPORARY */
-.outcomes.subpage video,
-.outcomes.subpage img {
-  outline: 1px solid red !important;
-  outline-offset: -1px !important;
-  background: rgba(255, 0, 0, 0.2) !important;
-}
 
 .company-info td {
   padding: 5px 0 8px 0 !important;

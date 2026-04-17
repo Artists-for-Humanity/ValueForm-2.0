@@ -10,15 +10,6 @@ let pageWasRestoredFromBFCache = false;
 
 window.addEventListener('pageshow', (event) => {
   pageWasRestoredFromBFCache = event.persisted;
-
-  console.log('[DIAGNOSTIC - PAGESHOW]', {
-    persisted: event.persisted,
-    url: window.location.pathname,
-    dontAnimateHeader: sessionStorage.getItem('dontAnimateHeader'),
-    headerChecked: sessionStorage.getItem('headerChecked'),
-    headerWasInViewport: sessionStorage.getItem('headerWasInViewport'),
-    timestamp: Date.now()
-  });
 });
 
 // ============================
@@ -137,17 +128,6 @@ function animateOnLoad() {
     const header = document.getElementById("animatedHeader");
     const dontAnimate = sessionStorage.getItem("dontAnimateHeader");
 
-    // DIAGNOSTIC LOGGING - Added for debugging, does not change behavior
-    console.log('[DIAGNOSTIC - HEADER ANIMATION]', {
-      called: true,
-      dontAnimateFlag: dontAnimate,
-      wasRestoredFromBFCache: typeof pageWasRestoredFromBFCache !== 'undefined' ? pageWasRestoredFromBFCache : 'unknown',
-      headerExists: !!header,
-      headerClasses: header?.className,
-      willAnimate: !!(header && dontAnimate != "true"),
-      timestamp: Date.now()
-    });
-
     if (header && dontAnimate != "true") {
       header.classList.add("animated-header");
     }
@@ -200,18 +180,6 @@ const header = document.getElementById("animatedHeader");
 let wasInViewport = isInViewport(header);
 let headerChecked = false;
 function checkHeaderInView() {
-  // DIAGNOSTIC LOGGING - Added at start
-  console.log('[DIAGNOSTIC - CHECK HEADER START]', {
-    called: true,
-    wasRestoredFromBFCache: typeof pageWasRestoredFromBFCache !== 'undefined' ? pageWasRestoredFromBFCache : 'unknown',
-    currentDontAnimateFlag: sessionStorage.getItem('dontAnimateHeader'),
-    currentHeaderChecked: sessionStorage.getItem('headerChecked'),
-    wasInViewport: wasInViewport,
-    headerChecked: headerChecked,
-    timestamp: Date.now(),
-    callStack: new Error().stack.split('\n').slice(1, 3).join(' | ')
-  });
-
   const header = document.getElementById("animatedHeader");
   const isInViewNow = isInViewport(header);
 
@@ -227,15 +195,6 @@ function checkHeaderInView() {
     wasInViewport = true;
     headerChecked = true;
   }
-
-  // DIAGNOSTIC LOGGING - Added at end (just before function closes)
-  console.log('[DIAGNOSTIC - CHECK HEADER END]', {
-    finalDontAnimateFlag: sessionStorage.getItem('dontAnimateHeader'),
-    finalHeaderChecked: sessionStorage.getItem('headerChecked'),
-    finalWasInViewport: wasInViewport,
-    finalHeaderCheckedVar: headerChecked,
-    timestamp: Date.now()
-  });
 }
 function watchHeaderInView() {
   checkHeaderInView();
@@ -471,20 +430,12 @@ export function staticTitle() {
     item.classList.remove("fadeInUp", "animated");
     // Set flag so the banner stays static on the next Outcomes page
     sessionStorage.setItem("keepOutcomesBannerStatic", "true");
-  } else {
-    console.log(
-      "Element #top_banner_main with class above_read_full not found."
-    );
   }
 }
 function staticPreview() {
   const item = document.querySelector("#news_page_main.above_read_full");
   if (item) {
     item.classList.remove("fadeInUp", "animated");
-  } else {
-    console.log(
-      "Element #news_page_main with class above_read_full not found."
-    );
   }
 }
 
@@ -556,28 +507,12 @@ let isInitialized = false;
 // Page cache/back button logic
 // =======================================
 window.addEventListener("pageshow", (event) => {
-  console.log('[INIT PAGESHOW] Event fired:', {
-    persisted: event.persisted,
-    timestamp: Date.now(),
-    url: window.location.pathname
-  });
   if (event.persisted) {
-    console.log('[INIT PAGESHOW] Calling handleCacheRestore()');
     handleCacheRestore(); // Handle cache-specific logic
   }
-  console.log('[INIT PAGESHOW] Calling initializePage()');
   initializePage();
 });
 function initializePage() {
-  // DIAGNOSTIC LOGGING ONLY
-  console.log('[DIAGNOSTIC - INIT PAGE]', {
-    called: true,
-    wasRestoredFromBFCache: typeof pageWasRestoredFromBFCache !== 'undefined' ? pageWasRestoredFromBFCache : 'unknown',
-    dontAnimateHeader: sessionStorage.getItem('dontAnimateHeader'),
-    headerChecked: sessionStorage.getItem('headerChecked'),
-    timestamp: Date.now()
-  });
-
   // Call animateOnLoad() which now handles BOTH header and banner animations
   // plus navigation setup - everything synchronized in one setTimeout
   animateOnLoad();
