@@ -315,38 +315,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const isNewsPage = path.endsWith("/news.html");
   const isOutcomesPage = path.endsWith("/outcomes.html");
 
-  // Define fade targets based on page type (only used for news/outcomes pages)
-  let elementsForFade = [];
-  if (isNewsPage) {
-    elementsForFade = [
-      { element: document.getElementById("news_page_main"), delay: "600ms" },
-      { element: document.getElementById("top_banner_main"), delay: "1200ms" },
-    ];
-  } else if (isOutcomesPage) {
-    elementsForFade = [
-      { element: document.getElementById("top_banner_main"), delay: "600ms" },
-    ];
-  }
-
   // Get the previous page from document.referrer
   const previousPage = document.referrer;
 
   // Logic for pinned article
   const pinnedFilePath = localStorage.getItem("pinnedFilePath");
 
-  if (isNewsPage && previousPage.includes(`/pages/articles/${pinnedFilePath}`)) {
-    // If coming from the pinned article, remove fadeInUp from both elements
-    if (localStorage.getItem("add_fade") === "false") {
-      elementsForFade.forEach(({ element }) => {
-        if (element) element.classList.remove("fadeInUp", "animated");
-      });
-    }
-  } else {
-    // For other pages (including article pages), only remove fadeInUp from #top_banner_main
+  // Only remove fadeInUp if coming from an article page AND banner was visible
+  const comingFromArticle = previousPage && (
+    previousPage.includes(`/pages/articles/${pinnedFilePath}`) ||
+    previousPage.includes("/pages/articles/")
+  );
+
+  if (isNewsPage && comingFromArticle && localStorage.getItem("add_fade") === "false") {
+    // If coming from an article and banner was visible, keep it static
     const topBannerMain = document.getElementById("top_banner_main");
-    if (topBannerMain && localStorage.getItem("add_fade") === "false") {
-      topBannerMain.classList.remove("fadeInUp", "animated");
+    const newsPageMain = document.getElementById("news_page_main");
+
+    if (topBannerMain) topBannerMain.classList.remove("fadeInUp", "animated");
+    if (newsPageMain && previousPage.includes(`/pages/articles/${pinnedFilePath}`)) {
+      newsPageMain.classList.remove("fadeInUp", "animated");
     }
+  } else if (isOutcomesPage && comingFromArticle && localStorage.getItem("add_fade") === "false") {
+    // If coming from an article to outcomes and banner was visible, keep it static
+    const topBannerMain = document.getElementById("top_banner_main");
+    if (topBannerMain) topBannerMain.classList.remove("fadeInUp", "animated");
   }
 
   // Reset for subsequent visits

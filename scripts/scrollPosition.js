@@ -86,6 +86,21 @@ export function restoreScrollPosition() {
   const storedBannerVisibility = sessionStorage.getItem("bannerWasVisible");
   const storedArticleVisibility = sessionStorage.getItem("articleWasVisible");
 
+  // ---------- News page guard (EARLY) ----------
+  // If we're on news.html and didn't come from an article, clear scroll and allow animation
+  const onNewsPage = window.location.pathname.includes("/pages/news.html");
+  const referrer = document.referrer;
+  const cameFromArticle = referrer && referrer.includes("/pages/articles/");
+  const isRefresh = !referrer || referrer === window.location.href;
+
+  if (onNewsPage && (!cameFromArticle || isRefresh)) {
+    // Clear stored position and allow normal fade-in animation
+    sessionStorage.removeItem("scrollPosition");
+    sessionStorage.removeItem("dontAnimateBanner");
+    document.body.classList.remove("preload");
+    return;
+  }
+
   // ---------- Outcomes guard (EARLY) ----------
   // If we are on an Outcomes subpage or came from any Outcomes page,
   // check if the banner WAS visible on the PREVIOUS page to decide whether to animate.
@@ -94,7 +109,6 @@ export function restoreScrollPosition() {
   const prevWasOutcomesRoute = wasPreviousPageOutcomesRoute();
 
   // Check if this is a direct load (no referrer or self-referral)
-  const referrer = document.referrer;
   const currentUrl = window.location.href;
   const isDirectLoad = !referrer || referrer === currentUrl || !referrer.includes("/pages/outcomes/");
 
