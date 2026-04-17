@@ -1,5 +1,4 @@
 import { isInViewport } from "./script.js";
-// console.log("running navigation script")
 function containsElementWithId(elements, id) {
   if (Array.isArray(elements) || NodeList.prototype.isPrototypeOf(elements)) {
     return Array.from(elements).some((el) => el.id === id);
@@ -25,6 +24,7 @@ export function handleNavigation(fadeInUpElements) {
   const articleTitle = document.getElementById("article_title");
   const articleTitleBlock = document.getElementById("article_title_block");
   const articleTop = document.getElementById("article_top");
+  const outcomesLinks = document.querySelectorAll(".outcomes.landing block");
 
   const allLinks = [
     ...clickMe,
@@ -35,6 +35,7 @@ export function handleNavigation(fadeInUpElements) {
     ...asideLinks,
     ...linkBack,
     ...linkBackNews,
+    ...outcomesLinks,
   ];
 
   allLinks.forEach((element) => {
@@ -44,6 +45,8 @@ export function handleNavigation(fadeInUpElements) {
     if (anchor.classList.contains("disabled")) return;
 
     anchor.addEventListener("click", (e) => {
+
+
       const isPureAnchor =
         anchor.host === window.location.host &&
         anchor.pathname === window.location.pathname;
@@ -69,6 +72,7 @@ export function handleNavigation(fadeInUpElements) {
         });
 
       const currentPage = window.location.pathname;
+
       const isNewsPageMainInViewport =
         newsPageMain && isInViewport(newsPageMain);
       const isTopBannerMainInViewport =
@@ -111,6 +115,11 @@ export function handleNavigation(fadeInUpElements) {
         targetUrl.startsWith("./articles/") &&
         targetUrl !== "./articles/" + pinnedFilePath
       ) {
+        // Check if banner is in viewport and set the add_fade flag
+        if (topBannerMain) {
+          localStorage.setItem("add_fade", isTopBannerMainInViewport ? "false" : "true");
+        }
+
         const hasTopBannerInList = containsElementWithId(
           fadeInUpElements,
           "top_banner_main"
@@ -156,7 +165,9 @@ export function handleNavigation(fadeInUpElements) {
         currentPage === "/pages/news.html" &&
         (targetUrl.startsWith("./our-approach.html") ||
           targetUrl === "./leadership.html" ||
-          targetUrl === "../index.html")
+          targetUrl === "../index.html" ||
+          targetUrl === "./outcomes.html"
+        )
       ) {
         if (!isNewsPageMainInViewport) return;
         // Adjust delay if "news_page_main" is not part of fadeInUpElements
@@ -179,12 +190,10 @@ export function handleNavigation(fadeInUpElements) {
         if (footerInViewport) {
           setTimeout(() => {
             if (!isTopBannerMainInViewport) {
-              newsPageMain.style.animationDelay = `${
-                (delayCounter - 1) * 600
-              }ms`;
-              articleTitleBlock.style.animationDelay = `${
-                (delayCounter - 2) * 600
-              }ms`;
+              newsPageMain.style.animationDelay = `${(delayCounter - 1) * 600
+                }ms`;
+              articleTitleBlock.style.animationDelay = `${(delayCounter - 2) * 600
+                }ms`;
             }
             topBannerMain.classList.add("fadeOutDown");
           }, 0);
@@ -192,9 +201,8 @@ export function handleNavigation(fadeInUpElements) {
           // No footer: fire immediately but with correct delay
           setTimeout(() => {
             newsPageMain.style.animationDelay = `${(delayCounter - 2) * 600}ms`;
-            topBannerMain.style.animationDelay = `${
-              (delayCounter - 1) * 600
-            }ms`;
+            topBannerMain.style.animationDelay = `${(delayCounter - 1) * 600
+              }ms`;
             topBannerMain.classList.add("fadeOutDown");
           }, 0);
         }
@@ -205,9 +213,11 @@ export function handleNavigation(fadeInUpElements) {
         (currentPage.startsWith("/pages/articles/") &&
           targetUrl !== "./articles/" + pinnedFilePath &&
           (targetUrl === "../leadership.html" ||
-            targetUrl === "../../index.html")) ||
-        targetUrl.startsWith("../our-approach.html")
-      ) {
+            targetUrl === "../../index.html" ||
+            targetUrl === "../outcomes.html" ||
+            targetUrl.startsWith("../our-approach.html"))
+        )) {
+
         const hasTopBannerInList = containsElementWithId(
           fadeInUpElements,
           "top_banner_main"
@@ -237,6 +247,11 @@ export function handleNavigation(fadeInUpElements) {
         currentPage === "/pages/news.html" &&
         targetUrl === "./articles/" + pinnedFilePath
       ) {
+        // Check if banner is in viewport and set the add_fade flag
+        if (topBannerMain) {
+          localStorage.setItem("add_fade", isTopBannerMainInViewport ? "false" : "true");
+        }
+
         delayCounter = fadeInUpElements.length;
         if (
           containsElementWithId(fadeInUpElements, "news_page_main") &&
@@ -259,14 +274,32 @@ export function handleNavigation(fadeInUpElements) {
         }
       }
 
+      // ---- NEW: mark that next page should reset scroll + fade banner in
+      const isArticlePage = currentPage.startsWith("/pages/articles/");
+
+      // URLs that should reset when coming from a news article
+      const resetTargets = new Set([
+        // Outcomes
+        "./outcomes.html", "../outcomes.html", "../../outcomes.html", "/pages/outcomes.html",
+        // Home
+        "./index.html", "../index.html", "../../index.html", "/index.html", "/pages/index.html",
+        // Our Approach
+        "./our-approach.html", "../our-approach.html", "../../our-approach.html", "/pages/our-approach.html",
+        // Leadership
+        "./leadership.html", "../leadership.html", "../../leadership.html", "/pages/leadership.html",
+      ]);
+
+      if (isArticlePage && resetTargets.has(targetUrl)) {
+        sessionStorage.setItem("forceTopAndFadeIn", "true");
+        // make absolutely sure we don't carry a "keep static" flag into Outcomes
+        sessionStorage.removeItem("keepOutcomesBannerStatic");
+      }
+
       setTimeout(() => {
-        // console.log(
-        //   `Redirecting to ${targetUrl} after a delay of ${
-        //     delayCounter * 600 + 800
-        //   } ms`
-        // );
+
         window.location.href = targetUrl;
       }, delayCounter * 600 + 800);
     });
   });
+
 }
